@@ -9,8 +9,9 @@
     "test": "gulp test",
     "load_data": "node js/makedb",
     "instrument": "jscoverage js/ gen_cov/ --exclude *.map,*.d.ts",
+    "coverage": "nyc report --reporter=text-lcov nodeunit test/model test/match | coveralls",
     "testcov2": "export FSD_COVERAGE=1 && nodeunit test/model test/match --reporter=lcov",
-    "testcov": "export FSD_COVERAGE=1 && nodeunit test/model test/match --reporter=lcov | coveralls"
+    "testcovX": "export FSD_COVERAGE=1 && nodeunit test/model test/match --reporter=lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -39,11 +40,12 @@
     "gulp-jsdoc3": "^1.0.1",
     "gulp-nodeunit": "^0.1.0",
     "gulp-run": "^1.7.1",
-    "mgnlq_testmodel": "^0.0.1",
-    "mgnlq_testmodel_replay": "^0.0.1",
-    "mongoose_record_replay" : "^0.0.3",
     "gulp-typescript": "^3.1.5",
     "jscoverage": "^0.6.0",
+    "mgnlq_testmodel": "^0.0.1",
+    "mgnlq_testmodel_replay": "^0.0.1",
+    "mongoose_record_replay": "^0.0.3",
+    "nyc": "^10.3.2",
     "typescript": "^2.2.1"
   },
   "dependencies": {
