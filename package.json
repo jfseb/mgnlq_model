@@ -9,7 +9,8 @@
     "test": "gulp test",
     "load_data": "node js/makedb",
     "instrument": "jscoverage js/ gen_cov/ --exclude *.map,*.d.ts",
-    "coverage": "nyc report --reporter=text-lcov nodeunit test/model test/match | coveralls",
+    "coverage": "nyc --reporter=text-lcov nodeunit -r test/model test/match | coveralls",
+    "coverage2": "node node_modules/nyc/bin/nyc.js --reporter=text-lcov nodeunit -r test/model test/match | coveralls",
     "testcov2": "export FSD_COVERAGE=1 && nodeunit test/model test/match --reporter=lcov",
     "testcovX": "export FSD_COVERAGE=1 && nodeunit test/model test/match --reporter=lcov | coveralls"
   },
