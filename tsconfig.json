@@ -1,0 +1,49 @@
+{
+    "compilerOptions": {
+       // "target": "es6",
+       "skipLibCheck": true, // avoid lodash WeakMap mismatch
+       "target": "es2015",
+       // "module" : "es6", //'es2015
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+      //  "jsx": "react",
+       // "watch" : true,
+        // new ^^
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": true,
+        "noImplicitAny": false,
+        "removeComments": false,
+        "noLib": false,
+        "outDir" : "js",
+       // "sourceMap" : true,
+        "inlineSourceMap": true,
+        "preserveConstEnums": true,
+         //"jsx": "react",
+        "suppressImplicitAnyIndexErrors": true
+ //       "types" : ["node", "core-js"]
+    },
+    "filesGlob": [
+        "**/*.ts",
+        "**/*.tsx",
+        "!node_modules/**"
+    ],
+    "files": [
+        "src/makedb.ts",
+        "src/index.ts",
+        "src/utils/mongo.ts",
+        "src/modelload/schemaload.ts",
+        "src/modelload/dataload.ts",
+        "src/match/rule.ts",
+        "src/match/ifmatch.ts",
+        "src/model/model.ts",
+        "src/model/mongomap.ts",
+        "src/model/meta.ts",
+        "src/match/breakdown.ts",
+        "src/match/algol.ts"
+    ],
+    "exclude": [
+//  "!node_modules/**"
+    ]
+}
