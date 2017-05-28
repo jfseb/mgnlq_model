@@ -1,5 +1,7 @@
 
 
+import * as mongoose from 'mongoose';
+
 export const enum EnumResponseCode {
   NOMATCH = 0,
   EXEC,
@@ -317,6 +319,52 @@ export interface IAction {
 }
 
 
+
+
+export interface IRawSchema {
+    props: any[],
+    index : any
+}
+
+export interface IModelDocCategoryRec {
+    category : string,
+    category_description : string,
+    QBEColumnProps : {
+        "defaultWidth": number,
+        "QBE": boolean,
+        "LUNRIndex": boolean
+      },
+      "category_synonyms": string[],
+    wordindex : boolean,
+    exactmatch: boolean
+};
+
+export interface IModelDoc {
+    domain : string,
+    modelname? : string,
+    collectionname? : string,
+    domain_description : string
+    _categories : IModelDocCategoryRec[],
+    columns: string[],
+    domain_synonyms : string[]
+
+}
+
+export interface CatMongoMap  { [key: string] : {
+        paths : string[], // individual segments, can be  ["A","[]","B"] , ["A", "B"]  or ["A", "[]"]
+        fullpath : string, // the mongoose path as written, e.g. A.B
+    }
+};
+
+
+export interface IExtendedSchema extends IRawSchema{
+    domain : string,
+    modelname : string,
+    mongoosemodelname : string,
+    collectionname : string
+};
+
+
 export interface ICategoryDesc {
   category: string,
   importance? : number,
@@ -327,6 +375,13 @@ export interface ICategoryDesc {
   category_synonyms? : string[];
 }
 
+
+export interface IModelHandleRaw {
+    mongoose: mongoose.Mongoose,
+    modelDocs: { [key: string]: IModelDoc },
+    modelESchemas: { [key: string]: IExtendedSchema },
+    mongoMaps: { [key: string]: CatMongoMap },
+};
 
 
 export interface IModel {
@@ -348,6 +403,7 @@ export interface IModel {
 };
 
 export interface IModels {
+    mongoHandle : IModelHandleRaw
     full : {
       domain : { [key : string] : {
           description: string,

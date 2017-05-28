@@ -18,6 +18,15 @@ var Model = require(root + '/model/model.js');
 //var Schemaload = require(root + '/modelload/schemaload.js');
 var MongoUtils  = require(root + '/utils/mongo.js');
 
+
+// load distinct values from model
+
+process.on('unhandledRejection', function onError(err) {
+  console.log(err);
+  console.log(err.stack);
+  throw err;
+});
+
 /**
  * clear a cache for the defaut mode for coverage
  */
@@ -48,7 +57,6 @@ exports.testhasSeenRuleWithFact = function(test) {
   test.equal(res,true);
   res = Model.hasRuleWithFact(rules, 'abc', 'catb', 1);
   test.equal(res,false);
-
   test.done();
 };
 
@@ -59,15 +67,10 @@ var mongoose = require('mongoose_record_replay').instrumentMongoose(require('mon
   'node_modules/mgnlq_testmodel_replay/mgrecrep/',
   'REPLAY');
 
-var PPtheModel =
-  MongoUtils.openMongoose(mongoose, 'mongodb://localhost/testdb').then(
-    () => Model.getMongoHandle(mongoose)
-  ).then( (modelHandle) => Model.loadModels(modelHandle)
-  );
-
-var pTheModel = PPtheModel.then( fullModelHandle => fullModelHandle.model);
-
-
+function getModel() {
+  return Model.loadModelsOpeningConnection(mongoose, 'mongodb://localhost/testdb');
+}
+var pTheModel = Model.loadModelsOpeningConnection(mongoose,'mongodb://localhost/testdb'  );
 
 var cats = [
   'AppDocumentationLinkKW',
@@ -155,15 +158,16 @@ var cats = [
  */
 exports.testModel = function (test) {
   test.expect(3);
-  PPtheModel.then(
-    (fullModelHandle) => {
+  getModel().then(
+    (amodel) => {
+      debuglog('got model');
+      var fullModelHandle = amodel.mongoHandle;
       debuglog('here we are' + Object.keys(fullModelHandle));
-      var res = fullModelHandle.model.category.sort();
+      var res = amodel.category.sort();
       var delta1 = _.difference(res,cats);
       test.deepEqual(delta1,[]);
       var delta2 = _.difference(cats,res);
       test.deepEqual(delta2,[], 'spurious expected');
-
       test.deepEqual(res,cats, 'correct full categories');
       MongoUtils.disconnect(mongoose);
       test.done();

@@ -44,29 +44,18 @@ export function cmpTools(a: IMatch.ITool, b: IMatch.ITool) {
 
 type IModel = IMatch.IModel;
 
-export interface IModelHandleRaw {
-    mongoose: mongoose.Mongoose,
-    modelDocs: { [key: string]: ISchema.IModelDoc },
-    modelESchemas: { [key: string]: ISchema.IExtendedSchema },
-    mongoMaps: { [key: string]: MongoMap.CatMongoMap },
-};
-
-
-export interface IModelHandle extends IModelHandleRaw {
-    model : IMatch.IModels
-};
 
 /**
  * returns when all models are loaded and all modeldocs are made
  * @param mongoose
  */
-export function getMongoHandle(mongoose: mongoose.Mongoose): Promise<IModelHandleRaw> {
+export function getMongoHandle(mongoose: mongoose.Mongoose): Promise<IMatch.IModelHandleRaw> {
     var res = {
         mongoose: mongoose,
         modelDocs: {},
         modelESchemas: {},
         mongoMaps: {}
-    } as IModelHandle;
+    } as IMatch.IModelHandleRaw;
     var modelES = Schemaload.getExtendedSchemaModel(mongoose);
     return modelES.distinct('modelname').then((modelnames) => {
         debuglog(() => 'here distinct modelnames ' + JSON.stringify(modelnames));
@@ -92,7 +81,7 @@ export function getMongoHandle(mongoose: mongoose.Mongoose): Promise<IModelHandl
     //return Promise.resolve(res);
 }
 
-export function getFactSynonyms(mongoHandle: IModelHandleRaw, modelname: string): Promise<ISynonym[]> {
+export function getFactSynonyms(mongoHandle: IMatch.IModelHandleRaw, modelname: string): Promise<ISynonym[]> {
     var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
     //     return model.find( { "_synonyms.0" : { $exists: false}}).lean().exec();
     return model.aggregate({ $match: { "_synonyms.0": { $exists: true } } },
@@ -135,7 +124,7 @@ export function remapSynonyms(docs: ISynonymBearingDoc[]): ISynonym[] {
 // get synonyms
 // db.cosmos.find( { "_synonyms.0": { $exists: true }}).length()
 
-export function getDistinctValues(mongoHandle: IModelHandleRaw, modelname: string, category: string): Promise<string[]> {
+export function getDistinctValues(mongoHandle: IMatch.IModelHandleRaw, modelname: string, category: string): Promise<string[]> {
     debuglog(() => `here models ${modelname} ` + mongoHandle.mongoose.modelNames().join(';'));
     var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
     var mongoMap = mongoHandle.mongoMaps[modelname];
@@ -344,7 +333,7 @@ export function hasRuleWithFact(mRules : IMatch.mRule[], fact: string, category:
     }) !== undefined;
 }
 
-function loadModelDataMongo(modelHandle: IModelHandleRaw, oMdl: IModel, sModelName: string, oModel: IMatch.IModels): Promise<any> {
+function loadModelDataMongo(modelHandle: IMatch.IModelHandleRaw, oMdl: IModel, sModelName: string, oModel: IMatch.IModels): Promise<any> {
     // read the data ->
     // data is processed into mRules directly
 
@@ -416,35 +405,21 @@ function loadModelP(mongooseHndl ? : mongoose.Mongoose, connectionString? : stri
     var connStr = connectionString || 'mongodb://localhost/testdb';
     return MongoUtils.openMongoose(mongooseX, connStr).then(
         () => getMongoHandle(mongooseX)
-    ).then( (modelHandle : IModelHandleRaw) => loadModels(modelHandle)
-    ).then( (modelHandle : IModelHandle) => modelHandle.model)
+    ).then( (modelHandle : IMatch.IModelHandleRaw) => loadModelsFull(modelHandle)
+    );
 };
 
-export function loadModelHandleP(mongooseHndl ? : mongoose.Mongoose, connectionString? : string) : Promise<IModelHandle> {
-    var mongooseX = mongooseHndl || mongoose;
-    if(process.env.MONGO_REPLAY) {
-        mongooseX = mongooseMock.mongooseMock as any;
-    }
-    var connStr = connectionString || 'mongodb://localhost/testdb';
-    return MongoUtils.openMongoose(mongooseX, connStr).then(
-        () => getMongoHandle(mongooseX)
-    ).then( (modelHandle : IModelHandleRaw) => loadModels(modelHandle));
-};
 
-export function loadModel(modelHandle: IModelHandleRaw, sModelName: string, oModel: IMatch.IModels): Promise<any> {
+
+
+
+export function loadModel(modelHandle: IMatch.IModelHandleRaw, sModelName: string, oModel: IMatch.IModels): Promise<any> {
     debuglog(" loading " + sModelName + " ....");
     //var oMdl = readFileAsJSON('./' + modelPath + '/' + sModelName + ".model.json") as IModel;
     var oMdl = makeMdlMongo(modelHandle, sModelName, oModel);
     return loadModelDataMongo(modelHandle, oMdl, sModelName, oModel);
 }
 
-/*/
-function loadModel(modelPath: string, sModelName: string, oModel: IMatch.IModels) {
-    debuglog(" loading " + sModelName + " ....");
-    var oMdl = readFileAsJSON('./' + modelPath + '/' + sModelName + ".model.json") as IModel;
-    mergeModelJson(sModelName, oMdl, oModel);
-    loadModelData(modelPath, oMdl, sModelName, oModel);
-}*/
 
 export function getAllDomainsBitIndex(oModel: IMatch.IModels): number {
     var len = oModel.domains.length;
@@ -660,7 +635,7 @@ function mergeModelJson(sModelName: string, oMdl: IModel, oModel: IMatch.IModels
 } // loadmodel
 */
 
-function makeMdlMongo(modelHandle: IModelHandleRaw, sModelName: string, oModel: IMatch.IModels): IModel {
+function makeMdlMongo(modelHandle: IMatch.IModelHandleRaw, sModelName: string, oModel: IMatch.IModels): IModel {
     var modelDoc = modelHandle.modelDocs[sModelName];
     var oMdl = {
         bitindex: getDomainBitIndex(modelDoc.domain, oModel),
@@ -1132,9 +1107,55 @@ export function readOperators(mongoose: mongoose.Mongoose, oModel: IMatch.IModel
 };
 
 
-export function loadModels(modelHandle: IModelHandleRaw, modelPath?: string): Promise<IModelHandle> {
+export function loadModelHandleP(mongooseHndl ? : mongoose.Mongoose, connectionString? : string) : Promise<IMatch.IModels> {
+    var mongooseX = mongooseHndl || mongoose;
+ //   if(process.env.MONGO_REPLAY) {
+ //        mongooseX = mongooseMock.mongooseMock as any;
+ //    }
+    var connStr = connectionString || 'mongodb://localhost/testdb';
+    return MongoUtils.openMongoose(mongooseX, connStr).then(
+        () => getMongoHandle(mongooseX)
+    ).then( (modelHandle : IMatch.IModelHandleRaw) => loadModelsFull(modelHandle));
+};
+
+
+export function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString? : string,  modelPath? : string) : Promise<IMatch.IModels> {
+  var mongooseX = mongooseHndl || mongoose;
+ //   if(process.env.MONGO_REPLAY) {
+ //        mongooseX = mongooseMock.mongooseMock as any;
+ //    }
+    var connStr = connectionString || 'mongodb://localhost/testdb';
+    return MongoUtils.openMongoose(mongooseX, connStr).then(
+        ()=>
+            {
+            return loadModels(mongooseX, modelPath);
+            }
+    );
+}
+
+/**
+ * expects an open connection!
+ * @param mongoose
+ * @param modelPath
+ */
+export function loadModels(mongoose: mongoose.Mongoose, modelPath? : string) : Promise<IMatch.IModels> {
+    return getMongoHandle(mongoose).then( (modelHandle) =>{
+        debuglog('got a mongo handle');
+        return loadModelsFull(modelHandle, modelPath);
+    });
+}
+
+export function loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<IMatch.IModels> {
     var oModel: IMatch.IModels;
+    modelPath = modelPath || envModelPath;
+    modelHandle = modelHandle || {
+        mongoose: undefined,
+        modelDocs: {},
+        mongoMaps: {},
+        modelESchemas: {}
+    };
     oModel = {
+        mongoHandle : modelHandle,
         full: { domain: {} },
         rawModels: {},
         domains: [],
@@ -1146,16 +1167,10 @@ export function loadModels(modelHandle: IModelHandleRaw, modelPath?: string): Pr
         meta: { t3: {} }
     }
     var t = Date.now();
-    modelHandle = modelHandle || {
-        mongoose: undefined,
-        modelDocs: {},
-        mongoMaps: {},
-        modelESchemas: {}
-    };
-    modelPath = modelPath || envModelPath;
 
     try {
         var a = CircularSer.load('./' + modelPath + '/_cachefalse.js');
+      // TODO
         a = undefined;
         //console.log("found a cache ?  " + !!a);
         //a = undefined;
@@ -1249,7 +1264,8 @@ export function loadModels(modelHandle: IModelHandleRaw, modelPath?: string): Pr
             console.log("loaded models by calculation in " + (Date.now() - t) + " ");
         }
 
-        var res = (Object as any).assign(modelHandle, { model: oModel }) as IModelHandle;
+        var res = oModel;
+        // (Object as any).assign(modelHandle, { model: oModel }) as IMatch.IModelHandle;
 
         return res;
     }

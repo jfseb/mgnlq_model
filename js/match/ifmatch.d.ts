@@ -313,6 +313,7 @@ export interface IModel {
     hidden: string[];
 }
 export interface IModels {
+    mongohandle : IModelHandle
     full: {
         domain: {
             [key: string]: {

@@ -5,7 +5,6 @@
  * @file
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-;
 //import * as intf from 'constants';
 const debug = require("debug");
 var debuglog = debug('mongomap');

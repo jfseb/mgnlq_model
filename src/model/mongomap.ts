@@ -5,12 +5,6 @@
  */
 
 
-export interface CatMongoMap  { [key: string] : {
-        paths : string[], // individual segments, can be  ["A","[]","B"] , ["A", "B"]  or ["A", "[]"]
-        fullpath : string, // the mongoose path as written, e.g. A.B
-    }
-};
-
 //import * as intf from 'constants';
 import * as debug from 'debug';
 
@@ -29,6 +23,8 @@ import * as CircularSer from 'abot_utils';
 import * as Distance from 'abot_stringdist';
 import * as process from 'process';
 import * as _ from 'lodash';
+
+type CatMongoMap = IMatch.CatMongoMap;
 /**
  * the model path, may be controlled via environment variable
  */
@@ -97,7 +93,7 @@ export function collectCategories(eSchemaProps : any) {
 }
 
 
-export function makeMongoMap(oDoc : ISchema.IModelDoc, eSchema : ISchema.IExtendedSchema ) : CatMongoMap {
+export function makeMongoMap(oDoc : ISchema.IModelDoc, eSchema : ISchema.IExtendedSchema ) : IMatch.CatMongoMap {
     var oMongoMap = {} as CatMongoMap;
     debuglog( () => 'creating mongomap for ' + JSON.stringify(eSchema.modelname, undefined, 2) + ' and ' + oDoc.modelname );
     debuglog( () =>'creating mongomap for doc ' + JSON.stringify(oDoc, undefined, 2));

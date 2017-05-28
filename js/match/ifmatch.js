@@ -42,5 +42,9 @@ var EnumActionType;
     EnumActionType[EnumActionType["STARTCMDLINE"] = 1] = "STARTCMDLINE";
 })(EnumActionType = exports.EnumActionType || (exports.EnumActionType = {}));
 ;
+;
+;
+;
+;
 
 //# sourceMappingURL=ifmatch.js.map

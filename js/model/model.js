@@ -23,7 +23,6 @@ const MongoUtils = require("../utils/mongo");
 const mongoose = require("mongoose");
 const Schemaload = require("../modelload/schemaload");
 const MongoMap = require("./mongomap");
-const mongooseMock = require("mongoose_record_replay");
 /**
  * the model path, may be controlled via environment variable
  */
@@ -32,8 +31,6 @@ function cmpTools(a, b) {
     return a.name.localeCompare(b.name);
 }
 exports.cmpTools = cmpTools;
-;
-;
 /**
  * returns when all models are loaded and all modeldocs are made
  * @param mongoose
@@ -348,18 +345,8 @@ function loadModelDataMongo(modelHandle, oMdl, sModelName, oModel) {
 function loadModelP(mongooseHndl, connectionString) {
     var mongooseX = mongooseHndl || mongoose;
     var connStr = connectionString || 'mongodb://localhost/testdb';
-    return MongoUtils.openMongoose(mongooseX, connStr).then(() => getMongoHandle(mongooseX)).then((modelHandle) => loadModels(modelHandle)).then((modelHandle) => modelHandle.model);
+    return MongoUtils.openMongoose(mongooseX, connStr).then(() => getMongoHandle(mongooseX)).then((modelHandle) => loadModelsFull(modelHandle));
 }
-;
-function loadModelHandleP(mongooseHndl, connectionString) {
-    var mongooseX = mongooseHndl || mongoose;
-    if (process.env.MONGO_REPLAY) {
-        mongooseX = mongooseMock.mongooseMock;
-    }
-    var connStr = connectionString || 'mongodb://localhost/testdb';
-    return MongoUtils.openMongoose(mongooseX, connStr).then(() => getMongoHandle(mongooseX)).then((modelHandle) => loadModels(modelHandle));
-}
-exports.loadModelHandleP = loadModelHandleP;
 ;
 function loadModel(modelHandle, sModelName, oModel) {
     debuglog(" loading " + sModelName + " ....");
@@ -368,13 +355,6 @@ function loadModel(modelHandle, sModelName, oModel) {
     return loadModelDataMongo(modelHandle, oMdl, sModelName, oModel);
 }
 exports.loadModel = loadModel;
-/*/
-function loadModel(modelPath: string, sModelName: string, oModel: IMatch.IModels) {
-    debuglog(" loading " + sModelName + " ....");
-    var oMdl = readFileAsJSON('./' + modelPath + '/' + sModelName + ".model.json") as IModel;
-    mergeModelJson(sModelName, oMdl, oModel);
-    loadModelData(modelPath, oMdl, sModelName, oModel);
-}*/
 function getAllDomainsBitIndex(oModel) {
     var len = oModel.domains.length;
     var res = 0;
@@ -1014,9 +994,50 @@ function readOperators(mongoose, oModel) {
 }
 exports.readOperators = readOperators;
 ;
-function loadModels(modelHandle, modelPath) {
+function loadModelHandleP(mongooseHndl, connectionString) {
+    var mongooseX = mongooseHndl || mongoose;
+    //   if(process.env.MONGO_REPLAY) {
+    //        mongooseX = mongooseMock.mongooseMock as any;
+    //    }
+    var connStr = connectionString || 'mongodb://localhost/testdb';
+    return MongoUtils.openMongoose(mongooseX, connStr).then(() => getMongoHandle(mongooseX)).then((modelHandle) => loadModelsFull(modelHandle));
+}
+exports.loadModelHandleP = loadModelHandleP;
+;
+function loadModelsOpeningConnection(mongooseHndl, connectionString, modelPath) {
+    var mongooseX = mongooseHndl || mongoose;
+    //   if(process.env.MONGO_REPLAY) {
+    //        mongooseX = mongooseMock.mongooseMock as any;
+    //    }
+    var connStr = connectionString || 'mongodb://localhost/testdb';
+    return MongoUtils.openMongoose(mongooseX, connStr).then(() => {
+        return loadModels(mongooseX, modelPath);
+    });
+}
+exports.loadModelsOpeningConnection = loadModelsOpeningConnection;
+/**
+ * expects an open connection!
+ * @param mongoose
+ * @param modelPath
+ */
+function loadModels(mongoose, modelPath) {
+    return getMongoHandle(mongoose).then((modelHandle) => {
+        debuglog('got a mongo handle');
+        return loadModelsFull(modelHandle, modelPath);
+    });
+}
+exports.loadModels = loadModels;
+function loadModelsFull(modelHandle, modelPath) {
     var oModel;
+    modelPath = modelPath || envModelPath;
+    modelHandle = modelHandle || {
+        mongoose: undefined,
+        modelDocs: {},
+        mongoMaps: {},
+        modelESchemas: {}
+    };
     oModel = {
+        mongoHandle: modelHandle,
         full: { domain: {} },
         rawModels: {},
         domains: [],
@@ -1028,15 +1049,9 @@ function loadModels(modelHandle, modelPath) {
         meta: { t3: {} }
     };
     var t = Date.now();
-    modelHandle = modelHandle || {
-        mongoose: undefined,
-        modelDocs: {},
-        mongoMaps: {},
-        modelESchemas: {}
-    };
-    modelPath = modelPath || envModelPath;
     try {
         var a = CircularSer.load('./' + modelPath + '/_cachefalse.js');
+        // TODO
         a = undefined;
         //console.log("found a cache ?  " + !!a);
         //a = undefined;
@@ -1116,14 +1131,15 @@ function loadModels(modelHandle, modelPath) {
         if (process.env.ABOT_EMAIL_USER) {
             console.log("loaded models by calculation in " + (Date.now() - t) + " ");
         }
-        var res = Object.assign(modelHandle, { model: oModel });
+        var res = oModel;
+        // (Object as any).assign(modelHandle, { model: oModel }) as IMatch.IModelHandle;
         return res;
     }).catch((err) => {
         console.log(err + ' ' + err.stack);
         process.exit(-1);
     });
 }
-exports.loadModels = loadModels;
+exports.loadModelsFull = loadModelsFull;
 function sortCategoriesByImportance(map, cats) {
     var res = cats.slice(0);
     res.sort(rankCategoryByImportance.bind(undefined, map));
