@@ -8,7 +8,7 @@ node_js:
  - "node"
 # - "4"   does not support sourcemaps
 after_script:
-  - npm run covertest
-  - npm run coverreport
+  - npm run coverage
+  - npm run coveralls
 
 
