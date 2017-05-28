@@ -41,7 +41,6 @@
     "gulp-run": "^1.7.1",
     "mgnlq_testmodel": "^0.0.1",
     "mongoose_record_replay" : "^0.0.3",
-    "mgnql_testmodel" : "^0.0.2",
     "gulp-typescript": "^3.1.5",
     "jscoverage": "^0.6.0",
     "typescript": "^2.2.1"
