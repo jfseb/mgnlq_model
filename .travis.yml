@@ -12,7 +12,7 @@ after_script:
   - npm run coverreport
   - npm run coverage
   - npm run report
-  - nmp run coverage2
+  - npm run coverage2
   - npm run instrument
   - npm run testcov2
   - npm run testcov
