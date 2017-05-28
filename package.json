@@ -8,7 +8,7 @@
     "build": "gulp",
     "test": "gulp test",
     "load_data": "node js/makedb",
-    "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/model test/match",
+    "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/model test/match test/modelload",
     "coverreportplain": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov ",
     "coveralls": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov | coveralls"
    },
