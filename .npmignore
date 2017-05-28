@@ -6,7 +6,6 @@ test
 **/*.map
 testmodel
 outpu*
-fdevsta_mon*
 testmodel2
 *.bak
 **/*.bak

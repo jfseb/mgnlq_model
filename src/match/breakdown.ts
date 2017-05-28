@@ -1,6 +1,6 @@
 /**
  * @file
- * @module jfseb.fdevstart.breakdown
+ * @module jfseb.mgnlq_model.breakdown
  * @copyright (c) 2016 Gerd Forstmann
  */
 
