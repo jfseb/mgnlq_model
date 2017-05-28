@@ -39,7 +39,7 @@
     "gulp-jsdoc3": "^1.0.1",
     "gulp-nodeunit": "^0.1.0",
     "gulp-run": "^1.7.1",
-    "mgnlq_testmodel": "^0.1.4",
+    "mgnlq_testmodel": "^0.0.1",
     "mongoose_record_replay" : "^0.0.3",
     "mgnql_testmodel" : "^0.0.2",
     "gulp-typescript": "^3.1.5",
