@@ -476,8 +476,13 @@ export function uploadOperators(mongoose: mongoose.Mongoose, modelPath: string) 
     });
 }
 
-
-
+/**
+ * Uploads the complete model (metadata!) information
+ * Assumes metamodel has been loaded (see #upsertMetaModels)
+ * @param mongoose {mongoose.Mongoose} the mongoose handle
+ * @param modelpath {string}  the model path
+ * @return Promise<any> the  promise
+ */
 export function upsertModels(mongoose : mongoose.Mongoose, modelpath: string)  : Promise<any> {
     var modelNames = loadModelNames(modelpath);
     var model_ES = mongoose.model(MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
@@ -543,7 +548,7 @@ export const MongooseNLQ = {
     MONGOOSE_MODELNAME_EXTENDEDSCHEMAS : makeMongooseModelName(MongoNLQ.COLL_EXTENDEDSCHEMAS),
     MONGOOSE_MODELNAME_METAMODELS : makeMongooseModelName(MongoNLQ.COLL_METAMODELS)
 };
-
+/*
 export function getModelRecByModelName(mongoose : any, modelPath: string, modelName : string) : Promise<IModelRec>  {
     // do we have the meta collection in the db?
     return Promise.all([
@@ -562,6 +567,7 @@ export function getModelRecByModelName(mongoose : any, modelPath: string, modelN
         } as IModelRec;
     });
 }
+*/
 
 /*
     hasMetaCollection(mongoose).then( () => {

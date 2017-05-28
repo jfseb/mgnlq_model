@@ -9,6 +9,8 @@ var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../js';
 var Schemaload = require(root + '/modelload/schemaload.js');
 var FUtils = require(root + '/model/model.js');
 
+var debuglog = require('debugf')('schemaload.nunit.js');
+//var sinon = require('sinon');
 // var fs = require('fs')
 
 var modelPath = 'node_modules/mgnlq_testmodel/testmodel/';
@@ -27,6 +29,14 @@ exports.testSchemaLoadNames = function (test) {
     'fioribecatalogs' ]);
   test.done();
 };
+
+// load distinct values from model
+
+process.on('unhandledRejection', function onError(err) {
+  console.log(err);
+  console.log(err.stack);
+  throw err;
+});
 
 
 exports.testmapType = function (test) {
@@ -234,47 +244,122 @@ exports.testGetModelDocModel = function(test) {
   test.done();
 };
 
-/*
-exports.testInsertMetaModel = function (test) {
-  test.expect(4);
-  openFakeMongoose().then(function () {
-    Schemaload.upsertMetaModel(mongoose).then(
-      function () {
-        //   console.log('conn '+ Object.keys(mongoose.connection).join('\n'))
-        //   console.log('conn.collections:\n' + Object.keys(mongoose.connection.collections).join('\n'))
-        //   console.log('db ='+ Object.keys(mongoose.connection.db).join('\n'))
-        var p1 = mongoose.connection.db.collection('mongonlq_eschemas').count({}).then((cnt) => {
-          debuglog('count by native ' + cnt);
-          test.equal(cnt, 1);
-        });
-        var p2 = mongoose.model('mongonlq_eschema').count({}).then((cnt) => {
-          debuglog('here count 2 ' + cnt);
-          test.equal(cnt, 1);
-          return true;
-        });
-        var p3 = mongoose.model('mongonlq_eschema').find({}).then((a2) => {
-          debuglog('a1m' + JSON.stringify(a2) + ' ' + a2.length);
-          test.equal(a2[0].collectionname, 'metamodels');
-          return true;
-        });
-        var p4 = mongoose.connection.db.collection('metamodels').count({ modelname: 'metamodels'}).then((cnt) => {
-          debuglog('count by native ' + cnt);
-          test.equal(cnt, 1);
-        });
-        Promise.all([p1, p2, p3, p4]).then(() => {
-          MongoUtils.disconnectReset(mongoose);
-          test.done();
-          mongoose.modelNames().forEach(modelname => delete mongoose.connection.models[modelname]);
-          mongoose.disconnect();
-        });
-        // console.log(`here our r` + JSON.stringify(r))
 
+exports.testRemoveOthers = function(test) {
+
+  test.done();
+};
+
+exports.testUpsertMetaModel = function (test) {
+  test.expect(1);
+  function makeModel(name,schema) {
+    var res = function(doc) {
+      this.doc = doc;
+    };
+    res.prototype.validate = function(cb)   {
+      if(cb) {
+        cb(undefined); // no error
+      }
+      return Promise.resolve(true);
+    };
+    res.prototype.save = function() {
+
+    };
+    res.modelname = name;
+    res.Schema = name;
+    res.findOneAndUpdate = function(arg)  {
+      return Promise.resolve();
+    };
+    return res;
+  }
+
+  var mongooseMock = {
+    models : {},
+    model : function(a, b) {
+      if(b) {
+        this.models[a] = makeModel(a,b);
+      }
+      return this.models[a];
+    },
+    Schema : mongoose.Schema,
+    modelNames : function() {
+      return Object.keys(this.models);
+    }
+  };
+  Schemaload.upsertMetaModel(mongooseMock).then(
+      function () {
+        var res = mongooseMock.modelNames();
+        test.deepEqual(res, ['metamodel', 'mongonlq_eschema']);
+        test.done();
       }
     ).catch((err) => {
       console.log('test failed ' + err + '\n' + err.stack);
       test.equal(0, 1);
       test.done();
     });
-  });
 };
-*/
+
+
+
+
+
+
+exports.testUpsertModel = function (test) {
+  test.expect(1);
+  function makeModel(name,schema) {
+    console.log('creating model' + name);
+    var res = function(doc) {
+      this.doc = doc;
+    };
+    res.prototype.validate = function(cb)   {
+      if(cb) {
+        cb(undefined); // no error
+      }
+      return Promise.resolve(true);
+    };
+    res.prototype.save = function() {
+      debuglog('saving something' + this.doc );
+    };
+    res.modelname = name;
+    res.Schema = name;
+    res.remove = function() {
+      return Promise.resolve(true);
+    }
+    res.aggregate = function() {
+      return Promise.resolve([]);
+    }
+    res.findOneAndUpdate = function(arg)  {
+      return Promise.resolve();
+    };
+    return res;
+  }
+
+  var mongooseMock = {
+    models : {},
+    model : function(a, b) {
+      if(b) {
+        this.models[a] = makeModel(a,b);
+      }
+      return this.models[a];
+    },
+    Schema : mongoose.Schema,
+    modelNames : function() {
+      return Object.keys(this.models);
+    }
+  };
+
+  Schemaload.upsertMetaModel(mongooseMock).then( ()=>
+  Schemaload.upsertModels(mongooseMock, modelPath).then(
+      function () {
+        var res = mongooseMock.modelNames();
+        test.deepEqual(res, [ 'metamodel', 'mongonlq_eschema', 'filler', 'operator' ] );
+        test.done();
+      }
+    ).catch((err) => {
+      console.log('test failed ' + err + '\n' + err.stack);
+      test.equal(0, 1);
+      test.done();
+    })
+  );
+};
+

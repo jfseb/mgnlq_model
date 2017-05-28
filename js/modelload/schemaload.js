@@ -399,6 +399,13 @@ function uploadOperators(mongoose, modelPath) {
     });
 }
 exports.uploadOperators = uploadOperators;
+/**
+ * Uploads the complete model (metadata!) information
+ * Assumes metamodel has been loaded (see #upsertMetaModels)
+ * @param mongoose {mongoose.Mongoose} the mongoose handle
+ * @param modelpath {string}  the model path
+ * @return Promise<any> the  promise
+ */
 function upsertModels(mongoose, modelpath) {
     var modelNames = loadModelNames(modelpath);
     var model_ES = mongoose.model(exports.MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
@@ -458,25 +465,26 @@ exports.MongooseNLQ = {
     MONGOOSE_MODELNAME_EXTENDEDSCHEMAS: makeMongooseModelName(exports.MongoNLQ.COLL_EXTENDEDSCHEMAS),
     MONGOOSE_MODELNAME_METAMODELS: makeMongooseModelName(exports.MongoNLQ.COLL_METAMODELS)
 };
-function getModelRecByModelName(mongoose, modelPath, modelName) {
+/*
+export function getModelRecByModelName(mongoose : any, modelPath: string, modelName : string) : Promise<IModelRec>  {
     // do we have the meta collection in the db?
     return Promise.all([
-        mongoose.connection.db[exports.MongoNLQ.COLL_METAMODELS].find({ modelName: modelName }),
-        mongoose.connection.db[exports.MongoNLQ.COLL_EXTENDEDSCHEMAS].find({ modelName: modelName })
+        mongoose.connection.db[MongoNLQ.COLL_METAMODELS].find({ modelName : modelName}),
+        mongoose.connection.db[MongoNLQ.COLL_EXTENDEDSCHEMAS].find({ modelName : modelName})
     ]).then(res => {
         var modelDoc = res[0];
         var extendedSchema = res[1];
         var schema = makeMongooseSchema(extendedSchema);
         var model = mongoose.model(modelDoc.collectionName, schema);
         return {
-            collectionName: modelDoc.collectionName,
-            modelDoc: modelDoc,
-            schema: makeMongooseSchema(extendedSchema),
-            model: model
-        };
+            collectionName : modelDoc.collectionName,
+            modelDoc : modelDoc,
+            schema : makeMongooseSchema(extendedSchema),
+            model : model
+        } as IModelRec;
     });
 }
-exports.getModelRecByModelName = getModelRecByModelName;
+*/
 /*
     hasMetaCollection(mongoose).then( () => {
         mongoose.connection.db.mgnlq_domains.find( {

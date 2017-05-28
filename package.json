@@ -11,7 +11,7 @@
     "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/model test/match test/modelload",
     "coverreportplain": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov ",
     "coveralls": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov | coveralls"
-   },
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jfseb/mgnlq_model.git"
@@ -45,6 +45,7 @@
     "mgnlq_testmodel_replay": "^0.0.1",
     "mongoose_record_replay": "^0.0.4",
     "nyc": "^10.3.2",
+    "sinon": "^2.3.2",
     "typescript": "^2.2.1"
   },
   "dependencies": {
