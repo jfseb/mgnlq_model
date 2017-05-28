@@ -271,149 +271,7 @@ export function getExtendedSchemaModel(mongoose : mongoose.Mongoose) : mongoose.
     }
     var extendSchema = getExtendedSchema(mongoose);
     var modelES = mongoose.model(makeMongooseModelName(MongoNLQ.COLL_EXTENDEDSCHEMAS), extendSchema);
-    instrumentModel(modelES);
     return modelES;
-}
-
-export function instrumentModel(model : mongoose.Model<any>) {
-    return model;
-    /*
-    if(process.env.MONGO_RECORD && process.env.MONGO_REPLAY) {
-        console.log('set only one of MONGO_RECORD MONGO_REPLAY');
-        process.exit(-1);
-    }
-    if (process.env.MONGO_RECORD) {
-        instrumentModelRecord(model);
-    } else if (process.env.MONGO_REPLAY) {
-        // todo
-        instrumentModelReplay(model);
-    }
-    return model;
-    */
-}
-
-var crypto = require('crypto');
-
-
-export function recordOp(op : string, name : string, query : any, res : any) {
-    var md5sum = crypto.createHash('md5');
-    debuglog('here the name ' + name);
-
-    md5sum.update(op + name + JSON.stringify(query));
-    var digest = md5sum.digest('hex');
-    fs.writeFileSync('mgrecord/data/' + digest, JSON.stringify(res,undefined,2));
-
-    var known = {};
-    try {
-        known = FUtils.readFileAsJSON('mgrecord/queries.json');
-    } catch(ex) {
-
-    }
-    known[digest] = { op : op,
-                name : name,
-                digest : digest,
-                query : query,
-            res : res};
-    fs.writeFileSync('mgrecord/queries.json',JSON.stringify(known,undefined,2));
-}
-
-export function retrieveOp(op : string, name : string, query : any) {
-    var md5sum = crypto.createHash('md5');
-    md5sum.update(op + name + JSON.stringify(query));
-    var digest = md5sum.digest('hex');
-    var res = FUtils.readFileAsJSON('mgrecord/data/' + digest);
-    return res;
-}
-
-export function instrumentModelRecord(modelDoc : mongoose.Model<any>) {
-    console.log('instrumenting model ' + modelDoc.modelName);
-    var oFind = modelDoc.find;
-    modelDoc.find = function() : any {
-        debuglog('someone is calling find with ' + modelDoc.modelName   + JSON.stringify(arguments,undefined,2));
-        var res = oFind.apply(modelDoc, arguments);
-        if(arguments.length !== 1) {
-            throw Error('expected one arguments in find, was ' + arguments.length);
-        }
-        var query = arguments[0];
-        res.lean().exec().then( (a) => {
-            //console.log("here result1 + " + JSON.stringify(a, undefined,2) );
-            recordOp("find",modelDoc.modelName, query, a);
-        }
-        );
-        return res;
-    }
-     var oDistinct = modelDoc.distinct;
-    modelDoc.distinct = function() : any {
-        debuglog('someone is calling distinct with'  + JSON.stringify(arguments,undefined,2));
-        var res = oDistinct.apply(modelDoc, arguments);
-        if(arguments.length !== 1) {
-            throw Error('expected on arguments');
-        }
-        var query = arguments[0];
-        res.then( (a) => {
-           // console.log("here result1 + " + JSON.stringify(a, undefined,2) );
-            recordOp("distinct",modelDoc.modelName, query, a);
-        }
-        );
-        return res;
-    }
-     var oAggregate = modelDoc.aggregate;
-     modelDoc.aggregate = function() : any {
-        debuglog(() => 'someone is calling aggregate with'  + JSON.stringify(arguments,undefined,2));
-        var query = Array.prototype.slice.call(arguments);
-        var res = oAggregate.apply(modelDoc, arguments);
-        res.then( (a) => {
-           debuglog(() =>"here result1 + " + JSON.stringify(a, undefined,2) );
-            recordOp("aggregate",modelDoc.modelName, query, a);
-        }
-        );
-        return res;
-    }
-}
-
-export function instrumentModelReplay(modelDoc : mongoose.Model<any>) {
-    debuglog('instrumenting model ' + modelDoc.modelName);
-    var oFind = modelDoc.find;
-    modelDoc.find = function() : any {
-        debuglog(() => 'someone is replaying find with'  + JSON.stringify(arguments,undefined,2));
-        var query = arguments[0];
-        var res = retrieveOp("find",modelDoc.modelName, query);
-        debuglog( ()=> 'returning res ' + JSON.stringify(res) + ' for query find' + query);
-        return {
-            lean : function() {
-                return {
-                    exec : function() {
-                        return new Promise(function(resolve, reject) {
-                            setTimeout(function() { resolve(res); },0);
-                        });
-                    }
-                }
-            }
-        }
-    }
-    var oDistinct = modelDoc.distinct;
-    modelDoc.distinct = function() : any {
-        debuglog('someone is replaying distinct with'  + JSON.stringify(arguments,undefined,2));
-        var query = arguments[0];
-        var res = retrieveOp("distinct",modelDoc.modelName, query);
-        debuglog('returning res ' + JSON.stringify(res) + ' for query find' + query);
-        return new Promise(function(resolve, reject) {
-                            setTimeout(function() { resolve(res); },0);
-                        });
-    }
-     var oAggregate = modelDoc.aggregate;
-     modelDoc.aggregate = function() : any {
-        debuglog('someone is replaying aggregate with'  + JSON.stringify(arguments,undefined,2));
-        var query = Array.prototype.slice.call(arguments);
-        var res = retrieveOp("aggregate",modelDoc.modelName, query);
-        var p = new Promise(function(resolve, reject) {
-                            setTimeout(function() { resolve(res); },0);
-                        });
-        (p as any).exec = function() {
-            return p;
-        }
-        return p;
-    }
 }
 
 
@@ -428,7 +286,6 @@ export function getModelDocModel(mongoose : mongoose.Mongoose) : mongoose.Model<
         return mongoose.model(mongooseModelName);
     }
     var modelDoc = mongoose.model(makeMongooseModelName(MongoNLQ.COLL_METAMODELS), schema );
-    instrumentModel(modelDoc);
     var oFind = modelDoc.find;
      return modelDoc;
 }
@@ -449,7 +306,6 @@ export function upsertMetaModel(mongoose : any) {
     //extendSchema.index(ExtendedSchema_index);
     //console.log("now document ..." + JSON.stringify(extendSchema,undefined,2));
     var modelDoc = mongoose.model(makeMongooseModelName(MongoNLQ.COLL_METAMODELS), schema );
-    instrumentModel(modelDoc);
     //console.log('creating model 2');
     var modelES = getExtendedSchemaModel(mongoose); //mongoose.model(makeMongooseModelName(MongoNLQ.COLL_EXTENDEDSCHEMAS), extendSchema);
 
@@ -504,7 +360,7 @@ export function getOrCreateModelFillers(mongoose: mongoose.Mongoose) : mongoose.
     if(mongoose.modelNames().indexOf('filler') >= 0) {
         return mongoose.model('filler');
     } else {
-        return instrumentModel(mongoose.model('filler', new mongoose.Schema(SchemaFillers)));
+        return mongoose.model('filler', new mongoose.Schema(SchemaFillers));
     }
 }
 
@@ -512,7 +368,7 @@ export function getOrCreateModelOperators(mongoose: mongoose.Mongoose) : mongoos
     if(mongoose.modelNames().indexOf('operator') >= 0) {
         return mongoose.model('operator');
     } else {
-        return instrumentModel(mongoose.model('operator', new mongoose.Schema(SchemaOperators)));
+        return mongoose.model('operator', new mongoose.Schema(SchemaOperators));
     }
 }
 
@@ -597,7 +453,6 @@ export function makeModelFromDB(mongoose : mongoose.Mongoose, modelName : string
             return Promise.resolve(mongoose.model(mongooseModelName));
         }
         var model = mongoose.model(mongooseModelName, schema);
-        instrumentModel(model);
         debuglog( ()=> 'returning model: ' + modelName + ` `+ typeof model);
         return Promise.resolve(model);
     });
