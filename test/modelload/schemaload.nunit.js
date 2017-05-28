@@ -307,7 +307,7 @@ exports.testUpsertMetaModel = function (test) {
 exports.testUpsertModel = function (test) {
   test.expect(1);
   function makeModel(name,schema) {
-    console.log('creating model' + name);
+    debuglog('creating model' + name);
     var res = function(doc) {
       this.doc = doc;
     };
@@ -324,10 +324,10 @@ exports.testUpsertModel = function (test) {
     res.Schema = name;
     res.remove = function() {
       return Promise.resolve(true);
-    }
+    },
     res.aggregate = function() {
       return Promise.resolve([]);
-    }
+    },
     res.findOneAndUpdate = function(arg)  {
       return Promise.resolve();
     };
