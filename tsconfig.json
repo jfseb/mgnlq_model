@@ -22,7 +22,7 @@
         "preserveConstEnums": true,
          //"jsx": "react",
         "suppressImplicitAnyIndexErrors": true
- //       "types" : ["node", "core-js"]
+       /// "types" : ["node"]
     },
     "filesGlob": [
         "**/*.ts",
@@ -44,6 +44,6 @@
         "src/match/algol.ts"
     ],
     "exclude": [
-//  "!node_modules/**"
+      "node_modules/**"
     ]
 }
