@@ -1,4 +1,3 @@
-/// <reference types="mongoose" />
 import * as IMatch from '../match/ifmatch';
 import * as mongoose from 'mongoose';
 export declare function cmpTools(a: IMatch.ITool, b: IMatch.ITool): number;
