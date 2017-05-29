@@ -266,7 +266,8 @@ exports.testgetAllRecordCategoriesForTargetCategories2 = function (test) {
         'element number': true,
         'element symbol': true } });
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
+    //MongoUtils.disconnect(mongoose);
   });
 };
 

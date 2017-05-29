@@ -2,30 +2,13 @@
 import * as IMatch from '../match/ifmatch';
 import * as Meta from './meta';
 import * as mongoose from 'mongoose';
-import * as ISchema from '../modelload/schemaload';
-import * as MongoMap from './mongomap';
 export declare function cmpTools(a: IMatch.ITool, b: IMatch.ITool): number;
-export interface IModelHandleRaw {
-    mongoose: mongoose.Mongoose;
-    modelDocs: {
-        [key: string]: ISchema.IModelDoc;
-    };
-    modelESchemas: {
-        [key: string]: ISchema.IExtendedSchema;
-    };
-    mongoMaps: {
-        [key: string]: MongoMap.CatMongoMap;
-    };
-}
-export interface IModelHandle extends IModelHandleRaw {
-    model: IMatch.IModels;
-}
 /**
  * returns when all models are loaded and all modeldocs are made
  * @param mongoose
  */
-export declare function getMongoHandle(mongoose: mongoose.Mongoose): Promise<IModelHandleRaw>;
-export declare function getFactSynonyms(mongoHandle: IModelHandleRaw, modelname: string): Promise<ISynonym[]>;
+export declare function getMongoHandle(mongoose: mongoose.Mongoose): Promise<IMatch.IModelHandleRaw>;
+export declare function getFactSynonyms(mongoHandle: IMatch.IModelHandleRaw, modelname: string): Promise<ISynonym[]>;
 export interface ISynonym {
     category: string;
     fact: string;
@@ -39,14 +22,13 @@ export interface ISynonymBearingDoc {
     }];
 }
 export declare function remapSynonyms(docs: ISynonymBearingDoc[]): ISynonym[];
-export declare function getDistinctValues(mongoHandle: IModelHandleRaw, modelname: string, category: string): Promise<string[]>;
+export declare function getDistinctValues(mongoHandle: IMatch.IModelHandleRaw, modelname: string, category: string): Promise<string[]>;
 export declare function addBestSplit(mRules: Array<IMatch.mRule>, rule: IMatch.mRule, seenRules: {
     [key: string]: IMatch.mRule[];
 }): void;
 export declare function readFileAsJSON(filename: string): any;
 export declare function hasRuleWithFact(mRules: IMatch.mRule[], fact: string, category: string, bitindex: number): boolean;
-export declare function loadModelHandleP(mongooseHndl?: mongoose.Mongoose, connectionString?: string): Promise<IModelHandle>;
-export declare function loadModel(modelHandle: IModelHandleRaw, sModelName: string, oModel: IMatch.IModels): Promise<any>;
+export declare function loadModel(modelHandle: IMatch.IModelHandleRaw, sModelName: string, oModel: IMatch.IModels): Promise<any>;
 export declare function getAllDomainsBitIndex(oModel: IMatch.IModels): number;
 export declare function getDomainBitIndex(domain: string, oModel: IMatch.IModels): number;
 /**
@@ -61,7 +43,16 @@ export declare function addRangeRulesUnlessPresent(rules: IMatch.mRule[], lcword
 export declare function addCloseExactRangeRules(rules: IMatch.mRule[], seenRules: any): void;
 export declare function readFillers(mongoose: mongoose.Mongoose, oModel: IMatch.IModels): Promise<any>;
 export declare function readOperators(mongoose: mongoose.Mongoose, oModel: IMatch.IModels): Promise<any>;
-export declare function loadModels(modelHandle: IModelHandleRaw, modelPath?: string): Promise<IModelHandle>;
+export declare function releaseModel(model: IMatch.IModels): void;
+export declare function loadModelHandleP(mongooseHndl?: mongoose.Mongoose, connectionString?: string): Promise<IMatch.IModels>;
+export declare function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString?: string, modelPath?: string): Promise<IMatch.IModels>;
+/**
+ * expects an open connection!
+ * @param mongoose
+ * @param modelPath
+ */
+export declare function loadModels(mongoose: mongoose.Mongoose, modelPath?: string): Promise<IMatch.IModels>;
+export declare function loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<IMatch.IModels>;
 export declare function sortCategoriesByImportance(map: {
     [key: string]: IMatch.ICategoryDesc;
 }, cats: string[]): string[];

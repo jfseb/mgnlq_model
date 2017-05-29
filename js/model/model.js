@@ -994,6 +994,12 @@ function readOperators(mongoose, oModel) {
 }
 exports.readOperators = readOperators;
 ;
+function releaseModel(model) {
+    if (model.mongoHandle && model.mongoHandle.mongoose) {
+        MongoUtils.disconnect(model.mongoHandle.mongoose);
+    }
+}
+exports.releaseModel = releaseModel;
 function loadModelHandleP(mongooseHndl, connectionString) {
     var mongooseX = mongooseHndl || mongoose;
     //   if(process.env.MONGO_REPLAY) {

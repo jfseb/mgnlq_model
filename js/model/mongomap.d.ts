@@ -1,14 +1,4 @@
-/**
- * Functionality to map the "flat" categories model to a nested document
- *
- * @file
- */
-export interface CatMongoMap {
-    [key: string]: {
-        paths: string[];
-        fullpath: string;
-    };
-}
 import * as ISchema from '../modelload/schemaload';
+import * as IMatch from '../match/ifmatch';
 export declare function collectCategories(eSchemaProps: any): {};
-export declare function makeMongoMap(oDoc: ISchema.IModelDoc, eSchema: ISchema.IExtendedSchema): CatMongoMap;
+export declare function makeMongoMap(oDoc: ISchema.IModelDoc, eSchema: ISchema.IExtendedSchema): IMatch.CatMongoMap;

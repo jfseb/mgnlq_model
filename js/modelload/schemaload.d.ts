@@ -58,11 +58,6 @@ export declare function makeMongooseModelName(collectionName: string): string;
 export declare function makeMongoCollectionName(modelName: string): string;
 export declare function getExtendedSchema(mongoose: any): mongoose.Schema;
 export declare function getExtendedSchemaModel(mongoose: mongoose.Mongoose): mongoose.Model<any>;
-export declare function instrumentModel(model: mongoose.Model<any>): mongoose.Model<any>;
-export declare function recordOp(op: string, name: string, query: any, res: any): void;
-export declare function retrieveOp(op: string, name: string, query: any): any;
-export declare function instrumentModelRecord(modelDoc: mongoose.Model<any>): void;
-export declare function instrumentModelReplay(modelDoc: mongoose.Model<any>): void;
 export declare function getModelDocModel(mongoose: mongoose.Mongoose): mongoose.Model<any>;
 export declare function upsertMetaModel(mongoose: any): Promise<[any, any]>;
 export declare function createDBWithModels(mongoose: mongoose.Mongoose, modelPath: string): Promise<any>;
@@ -76,6 +71,13 @@ export declare function getModelDocFromDB(mongoose: mongoose.Mongoose, modelName
 export declare function makeModelFromDB(mongoose: mongoose.Mongoose, modelName: string): Promise<mongoose.Model<any>>;
 export declare function uploadFillers(mongoose: mongoose.Mongoose, modelPath: string): Promise<any>;
 export declare function uploadOperators(mongoose: mongoose.Mongoose, modelPath: string): Promise<any>;
+/**
+ * Uploads the complete model (metadata!) information
+ * Assumes metamodel has been loaded (see #upsertMetaModels)
+ * @param mongoose {mongoose.Mongoose} the mongoose handle
+ * @param modelpath {string}  the model path
+ * @return Promise<any> the  promise
+ */
 export declare function upsertModels(mongoose: mongoose.Mongoose, modelpath: string): Promise<any>;
 export declare function hasMetaCollection(mongoose: any): Promise<boolean>;
 export declare const MongoNLQ: {
@@ -87,7 +89,6 @@ export declare const MongooseNLQ: {
     MONGOOSE_MODELNAME_EXTENDEDSCHEMAS: string;
     MONGOOSE_MODELNAME_METAMODELS: string;
 };
-export declare function getModelRecByModelName(mongoose: any, modelPath: string, modelName: string): Promise<IModelRec>;
 export declare function validateDocMongoose(mongoose: mongoose.Mongoose, collectionname: any, schema: mongoose.Schema, doc: any): Promise<any>;
 export declare function validateDocVsMongooseModel(model: any, doc: any): Promise<any>;
 export declare function validateDoc(collectionname: string, schema: mongoose.Schema, doc: any): boolean;

@@ -1106,6 +1106,11 @@ export function readOperators(mongoose: mongoose.Mongoose, oModel: IMatch.IModel
     });
 };
 
+export function releaseModel(model : IMatch.IModels) {
+    if(model.mongoHandle && model.mongoHandle.mongoose) {
+        MongoUtils.disconnect(model.mongoHandle.mongoose);
+    }
+}
 
 export function loadModelHandleP(mongooseHndl ? : mongoose.Mongoose, connectionString? : string) : Promise<IMatch.IModels> {
     var mongooseX = mongooseHndl || mongoose;
