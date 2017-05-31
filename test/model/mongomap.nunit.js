@@ -32,7 +32,7 @@ process.on('unhandledRejection', function onError(err) {
   throw err;
 });
 
-var connectionStringTestDB = "mongodb://localhost/testdb";
+var connectionStringTestDB = 'mongodb://localhost/testdb';
   //  mongoose.connect('mongodb://localhost/nodeunit');
 
 
@@ -47,10 +47,219 @@ exports.testCollectCats = function(test) {
   var res = MongoMap.collectCategories(props);
   test.deepEqual(res, {
     'Object name length' : {
-      path : ['Object_name_length'],
+      paths : ['Object_name_length'],
       fullpath : 'Object_name_length'
     }
   });
+  test.done();
+};
+
+
+
+exports.testUnwindsForNonTerminalArrays = function(test) {
+  var mongoMap = {
+    'cat1' :{ paths:  ['cat1']},
+    'cat2' : { paths:  ['_mem1', '[]', 'mem3'] }
+  };
+  var resexpected = [
+    { $unwind : { path : '$_mem1',
+      'preserveNullAndEmptyArrays' : true }
+    }];
+  var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
+  test.deepEqual(res, resexpected, 'correct result');
+  test.done();
+};
+
+exports.testUnwindsForNonTerminalArrays2equal = function(test) {
+  var mongoMap = {
+    'cat1' :{ paths:  ['cat1']},
+    'cat2' : { paths:  ['_mem1', '[]', 'mem3']},
+    'cat3' : { paths:  ['_mem1', '[]', 'mem3']}
+  };
+  var resexpeted = [
+    { $unwind : { path : '$_mem1',
+      'preserveNullAndEmptyArrays' : true }
+    }];
+  var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
+  test.deepEqual(res, resexpeted, 'correct result');
+  test.done();
+};
+
+exports.testUnwindsForNonTerminalArrays2distinct = function(test) {
+  var mongoMap = {
+    'cat1' : { paths: ['cat1']},
+    'cat2' : { paths:  ['_mem1', '[]', 'mem3']},
+    'cat3' : { paths:  ['_mem2', '_mem3', '[]', 'mem3']}
+  };
+  var resexpeted = [
+    { $unwind : { path : '$_mem1',
+      'preserveNullAndEmptyArrays' : true }
+    },
+    { $unwind : { path : '$_mem2._mem3',
+      'preserveNullAndEmptyArrays' : true }
+    }
+  ];
+  var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
+  test.deepEqual(res, resexpeted, 'correct result');
+  test.done();
+};
+
+
+exports.testUnwindsForNonTerminalArrays3Deep = function(test) {
+  var mongoMap = {
+    'cat1' :  { paths: ['cat1']},
+    'cat2' :  { paths: ['_mem1', '[]', 'mem3', '[]', 'mem4']},
+    'cat3' :  { paths: ['_mem2', '_mem3', '[]', 'mem3']}
+  };
+  var resexpeted = [
+    { $unwind : { path : '$_mem1',
+      'preserveNullAndEmptyArrays' : true }
+    },
+    { $unwind : { path : '$_mem1.mem3',
+      'preserveNullAndEmptyArrays' : true }
+    },
+    { $unwind : { path : '$_mem2._mem3',
+      'preserveNullAndEmptyArrays' : true }
+    }
+  ];
+  var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
+  test.deepEqual(res, resexpeted, 'correct result');
+  test.done();
+};
+
+exports.testUnwindsForNonTerminalArrays3bDeep = function(test) {
+  var mongoMap = {
+    'cat1' : { paths: ['cat1']},
+    'cat2' : { paths: ['_mem1', '[]', 'mem3', '[]', 'mem4']},
+    'cat4' : { paths : ['_mem1', '[]', 'mem4', '[]', 'memx']},
+    'cat3' : { paths: ['_mem2', '_mem3', '[]', 'mem3']}
+  };
+  var resexpeted = [
+    { $unwind : { path : '$_mem1',
+      'preserveNullAndEmptyArrays' : true }
+    },
+    { $unwind : { path : '$_mem1.mem3',
+      'preserveNullAndEmptyArrays' : true }
+    },
+    { $unwind : { path : '$_mem1.mem4',
+      'preserveNullAndEmptyArrays' : true }
+    },
+    { $unwind : { path : '$_mem2._mem3',
+      'preserveNullAndEmptyArrays' : true }
+    }
+  ];
+  var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
+  test.deepEqual(res, resexpeted, 'correct result');
+  test.done();
+};
+
+exports.testUnwindsForNonTerminalArraysEmtpy= function(test) {
+  var mongoMap = {
+    'cat1' : { paths: ['cat1'] },
+    'cat2' : { paths: ['_mem1', 'mem3', '[]']},
+    'cat3' : { paths:   ['_mem2', '_mem3', 'mem3']}
+  };
+  var resexpeted = [];
+  var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
+  test.deepEqual(res, resexpeted, 'correct result');
+  test.done();
+};
+
+exports.testGetMemberByPath = function(test) {
+  var record = {
+    abc : 1,
+    def : [ { hij : 2 } ]
+  };
+  test.equal(MongoMap.getMemberByPath(record, ['abc']) ,1,  'correct value');
+  test.done();
+};
+
+exports.testGetMemberByPathObject = function(test) {
+  var record = {
+    abc : 1,
+    def : { hij : 2 }
+  };
+  test.equal(MongoMap.getMemberByPath(record, ['def','hij']) ,2,  'correct value');
+  test.done();
+};
+
+
+exports.testGetMemberByPathObjectNoArr = function(test) {
+  var record = {
+    abc : 1,
+    def : { hij : 2 }
+  };
+  test.equal(MongoMap.getMemberByPath(record, ['def', '[]', 'hij']) ,2,  'correct value');
+  test.done();
+};
+
+exports.testGetMemberCategories= function(test) {
+  var record =  {
+    '_categories': {
+      'exactmatch': true,
+      'category_description': 'For GUI based transaction, the transaction code behind intent, a classical R/3 SAPGUi transaction',
+      'category': 'TransactionCode',
+      '_id': '59289d809f1ae34670303eb8',
+      'category_synonyms': [
+        'Transactions',
+        'TransactionCode',
+        'TransactionCodes'
+      ]
+    }};
+  test.equal(MongoMap.getMemberByPath( record , ['_categories','[]','category']), 'TransactionCode', 'is proper');
+  test.done();
+};
+
+exports.testGetMemberNotPresent= function(test) {
+  var record = {
+    abc : 1,
+    def : [ { hij : 2 }, {hij: 3} ]
+  };
+  test.equal(MongoMap.getMemberByPath( record , ['nopath','[]','hixx']), undefined, 'is undefined');
+  test.done();
+};
+
+
+exports.testGetMemberNotPresentDeep = function(test) {
+  var record = {
+    abc : 1,
+    def : [ { hij : 2 } ]
+  };
+  test.equal(MongoMap.getMemberByPath( record , ['def','[]','hixx']), undefined, 'is undefined');
+  test.done();
+};
+
+
+exports.testGetMemberByPathThrows = function(test) {
+  var record = {
+    abc : 1,
+    def : [ { hij : 2 }, {hij: 3} ]
+  };
+  try {
+    MongoMap.getMemberByPath( record , ['def','[]','hij']);
+    test.equal(1,0);
+  } catch(e) {
+    test.equal(1,1);
+  }
+  test.done();
+};
+
+exports.testGetMemberByPath2 = function(test) {
+  var record = {
+    abc : 1,
+    def : [ { hij : 2 } ]
+  };
+  test.equal(MongoMap.getMemberByPath(record, ['def','[]','hij']) , 2,  'correct value');
+  test.done();
+};
+
+exports.testGetMemberByPathTerminalArr = function(test) {
+  var record = {
+    abc : 1,
+    def : [ { hij : 2 } ],
+    hij : [ 'aa', 'bb']
+  };
+  test.deepEqual(MongoMap.getMemberByPath(record, ['hij','[]']) , ['aa', 'bb'],  'correct value');
   test.done();
 };
 
@@ -68,7 +277,7 @@ exports.testCollectCatsArrayOfObject = function(test) {
   var res = MongoMap.collectCategories(props);
   test.deepEqual(res, {
     'Object name length' : {
-      path : ['_something', '[]', 'Object_name_length'],
+      paths : ['_something', '[]', 'Object_name_length'],
       fullpath : '_something.Object_name_length'
     }
   });
@@ -90,8 +299,8 @@ exports.testGetDistintMultivalues = function(test) {
   .then( (values) => {
     test.deepEqual(values, [ 'meta model', 'fiori bom' ]);
     MongoUtils.disconnect(mongoose);
-          test.done();
-      }
+    test.done();
+  }
     ).catch((err) => {
       console.log('test failed ' + err + '\n' + err.stack);
       test.equal(0, 1);
@@ -113,8 +322,8 @@ exports.testGetDistintCosmos = function(test) {
   .then( (values) => {
     test.deepEqual(values, [null, 'Alpha Centauri C', 'Sun', 'n/a']);
     MongoUtils.disconnect(mongoose);
-          test.done();
-      }
+    test.done();
+  }
     ).catch((err) => {
       console.log('test failed ' + err + '\n' + err.stack);
       test.equal(0, 1);
@@ -136,15 +345,15 @@ exports.testGetDistintObjectName = function(test) {
   )
   .then( (values) => {
     test.deepEqual(values, [ 'Alpha Centauri A',
-  'Alpha Centauri B',
-  'Alpha Centauri C',
-  'Mars',
-  'Proxima Centauri b',
-  'Sun',
-  'earth' ]);
+      'Alpha Centauri B',
+      'Alpha Centauri C',
+      'Mars',
+      'Proxima Centauri b',
+      'Sun',
+      'earth' ]);
     MongoUtils.disconnect(mongoose);
-          test.done();
-      }
+    test.done();
+  }
     ).catch((err) => {
       console.log('test failed ' + err + '\n' + err.stack);
       test.equal(0, 1);
@@ -165,7 +374,7 @@ exports.testCollectCatsArrayOfPLain = function(test) {
   var res = MongoMap.collectCategories(props);
   test.deepEqual(res, {
     'Object name length' : {
-      path : ['_something', '[]'],
+      paths : ['_something', '[]'],
       fullpath : '_something'
     }
   });
@@ -175,9 +384,9 @@ exports.testCollectCatsArrayOfPLain = function(test) {
 exports.testMakeIfMap = function(test) {
   var res = MongoMap.makeMongoMap(eDocSOBJ, eSchemaSOBJ_Tables);
   test.deepEqual(res['TransportObject'],
-   { path: ['TransportObject'], fullpath : 'TransportObject'});
-  test.deepEqual(res['Object name length'], { path: ['Object_name_length'], fullpath : 'Object_name_length'});
-  test.deepEqual(res['Table'], { path: ['_tables', '[]', 'Table'], fullpath : '_tables.Table'});
+   { paths: ['TransportObject'], fullpath : 'TransportObject'});
+  test.deepEqual(res['Object name length'], { paths: ['Object_name_length'], fullpath : 'Object_name_length'});
+  test.deepEqual(res['Table'], { paths: ['_tables', '[]', 'Table'], fullpath : '_tables.Table'});
   test.deepEqual(1,1);
   test.done();
 };

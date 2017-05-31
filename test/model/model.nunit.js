@@ -62,15 +62,26 @@ exports.testhasSeenRuleWithFact = function(test) {
 
 var _ = require('lodash');
 
+var mode = 'REPLAY';
+if (process.env.MONGO_TEST_RECORD) {
+  mode = 'RECORD';
+}
 
 var mongoose = require('mongoose_record_replay').instrumentMongoose(require('mongoose'),
   'node_modules/mgnlq_testmodel_replay/mgrecrep/',
-  'REPLAY');
+  mode);
 
+var aPromise = undefined;
 function getModel() {
+  if(mode === 'REPLAY') {
+    // in replax mode, using a singleton is sufficient
+    aPromise = aPromise || Model.loadModelsOpeningConnection(mongoose,'mongodb://localhost/testdb'  );
+    return aPromise;
+  }
   return Model.loadModelsOpeningConnection(mongoose, 'mongodb://localhost/testdb');
 }
-var pTheModel = Model.loadModelsOpeningConnection(mongoose,'mongodb://localhost/testdb'  );
+
+//var getModel() = Model.loadModelsOpeningConnection(mongoose,'mongodb://localhost/testdb'  );
 
 var cats = [
   'AppDocumentationLinkKW',
@@ -188,6 +199,89 @@ function teardown(test, err) {
 }
 
 
+exports.testFilterRemapCategories = function(test) {
+
+  var recs = [ {
+    a : [ { b : 1, d : 2}],
+    c : 'abc'
+  },
+  {
+    a : [],
+    c : 'def'
+  },
+  {
+    a : null,
+    c : 'hjl'
+  },
+  {
+    a : undefined,
+    c : 'xyz'
+  }
+  ];
+
+  var mongomap = {
+    'catb' : {paths: ['a','[]', 'b' ]},
+    'catd' : {paths:['a','[]', 'd' ]},
+    'catc' : {paths:['c' ]}
+  };
+  var res = Model.filterRemapCategories(mongomap, ['catb', 'catd' , 'catc'], recs);
+  test.deepEqual(res,
+    [
+    { 'catb' : 1, 'catd' : 2, 'catc' : 'abc'},
+    { 'catb' : undefined, 'catd' : undefined, 'catc' : 'def'},
+    { 'catb' : undefined, 'catd' : undefined, 'catc' : 'hjl'},
+     { 'catb' : undefined, 'catd' : undefined, 'catc' : 'xyz'}
+    ]);
+  var res2 = Model.filterRemapCategories(mongomap, ['catd'], recs);
+  test.deepEqual(res2,
+    [
+    { 'catd' : 2},
+    { 'catd' : undefined},
+    { 'catd' : undefined},
+    { 'catd' : undefined}
+    ]);
+  test.done();
+};
+
+
+
+exports.testFilterRemapCategoriesBadCat = function(test) {
+
+  var recs = [ {
+    a : [ { b : 1, d : 2}],
+    c : 'abc'
+  },
+  {
+    a : [],
+    c : 'def'
+  },
+  {
+    a : null,
+    c : 'hjl'
+  },
+  {
+    a : undefined,
+    c : 'xyz'
+  }
+  ];
+
+  var mongomap = {
+    paths: {
+      'catb' : ['a','[]', 'b' ],
+      'catd' : ['a','[]', 'd' ],
+      'catc' : ['c' ]
+    }
+  };
+  try {
+    Model.filterRemapCategories(mongomap, ['NOTPRESENTCAT', 'catb' ], recs);
+    test.deepEqual(1,0);
+  } catch(e) {
+    test.deepEqual(1,1);
+  }
+  test.done();
+};
+
+
   /*
 
     [ '_url',
@@ -243,7 +337,7 @@ exports.testModelGetOperator = function (test) {
 */
 
 exports.testgetAllRecordCategoriesForTargetCategories1 = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     try {
 
       Model.getDomainCategoryFilterForTargetCategories(theModel, ['element name', 'SemanticObject' ]);
@@ -252,12 +346,13 @@ exports.testgetAllRecordCategoriesForTargetCategories1 = function (test) {
       test.equal(e.toString(), 'Error: categories "element name" and "SemanticObject" have no common domain.');
     }
     test.done();
+    Model.releaseModel(theModel);
   }).catch(teardown.bind(undefined,test));
 };
 
 
 exports.testgetAllRecordCategoriesForTargetCategories2 = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategories(theModel, ['element name', 'element symbol']);
     test.deepEqual(res,{ domains: [ 'IUPAC' ],
       categorySet:
@@ -273,7 +368,7 @@ exports.testgetAllRecordCategoriesForTargetCategories2 = function (test) {
 
 
 exports.testgetAllRecordCategoriesForTargetCategory = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategory(theModel, 'element name');
     test.deepEqual(res,{ domains: [ 'IUPAC', 'Philosophers elements' ],
       categorySet:
@@ -287,10 +382,47 @@ exports.testgetAllRecordCategoriesForTargetCategory = function (test) {
   });
 };
 
+exports.testLoadModelsNoMonbooseThrows = function(test) {
+  try {
+    Model.loadModels();
+    test.equal(0,1);
+  } catch(e) {
+    test.equal(1,1);
+    test.done();
+  }
+};
+
+
+exports.testgetExpandedRecordsForCategory = function (test) {
+  getModel().then( theModel => {
+    Model.getExpandedRecordsForCategory(theModel, 'Cosmos', 'orbits' ).then( (res) =>{
+      test.deepEqual(res.length, 7);
+      res.sort( Model.sortFlatRecords);
+      test.deepEqual(res[0].orbits, 'Alpha Centauri C');
+      test.done();
+      MongoUtils.disconnect(mongoose);
+    });
+  });
+};
+
+exports.testgetExpandedRecordsForCategoryMetamodel = function (test) {
+  getModel().then( theModel => {
+    Model.getExpandedRecordsForCategory(theModel, 'metamodel', 'category' ).then( (res) =>{
+      test.deepEqual(res.length, 88);
+      res.sort( Model.sortFlatRecords);
+      debuglog(()=>JSON.stringify(res));
+      test.deepEqual(res[0].category, '_url');
+      test.deepEqual(res[10].category, 'atomic weight');
+      test.done();
+      MongoUtils.disconnect(mongoose);
+    });
+  });
+};
+
 
 
 exports.testgetCAtegoryFilterMultDomains = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategories(theModel, ['ApplicationComponent', 'TransactionCode'] , true);
     test.deepEqual(res,
       { domains: [ 'Fiori Backend Catalogs', 'FioriBOM' ],
@@ -338,7 +470,7 @@ exports.testgetCAtegoryFilterMultDomains = function (test) {
 
 
 exports.testgetCAtegoryFilterOneDomain = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategories(theModel, ['ApplicationComponent','devclass', 'TransactionCode'] , true);
     test.deepEqual(res,{ domains: [ 'Fiori Backend Catalogs' ],
       categorySet:
@@ -361,7 +493,7 @@ exports.testgetCAtegoryFilterOneDomain = function (test) {
 
 
 exports.testModelGetDomainIndex = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var res = Model.getDomainBitIndex('IUPAC', theModel);
     test.equal(res, 0x0008, 'IUPAC code ');
     test.done();
@@ -369,7 +501,7 @@ exports.testModelGetDomainIndex = function (test) {
   });
 };
 exports.testModelGetDomainIndexNotPresent = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var res = Model.getDomainBitIndex('NOTPRESENT', theModel);
     test.equal(res, 0x100, 'abc NOTPRESENT 4096');
     test.done();
@@ -393,13 +525,38 @@ exports.testModelGetDomainIndexThrows = function (test) {
 };
 
 exports.testGetDomainsForBitIndex = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var u = Model.getDomainsForBitField(theModel, 0x00011);
     test.deepEqual(u, ['Cosmos', 'metamodel']);
     test.done();
     MongoUtils.disconnect(mongoose);
   });
 };
+
+
+exports.testGetModelNameForDomain = function (test) {
+  getModel().then( theModel => {
+    var u = Model.getModelNameForDomain(theModel.mongoHandle, 'FioriBOM');
+    test.deepEqual(u, 'fioriapps');
+    test.done();
+    MongoUtils.disconnect(mongoose);
+  });
+};
+
+
+exports.testGetModelNameForDomainNotPresent = function (test) {
+  getModel().then( theModel => {
+    try {
+      Model.getModelNameForDomain(theModel, 'FioriNIXDA');
+      test.equal(1,0);
+    } catch(e) {
+      test.equal(1,1);
+    }
+    test.done();
+    MongoUtils.disconnect(mongoose);
+  });
+};
+
 
 exports.testAddSplitSingleWord = function(test) {
   var seenIt = {};
@@ -494,7 +651,7 @@ exports.testModelHasDomainIndexinRules = function (test) {
 
 
 exports.testModelHasDomainIndexInDomains = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
   // check that every domain has an index which is distinct
     var all = 0;
     theModel.domains.forEach(function(o) {
@@ -511,7 +668,7 @@ exports.testModelHasDomainIndexInDomains = function (test) {
 
 
 exports.testModelHasDomainIndexInAllRules = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
   // check that every domain has an index which is distinct
     var all = 0;
     theModel.domains.forEach(function(o) {
@@ -574,7 +731,7 @@ exports.testgetResultAsArrayOk = function (test) {
 
 exports.testgetCategoriesForDomainBadDomain = function (test) {
   test.expect(1);
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
 
     var u = theModel;
     try {
@@ -586,11 +743,10 @@ exports.testgetCategoriesForDomainBadDomain = function (test) {
     test.done();
     MongoUtils.disconnect(mongoose);
   });
-
 };
 
 exports.testgetDomainsForCategoryBadCategory = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
 
     var u = theModel;
     try {
@@ -606,7 +762,7 @@ exports.testgetDomainsForCategoryBadCategory = function (test) {
 
 
 exports.testgetAllDomainsBintIndex = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
 
     var u = theModel;
     var res = Model.getAllDomainsBitIndex(u);
@@ -619,7 +775,7 @@ exports.testgetAllDomainsBintIndex = function (test) {
 
 exports.testgetCategoriesForDomain = function (test) {
   test.expect(1);
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var u = theModel;
   //console.log('here the model ************ ' + JSON.stringify(u.meta.t3,undefined,2));
     var res = Model.getCategoriesForDomain(u, 'Cosmos');
@@ -647,7 +803,7 @@ exports.testgetCategoriesForDomain = function (test) {
 
 exports.testgetDomainsForCategory = function (test) {
   test.expect(1);
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var u = theModel;
   //console.log('here the model ************ ' + JSON.stringify(u.meta.t3,undefined,2));
     var res = Model.getDomainsForCategory(u, 'element name');
@@ -666,7 +822,7 @@ exports.testgetDomainsForCategory = function (test) {
  */
 exports.testModelCheckExactOnly = function (test) {
   test.expect(1);
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var u = theModel;
     var res = u.mRules.filter(function(oRule) {
       return oRule.exactOnly === true;
@@ -734,37 +890,37 @@ exports.testCategorySorting = function (test) {
 
 
 exports.testWordCategorizationFactCat = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var earth = theModel.rules.wordMap['earth'];
   //console.log(earth);
     test.deepEqual(earth, {
       bitindex: 33,
       rules:
-        [
-      {
-        category: 'element name',
-        matchedString: 'earth',
-        type: 0,
-        word: 'earth',
-        bitindex: 32,
-        bitSentenceAnd: 32,
-        wordType: 'F',
-        exactOnly : false,
-        _ranking: 0.95,
-        lowercaseword: 'earth'
-      },
-      {
-        category: 'object name',
-        matchedString: 'earth',
-        type: 0,
-        word: 'earth',
-        bitindex: 1,
-        bitSentenceAnd: 1,
-        wordType: 'F',
-        exactOnly : false,
-        _ranking: 0.95,
-        lowercaseword: 'earth' } ] }
-  );
+      [
+        {
+          category: 'element name',
+          matchedString: 'earth',
+          type: 0,
+          word: 'earth',
+          bitindex: 32,
+          bitSentenceAnd: 32,
+          wordType: 'F',
+          exactOnly : false,
+          _ranking: 0.95,
+          lowercaseword: 'earth'
+        },
+        {
+          category: 'object name',
+          matchedString: 'earth',
+          type: 0,
+          word: 'earth',
+          bitindex: 1,
+          bitSentenceAnd: 1,
+          wordType: 'F',
+          exactOnly : false,
+          _ranking: 0.95,
+          lowercaseword: 'earth' } ] }
+    );
     test.done();
     MongoUtils.disconnect(mongoose);
   });
@@ -773,24 +929,24 @@ exports.testWordCategorizationFactCat = function (test) {
 
 
 exports.testWordCategorizationOperator = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var op = theModel.rules.wordMap['starting with'];
   //console.log(earth);
     test.deepEqual(op, {
       bitindex: 256,
       rules:
-        [
-      { category: 'operator',
-        word: 'starting with',
-        lowercaseword: 'starting with',
-        type: 0,
-        matchedString: 'starting with',
-        bitindex: 256,
-        bitSentenceAnd: 255,
-        wordType: 'O',
-        _ranking: 0.9
-      }
-        ]
+      [
+        { category: 'operator',
+          word: 'starting with',
+          lowercaseword: 'starting with',
+          type: 0,
+          matchedString: 'starting with',
+          bitindex: 256,
+          bitSentenceAnd: 255,
+          wordType: 'O',
+          _ranking: 0.9
+        }
+      ]
     });
     test.done();
     MongoUtils.disconnect(mongoose);
@@ -800,23 +956,23 @@ exports.testWordCategorizationOperator = function (test) {
 
 
 exports.testWordCategorizationFactCat2 = function (test) {
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var earth = theModel.rules.wordMap['co-fio'];
   //console.log(earth);
     test.deepEqual(earth,
       {
         bitindex: 2,
         rules:
-          [ { category: 'ApplicationComponent',
-        matchedString: 'CO-FIO',
-        type: 0,
-        word: 'CO-FIO',
-        bitindex: 2,
-        bitSentenceAnd: 2,
-        wordType: 'F',
-        _ranking: 0.95,
-        exactOnly: true,
-        lowercaseword: 'co-fio' } ] }
+        [ { category: 'ApplicationComponent',
+          matchedString: 'CO-FIO',
+          type: 0,
+          word: 'CO-FIO',
+          bitindex: 2,
+          bitSentenceAnd: 2,
+          wordType: 'F',
+          _ranking: 0.95,
+          exactOnly: true,
+          lowercaseword: 'co-fio' } ] }
   );
     test.done();
     MongoUtils.disconnect(mongoose);
@@ -825,7 +981,7 @@ exports.testWordCategorizationFactCat2 = function (test) {
 
 exports.testModelTest2 = function (test) {
   test.expect(1);
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var u = theModel;
     try {
       fs.mkdirSync('logs');
@@ -866,7 +1022,7 @@ exports.testFindNextLen = function (test) {
 
 exports.testModelGetColumns = function (test) {
   test.expect(1);
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var u = theModel;
 
 
@@ -886,7 +1042,7 @@ exports.testModelGetColumns = function (test) {
 exports.testModelHasDomains = function (test) {
 
   test.expect(2);
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var u = theModel;
 
     // we expect a rule "domain" -> meta
@@ -925,7 +1081,7 @@ exports.testModelHasDomains = function (test) {
  */
 exports.testModelAppConfigForEveryDomain = function (test) {
   test.expect(1);
-  pTheModel.then( theModel => {
+  getModel().then( theModel => {
     var u = theModel;
     var res = u.mRules.filter(function(oRule) {
       return oRule.lowercaseword === 'applicationcomponent' && oRule.matchedString === 'ApplicationComponent';

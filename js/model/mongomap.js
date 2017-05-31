@@ -6,7 +6,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 //import * as intf from 'constants';
-const debug = require("debug");
+const debug = require("debugf");
 var debuglog = debug('mongomap');
 const process = require("process");
 const _ = require("lodash");
@@ -51,7 +51,7 @@ function collectCategories(eSchemaProps) {
         visit: function (obj, key, val) {
             if (key === '_m_category') {
                 this.res[val] = {
-                    path: this.currentPath.slice(),
+                    paths: this.currentPath.slice(),
                     fullpath: this.plainPath.join('.')
                 };
             }
@@ -73,6 +73,73 @@ function collectCategories(eSchemaProps) {
     return oContext.res;
 }
 exports.collectCategories = collectCategories;
+/**
+ * Given a record and a paths expression, return
+ * the value (string or array) which represents this path
+ * Note that a trailing array is not expanded,
+ * @param rec
+ * @param paths
+ */
+function getMemberByPath(rec, paths) {
+    var root = rec;
+    var res = paths.reduce((prev, segment, index) => {
+        debuglog(() => `at index ${index} segment ${segment} on ${JSON.stringify(prev)}`);
+        if (prev === undefined || prev === null) {
+            return undefined;
+        }
+        if (segment !== "[]") {
+            return prev[segment];
+        }
+        else {
+            if (index === (paths.length - 1)) {
+                return prev;
+            }
+            if (_.isArray(prev)) {
+                if (prev.length > 1) {
+                    throw Error('cannot flatten more than one record ');
+                }
+                return prev[0];
+            }
+            else {
+                return prev;
+            }
+        }
+    }, rec);
+    debuglog(() => ` herer result ` + res);
+    return res;
+}
+exports.getMemberByPath = getMemberByPath;
+function constructPath(paths, len) {
+    return paths.slice(0, len).filter(seg => seg !== '[]').join('.');
+}
+function unwindsForNonterminalArrays(mongoMap) {
+    var paths = Object.keys(mongoMap).map(key => mongoMap[key].paths);
+    var res = [];
+    var seenAccess = {};
+    return paths.reduce((prev, path) => {
+        var prefix = '';
+        return path.reduce((prev, segment, index) => {
+            if (path.length - 1 !== index) {
+                // last segment never of interest, even if []
+                if (segment === '[]') {
+                    var expandPath = '$' + constructPath(path, index);
+                    if (!seenAccess[expandPath]) {
+                        seenAccess[expandPath] = true;
+                        prev.push({
+                            $unwind: {
+                                path: expandPath,
+                                preserveNullAndEmptyArrays: true
+                            }
+                        });
+                    }
+                }
+                return prev;
+            }
+            return prev;
+        }, prev);
+    }, res);
+}
+exports.unwindsForNonterminalArrays = unwindsForNonterminalArrays;
 function makeMongoMap(oDoc, eSchema) {
     var oMongoMap = {};
     debuglog(() => 'creating mongomap for ' + JSON.stringify(eSchema.modelname, undefined, 2) + ' and ' + oDoc.modelname);

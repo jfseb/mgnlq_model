@@ -11,6 +11,9 @@ export function openMongoose(mongoose: any, mongoConnectionString : string) {
   var db = mongoose.connection;
   var mgopen = new Promise(function (resolve, reject) {
     //db.on.setMaxListeners(0);
+    if((typeof db.setMaxListeners) === "function") {
+        db.setMaxListeners(0);
+    }
     if((typeof db.on.setMaxListeners) === "function") {
         db.on.setMaxListeners(0);
     }

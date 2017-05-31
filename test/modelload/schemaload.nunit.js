@@ -41,9 +41,10 @@ process.on('unhandledRejection', function onError(err) {
 
 exports.testmapType = function (test) {
   test.expect(3);
-  [ { input: 'String' , expected : String},
-   { input: 'Boolean' , expected : Boolean},
-   { input: 'Number' , expected : Number}
+  [
+    { input: 'String' , expected : String},
+    { input: 'Boolean' , expected : Boolean},
+    { input: 'Number' , expected : Number}
   ].forEach(function(fixture) {
     var res = Schemaload.mapType(fixture.input);
     test.equal(res,fixture.expected);
@@ -210,12 +211,12 @@ exports.testLoadModelNames = function (test) {
   test.expect(1);
   var res = Schemaload.loadModelNames('node_modules/mgnlq_testmodel/testmodel/');
   test.deepEqual(res, [ 'iupacs',
-  'philoelements',
-  'cosmos',
-  'r3trans',
-  'fioriapps',
-  'sobj_tables',
-  'fioribecatalogs' ]);
+    'philoelements',
+    'cosmos',
+    'r3trans',
+    'fioriapps',
+    'sobj_tables',
+    'fioribecatalogs' ]);
   test.done();
 };
 

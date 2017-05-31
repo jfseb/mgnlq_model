@@ -65,11 +65,12 @@ export function getMongoHandle(mongoose: mongoose.Mongoose): Promise<IMatch.IMod
             Schemaload.makeModelFromDB(mongoose, modelname),
             Schemaload.getModelDocFromDB(mongoose, modelname)]).then(
                 (value) => {
-                    debuglog(() => 'attempting to load ' + modelname);
+                    debuglog(() => 'attempting to load ' + modelname + 'to create mongomap');
                     var [extendedSchema, model, modelDoc] = value;
                     res.modelESchemas[modelname] = extendedSchema;
                     res.modelDocs[modelname] = modelDoc;
                     res.mongoMaps[modelname] = MongoMap.makeMongoMap(modelDoc, extendedSchema)
+                    debuglog(()=> 'created mongomap for ' + modelname);
                 }
                 )
         }));
@@ -121,6 +122,80 @@ export function remapSynonyms(docs: ISynonymBearingDoc[]): ISynonym[] {
         , [] as ISynonym[]);
 }
 
+export function getModelNameForDomain(handle : IMatch.IModelHandleRaw, domain : string) : string {
+    var res = undefined;
+    Object.keys(handle.modelDocs).every( key => {
+        var doc = handle.modelDocs[key];
+        if(domain === doc.domain) {
+            res = doc.modelname;
+        }
+        return !res;
+    });
+    if(!res) {
+        throw Error('attempt to retrieve modelName for unknown domain ' + domain);
+    }
+    return res;
+}
+
+
+export function filterRemapCategories( mongoMap : IMatch.CatMongoMap, categories : string[], records : any[] ) : any[] {
+    //
+    //console.log('here map' + JSON.stringify(mongoMap,undefined,2));
+    return records.map((rec,index) => {
+        var res = {};
+        categories.forEach(category => {
+            var categoryPath = mongoMap[category].paths;
+            if(!categoryPath) {
+                throw new Error(`unknown category ${category} not present in ${JSON.stringify(mongoMap,undefined,2)}`);
+            }
+
+            res[category] = MongoMap.getMemberByPath(rec, categoryPath);
+            debuglog( ()=>'got member for '  + category + ' from rec no ' + index + ' ' + JSON.stringify(rec,undefined,2) );
+            debuglog(()=> JSON.stringify(categoryPath));
+            debuglog(()=> 'res : ' + res[category] );
+        });
+        return res;
+    });
+}
+
+export function getExpandedRecordsForCategory(theModel : IMatch.IModels,domain : string,category : string) : Promise<{ [key : string] : any}> {
+    var mongoHandle = theModel.mongoHandle;
+    var modelname = getModelNameForDomain(theModel.mongoHandle, domain);
+    debuglog(()=>` modelname for ${domain} is ${modelname}`);
+    //debuglog(() => `here models ${modelname} ` + mongoHandle.mongoose.modelNames().join(';'));
+    var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
+    var mongoMap = mongoHandle.mongoMaps[modelname];
+    debuglog(()=> 'here the mongomap' + JSON.stringify(mongoMap,undefined,2));
+    if (!model) {
+        debuglog(' no model for ' + modelname);
+        return Promise.reject(`model ${modelname} not found in db`);
+    }
+    if (!mongoMap) {
+        debuglog(' no mongoMap for ' + modelname);
+        return Promise.reject(`model ${modelname} has no modelmap`);
+    }
+    if (!mongoMap[category]) {
+        debuglog(' no mongoMap category for ' + modelname);
+        return Promise.reject(`model ${modelname} has no category ${category}`);
+    }
+    debuglog(()=>` here the modelmap for ${domain} is ${JSON.stringify(mongoMap,undefined,2)}`);
+    // 1) produce the flattened records
+    var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
+    debuglog(()=>'here the unwind statement ' + JSON.stringify(res,undefined,2));
+    // we have to unwind all common non-terminal collections.
+    debuglog(()=>'here the model ' + model.modelName);
+    if(res.length === 0) {
+        return model.find({}).lean().exec().then(( unwound : any[]) => {
+            debuglog(()=>'here res' + JSON.stringify(unwound));
+            return filterRemapCategories(mongoMap, [category], unwound)
+        });
+    }
+    return model.aggregate(res).then( unwound => {
+        // filter for aggregate
+        debuglog(()=>'here res' + JSON.stringify(unwound));
+        return filterRemapCategories(mongoMap, [category], unwound)
+    });
+}
 // get synonyms
 // db.cosmos.find( { "_synonyms.0": { $exists: true }}).length()
 
@@ -890,6 +965,30 @@ export function splitRules(rules: IMatch.mRule[]): IMatch.SplitRules {
     };
 }
 
+
+export function sortFlatRecords(a,b) {
+    var keys = _.union(Object.keys(a),Object.keys(b)).sort();
+    var r = 0;
+    keys.every( (key) => {
+        if(typeof a[key] === "string" && typeof b[key] !== "string") {
+            r = -1;
+            return false;
+        }
+        if(typeof a[key] !== "string" && typeof b[key] === "string") {
+            r = +1;
+            return false;
+        }
+        if(typeof a[key] !== "string" && typeof b[key] !== "string") {
+            r = 0;
+            return true;
+        }
+        r = a[key].localeCompare(b[key]);
+        return r === 0;
+    });
+    return r;
+};
+
+
 function cmpLengthSort(a: string, b: string) {
     var d = a.length - b.length;
     if (d) {
@@ -1144,6 +1243,9 @@ export function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, con
  * @param modelPath
  */
 export function loadModels(mongoose: mongoose.Mongoose, modelPath? : string) : Promise<IMatch.IModels> {
+    if(mongoose === undefined) {
+        throw new Error('expect a mongoose handle to be passed');
+    }
     return getMongoHandle(mongoose).then( (modelHandle) =>{
         debuglog('got a mongo handle');
         return loadModelsFull(modelHandle, modelPath);

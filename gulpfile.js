@@ -29,7 +29,7 @@ var testDir = 'test';
 
 gulp.task('watch', function () {
   gulp.watch([srcDir + '/**/*.js', testDir + '/**/*.js', srcDir + '/**/*.tsx', srcDir + '/**/*.ts', 'gulpfile.js'],
-    ['tsc', 'babel', 'standard']);
+    ['tsc', 'eslint']);
 });
 
 /**
@@ -45,11 +45,6 @@ gulp.task('tsc', function () {
     .pipe(tsProject());
 
   return tsResult.js
-    //    .pipe(babel({
-    //      comments: true,
-    //      presets: ['es2015']
-    //    }))
-    // .pipe( ... ) // You can use other plugins that also support gulp-sourcemaps
     .pipe(sourcemaps.write('.', {
       sourceRoot: function (file) {
         file.sourceMap.sources[0] = '/projects/nodejs/botbuilder/mgnlq_model/src/' + file.sourceMap.sources[0];
@@ -64,16 +59,6 @@ gulp.task('tsc', function () {
     // Now the sourcemaps are added to the .js file
     .pipe(gulp.dest('js'));
 });
-
-/*
-var webpacks = require('webpack-stream')
-gulp.task('webpack_notinuse', function() {
-  return gulp.src('./src/web/qbetable.tsx')
-    .pipe(webpacks( require('./webpack.config.js') ))
-    .pipe(gulp.dest('/app/public/js/'))
-})
-
-*/
 
 var del = require('del');
 
@@ -100,13 +85,6 @@ gulp.task('doc', ['test'], function (cb) {
   gulp.src([srcDir + '/**/*.js', 'README.md', './js/**/*.js'], { read: false })
     .pipe(jsdoc(cb));
 });
-
-// gulp.task('copyInputFilterRules', ['tsc', 'babel'], function () {
-//  return gulp.src([
-//    genDir + '/match/inputFilterRules.js'
-//  ], { 'base': genDir })
-//    .pipe(gulp.dest('gen_cov'))
-// })
 
 /*
 var instrument = require('gulp-instrument')
@@ -185,7 +163,7 @@ gulp.task('testhome', ['test'], function () {
 
 const eslint = require('gulp-eslint');
 
-gulp.task('standard', () => {
+gulp.task('eslint', () => {
   // ESLint ignores files with "node_modules" paths.
   // So, it's best to have gulp ignore the directory as well.
   // Also, Be sure to return the stream from the task
@@ -209,9 +187,9 @@ gulp.task('pack', () => {
 });
 
 
-gulp.task('default', ['tsc', 'standard', 'test', 'doc' ]);
+gulp.task('default', ['tsc', 'eslint', 'test', 'doc' ]);
 
 
 // Default Task
-gulp.task('default', ['tsc', 'standard', 'test', 'doc' ]);
-gulp.task('build', ['tsc', 'standard']);
+gulp.task('default', ['tsc', 'eslint', 'test', 'doc' ]);
+gulp.task('build', ['tsc', 'eslint']);

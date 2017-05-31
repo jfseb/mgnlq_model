@@ -25,5 +25,38 @@ for a nested document
 Database used for testing containing data
 
 (set up via node js/makedb.js or npm load_data )
-
   mongodb://localhost/testdb'
+
+
+
+
+#Testing
+
+The unit test use
+[mongoose_record_replay](https://www.npmjs.com/package/mongoose_record_replay)  and data in
+(npm module) [mgnlq_testmodel_replay](https://www.npmjs.com/package/mgnlq_testmodel_replay)
+to be run without a mongoose instance.
+
+
+Alternatively, by setting MONGO_TEST_RECORD='RECORT'
+Unit tests can be run against a mongodb installed on
+
+```'mongodb://localhost/testdb';```
+
+
+
+```javascript
+var mode = 'REPLAY';
+if (process.env.MONGO_TEST_RECORD) {
+  mode = 'RECORD';
+}
+var mongoose = require('mongoose_record_replay').instrumentMongoose(require('mongoose'),
+  'node_modules/mgnlq_testmodel_replay/mgrecrep/',
+  mode);
+```
+
+This DB must be filled with data, see
+```bash
+  nmp run load_data
+```
+to create the db from files
