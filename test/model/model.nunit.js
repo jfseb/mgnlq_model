@@ -31,13 +31,23 @@ process.on('unhandledRejection', function onError(err) {
  * clear a cache for the defaut mode for coverage
  */
 try {
-  fs.unlinkSync('./node_modules/mgnlq_testmodel/testmodel/_cachefalse.js.zip');
+  fs.unlinkSync('./node_modules/mgnlq_testmodel/testmodel/_cache.js.zip');
+} catch (e) {
+  // empty
+}
+/**
+ * clear a cache for the defaut mode for coverage
+ */
+try {
+  fs.unlinkSync('./node_modules/mgnlq_testmodel_replay/testmodel/_cache.js.zip');
 } catch (e) {
   // empty
 }
 
+
+
 try {
-  fs.unlinkSync('./testmodel/_cachetrue.js.zip');
+  fs.unlinkSync('./testmodel/_cache.js.zip');
 } catch (e) {
   // empty
 }

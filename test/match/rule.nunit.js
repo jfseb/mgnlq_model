@@ -44,6 +44,7 @@ exports.testcompareMRuleFullType= function (test) {
 
 
 
+
 exports.testcompareMRuleFullWordType= function (test) {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
@@ -58,7 +59,6 @@ exports.testcompareMRuleFullWordType= function (test) {
   test.deepEqual(res < 0, true, 'compare FullWordType ok ');
   test.done();
 };
-
 
 
 
@@ -118,3 +118,61 @@ exports.testcompareMRuleFullExactOnlyOne = function (test) {
   test.deepEqual(res < 0, true, 'compare FullWordType ok ');
   test.done();
 };
+
+
+
+exports.testcmpMRule1 = function (test) {
+  const res = Rule.cmpMRule({
+    category : 'AAA',
+  },{category : 'BBB'});
+  test.deepEqual(res < 0, true, 'compare cat ok ');
+  test.done();
+};
+
+
+
+
+exports.testcmpMRuleFull2= function (test) {
+  const res = Rule.cmpMRule({
+    category : 'AAA',
+    matchedString : 'AAA'
+  },{
+    category : 'AAA',
+    matchedString : 'BBB'});
+  test.deepEqual(res < 0, true, 'compare cat ok ');
+  test.done();
+};
+
+
+exports.testcmpMRuleType= function (test) {
+  const res = Rule.cmpMRule({
+    category : 'AAA',
+    type : 1,
+    matchedString : 'AAA'
+  },{
+    category : 'AAA',
+    type : 2,
+    matchedString : 'BBB'});
+  test.deepEqual(res < 0, true, 'compare cat ok ');
+  test.done();
+};
+
+
+
+exports.testcmpMRuleWordType= function (test) {
+  const res = Rule.cmpMRule({
+    category : 'AAA',
+    type : 1,
+    matchedString : 'AAA',
+    word : 'AAA'
+  },{
+    category : 'AAA',
+    type : 1,
+    matchedString : 'AAA',
+    word : 'BBB'});
+  test.deepEqual(res < 0, true, 'compare FullWordType ok ');
+  test.done();
+};
+
+
+
