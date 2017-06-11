@@ -25,16 +25,6 @@ function openMongoose () {
       reject(err);}
     );
     db.once('open', function () {
-      // we're connected!
-      /*
-      console.log('mongoose connection in open ' + Object.keys(mongoose.connection.db));
-      console.log('mongoose connection in open2 ' + typeof (mongoose.connection.db.collections));
-      console.log('mongoose connection in open3 ' + typeof (mongoose.connection.db.getCollectionNames));
-
-      console.log('here model names : ' + db.modelNames());
-      console.log('now model names : ' + db.modelNames());
-      console.log('done');
-      */
       resolve(db);
     });
   });

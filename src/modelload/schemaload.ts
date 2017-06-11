@@ -76,6 +76,7 @@ const ExtendedSchema_index = {
 
 export function loadModelNames(modelPath : string) : string[] {
   modelPath = modelPath || envModelPath;
+  debuglog(()=> `modelpath is ${modelPath} `);
   var mdls = FUtils.readFileAsJSON('./' + modelPath + '/models.json');
   mdls.forEach(name => {
     if(name !== makeMongoCollectionName(name)) {
@@ -198,13 +199,15 @@ export function makeMongooseSchema( extSchema : IExtendedSchema , mongo? : any) 
 }
 
 export function loadExtendedMongooseSchema(modelPath: string, modelName : string): IExtendedSchema {
-  var schemaSer = FUtils.readFileAsJSON('./' + modelPath + '/' + modelName + '.model.mongooseschema.json');
+  var filename =  modelPath + '/' + modelName + '.model.mongooseschema.json';
+  debuglog(()=> `attempting to read ${filename}`)
+  var schemaSer = FUtils.readFileAsJSON(filename);
   schemaSer.modelName = modelName;
   return schemaSer;
 }
 
 export function loadModelDoc(modelPath: string, modelName : string): IModelDoc {
-  var docSer = FUtils.readFileAsJSON('./' + modelPath + '/' + modelName + '.model.doc.json');
+  var docSer = FUtils.readFileAsJSON( modelPath + '/' + modelName + '.model.doc.json');
   docSer.modelname = modelName;
   return docSer;
 }
@@ -276,9 +279,9 @@ export function getExtendedSchemaModel(mongoose : mongoose.Mongoose) : mongoose.
 
 
 export function getModelDocModel(mongoose : mongoose.Mongoose) : mongoose.Model<any> {
-    var metaDoc = FUtils.readFileAsJSON('./resources/meta/metamodels.model.doc.json');
+    var metaDoc = FUtils.readFileAsJSON( __dirname + '/../../resources/meta/metamodels.model.doc.json');
     metaDoc.modelname = MongoNLQ.MODELNAME_METAMODELS;
-    var schemaSer2 = loadExtendedMongooseSchema('resources/meta',MongoNLQ.MODELNAME_METAMODELS);
+    var schemaSer2 = loadExtendedMongooseSchema(__dirname + '/../../resources/meta',MongoNLQ.MODELNAME_METAMODELS);
     var schemaSer = augmentMongooseSchema(metaDoc, schemaSer2);
     var schema = makeMongooseSchema(schemaSer, mongoose);
     var mongooseModelName = makeMongooseModelName(MongoNLQ.COLL_METAMODELS);
@@ -291,10 +294,11 @@ export function getModelDocModel(mongoose : mongoose.Mongoose) : mongoose.Model<
 }
 
 export function upsertMetaModel(mongoose : any) {
-    var metaDoc = FUtils.readFileAsJSON('./resources/meta/metamodels.model.doc.json');
+    debuglog(()=>'here dirname + ' + __dirname);
+    var metaDoc = FUtils.readFileAsJSON(__dirname + '/../../resources/meta/metamodels.model.doc.json');
     debuglog( ()=> "here metaDoc to insert as loaded" + JSON.stringify(metaDoc));
     metaDoc.modelname = MongoNLQ.MODELNAME_METAMODELS;
-    var schemaSer2 = loadExtendedMongooseSchema('resources/meta',MongoNLQ.MODELNAME_METAMODELS);
+    var schemaSer2 = loadExtendedMongooseSchema(__dirname + '/../../resources/meta',MongoNLQ.MODELNAME_METAMODELS);
     var schemaSer = augmentMongooseSchema(metaDoc, schemaSer2);
 
     debuglog( ()=>'here schemaser' + JSON.stringify(schemaSer,undefined,2));
@@ -484,6 +488,7 @@ export function uploadOperators(mongoose: mongoose.Mongoose, modelPath: string) 
  * @return Promise<any> the  promise
  */
 export function upsertModels(mongoose : mongoose.Mongoose, modelpath: string)  : Promise<any> {
+    debuglog(()=> `modelpath ${modelpath} `);
     var modelNames = loadModelNames(modelpath);
     var model_ES = mongoose.model(MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
     var model_Doc = mongoose.model(MongooseNLQ.MONGOOSE_MODELNAME_METAMODELS);
@@ -622,15 +627,15 @@ export function validateDoc(collectionname: string, schema : mongoose.Schema, do
         //console.log('augmenting schema');
         obj.additionalProperties = false;
     }
-});
+  });
 
-  //console.log(JSON.stringify(jsonSchema,undefined,2));
+  debuglog(()=> ` here json schema ` + (JSON.stringify(jsonSchema,undefined,2)));
   var Validator = require('jsonschema').Validator;
   var v = new Validator();
   //console.log(JSON.stringify(jsonSchema,undefined,2));
   var valresult = v.validate(doc,jsonSchema);
   if(valresult.errors.length) {
-      throw new Error("Schema validation failed : " + JSON.stringify(valresult.errors,undefined,2));
+      throw new Error("Schema validating against JSON Schema failed : " + JSON.stringify(valresult.errors,undefined,2));
   }
   return true;
 }

@@ -17,12 +17,14 @@ var eSchemaSOBJ_Tables = Schemaload.loadExtendedMongooseSchema(testmodelPath, 's
 var eDocSOBJ = Schemaload.loadModelDoc(testmodelPath, 'sobj_tables');
 
 
+var mode = 'REPLAY';
+if (process.env.MGNLQ_TESTMODEL_REPLAY) {
+  mode = 'RECORD';
+}
 
-// var FUtils = require(root + '/model/model.js')
 var mongoose = require('mongoose_record_replay').instrumentMongoose(require('mongoose'),
   'node_modules/mgnlq_testmodel_replay/mgrecrep/',
-  'REPLAY');
-
+  mode);
 
 // load distinct values from model
 
@@ -127,6 +129,35 @@ exports.testUnwindsForNonTerminalArrays3Deep = function(test) {
   test.done();
 };
 
+exports.testGetFirstSegmentThrows = function(test) {
+  test.expect(1);
+  try {
+    MongoMap.getFirstSegment(['[]','abc']);
+    test.equals(1,0);
+  } catch(e) {
+    test.equals(1,1);
+  }
+  test.done();
+};
+
+exports.testGetFirstSegmentThrowsEmpty = function(test) {
+  test.expect(1);
+  try {
+    MongoMap.getFirstSegment([]);
+    test.equals(1,0);
+  } catch(e) {
+    test.equals(1,1);
+  }
+  test.done();
+};
+
+
+exports.testGetFirstSegmentOK = function(test) {
+  test.expect(1);
+  test.equals(MongoMap.getFirstSegment(['abc','def']), 'abc');
+  test.done();
+};
+
 exports.testUnwindsForNonTerminalArrays3bDeep = function(test) {
   var mongoMap = {
     'cat1' : { paths: ['cat1']},
@@ -150,6 +181,23 @@ exports.testUnwindsForNonTerminalArrays3bDeep = function(test) {
   ];
   var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
   test.deepEqual(res, resexpeted, 'correct result');
+  test.done();
+};
+
+
+
+exports.testGetShortProjectedName = function(test) {
+  var mongoMap = {
+    'cat1' : { paths: ['cat1'], fullpath : 'cat1'},
+    'ca T2' : { paths: ['_mem1', '[]', 'mem3', '[]', 'mem4'], fullpath : '_mem1.mem3.mem4'},
+    'cat4' : { paths : ['_mem1', '[]', 'mem4', '[]', 'memx']},
+    'cat3' : { paths: ['_mem2', '_mem3', '[]', 'mem3']}
+  };
+  var r = MongoMap.getShortProjectedName(mongoMap, 'cat1');
+  test.deepEqual(r,'cat1');
+
+  var r2 = MongoMap.getShortProjectedName(mongoMap, 'ca T2');
+  test.deepEqual(r2, 'ca_t2');
   test.done();
 };
 

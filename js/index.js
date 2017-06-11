@@ -12,8 +12,12 @@ const Model = require("./model/model");
 exports.Model = Model;
 const MongoUtils = require("./utils/mongo");
 exports.MongoUtils = MongoUtils;
+const MongoMap = require("./model/mongomap");
+exports.MongoMap = MongoMap;
 const IFModel = require("./match/ifmatch");
 exports.IFModel = IFModel;
+const Dataload = require("./modelload/dataload");
+exports.Dataload = Dataload;
 __export(require("./match/breakdown"));
 
 //# sourceMappingURL=index.js.map

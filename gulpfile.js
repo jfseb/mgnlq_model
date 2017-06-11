@@ -74,8 +74,22 @@ gulp.task('clean:models', function () {
   //  'dist/mobile/**/*',
   // we don't want to clean this file though so we negate the pattern
   //    '!dist/mobile/deploy.json'
-  ]);
+  ],  { });
 });
+
+gulp.task('clean_testmodel_cache', function () {
+  return del([
+    '../mgnlq_testmodel_replay/mgrecrep/data/*',
+    '../mgnlq_testmodel_replay/testmodel/_cache.js.zip',
+    '../mgnlq_testmodel/testmodel/_cache.js.zip'
+  // here we use a globbing pattern to match everything inside the `mobile` folder
+  //  'dist/mobile/**/*',
+  // we don't want to clean this file though so we negate the pattern
+  //    '!dist/mobile/deploy.json'
+  ],{ force : true});
+});
+
+
 
 gulp.task('clean', ['clean:models']);
 

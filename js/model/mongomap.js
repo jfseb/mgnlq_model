@@ -112,6 +112,43 @@ exports.getMemberByPath = getMemberByPath;
 function constructPath(paths, len) {
     return paths.slice(0, len).filter(seg => seg !== '[]').join('.');
 }
+/**
+ * return a category
+ * @param mongoMap
+ * @param cat a category
+ * @return the constructed path, without any preceding $
+ */
+function makeCategoryPath(mongoMap, category) {
+    return mongoMap[category].fullpath;
+}
+exports.makeCategoryPath = makeCategoryPath;
+/**
+ * Given a segment path, return the
+ * @param paths
+ */
+function getFirstSegment(paths) {
+    if (paths[0] === '[]' || paths.length === 0) {
+        throw new Error('did not expect a full array');
+    }
+    return paths[0];
+}
+exports.getFirstSegment = getFirstSegment;
+function makeMongoNameLC(s) {
+    return s.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+}
+exports.makeMongoNameLC = makeMongoNameLC;
+function isNonObjectPath(mongoMap, category) {
+    return mongoMap[category].fullpath.indexOf(".") < 0;
+}
+exports.isNonObjectPath = isNonObjectPath;
+function getShortProjectedName(mongoMap, category) {
+    if (isNonObjectPath(mongoMap, category)) {
+        return mongoMap[category].fullpath;
+    }
+    return makeMongoNameLC(category);
+}
+exports.getShortProjectedName = getShortProjectedName;
+getShortProjectedName;
 function unwindsForNonterminalArrays(mongoMap) {
     var paths = Object.keys(mongoMap).map(key => mongoMap[key].paths);
     var res = [];

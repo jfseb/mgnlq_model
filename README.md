@@ -29,7 +29,6 @@ Database used for testing containing data
 
 
 
-
 #Testing
 
 The unit test use
@@ -38,7 +37,7 @@ The unit test use
 to be run without a mongoose instance.
 
 
-Alternatively, by setting MONGO_TEST_RECORD='RECORT'
+Alternatively, by setting MONGO_TEST_RECORD='RECORD'
 Unit tests can be run against a mongodb installed on
 
 ```'mongodb://localhost/testdb';```
@@ -60,3 +59,34 @@ This DB must be filled with data, see
   nmp run load_data
 ```
 to create the db from files
+
+
+# Cache file control
+
+Model data is written and read from a cache file
+in modelPath
+```MQNLQ_MODEL_NO_FILECACHE```
+
+
+
+# TODO
+
+- Analyze model for mismatchis in category aliases
+
+```
+ e.g.   DomainA   element name  synonyms: [  "element names", "elementname"]
+        DomainB   element name  synonyms:[ "elements" ]
+```
+When this occurs a mismatch "elements" will match only B,
+
+
+- Analyze model for casing mismatches, e.g.
+
+abc => Abc
+abc => abc
+
+```
+ e.g.   DomainA   element name  [ syonyms  "element names", "elementname"]
+        DomainB   element name  synonym:[ "elements" ]
+```
+

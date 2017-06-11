@@ -68,6 +68,18 @@ process.on('unhandledRejection', function onError (err) {
   throw err;
 });
 
+exports.testCreateDBThrowsBadModelPath = function (test) {
+  test.expect(2);
+  try{
+    Dataload.createDB(undefined,'localhost:somedb' ,'abc/');
+    test.equal(1,0);
+  } catch (e) {
+    test.equal(1,1);
+    test.equal(( '' + e ).indexOf('trailing') > 0, true);
+  }
+  test.done();
+}
+
 exports.testmakeModelFromLoadData  = function (test) {
   test.expect(1);
   openEmptyMongoose().then(function () {

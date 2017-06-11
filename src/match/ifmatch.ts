@@ -326,15 +326,19 @@ export interface IRawSchema {
     index : any
 }
 
+
+export interface QBEColumnProp {
+      defaultWidth?: number,
+      QBE: boolean,
+      LUNRIndex?: boolean,
+      QBEInclude? : boolean
+};
+
 export interface IModelDocCategoryRec {
     category : string,
     category_description : string,
-    QBEColumnProps : {
-        "defaultWidth": number,
-        "QBE": boolean,
-        "LUNRIndex": boolean
-      },
-      "category_synonyms": string[],
+    QBEColumnProps : QBEColumnProp,
+    category_synonyms: string[],
     wordindex : boolean,
     exactmatch: boolean
 };

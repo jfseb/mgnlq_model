@@ -8,6 +8,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //import * as intf from 'constants';
 const debugf = require("debugf");
 var debuglog = debugf('model');
+// the hardcoded domain metamodel!
+const DOMAIN_METAMODEL = 'metamodel';
 //const loadlog = logger.logger('modelload', '');
 const IMatch = require("../match/ifmatch");
 const InputFilterRules = require("../match/rule");
@@ -85,6 +87,17 @@ function remapSynonyms(docs) {
     }, []);
 }
 exports.remapSynonyms = remapSynonyms;
+function getMongoCollectionNameForDomain(theModel, domain) {
+    var r = getMongooseModelNameForDomain(theModel, domain);
+    return Schemaload.makeMongoCollectionName(r);
+}
+exports.getMongoCollectionNameForDomain = getMongoCollectionNameForDomain;
+//Schemaload.makeMongooseModelName(modelname)
+function getMongooseModelNameForDomain(theModel, domain) {
+    var r = getModelNameForDomain(theModel.mongoHandle, domain);
+    return Schemaload.makeMongooseModelName(r);
+}
+exports.getMongooseModelNameForDomain = getMongooseModelNameForDomain;
 function getModelNameForDomain(handle, domain) {
     var res = undefined;
     Object.keys(handle.modelDocs).every(key => {
@@ -119,6 +132,43 @@ function filterRemapCategories(mongoMap, categories, records) {
     });
 }
 exports.filterRemapCategories = filterRemapCategories;
+function getExpandedRecordsFull(theModel, domain) {
+    var mongoHandle = theModel.mongoHandle;
+    var modelname = getModelNameForDomain(theModel.mongoHandle, domain);
+    debuglog(() => ` modelname for ${domain} is ${modelname}`);
+    //debuglog(() => `here models ${modelname} ` + mongoHandle.mongoose.modelNames().join(';'));
+    var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
+    var mongoMap = mongoHandle.mongoMaps[modelname];
+    debuglog(() => 'here the mongomap' + JSON.stringify(mongoMap, undefined, 2));
+    if (!model) {
+        debuglog(' no model for ' + modelname);
+        return Promise.reject(`model ${modelname} not found in db`);
+    }
+    if (!mongoMap) {
+        debuglog(' no mongoMap for ' + modelname);
+        return Promise.reject(`model ${modelname} has no modelmap`);
+    }
+    debuglog(() => ` here the modelmap for ${domain} is ${JSON.stringify(mongoMap, undefined, 2)}`);
+    // 1) produce the flattened records
+    var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
+    debuglog(() => 'here the unwind statement ' + JSON.stringify(res, undefined, 2));
+    // we have to unwind all common non-terminal collections.
+    debuglog(() => 'here the model ' + model.modelName);
+    var categories = getCategoriesForDomain(theModel, domain);
+    debuglog(() => `here categories for ${domain} ${categories.join(';')}`);
+    if (res.length === 0) {
+        return model.find({}).lean().exec().then((unwound) => {
+            debuglog(() => 'here res' + JSON.stringify(unwound));
+            return filterRemapCategories(mongoMap, categories, unwound);
+        });
+    }
+    return model.aggregate(res).then(unwound => {
+        // filter for aggregate
+        debuglog(() => 'here res' + JSON.stringify(unwound));
+        return filterRemapCategories(mongoMap, categories, unwound);
+    });
+}
+exports.getExpandedRecordsFull = getExpandedRecordsFull;
 function getExpandedRecordsForCategory(theModel, domain, category) {
     var mongoHandle = theModel.mongoHandle;
     var modelname = getModelNameForDomain(theModel.mongoHandle, domain);
@@ -416,10 +466,10 @@ function loadModelDataMongo(modelHandle, oMdl, sModelName, oModel) {
     });
 }
 ;
-function loadModelP(mongooseHndl, connectionString) {
+function loadModelP(mongooseHndl, modelPath, connectionString) {
     var mongooseX = mongooseHndl || mongoose;
     var connStr = connectionString || 'mongodb://localhost/testdb';
-    return MongoUtils.openMongoose(mongooseX, connStr).then(() => getMongoHandle(mongooseX)).then((modelHandle) => loadModelsFull(modelHandle));
+    return MongoUtils.openMongoose(mongooseX, connStr).then(() => getMongoHandle(mongooseX)).then((modelHandle) => loadModelsFull(modelHandle, modelPath));
 }
 ;
 function loadModel(modelHandle, sModelName, oModel) {
@@ -450,6 +500,17 @@ function getDomainBitIndex(domain, oModel) {
     return 0x0001 << index;
 }
 exports.getDomainBitIndex = getDomainBitIndex;
+function getDomainBitIndexSafe(domain, oModel) {
+    var index = oModel.domains.indexOf(domain);
+    if (index < 0) {
+        throw Error('expected domain to be registered??? ');
+    }
+    if (index >= 32) {
+        throw new Error("too many domain for single 32 bit index");
+    }
+    return 0x0001 << index;
+}
+exports.getDomainBitIndexSafe = getDomainBitIndexSafe;
 /**
  * Given a bitfield, return an unsorted set of domains matching present bits
  * @param oModel
@@ -643,13 +704,13 @@ function mergeModelJson(sModelName: string, oMdl: IModel, oModel: IMatch.IModels
 function makeMdlMongo(modelHandle, sModelName, oModel) {
     var modelDoc = modelHandle.modelDocs[sModelName];
     var oMdl = {
-        bitindex: getDomainBitIndex(modelDoc.domain, oModel),
+        bitindex: getDomainBitIndexSafe(modelDoc.domain, oModel),
         domain: modelDoc.domain,
         modelname: sModelName,
         description: modelDoc.domain_description
     };
     var categoryDescribedMap = {};
-    oMdl.bitindex = getDomainBitIndex(modelDoc.domain, oModel);
+    oMdl.bitindex = getDomainBitIndexSafe(modelDoc.domain, oModel);
     oMdl.category = modelDoc._categories.map(cat => cat.category);
     oMdl.categoryDescribed = [];
     modelDoc._categories.forEach(cat => {
@@ -693,7 +754,7 @@ function makeMdlMongo(modelHandle, sModelName, oModel) {
     modelDoc._categories.forEach(cat => {
         addSynonyms;
     });
-    if (oModel.domains.indexOf(oMdl.domain) >= 0) {
+    if (oModel.domains.indexOf(oMdl.domain) < 0) {
         debuglog("***********here mdl" + JSON.stringify(oMdl, undefined, 2));
         throw new Error('Domain ' + oMdl.domain + ' already loaded while loading ' + sModelName + '?');
     }
@@ -762,6 +823,8 @@ function makeMdlMongo(modelHandle, sModelName, oModel) {
     // add domain synonyms
     if (modelDoc.domain_synonyms && modelDoc.domain_synonyms.length > 0) {
         addSynonyms(modelDoc.domain_synonyms, "domain", modelDoc.domain, oMdl.bitindex, oMdl.bitindex, IMatch.WORDTYPE.DOMAIN, oModel.mRules, oModel.seenRules);
+        addSynonyms(modelDoc.domain_synonyms, "domain", modelDoc.domain, getDomainBitIndexSafe(DOMAIN_METAMODEL, oModel), getDomainBitIndexSafe(DOMAIN_METAMODEL, oModel), IMatch.WORDTYPE.FACT, oModel.mRules, oModel.seenRules);
+        // TODO: synonym have to be added as *FACT* for the metamodel!
     }
     ;
     /*
@@ -825,11 +888,16 @@ function makeMdlMongo(modelHandle, sModelName, oModel) {
                 oModel.full.domain[oMdl.domain].categories[cat.category].category_synonyms = cat.category_synonyms;
             }
             addSynonyms(cat.category_synonyms, "category", cat.category, oMdl.bitindex, oMdl.bitindex, IMatch.WORDTYPE.CATEGORY, oModel.mRules, oModel.seenRules);
+            // add synonyms into the metamodel domain
+            addSynonyms(cat.category_synonyms, "category", cat.category, getDomainBitIndexSafe(DOMAIN_METAMODEL, oModel), getDomainBitIndexSafe(DOMAIN_METAMODEL, oModel), IMatch.WORDTYPE.FACT, oModel.mRules, oModel.seenRules);
         }
     });
     // add operators
     // add fillers
-    oModel.domains.push(oMdl.domain);
+    if (oModel.domains.indexOf(oMdl.domain) < 0) {
+        throw Error('missing domain registration for ' + oMdl.domain);
+    }
+    //oModel.domains.push(oMdl.domain);
     oModel.category = oModel.category.concat(oMdl.category);
     oModel.category.sort();
     oModel.category = oModel.category.filter(function (string, index) {
@@ -1097,13 +1165,13 @@ function releaseModel(model) {
     }
 }
 exports.releaseModel = releaseModel;
-function loadModelHandleP(mongooseHndl, connectionString) {
+function loadModelHandleP(mongooseHndl, modelPath, connectionString) {
     var mongooseX = mongooseHndl || mongoose;
     //   if(process.env.MONGO_REPLAY) {
     //        mongooseX = mongooseMock.mongooseMock as any;
     //    }
     var connStr = connectionString || 'mongodb://localhost/testdb';
-    return MongoUtils.openMongoose(mongooseX, connStr).then(() => getMongoHandle(mongooseX)).then((modelHandle) => loadModelsFull(modelHandle));
+    return MongoUtils.openMongoose(mongooseX, connStr).then(() => getMongoHandle(mongooseX)).then((modelHandle) => loadModelsFull(modelHandle, modelPath));
 }
 exports.loadModelHandleP = loadModelHandleP;
 ;
@@ -1128,7 +1196,7 @@ function loadModels(mongoose, modelPath) {
         throw new Error('expect a mongoose handle to be passed');
     }
     return getMongoHandle(mongoose).then((modelHandle) => {
-        debuglog('got a mongo handle');
+        debuglog(`got a mongo handle for ${modelPath}`);
         return loadModelsFull(modelHandle, modelPath);
     });
 }
@@ -1156,18 +1224,19 @@ function loadModelsFull(modelHandle, modelPath) {
     };
     var t = Date.now();
     try {
-        var a = CircularSer.load('./' + modelPath + '/_cachefalse.js');
+        debuglog(() => 'here model path' + modelPath);
+        var a = CircularSer.load(modelPath + '/_cache.js');
         // TODO
-        a = undefined;
         //console.log("found a cache ?  " + !!a);
         //a = undefined;
-        if (a) {
+        if (a && !process.env.MGNLQ_MODEL_NO_FILECACHE) {
             //console.log('return preps' + modelPath);
-            debuglog(" return prepared model ");
+            debuglog("\n return prepared model !!");
             if (process.env.ABOT_EMAIL_USER) {
                 console.log("loaded models from cache in " + (Date.now() - t) + " ");
             }
-            var res = Object.assign(modelHandle, { model: a });
+            var res = a;
+            res.mongoHandle.mongoose = modelHandle.mongoose;
             return Promise.resolve(res);
         }
     }
@@ -1177,7 +1246,17 @@ function loadModelsFull(modelHandle, modelPath) {
     }
     //var mdls = readFileAsJSON('./' + modelPath + '/models.json');
     var mdls = Object.keys(modelHandle.modelDocs).sort();
+    var seenDomains = {};
+    mdls.forEach((modelName, index) => {
+        var domain = modelHandle.modelDocs[modelName].domain;
+        if (seenDomains[domain]) {
+            throw new Error('Domain ' + domain + ' already loaded while loading ' + modelName + '?');
+        }
+        seenDomains[domain] = index;
+    });
+    oModel.domains = mdls.map(modelName => modelHandle.modelDocs[modelName].domain);
     // create bitindex in order !
+    debuglog('got domains ' + mdls.join("\n"));
     debuglog('loading models ' + mdls.join("\n"));
     return Promise.all(mdls.map((sModelName) => loadModel(modelHandle, sModelName, oModel))).then(() => {
         // add the categories to the model:
@@ -1232,7 +1311,10 @@ function loadModelsFull(modelHandle, modelPath) {
         delete oModel.seenRules;
         debuglog('saving');
         forceGC();
-        CircularSer.save('./' + modelPath + '/_cachefalse.js', oModel);
+        var oModelSer = Object.assign({}, oModel);
+        oModelSer.mongoHandle = Object.assign({}, oModel.mongoHandle);
+        delete oModelSer.mongoHandle.mongoose;
+        CircularSer.save(modelPath + '/_cache.js', oModelSer);
         forceGC();
         if (process.env.ABOT_EMAIL_USER) {
             console.log("loaded models by calculation in " + (Date.now() - t) + " ");

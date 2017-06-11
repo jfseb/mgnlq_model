@@ -10,6 +10,9 @@ const MongoUtils = require("./utils/mongo");
 const mongoose = require('mongoose');
 var mongoConnectionString = process.env.MONGO_DBURL || 'mongodb://localhost/testdb';
 var modelPath = process.env.MGNLQ_MODELPATH || 'node_modules/mgnlq_testmodel/testmodel/';
+console.log(" uploading data into \n" +
+    "from ModelPath: " + modelPath
+    + " to     MongoDB: " + mongoConnectionString);
 MongoUtils.openMongoose(mongoose, mongoConnectionString).then(() => Schemaload.createDBWithModels(mongoose, modelPath)).then(() => {
     var models = Schemaload.loadModelNames(modelPath);
     return Promise.all(models.map(modelName => Dataload.loadModelData(mongoose, modelPath, modelName)));

@@ -22,6 +22,16 @@ export interface ISynonymBearingDoc {
     }];
 }
 export declare function remapSynonyms(docs: ISynonymBearingDoc[]): ISynonym[];
+export declare function getMongoCollectionNameForDomain(theModel: IMatch.IModels, domain: string): string;
+export declare function getMongooseModelNameForDomain(theModel: IMatch.IModels, domain: string): string;
+export declare function getModelNameForDomain(handle: IMatch.IModelHandleRaw, domain: string): string;
+export declare function filterRemapCategories(mongoMap: IMatch.CatMongoMap, categories: string[], records: any[]): any[];
+export declare function getExpandedRecordsFull(theModel: IMatch.IModels, domain: string): Promise<{
+    [key: string]: any;
+}>;
+export declare function getExpandedRecordsForCategory(theModel: IMatch.IModels, domain: string, category: string): Promise<{
+    [key: string]: any;
+}>;
 export declare function getDistinctValues(mongoHandle: IMatch.IModelHandleRaw, modelname: string, category: string): Promise<string[]>;
 export declare function addBestSplit(mRules: Array<IMatch.mRule>, rule: IMatch.mRule, seenRules: {
     [key: string]: IMatch.mRule[];
@@ -38,20 +48,21 @@ export declare function getDomainBitIndex(domain: string, oModel: IMatch.IModels
  */
 export declare function getDomainsForBitField(oModel: IMatch.IModels, bitfield: number): string[];
 export declare function splitRules(rules: IMatch.mRule[]): IMatch.SplitRules;
+export declare function sortFlatRecords(a: any, b: any): number;
 export declare function findNextLen(targetLen: number, arr: string[], offsets: number[]): void;
 export declare function addRangeRulesUnlessPresent(rules: IMatch.mRule[], lcword: string, rangeRules: IMatch.mRule[], presentRulesForKey: IMatch.mRule[], seenRules: any): void;
 export declare function addCloseExactRangeRules(rules: IMatch.mRule[], seenRules: any): void;
 export declare function readFillers(mongoose: mongoose.Mongoose, oModel: IMatch.IModels): Promise<any>;
 export declare function readOperators(mongoose: mongoose.Mongoose, oModel: IMatch.IModels): Promise<any>;
 export declare function releaseModel(model: IMatch.IModels): void;
-export declare function loadModelHandleP(mongooseHndl?: mongoose.Mongoose, connectionString?: string): Promise<IMatch.IModels>;
+export declare function loadModelHandleP(mongooseHndl: mongoose.Mongoose, modelPath: string, connectionString?: string): Promise<IMatch.IModels>;
 export declare function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString?: string, modelPath?: string): Promise<IMatch.IModels>;
 /**
  * expects an open connection!
  * @param mongoose
  * @param modelPath
  */
-export declare function loadModels(mongoose: mongoose.Mongoose, modelPath?: string): Promise<IMatch.IModels>;
+export declare function loadModels(mongoose: mongoose.Mongoose, modelPath: string): Promise<IMatch.IModels>;
 export declare function loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<IMatch.IModels>;
 export declare function sortCategoriesByImportance(map: {
     [key: string]: IMatch.ICategoryDesc;

@@ -10,9 +10,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const debug = require("debugf");
 var debuglog = debug('model');
 const FUtils = require("../model/model");
-//import * as CircularSer from 'abot_utils';
-//import * as Distance from 'abot_stringdist';
-const process = require("process");
 //import {Mongoose as Mongoose} from 'mongoose';
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
@@ -23,12 +20,36 @@ require('mongoose-schema-jsonschema')(mongoose);
 /**
  * the model path, may be controlled via environment variable
  */
-var envModelPath = process.env["ABOT_MODELPATH"] || "node_modules/abot_testmodel/testmodel";
+//var envModelPath = process.env["ABOT_MODELPATH"] || "node_modules/abot_testmodel/testmodel";
 function cmpTools(a, b) {
     return a.name.localeCompare(b.name);
 }
 exports.cmpTools = cmpTools;
 const SchemaLoad = require("./schemaload");
+const MongoUtils = require("../utils/mongo");
+/**
+ * Create Database (currently does not drop database before!)
+ * @param mongoose {mongoose.Mongoose} mongoose instance ( or mock for testing)
+ * @param mongoConnectionString {string}  connectionstring, method will connect and disconnect
+ * (currenlty disconnnect only on success, subject to change)
+ * @param modelPath {string} modepath to read data from
+ */
+function createDB(mongoose, mongoConnectionString, modelPath) {
+    if (modelPath[modelPath.length - 1] === "\\" || modelPath[modelPath.length - 1] === "/") {
+        throw new Error(`modelpath should be w.o. trailing "/" or "\\", was ${modelPath} `);
+    }
+    /**
+    * WATCH out, this instruments mongoose!
+    */
+    require('mongoose-schema-jsonschema')(mongoose);
+    return MongoUtils.openMongoose(mongoose, mongoConnectionString).then(() => SchemaLoad.createDBWithModels(mongoose, modelPath)).then(() => {
+        var models = SchemaLoad.loadModelNames(modelPath);
+        return Promise.all(models.map(modelName => loadModelData(mongoose, modelPath, modelName)));
+    }).then(() => {
+        MongoUtils.disconnectReset(mongoose);
+    });
+}
+exports.createDB = createDB;
 function getModel(mongoose, modelName, modelPath) {
     if (mongoose.models[modelName]) {
         return Promise.resolve(mongoose.models[modelName]);
@@ -41,7 +62,7 @@ function getModel(mongoose, modelName, modelPath) {
 }
 exports.getModel = getModel;
 function loadModelData(mongoose, modelPath, modelName) {
-    var data = FUtils.readFileAsJSON('./' + modelPath + './' + modelName + '.data.json');
+    var data = FUtils.readFileAsJSON(modelPath + '/' + modelName + '.data.json');
     var cnt = 0;
     // load the schema, either from database or from file system
     return getModel(mongoose, modelName, modelPath).then(oModel => {

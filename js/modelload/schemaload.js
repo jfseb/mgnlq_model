@@ -57,6 +57,7 @@ const ExtendedSchema_index = {
 // load the models
 function loadModelNames(modelPath) {
     modelPath = modelPath || envModelPath;
+    debuglog(() => `modelpath is ${modelPath} `);
     var mdls = FUtils.readFileAsJSON('./' + modelPath + '/models.json');
     mdls.forEach(name => {
         if (name !== makeMongoCollectionName(name)) {
@@ -144,13 +145,15 @@ function makeMongooseSchema(extSchema, mongo) {
 }
 exports.makeMongooseSchema = makeMongooseSchema;
 function loadExtendedMongooseSchema(modelPath, modelName) {
-    var schemaSer = FUtils.readFileAsJSON('./' + modelPath + '/' + modelName + '.model.mongooseschema.json');
+    var filename = modelPath + '/' + modelName + '.model.mongooseschema.json';
+    debuglog(() => `attempting to read ${filename}`);
+    var schemaSer = FUtils.readFileAsJSON(filename);
     schemaSer.modelName = modelName;
     return schemaSer;
 }
 exports.loadExtendedMongooseSchema = loadExtendedMongooseSchema;
 function loadModelDoc(modelPath, modelName) {
-    var docSer = FUtils.readFileAsJSON('./' + modelPath + '/' + modelName + '.model.doc.json');
+    var docSer = FUtils.readFileAsJSON(modelPath + '/' + modelName + '.model.doc.json');
     docSer.modelname = modelName;
     return docSer;
 }
@@ -214,9 +217,9 @@ function getExtendedSchemaModel(mongoose) {
 }
 exports.getExtendedSchemaModel = getExtendedSchemaModel;
 function getModelDocModel(mongoose) {
-    var metaDoc = FUtils.readFileAsJSON('./resources/meta/metamodels.model.doc.json');
+    var metaDoc = FUtils.readFileAsJSON(__dirname + '/../../resources/meta/metamodels.model.doc.json');
     metaDoc.modelname = exports.MongoNLQ.MODELNAME_METAMODELS;
-    var schemaSer2 = loadExtendedMongooseSchema('resources/meta', exports.MongoNLQ.MODELNAME_METAMODELS);
+    var schemaSer2 = loadExtendedMongooseSchema(__dirname + '/../../resources/meta', exports.MongoNLQ.MODELNAME_METAMODELS);
     var schemaSer = augmentMongooseSchema(metaDoc, schemaSer2);
     var schema = makeMongooseSchema(schemaSer, mongoose);
     var mongooseModelName = makeMongooseModelName(exports.MongoNLQ.COLL_METAMODELS);
@@ -229,10 +232,11 @@ function getModelDocModel(mongoose) {
 }
 exports.getModelDocModel = getModelDocModel;
 function upsertMetaModel(mongoose) {
-    var metaDoc = FUtils.readFileAsJSON('./resources/meta/metamodels.model.doc.json');
+    debuglog(() => 'here dirname + ' + __dirname);
+    var metaDoc = FUtils.readFileAsJSON(__dirname + '/../../resources/meta/metamodels.model.doc.json');
     debuglog(() => "here metaDoc to insert as loaded" + JSON.stringify(metaDoc));
     metaDoc.modelname = exports.MongoNLQ.MODELNAME_METAMODELS;
-    var schemaSer2 = loadExtendedMongooseSchema('resources/meta', exports.MongoNLQ.MODELNAME_METAMODELS);
+    var schemaSer2 = loadExtendedMongooseSchema(__dirname + '/../../resources/meta', exports.MongoNLQ.MODELNAME_METAMODELS);
     var schemaSer = augmentMongooseSchema(metaDoc, schemaSer2);
     debuglog(() => 'here schemaser' + JSON.stringify(schemaSer, undefined, 2));
     mongoose.Promise = global.Promise;
@@ -407,6 +411,7 @@ exports.uploadOperators = uploadOperators;
  * @return Promise<any> the  promise
  */
 function upsertModels(mongoose, modelpath) {
+    debuglog(() => `modelpath ${modelpath} `);
     var modelNames = loadModelNames(modelpath);
     var model_ES = mongoose.model(exports.MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
     var model_Doc = mongoose.model(exports.MongooseNLQ.MONGOOSE_MODELNAME_METAMODELS);
@@ -537,13 +542,13 @@ function validateDoc(collectionname, schema, doc) {
             obj.additionalProperties = false;
         }
     });
-    //console.log(JSON.stringify(jsonSchema,undefined,2));
+    debuglog(() => ` here json schema ` + (JSON.stringify(jsonSchema, undefined, 2)));
     var Validator = require('jsonschema').Validator;
     var v = new Validator();
     //console.log(JSON.stringify(jsonSchema,undefined,2));
     var valresult = v.validate(doc, jsonSchema);
     if (valresult.errors.length) {
-        throw new Error("Schema validation failed : " + JSON.stringify(valresult.errors, undefined, 2));
+        throw new Error("Schema validating against JSON Schema failed : " + JSON.stringify(valresult.errors, undefined, 2));
     }
     return true;
 }
