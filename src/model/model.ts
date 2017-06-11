@@ -33,8 +33,6 @@ import * as ISchema from '../modelload/schemaload';
 import * as Schemaload from '../modelload/schemaload';
 import * as MongoMap from './mongomap';
 
-import * as mongooseMock from 'mongoose_record_replay';
-
 /**
  * the model path, may be controlled via environment variable
  */

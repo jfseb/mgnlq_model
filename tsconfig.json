@@ -27,7 +27,7 @@
     "filesGlob": [
         "**/*.ts",
         "**/*.tsx",
-        "!node_modules/**"
+         "!node_modules/**"
     ],
     "files": [
         "src/makedb.ts",

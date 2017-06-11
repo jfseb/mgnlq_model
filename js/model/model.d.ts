@@ -24,8 +24,11 @@ export interface ISynonymBearingDoc {
 export declare function remapSynonyms(docs: ISynonymBearingDoc[]): ISynonym[];
 export declare function getMongoCollectionNameForDomain(theModel: IMatch.IModels, domain: string): string;
 export declare function getMongooseModelNameForDomain(theModel: IMatch.IModels, domain: string): string;
+export declare function getModelForModelName(theModel: IMatch.IModels, modelname: string): any;
+export declare function getModelForDomain(theModel: IMatch.IModels, domain: string): any;
 export declare function getModelNameForDomain(handle: IMatch.IModelHandleRaw, domain: string): string;
 export declare function filterRemapCategories(mongoMap: IMatch.CatMongoMap, categories: string[], records: any[]): any[];
+export declare function checkModelMongoMap(model: mongoose.Model<any>, modelname: string, mongoMap: IMatch.CatMongoMap, category?: string): any;
 export declare function getExpandedRecordsFull(theModel: IMatch.IModels, domain: string): Promise<{
     [key: string]: any;
 }>;
@@ -41,6 +44,7 @@ export declare function hasRuleWithFact(mRules: IMatch.mRule[], fact: string, ca
 export declare function loadModel(modelHandle: IMatch.IModelHandleRaw, sModelName: string, oModel: IMatch.IModels): Promise<any>;
 export declare function getAllDomainsBitIndex(oModel: IMatch.IModels): number;
 export declare function getDomainBitIndex(domain: string, oModel: IMatch.IModels): number;
+export declare function getDomainBitIndexSafe(domain: string, oModel: IMatch.IModels): number;
 /**
  * Given a bitfield, return an unsorted set of domains matching present bits
  * @param oModel
