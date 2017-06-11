@@ -450,6 +450,59 @@ exports.testgetExpandedRecordsFull = function (test) {
 };
 
 
+exports.testgetExpandedRecordsFullArray = function (test) {
+  test.expect(6);
+  getModel().then(theModel => {
+    var modelname = Model.getModelNameForDomain(theModel.mongoHandle, 'metamodel');
+    var model = Model.getModelForDomain(theModel, 'metamodel');
+    var mongoMap = theModel.mongoHandle.mongoMaps[modelname];
+    Model.checkModelMongoMap(model, 'metamodel', mongoMap, 'domain');
+
+    try {
+      Model.checkModelMongoMap(undefined, 'metamodel', mongoMap, 'domain');
+      test.equal(1, 0);
+    } catch (e) {
+      test.equal(1, 1);
+    }
+    try {
+      Model.checkModelMongoMap(model, 'metamodel', undefined, 'domain');
+      test.equal(1, 0);
+    } catch (e) {
+      test.equal(1, 1);
+    }
+    try {
+      Model.checkModelMongoMap(model, 'metamodel', mongoMap, 'domainGIBTSNICH');
+      test.equal(1, 0);
+    } catch (e) {
+      test.equal(1, 1);
+    }
+
+    Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
+      test.deepEqual(res.length, 88);
+      res.sort(Model.sortFlatRecords);
+      test.deepEqual(res[0].category, '_url');
+      test.deepEqual(Object.keys(res[0]).length, 11, ' correct number of categories');
+      test.done();
+      MongoUtils.disconnect(mongoose);
+    });
+  });
+};
+
+exports.testgetExpandedRecordsFullArray2 = function (test) {
+  getModel().then(theModel => {
+    Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
+      test.deepEqual(res.length, 88);
+      res.sort(Model.sortFlatRecords);
+      test.deepEqual(res[0].category, '_url');
+      test.deepEqual(Object.keys(res[0]).length, 11, ' correct number of categories');
+      test.done();
+      MongoUtils.disconnect(mongoose);
+    });
+  });
+};
+
+
+
 
 
 exports.testgetCAtegoryFilterMultDomains = function (test) {
@@ -563,14 +616,44 @@ exports.testModelGetDomainIndexThrows = function (test) {
   test.done();
 };
 
-exports.testGetDomainsForBitIndex = function (test) {
+
+exports.testModelGetDomainIndexSafe = function (test) {
   getModel().then(theModel => {
-    var u = Model.getDomainsForBitField(theModel, 0x00011);
-    test.deepEqual(u, ['Cosmos', 'metamodel']);
+    var res = Model.getDomainBitIndexSafe('IUPAC', theModel);
+    test.equal(res, 0x0008, 'IUPAC code ');
     test.done();
     MongoUtils.disconnect(mongoose);
   });
 };
+
+exports.testModelGetDomainIndexSafeNotPresent = function (test) {
+  getModel().then(theModel => {
+    try {
+      var res = Model.getDomainBitIndexSafe('NOTPRESENT', theModel);
+      test.equal(1, 0);
+    } catch (e) {
+      test.equal(1, 1);
+    }
+    test.equal(res, undefined, 'abc NOTPRESENT 4096');
+    test.done();
+    MongoUtils.disconnect(mongoose);
+  });
+};
+
+exports.testModelGetDomainIndexSafeThrows = function (test) {
+  var a = [];
+  for (var i = 0; i < 32; ++i) {
+    a.push('xx');
+  }
+  try {
+    Model.getDomainBitIndexSafe('IUPAC', { domains: a });
+    test.equal(1, 0);
+  } catch (e) {
+    test.equal(1, 1);
+  }
+  test.done();
+};
+
 
 
 exports.testGetModelNameForDomain = function (test) {
@@ -1080,18 +1163,18 @@ exports.testWordCategorizationMetaword_category = function (test) {
         _ranking: 0.95,
         lowercaseword: 'category'
       },
-     /* {
-        category: 'category',
-        matchedString: 'category',
-        type: 0,
-        word: 'category',
-        bitindex: 16,
-        bitSentenceAnd: 16,
-        exactOnly: false,
-        wordType: 'F',
-        _ranking: 0.95,
-        lowercaseword: 'category'
-      }, */
+      /* {
+         category: 'category',
+         matchedString: 'category',
+         type: 0,
+         word: 'category',
+         bitindex: 16,
+         bitSentenceAnd: 16,
+         exactOnly: false,
+         wordType: 'F',
+         _ranking: 0.95,
+         lowercaseword: 'category'
+       }, */
       {
         category: 'category',
         matchedString: 'category synonyms',

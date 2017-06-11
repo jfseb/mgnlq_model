@@ -2,6 +2,7 @@ node_modules
 docs
 info.lcov
 logs
+*.tgz
 *.bak
 gen/**
 gen/*

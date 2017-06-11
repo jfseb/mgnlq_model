@@ -98,6 +98,15 @@ function getMongooseModelNameForDomain(theModel, domain) {
     return Schemaload.makeMongooseModelName(r);
 }
 exports.getMongooseModelNameForDomain = getMongooseModelNameForDomain;
+function getModelForModelName(theModel, modelname) {
+    return theModel.mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
+}
+exports.getModelForModelName = getModelForModelName;
+function getModelForDomain(theModel, domain) {
+    var modelname = getModelNameForDomain(theModel.mongoHandle, domain);
+    return getModelForModelName(theModel, modelname);
+}
+exports.getModelForDomain = getModelForDomain;
 function getModelNameForDomain(handle, domain) {
     var res = undefined;
     Object.keys(handle.modelDocs).every(key => {
@@ -132,22 +141,33 @@ function filterRemapCategories(mongoMap, categories, records) {
     });
 }
 exports.filterRemapCategories = filterRemapCategories;
+function checkModelMongoMap(model, modelname, mongoMap, category) {
+    if (!model) {
+        debuglog(' no model for ' + modelname);
+        //       return Promise.reject(`model ${modelname} not found in db`);
+        throw Error(`model ${modelname} not found in db`);
+    }
+    if (!mongoMap) {
+        debuglog(' no mongoMap for ' + modelname);
+        throw new Error(`model ${modelname} has no modelmap`);
+        //        return Promise.reject(`model ${modelname} has no modelmap`);
+    }
+    if (category && !mongoMap[category]) {
+        debuglog(' no mongoMap category for ' + modelname);
+        //      return Promise.reject(`model ${modelname} has no category ${category}`);
+        throw new Error(`model ${modelname} has no category ${category}`);
+    }
+    return undefined;
+}
+exports.checkModelMongoMap = checkModelMongoMap;
 function getExpandedRecordsFull(theModel, domain) {
     var mongoHandle = theModel.mongoHandle;
     var modelname = getModelNameForDomain(theModel.mongoHandle, domain);
     debuglog(() => ` modelname for ${domain} is ${modelname}`);
-    //debuglog(() => `here models ${modelname} ` + mongoHandle.mongoose.modelNames().join(';'));
     var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
     var mongoMap = mongoHandle.mongoMaps[modelname];
     debuglog(() => 'here the mongomap' + JSON.stringify(mongoMap, undefined, 2));
-    if (!model) {
-        debuglog(' no model for ' + modelname);
-        return Promise.reject(`model ${modelname} not found in db`);
-    }
-    if (!mongoMap) {
-        debuglog(' no mongoMap for ' + modelname);
-        return Promise.reject(`model ${modelname} has no modelmap`);
-    }
+    var p = checkModelMongoMap(model, modelname, mongoMap);
     debuglog(() => ` here the modelmap for ${domain} is ${JSON.stringify(mongoMap, undefined, 2)}`);
     // 1) produce the flattened records
     var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
@@ -177,18 +197,7 @@ function getExpandedRecordsForCategory(theModel, domain, category) {
     var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
     var mongoMap = mongoHandle.mongoMaps[modelname];
     debuglog(() => 'here the mongomap' + JSON.stringify(mongoMap, undefined, 2));
-    if (!model) {
-        debuglog(' no model for ' + modelname);
-        return Promise.reject(`model ${modelname} not found in db`);
-    }
-    if (!mongoMap) {
-        debuglog(' no mongoMap for ' + modelname);
-        return Promise.reject(`model ${modelname} has no modelmap`);
-    }
-    if (!mongoMap[category]) {
-        debuglog(' no mongoMap category for ' + modelname);
-        return Promise.reject(`model ${modelname} has no category ${category}`);
-    }
+    checkModelMongoMap(model, modelname, mongoMap, category);
     debuglog(() => ` here the modelmap for ${domain} is ${JSON.stringify(mongoMap, undefined, 2)}`);
     // 1) produce the flattened records
     var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
@@ -214,18 +223,7 @@ function getDistinctValues(mongoHandle, modelname, category) {
     debuglog(() => `here models ${modelname} ` + mongoHandle.mongoose.modelNames().join(';'));
     var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
     var mongoMap = mongoHandle.mongoMaps[modelname];
-    if (!model) {
-        debuglog(' no model for ' + modelname);
-        return Promise.reject(`model ${modelname} not found in db`);
-    }
-    if (!mongoMap) {
-        debuglog(' no mongoMap for ' + modelname);
-        return Promise.reject(`model ${modelname} has no modelmap`);
-    }
-    if (!mongoMap[category]) {
-        debuglog(' no mongoMap category for ' + modelname);
-        return Promise.reject(`model ${modelname} has no category ${category}`);
-    }
+    checkModelMongoMap(model, modelname, mongoMap, category);
     debuglog(' here path for distinct value ' + mongoMap[category].fullpath);
     return model.distinct(mongoMap[category].fullpath).then(res => {
         debuglog(() => ` here res for ${modelname}  ${category} values ` + JSON.stringify(res, undefined, 2));
