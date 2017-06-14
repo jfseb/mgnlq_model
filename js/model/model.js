@@ -464,12 +464,16 @@ function loadModelDataMongo(modelHandle, oMdl, sModelName, oModel) {
     });
 }
 ;
-function loadModelP(mongooseHndl, modelPath, connectionString) {
+/*
+function loadModelP(mongooseHndl : mongoose.Mongoose, modelPath: string, connectionString : string) : Promise<IMatch.IModels> {
     var mongooseX = mongooseHndl || mongoose;
     var connStr = connectionString || 'mongodb://localhost/testdb';
-    return MongoUtils.openMongoose(mongooseX, connStr).then(() => getMongoHandle(mongooseX)).then((modelHandle) => loadModelsFull(modelHandle, modelPath));
-}
-;
+    return MongoUtils.openMongoose(mongooseX, connStr).then(
+        () => getMongoHandle(mongooseX)
+    ).then( (modelHandle : IMatch.IModelHandleRaw) => _loadModelsFull(modelHandle, modelPath)
+    );
+};
+*/
 function loadModel(modelHandle, sModelName, oModel) {
     debuglog(" loading " + sModelName + " ....");
     //var oMdl = readFileAsJSON('./' + modelPath + '/' + sModelName + ".model.json") as IModel;
@@ -1163,16 +1167,18 @@ function releaseModel(model) {
     }
 }
 exports.releaseModel = releaseModel;
-function loadModelHandleP(mongooseHndl, modelPath, connectionString) {
+/*
+export function loadModelHandleP(mongooseHndl : mongoose.Mongoose, modelPath: string, connectionString? : string) : Promise<IMatch.IModels> {
     var mongooseX = mongooseHndl || mongoose;
-    //   if(process.env.MONGO_REPLAY) {
-    //        mongooseX = mongooseMock.mongooseMock as any;
-    //    }
+ //   if(process.env.MONGO_REPLAY) {
+ //        mongooseX = mongooseMock.mongooseMock as any;
+ //    }
     var connStr = connectionString || 'mongodb://localhost/testdb';
-    return MongoUtils.openMongoose(mongooseX, connStr).then(() => getMongoHandle(mongooseX)).then((modelHandle) => loadModelsFull(modelHandle, modelPath));
-}
-exports.loadModelHandleP = loadModelHandleP;
-;
+    return MongoUtils.openMongoose(mongooseX, connStr).then(
+        () => getMongoHandle(mongooseX)
+    ).then( (modelHandle : IMatch.IModelHandleRaw) => loadModelsFull(modelHandle, modelPath));
+};
+*/
 function loadModelsOpeningConnection(mongooseHndl, connectionString, modelPath) {
     var mongooseX = mongooseHndl || mongoose;
     //   if(process.env.MONGO_REPLAY) {
@@ -1195,11 +1201,11 @@ function loadModels(mongoose, modelPath) {
     }
     return getMongoHandle(mongoose).then((modelHandle) => {
         debuglog(`got a mongo handle for ${modelPath}`);
-        return loadModelsFull(modelHandle, modelPath);
+        return _loadModelsFull(modelHandle, modelPath);
     });
 }
 exports.loadModels = loadModels;
-function loadModelsFull(modelHandle, modelPath) {
+function _loadModelsFull(modelHandle, modelPath) {
     var oModel;
     modelPath = modelPath || envModelPath;
     modelHandle = modelHandle || {
@@ -1325,7 +1331,7 @@ function loadModelsFull(modelHandle, modelPath) {
         process.exit(-1);
     });
 }
-exports.loadModelsFull = loadModelsFull;
+exports._loadModelsFull = _loadModelsFull;
 function sortCategoriesByImportance(map, cats) {
     var res = cats.slice(0);
     res.sort(rankCategoryByImportance.bind(undefined, map));

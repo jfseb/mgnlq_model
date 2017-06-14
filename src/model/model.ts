@@ -43,9 +43,7 @@ export function cmpTools(a: IMatch.ITool, b: IMatch.ITool) {
     return a.name.localeCompare(b.name);
 }
 
-
 type IModel = IMatch.IModel;
-
 
 /**
  * returns when all models are loaded and all modeldocs are made
@@ -526,16 +524,16 @@ function loadModelDataMongo(modelHandle: IMatch.IModelHandleRaw, oMdl: IModel, s
     });
 };
 
-
+/*
 function loadModelP(mongooseHndl : mongoose.Mongoose, modelPath: string, connectionString : string) : Promise<IMatch.IModels> {
     var mongooseX = mongooseHndl || mongoose;
     var connStr = connectionString || 'mongodb://localhost/testdb';
     return MongoUtils.openMongoose(mongooseX, connStr).then(
         () => getMongoHandle(mongooseX)
-    ).then( (modelHandle : IMatch.IModelHandleRaw) => loadModelsFull(modelHandle, modelPath)
+    ).then( (modelHandle : IMatch.IModelHandleRaw) => _loadModelsFull(modelHandle, modelPath)
     );
 };
-
+*/
 
 
 
@@ -1285,7 +1283,7 @@ export function releaseModel(model : IMatch.IModels) {
         MongoUtils.disconnect(model.mongoHandle.mongoose);
     }
 }
-
+/*
 export function loadModelHandleP(mongooseHndl : mongoose.Mongoose, modelPath: string, connectionString? : string) : Promise<IMatch.IModels> {
     var mongooseX = mongooseHndl || mongoose;
  //   if(process.env.MONGO_REPLAY) {
@@ -1296,6 +1294,7 @@ export function loadModelHandleP(mongooseHndl : mongoose.Mongoose, modelPath: st
         () => getMongoHandle(mongooseX)
     ).then( (modelHandle : IMatch.IModelHandleRaw) => loadModelsFull(modelHandle, modelPath));
 };
+*/
 
 export function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString? : string,  modelPath? : string) : Promise<IMatch.IModels> {
   var mongooseX = mongooseHndl || mongoose;
@@ -1322,11 +1321,11 @@ export function loadModels(mongoose: mongoose.Mongoose, modelPath : string) : Pr
     }
     return getMongoHandle(mongoose).then( (modelHandle) =>{
         debuglog(`got a mongo handle for ${modelPath}`);
-        return loadModelsFull(modelHandle, modelPath);
+        return _loadModelsFull(modelHandle, modelPath);
     });
 }
 
-export function loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<IMatch.IModels> {
+export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<IMatch.IModels> {
     var oModel: IMatch.IModels;
     modelPath = modelPath || envModelPath;
     modelHandle = modelHandle || {
