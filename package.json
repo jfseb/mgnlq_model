@@ -9,7 +9,7 @@
     "test": "gulp test",
     "version" : "npm show mgnlq_model@* version",
     "load_data": "node js/makedb && gulp clean_testmodel_cache",
-    "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/model test/match test/modelload",
+    "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/model test/utils test/match test/modelload",
     "coverreportplain": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov ",
     "coveralls": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov | coveralls"
   },
