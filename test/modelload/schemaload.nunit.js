@@ -20,13 +20,13 @@ var modelPath = 'node_modules/mgnlq_testmodel/testmodel/';
 exports.testSchemaLoadNames = function (test) {
   test.expect(1);
   var res = Schemaload.loadModelNames(modelPath);
-  test.deepEqual(res, [ 'iupacs',
+  test.deepEqual(res, ['iupacs',
     'philoelements',
     'cosmos',
     'r3trans',
     'fioriapps',
     'sobj_tables',
-    'fioribecatalogs' ]);
+    'fioribecatalogs']);
   test.done();
 };
 
@@ -42,20 +42,20 @@ process.on('unhandledRejection', function onError(err) {
 exports.testmapType = function (test) {
   test.expect(3);
   [
-    { input: 'String' , expected : String},
-    { input: 'Boolean' , expected : Boolean},
-    { input: 'Number' , expected : Number}
-  ].forEach(function(fixture) {
+    { input: 'String', expected: String },
+    { input: 'Boolean', expected: Boolean },
+    { input: 'Number', expected: Number }
+  ].forEach(function (fixture) {
     var res = Schemaload.mapType(fixture.input);
-    test.equal(res,fixture.expected);
+    test.equal(res, fixture.expected);
   });
   test.done();
 };
 
 exports.testReplaceIfTypeRemoveM = function (test) {
-  var obj = { _m_abc: 1};
+  var obj = { _m_abc: 1 };
   Schemaload.replaceIfTypeDeleteM(obj, 1, '_m_abc');
-  test.deepEqual(obj, { });
+  test.deepEqual(obj, {});
   test.done();
 };
 
@@ -63,9 +63,9 @@ exports.testmapTypeThrows = function (test) {
   test.expect(1);
   try {
     Schemaload.mapType('notype');
-    test.equal(1,0);
+    test.equal(1, 0);
   } catch (e) {
-    test.equal(1,1);
+    test.equal(1, 1);
   }
   test.done();
 };
@@ -103,13 +103,13 @@ exports.testSchemaLoad = function (test) {
   var extschema = Schemaload.loadExtendedMongooseSchema(modelPath, 'sobj_tables');
   var schema = Schemaload.makeMongooseSchema(extschema);
   try {
-    Schemaload.validateDoc(mongoose,  'abcx', schema, { 'TransportObject' : 'SOBJ', TranslationRelevant :  40 });
-    test.equal(0,1);
-  } catch(e) {
-    test.equal(1,1);
+    Schemaload.validateDoc(mongoose, 'abcx', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: 40 });
+    test.equal(0, 1);
+  } catch (e) {
+    test.equal(1, 1);
   }
-  Schemaload.validateDoc( 'sobj_tables', schema, { 'TransportObject' : 'SOBJ', TranslationRelevant : true, _tables : [ { 'Table' : 'ABC' } ] });
-  test.equal(1,1);
+  Schemaload.validateDoc('sobj_tables', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: true, _tables: [{ 'Table': 'ABC' }] });
+  test.equal(1, 1);
   test.done();
 };
 /*
@@ -135,14 +135,14 @@ exports.testSchemaValidateOwnDocVsSchemaOk = function (test) {
   var extschema = Schemaload.loadExtendedMongooseSchema('resources/meta', 'metamodels');
   var doc = FUtils.readFileAsJSON('./resources/meta/metamodels.model.doc.json');
   var schema = Schemaload.makeMongooseSchema(extschema);
-  Schemaload.validateDocMongoose(mongoose, 'meta', schema, doc ).then(
-      ok => {
-        test.equal(1,1);
-        test.done();
-      }).catch( err => {
-        test.equal(1,0);
-        test.done();
-      });
+  Schemaload.validateDocMongoose(mongoose, 'meta', schema, doc).then(
+    ok => {
+      test.equal(1, 1);
+      test.done();
+    }).catch(err => {
+      test.equal(1, 0);
+      test.done();
+    });
 };
 
 exports.testSchemaLoadOwn = function (test) {
@@ -150,8 +150,8 @@ exports.testSchemaLoadOwn = function (test) {
   var extschema = Schemaload.loadExtendedMongooseSchema('resources/meta', 'metamodels');
   var doc = FUtils.readFileAsJSON('./resources/meta/metamodels.model.doc.json');
   var schema = Schemaload.makeMongooseSchema(extschema);
-  Schemaload.validateDoc( 'metamodel', schema, doc);
-  test.equal(1,1);
+  Schemaload.validateDoc('metamodel', schema, doc);
+  test.equal(1, 1);
 
   test.done();
 };
@@ -164,14 +164,14 @@ exports.testSchemaValidateMongooseOk = function (test) {
   test.expect(1);
   var extschema = Schemaload.loadExtendedMongooseSchema(modelPath, 'sobj_tables');
   var schema = Schemaload.makeMongooseSchema(extschema);
-  Schemaload.validateDocMongoose(mongoose, 'sobj_tables', schema, { 'TransportObject' : 'SOBJ', TranslationRelevant :  'abc', _tables : [ { 'Table' : 'ABC' } ] }).then(
-      ok => {
-        test.equal(1,1);
-        test.done();
-      }).catch( err => {
-        test.equal(1,0);
-        test.done();
-      });
+  Schemaload.validateDocMongoose(mongoose, 'sobj_tables', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: 'abc', _tables: [{ 'Table': 'ABC' }] }).then(
+    ok => {
+      test.equal(1, 1);
+      test.done();
+    }).catch(err => {
+      test.equal(1, 0);
+      test.done();
+    });
 };
 
 exports.testmakeMongooseCollName = function (test) {
@@ -188,7 +188,6 @@ exports.testmakeMongooseCollName2 = function (test) {
   test.done();
 };
 
-
 exports.testmakeMongooseCollName = function (test) {
   test.expect(1);
   var res = Schemaload.makeMongooseModelName('abcs');
@@ -200,40 +199,118 @@ exports.testmakeMongooseCollNameThrows = function (test) {
   test.expect(1);
   try {
     Schemaload.makeMongooseCollectionName('abc');
-    test.equaL(1,0);
-  } catch(e) {
-    test.equal(1,1);
+    test.equaL(1, 0);
+  } catch (e) {
+    test.equal(1, 1);
   }
   test.done();
 };
 
+
+exports.testCmpTools = function (test) {
+  test.expect(1);
+  var res =
+    Schemaload.cmpTools({ name: 'bb' }, { name: 'aaa' });
+  test.equal(res > 0, true);
+  test.done();
+};
+
+
+
+
+exports.testHasMetaCollectionOK2 = function (test) {
+  test.expect(1);
+  var fakeMongoose = {
+    connection: {
+      db: {
+        listCollections: function () {
+          return {
+            toArray: function (fn) {
+              setTimeout(fn.bind(undefined, undefined, (['abc', 'metamodels', 'def'])), 0);
+            }
+          };
+        }
+      }
+    }
+  };
+  Schemaload.hasMetaCollection(fakeMongoose).then((res) => {
+    test.equal(1, 1);
+    test.done();
+  }).catch(e => {
+    test.equal(0, 1);
+    test.done();
+  });
+};
+
+
+
+
+
+exports.testHasMetaCollectionBad = function (test) {
+  test.expect(1);
+  var fakeMongoose = {
+    connection: {
+      db: {
+        listCollections: function () {
+          return {
+            toArray: function (fn) {
+              setTimeout(function() {
+                fn( undefined, (['abc', 'def']));
+              }, 100);
+            }
+          };
+        }
+      }
+    }
+  };
+  var p = Schemaload.hasMetaCollection(fakeMongoose);
+  p.catch(e => {
+    //console.log('in catch');
+    test.equal(1, 1);
+    //console.log('saying done');
+    //test.done();
+    return true;
+  });
+  p.then((res) => {
+    test.equal(0, 1);
+    test.done();
+  }, err => {
+    //console.log('got err');
+    test.done();
+  });
+};
+
+
+
 exports.testLoadModelNames = function (test) {
   test.expect(1);
   var res = Schemaload.loadModelNames('node_modules/mgnlq_testmodel/testmodel/');
-  test.deepEqual(res, [ 'iupacs',
+  test.deepEqual(res, ['iupacs',
     'philoelements',
     'cosmos',
     'r3trans',
     'fioriapps',
     'sobj_tables',
-    'fioribecatalogs' ]);
+    'fioribecatalogs']);
   test.done();
 };
 
-exports.testGetModelDocModel = function(test) {
+exports.testGetModelDocModel = function (test) {
 
 
   var mongooseMock = {
-    models : {},
-    model : function(a, b) {
-      if(b) {
-        this.models[a] = { modelName : a,
-          Schema : b} ;
+    models: {},
+    model: function (a, b) {
+      if (b) {
+        this.models[a] = {
+          modelName: a,
+          Schema: b
+        };
       }
       return this.models[a];
     },
-    Schema : mongoose.Schema,
-    modelNames : function() {
+    Schema: mongoose.Schema,
+    modelNames: function () {
       return Object.keys(this.models);
     }
   };
@@ -246,58 +323,58 @@ exports.testGetModelDocModel = function(test) {
 };
 
 
-exports.testRemoveOthers = function(test) {
+exports.testRemoveOthers = function (test) {
 
   test.done();
 };
 
 exports.testUpsertMetaModel = function (test) {
   test.expect(1);
-  function makeModel(name,schema) {
-    var res = function(doc) {
+  function makeModel(name, schema) {
+    var res = function (doc) {
       this.doc = doc;
     };
-    res.prototype.validate = function(cb)   {
-      if(cb) {
+    res.prototype.validate = function (cb) {
+      if (cb) {
         cb(undefined); // no error
       }
       return Promise.resolve(true);
     };
-    res.prototype.save = function() {
+    res.prototype.save = function () {
 
     };
     res.modelname = name;
     res.Schema = name;
-    res.findOneAndUpdate = function(arg)  {
+    res.findOneAndUpdate = function (arg) {
       return Promise.resolve();
     };
     return res;
   }
 
   var mongooseMock = {
-    models : {},
-    model : function(a, b) {
-      if(b) {
-        this.models[a] = makeModel(a,b);
+    models: {},
+    model: function (a, b) {
+      if (b) {
+        this.models[a] = makeModel(a, b);
       }
       return this.models[a];
     },
-    Schema : mongoose.Schema,
-    modelNames : function() {
+    Schema: mongoose.Schema,
+    modelNames: function () {
       return Object.keys(this.models);
     }
   };
   Schemaload.upsertMetaModel(mongooseMock).then(
-      function () {
-        var res = mongooseMock.modelNames();
-        test.deepEqual(res, ['metamodel', 'mongonlq_eschema']);
-        test.done();
-      }
-    ).catch((err) => {
-      console.log('test failed ' + err + '\n' + err.stack);
-      test.equal(0, 1);
+    function () {
+      var res = mongooseMock.modelNames();
+      test.deepEqual(res, ['metamodel', 'mongonlq_eschema']);
       test.done();
-    });
+    }
+  ).catch((err) => {
+    console.log('test failed ' + err + '\n' + err.stack);
+    test.equal(0, 1);
+    test.done();
+  });
 };
 
 
@@ -307,53 +384,53 @@ exports.testUpsertMetaModel = function (test) {
 
 exports.testUpsertModel = function (test) {
   test.expect(1);
-  function makeModel(name,schema) {
+  function makeModel(name, schema) {
     debuglog('creating model' + name);
-    var res = function(doc) {
+    var res = function (doc) {
       this.doc = doc;
     };
-    res.prototype.validate = function(cb)   {
-      if(cb) {
+    res.prototype.validate = function (cb) {
+      if (cb) {
         cb(undefined); // no error
       }
       return Promise.resolve(true);
     };
-    res.prototype.save = function() {
-      debuglog('saving something' + this.doc );
+    res.prototype.save = function () {
+      debuglog('saving something' + this.doc);
     };
     res.modelname = name;
     res.Schema = name;
-    res.remove = function() {
+    res.remove = function () {
       return Promise.resolve(true);
     },
-    res.aggregate = function() {
-      return Promise.resolve([]);
-    },
-    res.findOneAndUpdate = function(arg)  {
-      return Promise.resolve();
-    };
+      res.aggregate = function () {
+        return Promise.resolve([]);
+      },
+      res.findOneAndUpdate = function (arg) {
+        return Promise.resolve();
+      };
     return res;
   }
 
   var mongooseMock = {
-    models : {},
-    model : function(a, b) {
-      if(b) {
-        this.models[a] = makeModel(a,b);
+    models: {},
+    model: function (a, b) {
+      if (b) {
+        this.models[a] = makeModel(a, b);
       }
       return this.models[a];
     },
-    Schema : mongoose.Schema,
-    modelNames : function() {
+    Schema: mongoose.Schema,
+    modelNames: function () {
       return Object.keys(this.models);
     }
   };
 
-  Schemaload.upsertMetaModel(mongooseMock).then( ()=>
-  Schemaload.upsertModels(mongooseMock, modelPath).then(
+  Schemaload.upsertMetaModel(mongooseMock).then(() =>
+    Schemaload.upsertModels(mongooseMock, modelPath).then(
       function () {
         var res = mongooseMock.modelNames();
-        test.deepEqual(res, [ 'metamodel', 'mongonlq_eschema', 'filler', 'operator' ] );
+        test.deepEqual(res, ['metamodel', 'mongonlq_eschema', 'filler', 'operator']);
         test.done();
       }
     ).catch((err) => {

@@ -447,7 +447,7 @@ function upsertModels(mongoose, modelpath) {
 }
 exports.upsertModels = upsertModels;
 function hasMetaCollection(mongoose) {
-    return new Promise(function (reject, resolve) {
+    return new Promise(function (resolve, reject) {
         mongoose.connection.db.listCollections().toArray((err, names) => {
             if (err) {
                 reject(err);
