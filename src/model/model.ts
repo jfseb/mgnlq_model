@@ -1439,7 +1439,7 @@ export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?:
         addCloseExactRangeRules(oModel.mRules, oModel.seenRules);
         oModel.mRules = oModel.mRules.sort(InputFilterRules.cmpMRule);
         oModel.mRules.sort(InputFilterRules.cmpMRule);
-        fs.writeFileSync("post_sort", JSON.stringify(oModel.mRules,undefined,2));
+        //fs.writeFileSync("post_sort", JSON.stringify(oModel.mRules,undefined,2));
 
         forceGC();
         oModel.rules = splitRules(oModel.mRules);
