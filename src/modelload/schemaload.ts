@@ -91,6 +91,7 @@ export interface IRawSchema {
     index : any
 }
 
+/*
 export interface IModelDocCategoryRec {
     category : string,
     category_description : string,
@@ -101,15 +102,17 @@ export interface IModelDocCategoryRec {
       },
       "category_synonyms": string[],
     wordindex : boolean,
-    exactmatch: boolean
+    exactmatch: boolean,
+    showM
 };
+*/
 
 export interface IModelDoc {
     domain : string,
     modelname? : string,
     collectionname? : string,
     domain_description : string
-    _categories : IModelDocCategoryRec[],
+    _categories : IMatch.IModelDocCategoryRec[],
     columns: string[],
     domain_synonyms : string[]
 

@@ -340,7 +340,9 @@ export interface IModelDocCategoryRec {
     QBEColumnProps : QBEColumnProp,
     category_synonyms: string[],
     wordindex : boolean,
-    exactmatch: boolean
+    exactmatch: boolean,
+    showURI : boolean,
+    showURIRank : boolean
 };
 
 export interface IModelDoc {

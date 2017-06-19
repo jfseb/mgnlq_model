@@ -165,10 +165,13 @@ var cats = [
   'recordKey',
   'releaseId',
   'releaseName',
+  'showURI',
+  'showURIRank',
   'systemId',
   'tcode',
   'transaction description',
   'uri',
+  'uri_rank',
   'visual luminosity',
   'visual magnitude',
   'wordindex'];
@@ -425,7 +428,7 @@ exports.testgetExpandedRecordsForCategory = function (test) {
 exports.testgetExpandedRecordsForCategoryMetamodel = function (test) {
   getModel().then(theModel => {
     Model.getExpandedRecordsForCategory(theModel, 'metamodel', 'category').then((res) => {
-      test.deepEqual(res.length, 88);
+      test.deepEqual(res.length, 91);
       res.sort(Model.sortFlatRecords);
       debuglog(() => JSON.stringify(res));
       test.deepEqual(res[0].category, '_url');
@@ -478,10 +481,10 @@ exports.testgetExpandedRecordsFullArray = function (test) {
     }
 
     Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
-      test.deepEqual(res.length, 88);
+      test.deepEqual(res.length, 91);
       res.sort(Model.sortFlatRecords);
       test.deepEqual(res[0].category, '_url');
-      test.deepEqual(Object.keys(res[0]).length, 11, ' correct number of categories');
+      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of categories');
       test.done();
       MongoUtils.disconnect(mongoose);
     });
@@ -491,10 +494,10 @@ exports.testgetExpandedRecordsFullArray = function (test) {
 exports.testgetExpandedRecordsFullArray2 = function (test) {
   getModel().then(theModel => {
     Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
-      test.deepEqual(res.length, 88);
+      test.deepEqual(res.length, 91);
       res.sort(Model.sortFlatRecords);
       test.deepEqual(res[0].category, '_url');
-      test.deepEqual(Object.keys(res[0]).length, 11, ' correct number of categories');
+      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of categories');
       test.done();
       MongoUtils.disconnect(mongoose);
     });
@@ -548,7 +551,8 @@ exports.testgetCAtegoryFilterMultDomains = function (test) {
           isPublished: true,
           releaseId: true,
           releaseName: true,
-          uri: true
+          uri: true,
+          uri_rank : true
         }
       });
     test.done();
@@ -935,6 +939,36 @@ exports.testgetCategoriesForDomain = function (test) {
   });
 
 };
+
+
+
+exports.testgetshowURICategoriesForDomain = function (test) {
+  test.expect(1);
+  getModel().then(theModel => {
+    var u = theModel;
+    //console.log('here the model ************ ' + JSON.stringify(u.meta.t3,undefined,2));
+    var res = Model.getShowURICategoriesForDomain(u, 'Cosmos');
+    test.deepEqual(res,
+      ['_url'], 'correct categories returned');
+    test.done();
+    MongoUtils.disconnect(mongoose);
+  });
+};
+
+exports.testgetshowURICategoriesForDomain = function (test) {
+  test.expect(1);
+  getModel().then(theModel => {
+    var u = theModel;
+    //console.log('here the model ************ ' + JSON.stringify(u.meta.t3,undefined,2));
+    var res = Model.getShowURIRankCategoriesForDomain(u, 'FioriBOM');
+    test.deepEqual(res,
+      ['uri_rank'], 'correct categories returned');
+    test.done();
+    MongoUtils.disconnect(mongoose);
+  });
+};
+
+
 
 
 

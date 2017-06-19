@@ -59,7 +59,6 @@ export declare function addCloseExactRangeRules(rules: IMatch.mRule[], seenRules
 export declare function readFillers(mongoose: mongoose.Mongoose, oModel: IMatch.IModels): Promise<any>;
 export declare function readOperators(mongoose: mongoose.Mongoose, oModel: IMatch.IModels): Promise<any>;
 export declare function releaseModel(model: IMatch.IModels): void;
-export declare function loadModelHandleP(mongooseHndl: mongoose.Mongoose, modelPath: string, connectionString?: string): Promise<IMatch.IModels>;
 export declare function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString?: string, modelPath?: string): Promise<IMatch.IModels>;
 /**
  * expects an open connection!
@@ -67,7 +66,7 @@ export declare function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongo
  * @param modelPath
  */
 export declare function loadModels(mongoose: mongoose.Mongoose, modelPath: string): Promise<IMatch.IModels>;
-export declare function loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<IMatch.IModels>;
+export declare function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<IMatch.IModels>;
 export declare function sortCategoriesByImportance(map: {
     [key: string]: IMatch.ICategoryDesc;
 }, cats: string[]): string[];
@@ -76,6 +75,9 @@ export declare function rankCategoryByImportance(map: {
 }, cata: string, catb: string): number;
 export declare function getOperator(mdl: IMatch.IModels, operator: string): IMatch.IOperator;
 export declare function getResultAsArray(mdl: IMatch.IModels, a: Meta.IMeta, rel: Meta.IMeta): Meta.IMeta[];
+export declare function checkDomainPresent(theModel: IMatch.IModels, domain: string): void;
+export declare function getShowURICategoriesForDomain(theModel: IMatch.IModels, domain: string): string[];
+export declare function getShowURIRankCategoriesForDomain(theModel: IMatch.IModels, domain: string): string[];
 export declare function getCategoriesForDomain(theModel: IMatch.IModels, domain: string): string[];
 export declare function getTableColumns(theModel: IMatch.IModels, domain: string): string[];
 /**

@@ -68,7 +68,6 @@ function loadModelNames(modelPath) {
 }
 exports.loadModelNames = loadModelNames;
 ;
-;
 function mapType(val) {
     if (val === "String") {
         return String;

@@ -305,6 +305,8 @@ export interface IModelDocCategoryRec {
     category_synonyms: string[];
     wordindex: boolean;
     exactmatch: boolean;
+    showURI: boolean;
+    showURIRank: boolean;
 }
 export interface IModelDoc {
     domain: string;

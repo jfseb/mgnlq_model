@@ -1378,18 +1378,38 @@ function getResultAsArray(mdl, a, rel) {
     return Object.getOwnPropertyNames(res).sort().map(MetaF.parseIMeta);
 }
 exports.getResultAsArray = getResultAsArray;
-function getCategoriesForDomain(theModel, domain) {
+function checkDomainPresent(theModel, domain) {
     if (theModel.domains.indexOf(domain) < 0) {
         throw new Error("Domain \"" + domain + "\" not part of model");
     }
+}
+exports.checkDomainPresent = checkDomainPresent;
+function getShowURICategoriesForDomain(theModel, domain) {
+    checkDomainPresent(theModel, domain);
+    var modelName = getModelNameForDomain(theModel.mongoHandle, domain);
+    var allcats = getResultAsArray(theModel, MetaF.Domain(domain), MetaF.Relation(Meta.RELATION_hasCategory));
+    var doc = theModel.mongoHandle.modelDocs[modelName];
+    var res = doc._categories.filter(cat => cat.showURI).map(cat => cat.category);
+    return res;
+}
+exports.getShowURICategoriesForDomain = getShowURICategoriesForDomain;
+function getShowURIRankCategoriesForDomain(theModel, domain) {
+    checkDomainPresent(theModel, domain);
+    var modelName = getModelNameForDomain(theModel.mongoHandle, domain);
+    var allcats = getResultAsArray(theModel, MetaF.Domain(domain), MetaF.Relation(Meta.RELATION_hasCategory));
+    var doc = theModel.mongoHandle.modelDocs[modelName];
+    var res = doc._categories.filter(cat => cat.showURIRank).map(cat => cat.category);
+    return res;
+}
+exports.getShowURIRankCategoriesForDomain = getShowURIRankCategoriesForDomain;
+function getCategoriesForDomain(theModel, domain) {
+    checkDomainPresent(theModel, domain);
     var res = getResultAsArray(theModel, MetaF.Domain(domain), MetaF.Relation(Meta.RELATION_hasCategory));
     return Meta.getStringArray(res);
 }
 exports.getCategoriesForDomain = getCategoriesForDomain;
 function getTableColumns(theModel, domain) {
-    if (theModel.domains.indexOf(domain) < 0) {
-        throw new Error("Domain \"" + domain + "\" not part of model");
-    }
+    checkDomainPresent(theModel, domain);
     return theModel.rawModels[domain].columns.slice(0);
 }
 exports.getTableColumns = getTableColumns;

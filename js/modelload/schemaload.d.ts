@@ -7,24 +7,12 @@ export interface IRawSchema {
     props: any[];
     index: any;
 }
-export interface IModelDocCategoryRec {
-    category: string;
-    category_description: string;
-    QBEColumnProps: {
-        "defaultWidth": number;
-        "QBE": boolean;
-        "LUNRIndex": boolean;
-    };
-    "category_synonyms": string[];
-    wordindex: boolean;
-    exactmatch: boolean;
-}
 export interface IModelDoc {
     domain: string;
     modelname?: string;
     collectionname?: string;
     domain_description: string;
-    _categories: IModelDocCategoryRec[];
+    _categories: IMatch.IModelDocCategoryRec[];
     columns: string[];
     domain_synonyms: string[];
 }
