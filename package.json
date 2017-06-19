@@ -41,7 +41,7 @@
     "gulp-nodeunit": "^0.1.0",
     "gulp-run": "^1.7.1",
     "gulp-typescript": "^3.1.5",
-    "mgnlq_testmodel": "^0.0.7",
+    "mgnlq_testmodel": "^0.0.6",
     "mgnlq_testmodel_replay": "^0.0.5",
     "mongoose_record_replay": "^0.0.6",
     "nyc": "^10.3.2",
