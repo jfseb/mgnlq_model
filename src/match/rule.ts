@@ -101,16 +101,3 @@ export function cmpMRule(a: IMatch.mRule, b: IMatch.mRule) {
   return 0;
 
 }
-
-
-
-
-export function assureLowerCaseWord(mRules: Array<IMatch.mRule>) {
-  return mRules.map(function (oRule) {
-    if (oRule.type === IMatch.EnumRuleType.WORD) {
-      oRule.lowercaseword = oRule.word.toLowerCase();
-    }
-    return oRule;
-  });
-}
-

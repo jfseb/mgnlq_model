@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const IMatch = require("./ifmatch");
 exports.oKeyOrder = ["systemObjectCategory", "systemId", "systemObjectId"];
 function compareMRuleFull(a, b) {
     var r = a.category.localeCompare(b.category);
@@ -90,14 +89,5 @@ function cmpMRule(a, b) {
     return 0;
 }
 exports.cmpMRule = cmpMRule;
-function assureLowerCaseWord(mRules) {
-    return mRules.map(function (oRule) {
-        if (oRule.type === IMatch.EnumRuleType.WORD) {
-            oRule.lowercaseword = oRule.word.toLowerCase();
-        }
-        return oRule;
-    });
-}
-exports.assureLowerCaseWord = assureLowerCaseWord;
 
 //# sourceMappingURL=rule.js.map
