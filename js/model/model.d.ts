@@ -21,7 +21,6 @@ export interface ISynonymBearingDoc {
         synonyms: string[];
     }];
 }
-export declare function remapSynonyms(docs: ISynonymBearingDoc[]): ISynonym[];
 export declare function getMongoCollectionNameForDomain(theModel: IMatch.IModels, domain: string): string;
 export declare function getMongooseModelNameForDomain(theModel: IMatch.IModels, domain: string): string;
 export declare function getModelForModelName(theModel: IMatch.IModels, modelname: string): any;

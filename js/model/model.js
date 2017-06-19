@@ -76,17 +76,21 @@ function getFactSynonyms(mongoHandle, modelname) {
 exports.getFactSynonyms = getFactSynonyms;
 ;
 // db.cosmos.aggregate({$match : { "_synonyms.0": { $exists: true}}}, { $project : { _synonyms : 1}}, { $unwind : "$_synonyms"});
-function remapSynonyms(docs) {
+/*
+export function remapSynonyms(docs: ISynonymBearingDoc[]): ISynonym[] {
     return docs.reduce((prev, doc) => {
-        doc._synonyms.forEach(syn => prev.push({
-            category: syn.category,
-            fact: syn.fact,
-            synonyms: syn.synonyms
-        }));
+        doc._synonyms.forEach(syn =>
+            prev.push({
+                category: syn.category,
+                fact: syn.fact,
+                synonyms: syn.synonyms
+            })
+        );
         return prev;
-    }, []);
+    }
+        , [] as ISynonym[]);
 }
-exports.remapSynonyms = remapSynonyms;
+*/
 function getMongoCollectionNameForDomain(theModel, domain) {
     var r = getMongooseModelNameForDomain(theModel, domain);
     return Schemaload.makeMongoCollectionName(r);

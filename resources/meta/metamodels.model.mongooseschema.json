@@ -60,14 +60,6 @@
           "type": "Boolean",
           "_m_category": "wordindex"
         },
-        "showURI": {
-          "type": "Boolean",
-          "_m_category": "showURI"
-        },
-        "showURIRank": {
-          "type": "Number",
-          "_m_category": "showURIRank"
-        },
         "exactmatch": {
           "type": "Boolean",
           "_m_category": "exactmatch"

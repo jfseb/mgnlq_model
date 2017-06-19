@@ -107,7 +107,7 @@ export interface ISynonymBearingDoc {
 }
 
 // db.cosmos.aggregate({$match : { "_synonyms.0": { $exists: true}}}, { $project : { _synonyms : 1}}, { $unwind : "$_synonyms"});
-
+/*
 export function remapSynonyms(docs: ISynonymBearingDoc[]): ISynonym[] {
     return docs.reduce((prev, doc) => {
         doc._synonyms.forEach(syn =>
@@ -121,6 +121,7 @@ export function remapSynonyms(docs: ISynonymBearingDoc[]): ISynonym[] {
     }
         , [] as ISynonym[]);
 }
+*/
 
 export function getMongoCollectionNameForDomain(theModel: IMatch.IModels, domain : string) : string {
     var r = getMongooseModelNameForDomain(theModel, domain);

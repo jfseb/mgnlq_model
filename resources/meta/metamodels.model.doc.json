@@ -48,14 +48,6 @@
       "category_description": "Description of the category"
     },
     {
-      "category": "showURIRank",
-      "category_description": "Category indicates a sort criteria for URI"
-    },
-    {
-      "category": "showURI",
-      "category_description": "Category is a URI to display on the \"Show me ...\" command"
-    },
-    {
       "category": "QBE",
       "category_description": "whether to include the category in QBE tables"
     },

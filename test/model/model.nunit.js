@@ -644,11 +644,12 @@ exports.testModelGetDomainIndexSafeNotPresent = function (test) {
   });
 };
 
-exports.testModelGetDomainIndexSafeThrows = function (test) {
+exports.testModelGetDomainIndexSafeThrows2 = function (test) {
   var a = [];
-  for (var i = 0; i < 32; ++i) {
+  for (var i = 0; i < 33; ++i) {
     a.push('xx');
   }
+  a.push('IUPAC');
   try {
     Model.getDomainBitIndexSafe('IUPAC', { domains: a });
     test.equal(1, 0);
@@ -658,7 +659,16 @@ exports.testModelGetDomainIndexSafeThrows = function (test) {
   test.done();
 };
 
-
+exports.testModelGetDomainIndexSafe = function (test) {
+  getModel().then(theModel => {
+    var res = Model.getDomainBitIndexSafe('IUPAC', theModel);
+    test.equal(res, 0x0008, 'IUPAC code ');
+    var res2 = Model.getDomainsForBitField( theModel, 0x0004);
+    test.equal(res2, 'Fiori Backend Catalogs', 'IUPAC code ');
+    test.done();
+    MongoUtils.disconnect(mongoose);
+  });
+};
 
 exports.testGetModelNameForDomain = function (test) {
   getModel().then(theModel => {
@@ -955,7 +965,7 @@ exports.testgetshowURICategoriesForDomain = function (test) {
   });
 };
 
-exports.testgetshowURICategoriesForDomain = function (test) {
+exports.testgetshowURIRankCategoriesForDomain = function (test) {
   test.expect(1);
   getModel().then(theModel => {
     var u = theModel;
@@ -967,9 +977,6 @@ exports.testgetshowURICategoriesForDomain = function (test) {
     MongoUtils.disconnect(mongoose);
   });
 };
-
-
-
 
 
 exports.testgetDomainsForCategory = function (test) {
