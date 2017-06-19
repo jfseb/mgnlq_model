@@ -7,6 +7,7 @@
   "scripts": {
     "build": "gulp",
     "test": "gulp test",
+    "version": "npm show mgnlq_model@* version",
     "load_data": "node js/makedb && gulp clean_testmodel_cache",
     "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/model test/match test/modelload",
     "coverreportplain": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov ",
@@ -41,8 +42,8 @@
     "gulp-nodeunit": "^0.1.0",
     "gulp-run": "^1.7.1",
     "gulp-typescript": "^3.1.5",
-    "mgnlq_testmodel": "^0.0.6",
-    "mgnlq_testmodel_replay": "^0.0.5",
+    "mgnlq_testmodel": "^0.0.5",
+    "mgnlq_testmodel_replay": "^0.0.7",
     "mongoose_record_replay": "^0.0.6",
     "nyc": "^10.3.2",
     "sinon": "^2.3.2",
