@@ -207,12 +207,12 @@ exports.testBreakDownLimitSpaces2 = function (test) {
   debuglog(res);
   test.deepEqual(res,
     [ [ 'A', 'B and some' ],
-  [ 'A B', 'and some' ],
-  [ 'A', 'B', 'and some' ],
-  [ 'A B and', 'some' ],
-  [ 'A', 'B and', 'some' ],
-  [ 'A B', 'and', 'some' ],
-  [ 'A', 'B', 'and', 'some' ] ]
+      [ 'A B', 'and some' ],
+      [ 'A', 'B', 'and some' ],
+      [ 'A B and', 'some' ],
+      [ 'A', 'B and', 'some' ],
+      [ 'A B', 'and', 'some' ],
+      [ 'A', 'B', 'and', 'some' ] ]
     , 'one string');
   test.deepEqual(res.length, 7);
   test.done();
@@ -395,7 +395,7 @@ exports.testMakeMatchPattern0 = function(test) {
   var res = breakdown.makeMatchPattern('Life is shorter');
   test.deepEqual(res,{ longestToken: 'shorter',
     span: { low : -2, high : 0}}
-    );
+  );
   test.done();
 };
 
@@ -431,9 +431,9 @@ exports.testBreakdown2 = function (test) {
   // test.expect(3)
   test.deepEqual(res,
     [['system a b'],
-    ['system', 'a b'],
-    ['system a', 'b'],
-    ['system', 'a', 'b']]
+      ['system', 'a b'],
+      ['system a', 'b'],
+      ['system', 'a', 'b']]
     , 'one string');
   test.done();
 };

@@ -45,7 +45,5 @@ var EnumActionType;
 ;
 ;
 ;
-;
-;
 
 //# sourceMappingURL=ifmatch.js.map

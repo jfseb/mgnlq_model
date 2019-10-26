@@ -11,14 +11,18 @@ docs
 .npmignore
 .gitignore
 .travis.yml
-guplfile.js
+gulpfile.js
+.vscode/*
 
 src
 test
 **/*.map
 
 
-
+env*.cmd
+test*
+oo.txt
+post_sort
 
 testmodel
 outpu*

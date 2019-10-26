@@ -200,7 +200,7 @@ exports.testModel = function (test) {
     test.equal(1, 0);
     test.done();
   }
-    );
+  );
 };
 
 
@@ -675,7 +675,7 @@ exports.testGetModelNameForDomain = function (test) {
     var u = Model.getModelNameForDomain(theModel.mongoHandle, 'FioriBOM');
     test.deepEqual(u, 'fioriapps');
     var k = Model.getMongooseModelNameForDomain(theModel, 'FioriBOM');
-    test.deepEqual(k, 'fioriapp');
+    test.deepEqual(k, 'fioriapps');
     var coll = Model.getMongoCollectionNameForDomain(theModel, 'FioriBOM');
     test.deepEqual(coll, 'fioriapps');
     test.done();
@@ -835,7 +835,7 @@ exports.testgetTableColumnsThrows = function (test) {
     Model.getTableColumns({ domains: [] }, 'adomain');
     test.equal(true, false, 'everything ok');
   } catch (e) {
-    test.deepEqual(e.toString().indexOf('Domain \"adomain') >= 0, true, ' execption text ');
+    test.deepEqual(e.toString().indexOf('Domain "adomain') >= 0, true, ' execption text ');
   }
   test.done();
 };

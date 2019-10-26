@@ -1,5 +1,4 @@
 
-
 import * as mongoose from 'mongoose';
 
 export const enum EnumResponseCode {
@@ -326,13 +325,12 @@ export interface IRawSchema {
     index : any
 }
 
-
 export interface QBEColumnProp {
       defaultWidth?: number,
       QBE: boolean,
       LUNRIndex?: boolean,
       QBEInclude? : boolean
-};
+}
 
 export interface IModelDocCategoryRec {
     category : string,
@@ -343,7 +341,7 @@ export interface IModelDocCategoryRec {
     exactmatch: boolean,
     showURI : boolean,
     showURIRank : boolean
-};
+}
 
 export interface IModelDoc {
     domain : string,

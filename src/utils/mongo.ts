@@ -6,8 +6,8 @@ import * as debugf from 'debugf';
 var debuglog = debugf('model');
 
 export function openMongoose(mongoose: any, mongoConnectionString : string) {
-
-  mongoose.connect(mongoConnectionString || 'mongodb://localhost/nodeunit');
+  console.log(' mongoose.connect ' + mongoConnectionString );
+  mongoose.connect(mongoConnectionString || 'mongodb://localhost/nodeunit', { useUnifiedTopology: true, useNewUrlParser: true/*useMongoClient : true*/ }); // .then( a => console.log('mongoose connect ok'))
   var db = mongoose.connection;
   var mgopen = new Promise(function (resolve, reject) {
     //db.on.setMaxListeners(0);
@@ -33,6 +33,7 @@ export function openMongoose(mongoose: any, mongoConnectionString : string) {
 }
 
 export function clearModels(mongoose : any) {
+    debuglog(' clear Models ');
     mongoose.connection.modelNames().forEach(modelName =>
         delete mongoose.connection.models[modelName]
     );

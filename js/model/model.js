@@ -52,7 +52,7 @@ function getMongoHandle(mongoose) {
             return Promise.all([Schemaload.getExtendSchemaDocFromDB(mongoose, modelname),
                 Schemaload.makeModelFromDB(mongoose, modelname),
                 Schemaload.getModelDocFromDB(mongoose, modelname)]).then((value) => {
-                debuglog(() => 'attempting to load ' + modelname + 'to create mongomap');
+                debuglog(() => 'attempting to load ' + modelname + ' to create mongomap');
                 var [extendedSchema, model, modelDoc] = value;
                 res.modelESchemas[modelname] = extendedSchema;
                 res.modelDocs[modelname] = modelDoc;
@@ -71,7 +71,16 @@ exports.getMongoHandle = getMongoHandle;
 function getFactSynonyms(mongoHandle, modelname) {
     var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
     //     return model.find( { "_synonyms.0" : { $exists: false}}).lean().exec();
-    return model.aggregate({ $match: { "_synonyms.0": { $exists: true } } }, { $project: { _synonyms: 1 } }, { $unwind: "$_synonyms" }, { $project: { "category": "$_synonyms.category", "fact": "$_synonyms.fact", "synonyms": "$_synonyms.synonyms" } }).exec();
+    /* mongoose prior
+        return model.aggregate({ $match: { "_synonyms.0": { $exists: true } } },
+            { $project: { _synonyms: 1 } },
+            { $unwind: "$_synonyms" },
+            { $project: { "category": "$_synonyms.category", "fact": "$_synonyms.fact", "synonyms": "$_synonyms.synonyms" } }).exec();
+    */
+    return model.aggregate([{ $match: { "_synonyms.0": { $exists: true } } },
+        { $project: { _synonyms: 1 } },
+        { $unwind: "$_synonyms" },
+        { $project: { "category": "$_synonyms.category", "fact": "$_synonyms.fact", "synonyms": "$_synonyms.synonyms" } }]).exec();
 }
 exports.getFactSynonyms = getFactSynonyms;
 ;
@@ -99,7 +108,8 @@ exports.getMongoCollectionNameForDomain = getMongoCollectionNameForDomain;
 //Schemaload.makeMongooseModelName(modelname)
 function getMongooseModelNameForDomain(theModel, domain) {
     var r = getModelNameForDomain(theModel.mongoHandle, domain);
-    return Schemaload.makeMongooseModelName(r);
+    var r2 = Schemaload.makeMongooseModelName(r);
+    return r2;
 }
 exports.getMongooseModelNameForDomain = getMongooseModelNameForDomain;
 function getModelForModelName(theModel, modelname) {
@@ -1188,6 +1198,7 @@ function loadModelsOpeningConnection(mongooseHndl, connectionString, modelPath) 
     //   if(process.env.MONGO_REPLAY) {
     //        mongooseX = mongooseMock.mongooseMock as any;
     //    }
+    console.log(" explicit connection string " + connectionString);
     var connStr = connectionString || 'mongodb://localhost/testdb';
     return MongoUtils.openMongoose(mongooseX, connStr).then(() => {
         return loadModels(mongooseX, modelPath);
@@ -1267,20 +1278,6 @@ function _loadModelsFull(modelHandle, modelPath) {
     debuglog('got domains ' + mdls.join("\n"));
     debuglog('loading models ' + mdls.join("\n"));
     return Promise.all(mdls.map((sModelName) => loadModel(modelHandle, sModelName, oModel))).then(() => {
-        // add the categories to the model:
-        /*
-        oModel.category.forEach(function (category) {
-            insertRuleIfNotPresent(oModel.mRules, {
-                category: "category",
-                matchedString: category,
-                type: IMatch.EnumRuleType.WORD,
-                word: category,
-                lowercaseword: category.toLowerCase(),
-                bitindex : oMdl.
-                _ranking: 0.95
-            }, oModel.seenRules);
-        });
-        */
         var metaBitIndex = getDomainBitIndex('meta', oModel);
         var bitIndexAllDomains = getAllDomainsBitIndex(oModel);
         // add the domain meta rule

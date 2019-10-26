@@ -1,7 +1,7 @@
 {
-  "modelname" : "metamodel",
+  "modelname" : "metamodels",
   "collectionname" : "metamodels",
-  "mongoosemodelname" : "metamodel",
+  "mongoosemodelname" : "metamodels",
   "domain": "metamodel",
   "domain_description": "metamodel",
   "_categories": [

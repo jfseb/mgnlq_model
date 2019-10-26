@@ -65,7 +65,7 @@ export function getMongoHandle(mongoose: mongoose.Mongoose): Promise<IMatch.IMod
             Schemaload.makeModelFromDB(mongoose, modelname),
             Schemaload.getModelDocFromDB(mongoose, modelname)]).then(
                 (value) => {
-                    debuglog(() => 'attempting to load ' + modelname + 'to create mongomap');
+                    debuglog(() => 'attempting to load ' + modelname + ' to create mongomap');
                     var [extendedSchema, model, modelDoc] = value;
                     res.modelESchemas[modelname] = extendedSchema;
                     res.modelDocs[modelname] = modelDoc;
@@ -85,10 +85,17 @@ export function getMongoHandle(mongoose: mongoose.Mongoose): Promise<IMatch.IMod
 export function getFactSynonyms(mongoHandle: IMatch.IModelHandleRaw, modelname: string): Promise<ISynonym[]> {
     var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
     //     return model.find( { "_synonyms.0" : { $exists: false}}).lean().exec();
+/* mongoose prior
     return model.aggregate({ $match: { "_synonyms.0": { $exists: true } } },
         { $project: { _synonyms: 1 } },
         { $unwind: "$_synonyms" },
         { $project: { "category": "$_synonyms.category", "fact": "$_synonyms.fact", "synonyms": "$_synonyms.synonyms" } }).exec();
+*/
+    return model.aggregate([{ $match: { "_synonyms.0": { $exists: true } } },
+        { $project: { _synonyms: 1 } },
+        { $unwind: "$_synonyms" },
+        { $project: { "category": "$_synonyms.category", "fact": "$_synonyms.fact", "synonyms": "$_synonyms.synonyms" } }]).exec();
+
 
 }
 
@@ -132,7 +139,8 @@ export function getMongoCollectionNameForDomain(theModel: IMatch.IModels, domain
 
 export function getMongooseModelNameForDomain(theModel : IMatch.IModels, domain : string) : string {
     var r = getModelNameForDomain(theModel.mongoHandle, domain);
-    return Schemaload.makeMongooseModelName(r);
+    var r2 = Schemaload.makeMongooseModelName(r);
+    return r2;
 }
 
 
@@ -1297,17 +1305,18 @@ export function loadModelHandleP(mongooseHndl : mongoose.Mongoose, modelPath: st
 };
 */
 
-export function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString? : string,  modelPath? : string) : Promise<IMatch.IModels> {
+export function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString? : string,  modelPath? : string) : Promise<void | IMatch.IModels> {
   var mongooseX = mongooseHndl || mongoose;
  //   if(process.env.MONGO_REPLAY) {
  //        mongooseX = mongooseMock.mongooseMock as any;
  //    }
+    console.log(" explicit connection string " + connectionString);
     var connStr = connectionString || 'mongodb://localhost/testdb';
     return MongoUtils.openMongoose(mongooseX, connStr).then(
         ()=>
-            {
+        {
             return loadModels(mongooseX, modelPath);
-            }
+        }
     );
 }
 
@@ -1316,7 +1325,7 @@ export function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, con
  * @param mongoose
  * @param modelPath
  */
-export function loadModels(mongoose: mongoose.Mongoose, modelPath : string) : Promise<IMatch.IModels> {
+export function loadModels(mongoose: mongoose.Mongoose, modelPath : string) : Promise<void | IMatch.IModels> {
     if(mongoose === undefined) {
         throw new Error('expect a mongoose handle to be passed');
     }
@@ -1326,7 +1335,7 @@ export function loadModels(mongoose: mongoose.Mongoose, modelPath : string) : Pr
     });
 }
 
-export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<IMatch.IModels> {
+export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<void | IMatch.IModels> {
     var oModel: IMatch.IModels;
     modelPath = modelPath || envModelPath;
     modelHandle = modelHandle || {
@@ -1352,7 +1361,7 @@ export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?:
     try {
         debuglog(()=> 'here model path' + modelPath);
         var a = CircularSer.load(modelPath + '/_cache.js');
-      // TODO
+        // TODO
         //console.log("found a cache ?  " + !!a);
         //a = undefined;
         if (a && !process.env.MGNLQ_MODEL_NO_FILECACHE) {
@@ -1388,22 +1397,6 @@ export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?:
     return Promise.all(mdls.map((sModelName) =>
         loadModel(modelHandle, sModelName, oModel))
     ).then(() => {
-
-
-        // add the categories to the model:
-        /*
-        oModel.category.forEach(function (category) {
-            insertRuleIfNotPresent(oModel.mRules, {
-                category: "category",
-                matchedString: category,
-                type: IMatch.EnumRuleType.WORD,
-                word: category,
-                lowercaseword: category.toLowerCase(),
-                bitindex : oMdl.
-                _ranking: 0.95
-            }, oModel.seenRules);
-        });
-        */
         var metaBitIndex = getDomainBitIndex('meta', oModel);
         var bitIndexAllDomains = getAllDomainsBitIndex(oModel);
 

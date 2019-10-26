@@ -29,13 +29,28 @@ Database used for testing containing data
 
 
 
+
+# Createing a database
+
+via
+```
+node js/makedb.js
+```
+or npm load_data
+
+a mongo db instance is created,
+The name of the DB and the source data is controlled via the environment parameters:
+
+var mongoConnectionString = process.env.MONGO_DBURL || 'mongodb://localhost/testdb';
+var modelPath = process.env.MGNLQ_MODELPATH  || 'node_modules/mgnlq_testmodel/testmodel/';
+
+
 #Testing
 
 The unit test use
 [mongoose_record_replay](https://www.npmjs.com/package/mongoose_record_replay)  and data in
 (npm module) [mgnlq_testmodel_replay](https://www.npmjs.com/package/mgnlq_testmodel_replay)
 to be run without a mongoose instance.
-
 
 Alternatively, by setting MONGO_TEST_RECORD='RECORD'
 Unit tests can be run against a mongodb installed on
@@ -64,29 +79,23 @@ to create the db from files
 # Cache file control
 
 Model data is written and read from a cache file
-in modelPath
+in modelPath unless
 ```MQNLQ_MODEL_NO_FILECACHE```
-
-
+is set to true
 
 # TODO
 
-- Analyze model for mismatchis in category aliases
+- Analyze model for mismatches in category aliases
 
 ```
  e.g.   DomainA   element name  synonyms: [  "element names", "elementname"]
         DomainB   element name  synonyms:[ "elements" ]
 ```
-When this occurs a mismatch "elements" will match only B,
+When this occurs a mismatch "elements" will match only DomainB,
 
 
 - Analyze model for casing mismatches, e.g.
 
 abc => Abc
 abc => abc
-
-```
- e.g.   DomainA   element name  [ syonyms  "element names", "elementname"]
-        DomainB   element name  synonym:[ "elements" ]
-```
 

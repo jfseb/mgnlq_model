@@ -157,19 +157,32 @@ exports.testSchemaLoadOwn = function (test) {
 };
 
 
-
-
-
 exports.testSchemaValidateMongooseOk = function (test) {
   test.expect(1);
   var extschema = Schemaload.loadExtendedMongooseSchema(modelPath, 'sobj_tables');
   var schema = Schemaload.makeMongooseSchema(extschema);
-  Schemaload.validateDocMongoose(mongoose, 'sobj_tables', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: 'abc', _tables: [{ 'Table': 'ABC' }] }).then(
+  Schemaload.validateDocMongoose(mongoose, 'sobj_tables', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: true, _tables: [{ 'Table': 'ABC' }] }).then(
     ok => {
       test.equal(1, 1);
       test.done();
     }).catch(err => {
+      console.log(err);
       test.equal(1, 0);
+      test.done();
+    });
+};
+
+exports.testSchemaValidateMongooseBad = function (test) {
+  test.expect(2);
+  var extschema = Schemaload.loadExtendedMongooseSchema(modelPath, 'sobj_tables');
+  var schema = Schemaload.makeMongooseSchema(extschema);
+  Schemaload.validateDocMongoose(mongoose, 'sobj_tables', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: 'abc', _tables: [{ 'Table': 'ABC' }] }).then(
+    ok => {
+      test.equal(1, 0);
+      test.done();
+    }).catch(err => {
+      test.equal( (err + ' ').indexOf('Cast to Boolean failed for value "abc" at path "TranslationRelevant"') , 38 );
+      test.equal(1, 1);
       test.done();
     });
 };
@@ -191,7 +204,7 @@ exports.testmakeMongooseCollName2 = function (test) {
 exports.testmakeMongooseCollName = function (test) {
   test.expect(1);
   var res = Schemaload.makeMongooseModelName('abcs');
-  test.equal(res, 'abc');
+  test.equal(res, 'abcs');
   test.done();
 };
 
@@ -318,7 +331,7 @@ exports.testGetModelDocModel = function (test) {
 
   var res = Schemaload.getModelDocModel(mongooseMock);
   test.equal(typeof res, 'object');
-  test.deepEqual(mongooseMock.modelNames(), ['metamodel']);
+  test.deepEqual(mongooseMock.modelNames(), ['metamodels']);
   test.done();
 };
 
@@ -367,7 +380,7 @@ exports.testUpsertMetaModel = function (test) {
   Schemaload.upsertMetaModel(mongooseMock).then(
     function () {
       var res = mongooseMock.modelNames();
-      test.deepEqual(res, ['metamodel', 'mongonlq_eschema']);
+      test.deepEqual(res, ['metamodels', 'mongonlq_eschemas']);
       test.done();
     }
   ).catch((err) => {
@@ -430,7 +443,7 @@ exports.testUpsertModel = function (test) {
     Schemaload.upsertModels(mongooseMock, modelPath).then(
       function () {
         var res = mongooseMock.modelNames();
-        test.deepEqual(res, ['metamodel', 'mongonlq_eschema', 'filler', 'operator']);
+        test.deepEqual(res, ['metamodels', 'mongonlq_eschemas', 'fillers', 'operators']);
         test.done();
       }
     ).catch((err) => {

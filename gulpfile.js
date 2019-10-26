@@ -1,18 +1,4 @@
-/*
-var ts = require("gulp-typescript")
-
-// according to https://www.npmjs.com/package/gulp-typescript
-// not supported
-var tsProject = ts.createProject('tsconfig.json', { inlineSourceMap : false })
-
-*/
-// gulp.task('scripts', function() {
-//    var tsResult = tsProject.src() // gulp.src("lib/*  * / * .ts") // or tsProject.src()
-//        .pipe(tsProject())
-//
-//    return tsResult.js.pipe(gulp.dest('release'))
-// })
-// *
+/* standard_v1.0.0*/
 
 var gulp = require('gulp');
 
@@ -90,90 +76,40 @@ gulp.task('clean_testmodel_cache', function () {
 });
 
 
+gulp.task('clean', gulp.series('clean:models'));
 
-gulp.task('clean', ['clean:models']);
+
+var nodeunit = require('gulp-nodeunit');
+
+gulp.task('test', gulp.series('tsc', function () {
+  return gulp.src(['test/**/*.js'])
+    .pipe(nodeunit({
+      reporter: 'minimal'
+    // reporterOptions: {
+    //  output: 'testcov'
+    // }
+    })).on('error', function (err) { console.log('This is weird: ' + err.message); })
+    .pipe(gulp.dest('./out/lcov.info'));
+}));
+
+gulp.task('testhome', gulp.series('test', function () {
+  return gulp.src(['testdb/**/*.js'])
+    .pipe(nodeunit({
+      reporter: 'minimal'
+    // reporterOptions: {
+    //  output: 'testcov'
+    // }
+    })).on('error', function (err) { console.log('This is weird: ' + err.message); })
+    .pipe(gulp.dest('./out/lcov.info'));
+}));
+
 
 var jsdoc = require('gulp-jsdoc3');
 
-gulp.task('doc', ['test'], function (cb) {
-  gulp.src([srcDir + '/**/*.js', 'README.md', './js/**/*.js'], { read: false })
+gulp.task('doc', gulp.series( 'test', function (cb) {
+  return gulp.src([srcDir + '/**/*.js', 'README.md', './js/**/*.js'], { read: false })
     .pipe(jsdoc(cb));
-});
-
-/*
-var instrument = require('gulp-instrument')
-
-gulp.task('instrumentx', ['tsc', 'babel', 'copyInputFilterRules'], function () {
-  return gulp.src([
-    genDir + '/match/data.js',
-    genDir + '/match/dispatcher.js',
-    genDir + '/match/ifmatch.js',
-    genDir + '/match/inputFilter.js',
-    // genDir + '/match/inputFilterRules.js',
-    genDir + '/match/matchData.js',
-    //  genDir + '/match/inputFilterRules.js',
-    genDir + '/utils/*.js',
-    genDir + '/exec/*.js'],
-    { 'base': genDir
-    })
-    .pipe(instrument())
-    .pipe(gulp.dest('gen_cov'))
-})
-
-gulp.task('instrument', ['tsc', 'babel'], function () {
-  return gulp.src([genDir + '/**REMOVEME/*.js'])
-    .pipe(instrument())
-    .pipe(gulp.dest('gen_cov'))
-})
-*/
-
-// var newer = require('gulp-newer')
-
-var nodeunit = require('gulp-nodeunit');
-var env = require('gulp-env');
-
-/**
- * This does not work, as we are somehow unable to
- * redirect the lvoc reporter output to a file
- */
-gulp.task('testcov', function () {
-  const envs = env.set({
-    FSD_COVERAGE: '1',
-    FSDEVSTART_COVERAGE: '1'
-  });
-  // the file does not matter
-  gulp.src(['./**/match/dispatcher.nunit.js'])
-    .pipe(envs)
-    .pipe(nodeunit({
-      reporter: 'lcov',
-      reporterOptions: {
-        output: 'testcov'
-      }
-    })).pipe(gulp.dest('./cov/lcov.info'));
-});
-
-gulp.task('test', ['tsc'], function () {
-  gulp.src(['test/**/*.js'])
-    .pipe(nodeunit({
-      reporter: 'minimal'
-    // reporterOptions: {
-    //  output: 'testcov'
-    // }
-    })).on('error', function (err) { console.log('This is weird: ' + err.message); })
-    .pipe(gulp.dest('./out/lcov.info'));
-});
-
-
-gulp.task('testhome', ['test'], function () {
-  gulp.src(['testdb/**/*.js'])
-    .pipe(nodeunit({
-      reporter: 'minimal'
-    // reporterOptions: {
-    //  output: 'testcov'
-    // }
-    })).on('error', function (err) { console.log('This is weird: ' + err.message); })
-    .pipe(gulp.dest('./out/lcov.info'));
-});
+}));
 
 const eslint = require('gulp-eslint');
 
@@ -201,9 +137,7 @@ gulp.task('pack', () => {
 });
 
 
-gulp.task('default', ['tsc', 'eslint', 'test', 'doc' ]);
-
 
 // Default Task
-gulp.task('default', ['tsc', 'eslint', 'test', 'doc' ]);
-gulp.task('build', ['tsc', 'eslint']);
+gulp.task('default', gulp.series('tsc', 'eslint', 'test', 'doc'));
+gulp.task('build', gulp.series('tsc', 'eslint'));

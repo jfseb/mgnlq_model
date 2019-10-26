@@ -77,7 +77,7 @@ const ExtendedSchema_index = {
 export function loadModelNames(modelPath : string) : string[] {
   modelPath = modelPath || envModelPath;
   debuglog(()=> `modelpath is ${modelPath} `);
-  var mdls = FUtils.readFileAsJSON('./' + modelPath + '/models.json');
+  var mdls = FUtils.readFileAsJSON(modelPath + '/models.json');
   mdls.forEach(name => {
     if(name !== makeMongoCollectionName(name)) {
         throw new Error('bad modelname, must terminate with s and be lowercase');
@@ -235,7 +235,7 @@ export function augmentMongooseSchema( modelDoc : IModelDoc, schemaRaw : IRawSch
 }
 
 /**
- * return a modelname without a traling s
+ * return a modelname
  * @param collectionName
  */
 export function makeMongooseModelName(collectionName : string) : string {
@@ -243,7 +243,8 @@ export function makeMongooseModelName(collectionName : string) : string {
         throw new Error('expect lowercase, was ' + collectionName);
     }
     if (collectionName.charAt(collectionName.length-1) === 's') {
-        return collectionName.substring(0,collectionName.length-1);
+        return collectionName; // beware, ALTERED RECENTLY 28.08.2019
+        // return collectionName.substring(0,collectionName.length-1);
     }
     throw new Error('expected name with trailing s');
 }
@@ -255,6 +256,9 @@ export function makeMongooseModelName(collectionName : string) : string {
 export function makeMongoCollectionName(modelName : string) : string {
     if(modelName !== modelName.toLowerCase()) {
         throw new Error('expect lowercase, was ' + modelName);
+    }
+    if (modelName.charAt(modelName.length-1) !== 's') {
+        throw new Error(' expect trailing s:' + modelName );
     }
     if (modelName.charAt(modelName.length-1) !== 's') {
         return modelName + 's';
@@ -349,7 +353,7 @@ export function removeOthers(mongoose : any, model: mongoose.Model<any>, retaine
     ).then( (modelnames : any) => {
         debuglog(" present models " + modelnames.length + ' ' + modelnames);
         var delta = _.difference(modelnames, retainedNames);
-        debuglog(' spurious models' + delta.length + ' ' + delta);
+        debuglog(' spurious models: ' + delta.length + ' ' + delta);
         if(delta.length === 0) {
             return Promise.resolve(true);
         }
@@ -364,18 +368,18 @@ var SchemaFillers = { fillers : [{
 };
 
 export function getOrCreateModelFillers(mongoose: mongoose.Mongoose) : mongoose.Model<any> {
-    if(mongoose.modelNames().indexOf('filler') >= 0) {
-        return mongoose.model('filler');
+    if(mongoose.modelNames().indexOf('fillers') >= 0) {
+        return mongoose.model('fillers');
     } else {
-        return mongoose.model('filler', new mongoose.Schema(SchemaFillers));
+        return mongoose.model('fillers', new mongoose.Schema(SchemaFillers));
     }
 }
 
 export function getOrCreateModelOperators(mongoose: mongoose.Mongoose) : mongoose.Model<any> {
-    if(mongoose.modelNames().indexOf('operator') >= 0) {
-        return mongoose.model('operator');
+    if(mongoose.modelNames().indexOf('operators') >= 0) {
+        return mongoose.model('operators');
     } else {
-        return mongoose.model('operator', new mongoose.Schema(SchemaOperators));
+        return mongoose.model('operators', new mongoose.Schema(SchemaOperators));
     }
 }
 
@@ -459,6 +463,7 @@ export function makeModelFromDB(mongoose : mongoose.Mongoose, modelName : string
         if(mongoose.modelNames().indexOf(mongooseModelName) >= 0) {
             return Promise.resolve(mongoose.model(mongooseModelName));
         }
+        console.log(' moongooseModelName : ' + mongooseModelName + ' ' + modelName );
         var model = mongoose.model(mongooseModelName, schema);
         debuglog( ()=> 'returning model: ' + modelName + ` `+ typeof model);
         return Promise.resolve(model);
@@ -471,14 +476,14 @@ export function makeModelFromDB(mongoose : mongoose.Mongoose, modelName : string
 export function uploadFillers(mongoose: mongoose.Mongoose, modelPath: string) : Promise<any> {
     var modelFiller = getOrCreateModelFillers(mongoose);
     return modelFiller.remove({}).then(() => {
-    var fillers = FUtils.readFileAsJSON('./' + modelPath + '/filler.json');
+    var fillers = FUtils.readFileAsJSON(modelPath + '/filler.json');
         return new modelFiller({ fillers: fillers}).save();
     });
 }
 export function uploadOperators(mongoose: mongoose.Mongoose, modelPath: string) : Promise<any> {
     var modelFiller = getOrCreateModelOperators(mongoose);
     return modelFiller.remove({}).then(() => {
-    var operators = FUtils.readFileAsJSON('./' + modelPath + '/operators.json');
+    var operators = FUtils.readFileAsJSON(modelPath + '/operators.json');
     return new modelFiller(operators).save();
     });
 }

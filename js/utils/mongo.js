@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const debugf = require("debugf");
 var debuglog = debugf('model');
 function openMongoose(mongoose, mongoConnectionString) {
-    mongoose.connect(mongoConnectionString || 'mongodb://localhost/nodeunit');
+    console.log(' mongoose.connect ' + mongoConnectionString);
+    mongoose.connect(mongoConnectionString || 'mongodb://localhost/nodeunit', { useUnifiedTopology: true, useNewUrlParser: true /*useMongoClient : true*/ }); // .then( a => console.log('mongoose connect ok'))
     var db = mongoose.connection;
     var mgopen = new Promise(function (resolve, reject) {
         //db.on.setMaxListeners(0);
@@ -32,6 +33,7 @@ function openMongoose(mongoose, mongoConnectionString) {
 }
 exports.openMongoose = openMongoose;
 function clearModels(mongoose) {
+    debuglog(' clear Models ');
     mongoose.connection.modelNames().forEach(modelName => delete mongoose.connection.models[modelName]);
 }
 exports.clearModels = clearModels;

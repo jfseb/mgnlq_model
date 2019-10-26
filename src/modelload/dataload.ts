@@ -78,14 +78,13 @@ export function createDB(mongoose : mongoose.Mongoose, mongoConnectionString : s
 }
 
 
-
-
-
 export function getModel(mongoose: any, modelName: string, modelPath: string) : Promise<mongoose.Model<any>> {
    if(mongoose.models[modelName]) {
+       console.log(` got model for ${modelName} `);
        return Promise.resolve(mongoose.models[modelName]);
    }
-   var Eschema = mongoose.models['mongonlq_eschema'];
+   console.log(` no model found for ${modelName} `);
+   var Eschema = mongoose.models['mongonlq_eschemas'];
    if(!Eschema) {
        throw new Error('this database does not have an eschema model initialized');
    }
