@@ -1,6 +1,6 @@
 {
   "name": "mgnlq_model",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "model access from mongoose",
   "main": "js/index.js",
   "typings": "js/index",
@@ -41,7 +41,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-typescript": "^5.0.1",
     "mgnlq_testmodel": "^0.0.5",
-    "mgnlq_testmodel_replay": "0.0.10",
+    "mgnlq_testmodel_replay": "0.0.11",
     "mongoose_record_replay": "^0.0.8",
     "nyc": "^14.1.1",
     "typescript": "^3.6.4"
@@ -49,7 +49,7 @@
   "dependencies": {
     "@types/node": "^8.10.56",
     "abot_stringdist": "^0.1.0",
-    "abot_utils": "^1.0.1",
+    "abot_utils": "^1.0.3",
     "debugf": "^0.1.2",
     "jsonschema": "^1.1.1",
     "lodash": "^4.17.15",
