@@ -44,8 +44,20 @@ The name of the DB and the source data is controlled via the environment paramet
 var mongoConnectionString = process.env.MONGO_DBURL || 'mongodb://localhost/testdb';
 var modelPath = process.env.MGNLQ_MODELPATH  || 'node_modules/mgnlq_testmodel/testmodel/';
 
+# recording the test queries
 
-#Testing
+SET MONGO_TEST_RECORD=RECORD
+
+run the tests -> data is created in node_modules/mgnql_testmodel_replay/mgrecrep/data
+
+(typcially linked with
+`npm link mgnlq_testmodel_replay` )
+This data must be checked in, the package version increased and published,
+subsequently the dependency has to be updated to allow running unit tests on travis etc.
+
+
+
+# Testing
 
 The unit test use
 [mongoose_record_replay](https://www.npmjs.com/package/mongoose_record_replay)  and data in
