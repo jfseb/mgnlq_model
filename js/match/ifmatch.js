@@ -23,6 +23,7 @@ exports.WORDTYPE = {
     CATEGORY: "C",
     DOMAIN: "D",
     OPERATOR: "O",
+    NUMERICARG: 'N',
     ANY: "A" //
 };
 var EnumRuleType;

@@ -12,6 +12,11 @@ var Meta = require(root + '/model/meta.js');
 //var MongoMap = require(root + '/model/mongomap.js');
 var Model = require(root + '/model/model.js');
 
+
+var IfMatch = require(root + '/match/ifmatch.js');
+var EnumRuleType = IfMatch.EnumRuleType;
+var WordType = IfMatch.WordType;
+
 //var modelPath = 'node_modules/testmodel/';
 //var testmodelPath = 'node_modules/mgnlq_testmodel/testmodel/';
 
@@ -504,11 +509,7 @@ exports.testgetExpandedRecordsFullArray2 = function (test) {
   });
 };
 
-
-
-
-
-exports.testgetCAtegoryFilterMultDomains = function (test) {
+exports.testgetCategoryFilterMultDomains = function (test) {
   getModel().then(theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategories(theModel, ['ApplicationComponent', 'TransactionCode'], true);
     test.deepEqual(res,
@@ -809,7 +810,6 @@ exports.testModelHasDomainIndexInDomains = function (test) {
   });
 };
 
-
 exports.testModelHasDomainIndexInAllRules = function (test) {
   getModel().then(theModel => {
     // check that every domain has an index which is distinct
@@ -826,6 +826,32 @@ exports.testModelHasDomainIndexInAllRules = function (test) {
   });
 };
 
+exports.testModelHasNumberRules = function (test) {
+  getModel().then(theModel => {
+    // check that every domain has an index which is distinct
+    var all = 0;
+    theModel.domains.forEach(function (o) {
+      var idx = theModel.full.domain[o].bitindex;
+      test.equal(idx !== 0, true);
+      //console.log(all);
+      all = all | idx;
+    });
+    var cnt = 0;
+    theModel.mRules.forEach( (orule) => {
+      if ( orule.type === EnumRuleType.REGEXP )
+      {
+        var m = orule.regexp.exec( '123' );
+        test.equal( true, !!m);
+        test.equal(m[orule.matchIndex], '123' );
+        ++cnt;
+      }
+    });
+    test.equal(cnt, 1);
+    test.equal(all, 0x00FF, ' Flags Index In Rules 4095');
+    test.done();
+    MongoUtils.disconnect(mongoose);
+  });
+};
 
 const MetaF = Meta.getMetaFactory();
 
@@ -1160,8 +1186,6 @@ exports.testWordCategorizationCategory = function (test) {
     MongoUtils.disconnect(mongoose);
   });
 };
-
-
 
 exports.testWordCategorizationMetaword_category = function (test) {
   getModel().then(theModel => {

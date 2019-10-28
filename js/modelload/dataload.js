@@ -68,7 +68,7 @@ function loadModelData(mongoose, modelPath, modelName) {
     var cnt = 0;
     // load the schema, either from database or from file system
     return getModel(mongoose, modelName, modelPath).then(oModel => {
-        console.log('** got a model' + oModel.modelName);
+        console.log('** got a model to load: ' + oModel.modelName);
         return Promise.all(data.map((oRecord, index) => {
             try {
                 return SchemaLoad.validateDoc(oModel.modelName, oModel.schema, oRecord);

@@ -272,7 +272,7 @@ exports.createDBWithModels = createDBWithModels;
 function removeOthers(mongoose, model, retainedNames) {
     //console.log('here collectionname' + Object.keys(model));
     //console.log('here collectionname' + model.collectionname);
-    return model.aggregate({ $project: { modelname: 1 } }).then((r) => r.map(o => o.modelname)).then((modelnames) => {
+    return model.aggregate([{ $project: { modelname: 1 } }]).then((r) => r.map(o => o.modelname)).then((modelnames) => {
         debuglog(" present models " + modelnames.length + ' ' + modelnames);
         var delta = _.difference(modelnames, retainedNames);
         debuglog(' spurious models: ' + delta.length + ' ' + delta);

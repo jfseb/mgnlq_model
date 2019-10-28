@@ -113,23 +113,6 @@ export interface ISynonymBearingDoc {
     }]
 }
 
-// db.cosmos.aggregate({$match : { "_synonyms.0": { $exists: true}}}, { $project : { _synonyms : 1}}, { $unwind : "$_synonyms"});
-/*
-export function remapSynonyms(docs: ISynonymBearingDoc[]): ISynonym[] {
-    return docs.reduce((prev, doc) => {
-        doc._synonyms.forEach(syn =>
-            prev.push({
-                category: syn.category,
-                fact: syn.fact,
-                synonyms: syn.synonyms
-            })
-        );
-        return prev;
-    }
-        , [] as ISynonym[]);
-}
-*/
-
 export function getMongoCollectionNameForDomain(theModel: IMatch.IModels, domain : string) : string {
     var r = getMongooseModelNameForDomain(theModel, domain);
     return Schemaload.makeMongoCollectionName(r)
@@ -1267,19 +1250,30 @@ export function readOperators(mongoose: mongoose.Mongoose, oModel: IMatch.IModel
             }, oModel.seenRules);
             // add all synonyms
             if (operators.synonyms[operator]) {
-                Object.keys(operators.synonyms[operator]).forEach(function (synonym) {
-                    insertRuleIfNotPresent(oModel.mRules, {
-                        category: "operator",
-                        word: synonym.toLowerCase(),
-                        lowercaseword: synonym.toLowerCase(),
-                        type: IMatch.EnumRuleType.WORD,
-                        matchedString: operator,
-                        bitindex: operatorBitIndex,
-                        bitSentenceAnd: bitIndexAllDomains,
-                        wordType: IMatch.WORDTYPE.OPERATOR,
-                        _ranking: 0.9
-                    }, oModel.seenRules);
-                });
+                var arr = operators.synonyms[operator];
+                if ( arr )
+                {
+
+                    if( Array.isArray(arr))
+                    {
+                        arr.forEach(function (synonym) {
+                            insertRuleIfNotPresent(oModel.mRules, {
+                                category: "operator",
+                                word: synonym.toLowerCase(),
+                                lowercaseword: synonym.toLowerCase(),
+                                type: IMatch.EnumRuleType.WORD,
+                                matchedString: operator,
+                                bitindex: operatorBitIndex,
+                                bitSentenceAnd: bitIndexAllDomains,
+                                wordType: IMatch.WORDTYPE.OPERATOR,
+                                _ranking: 0.9
+                            }, oModel.seenRules);
+                        });
+                    } else
+                    {
+                        throw Error("Expeted operator synonym to be array " + operator + " is " + JSON.stringify(arr));
+                    }
+                }
             }
             return true;
         });
@@ -1411,6 +1405,21 @@ export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?:
             bitSentenceAnd: bitIndexAllDomains,
             _ranking: 0.95
         }, oModel.seenRules);
+        // insert the Numbers rules
+        console.log(' add numbers rule');
+        insertRuleIfNotPresent(oModel.mRules, {
+            category: "number",
+            matchedString: "one",
+            type: IMatch.EnumRuleType.REGEXP,
+            regexp : /^((\d+)|(one)|(two)|(three))$/,
+            matchIndex : 0,
+            word: "<number>",
+            bitindex: metaBitIndex,
+            wordType: IMatch.WORDTYPE.NUMERICARG, // number
+            bitSentenceAnd: bitIndexAllDomains,
+            _ranking: 0.95
+        }, oModel.seenRules);
+
         return true;
     }
     ).then( ()=>

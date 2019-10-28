@@ -103,6 +103,7 @@ export const WORDTYPE = {
   CATEGORY : "C", // a category, e.g. BSPName
   DOMAIN : "D", // a domain, e.g. Fiori Bom
   OPERATOR : "O", // containing ,starting with
+  NUMERICARG : 'N', // a number
   ANY : "A" //
 };
 

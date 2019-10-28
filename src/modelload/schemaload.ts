@@ -348,7 +348,7 @@ export function createDBWithModels(mongoose : mongoose.Mongoose , modelPath : st
 export function removeOthers(mongoose : any, model: mongoose.Model<any>, retainedNames : string[] ) : Promise<any> {
     //console.log('here collectionname' + Object.keys(model));
     //console.log('here collectionname' + model.collectionname);
-    return (model.aggregate({$project : { modelname : 1 }}) as any).then( (r) =>
+    return (model.aggregate([{$project : { modelname : 1 }}]) as any).then( (r) =>
         r.map(o => (o as any).modelname as string)
     ).then( (modelnames : any) => {
         debuglog(" present models " + modelnames.length + ' ' + modelnames);
