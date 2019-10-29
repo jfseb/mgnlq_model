@@ -7,7 +7,11 @@ var debuglog = debugf('model');
 
 export function openMongoose(mongoose: any, mongoConnectionString : string) {
   console.log(' mongoose.connect ' + mongoConnectionString );
-  mongoose.connect(mongoConnectionString || 'mongodb://localhost/nodeunit', { useUnifiedTopology: true, useNewUrlParser: true/*useMongoClient : true*/ }); // .then( a => console.log('mongoose connect ok'))
+  mongoose.connect(mongoConnectionString || 'mongodb://localhost/nodeunit',
+  {
+      useFindAndModify : true,  //https://mongoosejs.com/docs/deprecations.html#-findandmodify-
+      useUnifiedTopology: true,
+      useNewUrlParser: true/*useMongoClient : true*/ }); // .then( a => console.log('mongoose connect ok'))
   var db = mongoose.connection;
   var mgopen = new Promise(function (resolve, reject) {
     //db.on.setMaxListeners(0);

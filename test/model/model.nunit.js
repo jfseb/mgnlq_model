@@ -15,7 +15,6 @@ var Model = require(root + '/model/model.js');
 
 var IfMatch = require(root + '/match/ifmatch.js');
 var EnumRuleType = IfMatch.EnumRuleType;
-var WordType = IfMatch.WordType;
 
 //var modelPath = 'node_modules/testmodel/';
 //var testmodelPath = 'node_modules/mgnlq_testmodel/testmodel/';

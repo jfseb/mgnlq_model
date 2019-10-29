@@ -7,7 +7,11 @@ const debugf = require("debugf");
 var debuglog = debugf('model');
 function openMongoose(mongoose, mongoConnectionString) {
     console.log(' mongoose.connect ' + mongoConnectionString);
-    mongoose.connect(mongoConnectionString || 'mongodb://localhost/nodeunit', { useUnifiedTopology: true, useNewUrlParser: true /*useMongoClient : true*/ }); // .then( a => console.log('mongoose connect ok'))
+    mongoose.connect(mongoConnectionString || 'mongodb://localhost/nodeunit', {
+        useFindAndModify: true,
+        useUnifiedTopology: true,
+        useNewUrlParser: true /*useMongoClient : true*/
+    }); // .then( a => console.log('mongoose connect ok'))
     var db = mongoose.connection;
     var mgopen = new Promise(function (resolve, reject) {
         //db.on.setMaxListeners(0);

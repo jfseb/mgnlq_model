@@ -9,9 +9,10 @@ var sourcemaps = require('gulp-sourcemaps');
  * Directory containing generated sources which still contain
  * JSDOC etc.
  */
-// var genDir = 'gen'
 var srcDir = 'src';
 var testDir = 'test';
+
+var sourcemaproot = '/projects/nodejs/botbuilder/mgnlq_model/';
 
 gulp.task('watch', function () {
   gulp.watch([srcDir + '/**/*.js', testDir + '/**/*.js', srcDir + '/**/*.tsx', srcDir + '/**/*.ts', 'gulpfile.js'],
@@ -21,11 +22,10 @@ gulp.task('watch', function () {
 /**
  * compile tsc (including srcmaps)
  * @input srcDir
- * @output genDir
+ * @output js
  */
 gulp.task('tsc', function () {
-  var tsProject = ts.createProject('tsconfig.json', { inlineSourceMap: true
-  });
+  var tsProject = ts.createProject('tsconfig.json', { inlineSourceMap: true });
   var tsResult = tsProject.src() // gulp.src('lib/*.ts')
     .pipe(sourcemaps.init()) // This means sourcemaps will be generated
     .pipe(tsProject());
@@ -33,13 +33,13 @@ gulp.task('tsc', function () {
   return tsResult.js
     .pipe(sourcemaps.write('.', {
       sourceRoot: function (file) {
-        file.sourceMap.sources[0] = '/projects/nodejs/botbuilder/mgnlq_model/src/' + file.sourceMap.sources[0];
+        file.sourceMap.sources[0] = sourcemaproot + 'src/' + file.sourceMap.sources[0];
         // console.log('here is************* file' + JSON.stringify(file, undefined, 2))
         return 'ABC';
       },
       mapSources: function (src) {
-        console.log('here we remap' + src);
-        return '/projects/nodejs/botbuilder/mgnlq_model/' + src;
+        //console.log('here we remap' + src);
+        return /* sourcemaproot +*/ src;
       }}
     )) // ,  { sourceRoot: './' } ))
     // Now the sourcemaps are added to the .js file
@@ -116,7 +116,7 @@ const eslint = require('gulp-eslint');
 gulp.task('eslint', () => {
   // ESLint ignores files with "node_modules" paths.
   // So, it's best to have gulp ignore the directory as well.
-  // Also, Be sure to return the stream from the task
+  // Also, Be sure to return the stream from the task;
   // Otherwise, the task may end before the stream has finished.
   return gulp.src(['src/**/*.js', 'test/**/*.js', 'gulpfile.js'])
     // eslint() attaches the lint output to the "eslint" property

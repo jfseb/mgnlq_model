@@ -36,7 +36,10 @@ via
 ```
 node js/makedb.js
 ```
-or npm load_data
+or
+```
+npm run load_data
+```
 
 a mongo db instance is created,
 The name of the DB and the source data is controlled via the environment parameters:

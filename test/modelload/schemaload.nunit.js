@@ -26,7 +26,8 @@ exports.testSchemaLoadNames = function (test) {
     'r3trans',
     'fioriapps',
     'sobj_tables',
-    'fioribecatalogs']);
+    'fioribecatalogs',
+    'demomdls']);
   test.done();
 };
 
@@ -304,7 +305,8 @@ exports.testLoadModelNames = function (test) {
     'r3trans',
     'fioriapps',
     'sobj_tables',
-    'fioribecatalogs']);
+    'fioribecatalogs',
+    'demomdls']);
   test.done();
 };
 
