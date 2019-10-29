@@ -30,7 +30,7 @@ export interface IPromptDescription {
     required: boolean;
 }
 export declare const aOperatorNames: string[];
-export declare type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having";
+export declare type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having" | "with more than" | "with less than" | "with exactly";
 export interface IOperator {
     operator: OperatorName;
     code: string;
