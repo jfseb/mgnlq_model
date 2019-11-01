@@ -466,7 +466,7 @@ exports.testgetExpandedRecordsFull = function (test) {
       test.deepEqual(res.length, 7);
       res.sort(Model.sortFlatRecords);
       test.deepEqual(res[0].orbits, 'Sun');
-      test.deepEqual(Object.keys(res[0]).length, 98, ' correct number of categories');
+      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of categories');
       test.done();
       Model.releaseModel(theModel);
     });
@@ -505,7 +505,7 @@ exports.testgetExpandedRecordsFullArray = function (test) {
       test.deepEqual(res.length, 98);
       res.sort(Model.sortFlatRecords);
       test.deepEqual(res[0].category, '_url');
-      test.deepEqual(Object.keys(res[0]).length, 11, ' correct number of models');
+      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of models');
       test.done();
       Model.releaseModel(theModel);
     });
@@ -518,7 +518,7 @@ exports.testgetExpandedRecordsFullArray2 = function (test) {
       test.deepEqual(res.length, 98);
       res.sort(Model.sortFlatRecords);
       test.deepEqual(res[0].category, '_url');
-      test.deepEqual(Object.keys(res[0]).length, 11, ' correct number of categories');
+      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of categories');
       test.done();
       Model.releaseModel(theModel);
     });
@@ -676,12 +676,12 @@ exports.testModelGetDomainIndexSafeThrows2 = function (test) {
   test.done();
 };
 
-exports.testModelGetDomainIndexSafe = function (test) {
+exports.testModelGetDomainIndexSafe2 = function (test) {
   getModel().then(theModel => {
     var res = Model.getDomainBitIndexSafe('IUPAC', theModel);
     test.equal(res, 0x0010, 'IUPAC code ');
-    var res2 = Model.getDomainsForBitField(theModel, 0x0004);
-    test.equal(res2, 'Fiori Backend Catalogs', 'IUPAC code ');
+    var res2 = Model.getDomainsForBitField(theModel, 0x0010);
+    test.equal(res2, 'IUPAC' );
     test.done();
     Model.releaseModel(theModel);
   });
