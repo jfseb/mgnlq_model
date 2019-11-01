@@ -414,6 +414,7 @@ function loadModelDataMongo(modelHandle, oMdl, sModelName, oModel) {
         var category = categoryRec.category;
         var wordindex = categoryRec.wordindex;
         if (!wordindex) {
+            debuglog(() => '  ' + sModelName + ' ' + category + ' is not word indexed!');
             return Promise.resolve(true);
         }
         else {
@@ -1396,6 +1397,7 @@ function getShowURICategoriesForDomain(theModel, domain) {
     var modelName = getModelNameForDomain(theModel.mongoHandle, domain);
     var allcats = getResultAsArray(theModel, MetaF.Domain(domain), MetaF.Relation(Meta.RELATION_hasCategory));
     var doc = theModel.mongoHandle.modelDocs[modelName];
+    console.log(' document morel ' + JSON.stringify(doc._categories));
     var res = doc._categories.filter(cat => cat.showURI).map(cat => cat.category);
     return res;
 }

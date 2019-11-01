@@ -13,7 +13,13 @@ exports.ERR_NO_KNOWN_WORD = "NO_KNOWN_WORD";
 exports.ERR_EMPTY_INPUT = "EMPTY_INPUT";
 ;
 ;
-exports.aOperatorNames = ["starting with", "ending with", "containing", "excluding", "having", "being"];
+exports.aOperatorNames = ["starting with", "ending with",
+    "containing", "excluding", "having", "being",
+    "more than", "less than", "exactly"
+];
+exports.aAnySuccessorOperatorNames = ["starting with", "ending with",
+    "containing", "excluding", "having", "being"
+];
 ;
 exports.WORDTYPE = {
     FILLER: "I",

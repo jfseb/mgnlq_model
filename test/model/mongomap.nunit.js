@@ -16,14 +16,15 @@ var MongoUtils  = require(root + '/utils/mongo.js');
 var eSchemaSOBJ_Tables = Schemaload.loadExtendedMongooseSchema(testmodelPath, 'sobj_tables');
 var eDocSOBJ = Schemaload.loadModelDoc(testmodelPath, 'sobj_tables');
 
+var mgnlq_testmodel_replay = require('mgnlq_testmodel_replay');
 
 var mode = 'REPLAY';
-if (process.env.MGNLQ_TESTMODEL_REPLAY) {
+if (process.env[ mgnlq_testmodel_replay.ENV_NAME_MONGO_RECORD_REPLAY ] /*.MGNLQ_TESTMODEL_REPLAY*/ ) {
   mode = 'RECORD';
 }
 
 var mongoose = require('mongoose_record_replay').instrumentMongoose(require('mongoose'),
-  'node_modules/mgnlq_testmodel_replay/mgrecrep/',
+  mgnlq_testmodel_replay.MONGOOSE_RECORD_REPLAY_FOLDER, // VN'node_modules/mgnlq_testmodel_replay/mgrecrep/',
   mode);
 
 // load distinct values from model

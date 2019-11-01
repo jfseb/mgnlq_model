@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "5dbc49e6a32e0923f23840c8",
+    "modelname": "iupacs",
+    "__v": 0,
+    "index": {
+      "element_name": "text",
+      "element_number": "text"
+    },
+    "props": {
+      "element_name": {
+        "type": "String",
+        "trim": true,
+        "_m_category": "element name",
+        "index": true
+      },
+      "element_symbol": {
+        "type": "String",
+        "trim": true,
+        "_m_category": "element symbol",
+        "index": true
+      },
+      "atomic_weight": {
+        "type": "String",
+        "trim": true,
+        "_m_category": "atomic weight"
+      },
+      "element_number": {
+        "type": "String",
+        "trim": true,
+        "_m_category": "element number",
+        "index": true
+      },
+      "_synonyms": [
+        {
+          "category": {
+            "type": "String",
+            "trim": true,
+            "index": false
+          },
+          "fact": {
+            "type": "String",
+            "trim": true,
+            "index": false
+          },
+          "synonyms": [
+            {
+              "type": "String",
+              "trim": true,
+              "index": false
+            }
+          ]
+        }
+      ]
+    },
+    "collectionname": "iupacs",
+    "mongoosemodelname": "iupacs",
+    "domain": "IUPAC"
+  }
+]

@@ -40,8 +40,21 @@ export interface IPromptDescription {
   required: boolean
 }
 
-export const aOperatorNames = ["starting with", "ending with", "containing", "excluding", "having", "being"];
-export type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having";
+
+
+
+export const aOperatorNames = ["starting with", "ending with",
+                          "containing", "excluding", "having", "being"
+                          ,"more than","less than" ,"exactly"
+                        ];
+export type OperatorName = "starting with" | "ending with"
+                        | "containing" | "being" | "excluding" | "having"
+                        | "more than" | "less than" | "exactly";
+
+export const aAnySuccessorOperatorNames = ["starting with", "ending with",
+                        "containing", "excluding", "having", "being"
+                      ];
+
 
 export interface IOperator {
   operator : OperatorName,

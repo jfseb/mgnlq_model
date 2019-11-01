@@ -18,6 +18,8 @@ src
 test
 **/*.map
 
+*.txt
+*.tt
 resources/model/shouldrecognize.txt
 env*.cmd
 test*

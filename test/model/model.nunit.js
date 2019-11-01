@@ -3,6 +3,8 @@
 var process = require('process');
 var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../js';
 
+const mongoosex = require("mongoose");
+mongoosex.Promise = global.Promise;
 
 var fs = require('fs');
 
@@ -15,6 +17,8 @@ var Model = require(root + '/model/model.js');
 
 var IfMatch = require(root + '/match/ifmatch.js');
 var EnumRuleType = IfMatch.EnumRuleType;
+
+var testmodel_replay = require('mgnlq_testmodel_replay')
 
 //var modelPath = 'node_modules/testmodel/';
 //var testmodelPath = 'node_modules/mgnlq_testmodel/testmodel/';
@@ -76,10 +80,17 @@ exports.testhasSeenRuleWithFact = function (test) {
 
 var _ = require('lodash');
 
+/*
 var mode = 'REPLAY';
 if (process.env.MGNLQ_TESTMODEL_REPLAY) {
   mode = 'RECORD';
-}
+}*/
+
+
+
+var getModel = require('mgnlq_testmodel_replay').getTestModel;
+
+/*
 
 var mongoose = require('mongoose_record_replay').instrumentMongoose(require('mongoose'),
   'node_modules/mgnlq_testmodel_replay/mgrecrep/',
@@ -94,11 +105,11 @@ function getModel() {
   }
   return Model.loadModelsOpeningConnection(mongoose, 'mongodb://localhost/testdb');
 }
+*/
 
 //var getModel() = Model.loadModelsOpeningConnection(mongoose,'mongodb://localhost/testdb'  );
 
-var cats = [
-  'AppDocumentationLinkKW',
+var cats = ['AppDocumentationLinkKW',
   'AppKey',
   'AppName',
   'ApplicationComponent',
@@ -140,6 +151,8 @@ var cats = [
   'albedo',
   'appId',
   'atomic weight',
+  'besitzer',
+  'betriebsende',
   'category',
   'category description',
   'category synonyms',
@@ -158,8 +171,10 @@ var cats = [
   'element symbol',
   'exactmatch',
   'fiori intent',
+  'gründungsjahr',
   'isPublished',
   'mass',
+  'nachfolger',
   'object name',
   'object type',
   'orbit radius',
@@ -169,8 +184,11 @@ var cats = [
   'recordKey',
   'releaseId',
   'releaseName',
+  'sender',
+  'sendertyp',
   'showURI',
   'showURIRank',
+  'standort',
   'systemId',
   'tcode',
   'transaction description',
@@ -196,7 +214,7 @@ exports.testModel = function (test) {
       var delta2 = _.difference(cats, res);
       test.deepEqual(delta2, [], 'spurious expected');
       test.deepEqual(res, cats, 'correct full categories');
-      MongoUtils.disconnect(mongoose);
+      Model.releaseModel(amodel);
       test.done();
     }
   ).catch((err) => {
@@ -382,7 +400,6 @@ exports.testgetAllRecordCategoriesForTargetCategories2 = function (test) {
     });
     test.done();
     Model.releaseModel(theModel);
-    //MongoUtils.disconnect(mongoose);
   });
 };
 
@@ -401,8 +418,8 @@ exports.testgetAllRecordCategoriesForTargetCategory = function (test) {
         'element properties': true
       }
     });
+    Model.releaseModel(theModel);
     test.done();
-    MongoUtils.disconnect(mongoose);
   });
 };
 
@@ -424,7 +441,7 @@ exports.testgetExpandedRecordsForCategory = function (test) {
       res.sort(Model.sortFlatRecords);
       test.deepEqual(res[0].orbits, 'Alpha Centauri C');
       test.done();
-      MongoUtils.disconnect(mongoose);
+      Model.releaseModel(theModel);
     });
   });
 };
@@ -432,13 +449,13 @@ exports.testgetExpandedRecordsForCategory = function (test) {
 exports.testgetExpandedRecordsForCategoryMetamodel = function (test) {
   getModel().then(theModel => {
     Model.getExpandedRecordsForCategory(theModel, 'metamodel', 'category').then((res) => {
-      test.deepEqual(res.length, 91);
+      test.deepEqual(res.length, 98);
       res.sort(Model.sortFlatRecords);
       debuglog(() => JSON.stringify(res));
       test.deepEqual(res[0].category, '_url');
       test.deepEqual(res[10].category, 'atomic weight');
       test.done();
-      MongoUtils.disconnect(mongoose);
+      Model.releaseModel(theModel);
     });
   });
 };
@@ -449,9 +466,9 @@ exports.testgetExpandedRecordsFull = function (test) {
       test.deepEqual(res.length, 7);
       res.sort(Model.sortFlatRecords);
       test.deepEqual(res[0].orbits, 'Sun');
-      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of categories');
+      test.deepEqual(Object.keys(res[0]).length, 98, ' correct number of categories');
       test.done();
-      MongoUtils.disconnect(mongoose);
+      Model.releaseModel(theModel);
     });
   });
 };
@@ -485,12 +502,12 @@ exports.testgetExpandedRecordsFullArray = function (test) {
     }
 
     Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
-      test.deepEqual(res.length, 91);
+      test.deepEqual(res.length, 98);
       res.sort(Model.sortFlatRecords);
       test.deepEqual(res[0].category, '_url');
-      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of categories');
+      test.deepEqual(Object.keys(res[0]).length, 11, ' correct number of models');
       test.done();
-      MongoUtils.disconnect(mongoose);
+      Model.releaseModel(theModel);
     });
   });
 };
@@ -498,12 +515,12 @@ exports.testgetExpandedRecordsFullArray = function (test) {
 exports.testgetExpandedRecordsFullArray2 = function (test) {
   getModel().then(theModel => {
     Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
-      test.deepEqual(res.length, 91);
+      test.deepEqual(res.length, 98);
       res.sort(Model.sortFlatRecords);
       test.deepEqual(res[0].category, '_url');
-      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of categories');
+      test.deepEqual(Object.keys(res[0]).length, 11, ' correct number of categories');
       test.done();
-      MongoUtils.disconnect(mongoose);
+      Model.releaseModel(theModel);
     });
   });
 };
@@ -552,11 +569,11 @@ exports.testgetCategoryFilterMultDomains = function (test) {
           releaseId: true,
           releaseName: true,
           uri: true,
-          uri_rank : true
+          uri_rank: true
         }
       });
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -582,7 +599,7 @@ exports.testgetCAtegoryFilterOneDomain = function (test) {
       }
     });
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -591,17 +608,17 @@ exports.testgetCAtegoryFilterOneDomain = function (test) {
 exports.testModelGetDomainIndex = function (test) {
   getModel().then(theModel => {
     var res = Model.getDomainBitIndex('IUPAC', theModel);
-    test.equal(res, 0x0008, 'IUPAC code ');
+    test.equal(res, 0x0010, 'IUPAC code ');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 exports.testModelGetDomainIndexNotPresent = function (test) {
   getModel().then(theModel => {
     var res = Model.getDomainBitIndex('NOTPRESENT', theModel);
-    test.equal(res, 0x100, 'abc NOTPRESENT 4096');
+    test.equal(res, 0x200, 'abc NOTPRESENT 4096');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -624,9 +641,9 @@ exports.testModelGetDomainIndexThrows = function (test) {
 exports.testModelGetDomainIndexSafe = function (test) {
   getModel().then(theModel => {
     var res = Model.getDomainBitIndexSafe('IUPAC', theModel);
-    test.equal(res, 0x0008, 'IUPAC code ');
+    test.equal(res, 0x0010, 'IUPAC code ');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -640,7 +657,7 @@ exports.testModelGetDomainIndexSafeNotPresent = function (test) {
     }
     test.equal(res, undefined, 'abc NOTPRESENT 4096');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -662,11 +679,11 @@ exports.testModelGetDomainIndexSafeThrows2 = function (test) {
 exports.testModelGetDomainIndexSafe = function (test) {
   getModel().then(theModel => {
     var res = Model.getDomainBitIndexSafe('IUPAC', theModel);
-    test.equal(res, 0x0008, 'IUPAC code ');
-    var res2 = Model.getDomainsForBitField( theModel, 0x0004);
+    test.equal(res, 0x0010, 'IUPAC code ');
+    var res2 = Model.getDomainsForBitField(theModel, 0x0004);
     test.equal(res2, 'Fiori Backend Catalogs', 'IUPAC code ');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -679,7 +696,7 @@ exports.testGetModelNameForDomain = function (test) {
     var coll = Model.getMongoCollectionNameForDomain(theModel, 'FioriBOM');
     test.deepEqual(coll, 'fioriapps');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -693,7 +710,7 @@ exports.testGetModelNameForDomainNotPresent = function (test) {
       test.equal(1, 1);
     }
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -803,9 +820,9 @@ exports.testModelHasDomainIndexInDomains = function (test) {
       //console.log(all);
       all = all | idx;
     });
-    test.equal(all, 0x00FF, ' test Inddex in domains 4095');
+    test.equal(all, 0x01FF, ' test Inddex in domains 4095');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -819,9 +836,9 @@ exports.testModelHasDomainIndexInAllRules = function (test) {
       //console.log(all);
       all = all | idx;
     });
-    test.equal(all, 0x00FF, ' Flags Index In Rules 4095');
+    test.equal(all, 0x01FF, ' Flags Index In Rules 4095');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -836,19 +853,18 @@ exports.testModelHasNumberRules = function (test) {
       all = all | idx;
     });
     var cnt = 0;
-    theModel.mRules.forEach( (orule) => {
-      if ( orule.type === EnumRuleType.REGEXP )
-      {
-        var m = orule.regexp.exec( '123' );
-        test.equal( true, !!m);
-        test.equal(m[orule.matchIndex], '123' );
+    theModel.mRules.forEach((orule) => {
+      if (orule.type === EnumRuleType.REGEXP) {
+        var m = orule.regexp.exec('123');
+        test.equal(true, !!m);
+        test.equal(m[orule.matchIndex], '123');
         ++cnt;
       }
     });
     test.equal(cnt, 1);
-    test.equal(all, 0x00FF, ' Flags Index In Rules 4095');
+    test.equal(all, 0x01FF, ' Flags Index In Rules 4095');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -917,7 +933,7 @@ exports.testgetCategoriesForDomainBadDomain = function (test) {
       test.deepEqual(e.toString().indexOf('notpresent') >= 0, true, 'flawed domain listed');
     }
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -932,7 +948,7 @@ exports.testgetDomainsForCategoryBadCategory = function (test) {
       test.deepEqual(e.toString().indexOf('notpresent') >= 0, true, 'flawed category listed');
     }
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -942,9 +958,9 @@ exports.testgetAllDomainsBintIndex = function (test) {
 
     var u = theModel;
     var res = Model.getAllDomainsBitIndex(u);
-    test.equal(res, 0x000FF);
+    test.equal(res, 0x01FF);
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -970,7 +986,7 @@ exports.testgetCategoriesForDomain = function (test) {
         'visual luminosity',
         'visual magnitude'], 'correct categories returned');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 
 };
@@ -986,7 +1002,7 @@ exports.testgetshowURICategoriesForDomain = function (test) {
     test.deepEqual(res,
       ['_url'], 'correct categories returned');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -999,7 +1015,7 @@ exports.testgetshowURIRankCategoriesForDomain = function (test) {
     test.deepEqual(res,
       ['uri_rank'], 'correct categories returned');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -1013,7 +1029,7 @@ exports.testgetDomainsForCategory = function (test) {
     test.deepEqual(res,
       ['IUPAC', 'Philosophers elements'], 'correct data read');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 
 };
@@ -1032,7 +1048,7 @@ exports.testModelCheckExactOnly = function (test) {
     });
     test.equal(res.length, 186 /*431*/, 'correct flag applied');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -1102,18 +1118,17 @@ exports.testWordCategorizationFactCat = function (test) {
     var earth = theModel.rules.wordMap['earth'];
     //console.log(earth);
     test.deepEqual(earth, {
-      bitindex: 33,
+      bitindex: 65,
       rules:
-      [
-        {
+        [{
           category: 'element name',
           matchedString: 'earth',
           type: 0,
           word: 'earth',
-          bitindex: 32,
-          bitSentenceAnd: 32,
-          wordType: 'F',
+          bitindex: 64,
+          bitSentenceAnd: 64,
           exactOnly: false,
+          wordType: 'F',
           _ranking: 0.95,
           lowercaseword: 'earth'
         },
@@ -1124,15 +1139,15 @@ exports.testWordCategorizationFactCat = function (test) {
           word: 'earth',
           bitindex: 1,
           bitSentenceAnd: 1,
-          wordType: 'F',
           exactOnly: false,
+          wordType: 'F',
           _ranking: 0.95,
           lowercaseword: 'earth'
         }]
     }
     );
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 
 };
@@ -1143,46 +1158,46 @@ exports.testWordCategorizationCategory = function (test) {
     //console.log(earth);
     test.deepEqual(ename,
       {
-        bitindex: 56,
+        bitindex: 112,
         rules:
-        [{
-          category: 'category',
-          matchedString: 'element name',
-          type: 0,
-          word: 'element name',
-          lowercaseword: 'element name',
-          bitindex: 8,
-          wordType: 'C',
-          bitSentenceAnd: 8,
-          _ranking: 0.95
-        },
-        {
-          category: 'category',
-          matchedString: 'element name',
-          type: 0,
-          word: 'element name',
-          lowercaseword: 'element name',
-          bitindex: 32,
-          wordType: 'C',
-          bitSentenceAnd: 32,
-          _ranking: 0.95
-        },
-        {
-          category: 'category',
-          matchedString: 'element name',
-          type: 0,
-          word: 'element name',
-          bitindex: 16,
-          bitSentenceAnd: 16,
-          exactOnly: false,
-          wordType: 'F',
-          _ranking: 0.95,
-          lowercaseword: 'element name'
-        }]
+          [{
+            category: 'category',
+            matchedString: 'element name',
+            type: 0,
+            word: 'element name',
+            lowercaseword: 'element name',
+            bitindex: 16,
+            wordType: 'C',
+            bitSentenceAnd: 16,
+            _ranking: 0.95
+          },
+          {
+            category: 'category',
+            matchedString: 'element name',
+            type: 0,
+            word: 'element name',
+            lowercaseword: 'element name',
+            bitindex: 64,
+            wordType: 'C',
+            bitSentenceAnd: 64,
+            _ranking: 0.95
+          },
+          {
+            category: 'category',
+            matchedString: 'element name',
+            type: 0,
+            word: 'element name',
+            bitindex: 32,
+            bitSentenceAnd: 32,
+            exactOnly: false,
+            wordType: 'F',
+            _ranking: 0.95,
+            lowercaseword: 'element name'
+          }]
       }
     );
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -1191,115 +1206,103 @@ exports.testWordCategorizationMetaword_category = function (test) {
     var earth = theModel.rules.wordMap['category'];
     //console.log(earth);
     test.deepEqual(earth, {
-      bitindex: 144,
+      bitindex: 288,
       rules:
-      [{
-        category: 'category',
-        matchedString: 'category',
-        type: 0,
-        word: 'category',
-        lowercaseword: 'category',
-        bitindex: 16,
-        wordType: 'C',
-        bitSentenceAnd: 16,
-        _ranking: 0.95
-      },
-      {
-        category: 'category',
-        matchedString: 'category',
-        type: 0,
-        word: 'category',
-        lowercaseword: 'category',
-        bitindex: 128,
-        wordType: 'C',
-        bitSentenceAnd: 128,
-        _ranking: 0.95
-      },
-      {
-        category: 'category',
-        matchedString: 'category',
-        type: 0,
-        word: 'category',
-        bitindex: 16,
-        bitSentenceAnd: 16,
-        exactOnly: false,
-        wordType: 'F',
-        _ranking: 0.95,
-        lowercaseword: 'category'
-      },
-      /* {
-         category: 'category',
-         matchedString: 'category',
-         type: 0,
-         word: 'category',
-         bitindex: 16,
-         bitSentenceAnd: 16,
-         exactOnly: false,
-         wordType: 'F',
-         _ranking: 0.95,
-         lowercaseword: 'category'
-       }, */
-      {
-        category: 'category',
-        matchedString: 'category synonyms',
-        bitindex: 16,
-        bitSentenceAnd: 16,
-        wordType: 'C',
-        word: 'category',
-        type: 0,
-        lowercaseword: 'category',
-        _ranking: 0.95,
-        range:
+        [{
+          category: 'category',
+          matchedString: 'category',
+          type: 0,
+          word: 'category',
+          lowercaseword: 'category',
+          bitindex: 32,
+          wordType: 'C',
+          bitSentenceAnd: 32,
+          _ranking: 0.95
+        },
         {
-          low: 0,
-          high: 1,
-          rule:
-          {
-            category: 'category',
-            matchedString: 'category synonyms',
-            type: 0,
-            word: 'category synonyms',
-            lowercaseword: 'category synonyms',
-            bitindex: 16,
-            wordType: 'C',
-            bitSentenceAnd: 16,
-            _ranking: 0.95
-          }
-        }
-      },
-      {
-        category: 'category',
-        matchedString: 'category synonyms',
-        bitindex: 16,
-        bitSentenceAnd: 16,
-        wordType: 'F',
-        word: 'category',
-        type: 0,
-        lowercaseword: 'category',
-        _ranking: 0.95,
-        range:
+          category: 'category',
+          matchedString: 'category',
+          type: 0,
+          word: 'category',
+          lowercaseword: 'category',
+          bitindex: 256,
+          wordType: 'C',
+          bitSentenceAnd: 256,
+          _ranking: 0.95
+        },
         {
-          low: 0,
-          high: 1,
-          rule:
+          category: 'category',
+          matchedString: 'category',
+          type: 0,
+          word: 'category',
+          bitindex: 32,
+          bitSentenceAnd: 32,
+          exactOnly: false,
+          wordType: 'F',
+          _ranking: 0.95,
+          lowercaseword: 'category'
+        },
+        {
+          category: 'category',
+          matchedString: 'category synonyms',
+          bitindex: 32,
+          bitSentenceAnd: 32,
+          wordType: 'C',
+          word: 'category',
+          type: 0,
+          lowercaseword: 'category',
+          _ranking: 0.95,
+          range:
           {
-            category: 'category',
-            matchedString: 'category synonyms',
-            type: 0,
-            word: 'category synonyms',
-            bitindex: 16,
-            bitSentenceAnd: 16,
-            exactOnly: false,
-            wordType: 'F',
-            _ranking: 0.95,
-            lowercaseword: 'category synonyms'
+            low: -0,
+            high: 1,
+            rule:
+            {
+              category: 'category',
+              matchedString: 'category synonyms',
+              type: 0,
+              word: 'category synonyms',
+              lowercaseword: 'category synonyms',
+              bitindex: 32,
+              wordType: 'C',
+              bitSentenceAnd: 32,
+              _ranking: 0.95
+            }
           }
-        }
-      }]
+        },
+        {
+          category: 'category',
+          matchedString: 'category synonyms',
+          bitindex: 32,
+          bitSentenceAnd: 32,
+          wordType: 'F',
+          word: 'category',
+          type: 0,
+          lowercaseword: 'category',
+          _ranking: 0.95,
+          range:
+          {
+            low: -0,
+            high: 1,
+            rule:
+            {
+              category: 'category',
+              matchedString: 'category synonyms',
+              type: 0,
+              word: 'category synonyms',
+              bitindex: 32,
+              bitSentenceAnd: 32,
+              exactOnly: false,
+              wordType: 'F',
+              _ranking: 0.95,
+              lowercaseword: 'category synonyms'
+            }
+          }
+        }]
     }
     );
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -1311,46 +1314,46 @@ exports.testWordCategorizationMetaword_Domain = function (test) {
     //console.log(earth);
     test.deepEqual(earth,
       {
-        bitindex: 272,
+        bitindex: 544,
         rules:
-        [{
-          category: 'category',
-          matchedString: 'domain',
-          type: 0,
-          word: 'domain',
-          lowercaseword: 'domain',
-          bitindex: 16,
-          wordType: 'C',
-          bitSentenceAnd: 16,
-          _ranking: 0.95
-        },
-        {
-          category: 'category',
-          matchedString: 'domain',
-          type: 0,
-          word: 'domain',
-          bitindex: 16,
-          bitSentenceAnd: 16,
-          exactOnly: false,
-          wordType: 'F',
-          _ranking: 0.95,
-          lowercaseword: 'domain'
-        },
-        {
-          category: 'meta',    // is this still needed?
-          matchedString: 'domain',
-          type: 0,
-          word: 'domain',
-          bitindex: 256,
-          wordType: 'M',
-          bitSentenceAnd: 255,
-          _ranking: 0.95,
-          lowercaseword: 'domain'
-        }]
+          [{
+            category: 'category',
+            matchedString: 'domain',
+            type: 0,
+            word: 'domain',
+            lowercaseword: 'domain',
+            bitindex: 32,
+            wordType: 'C',
+            bitSentenceAnd: 32,
+            _ranking: 0.95
+          },
+          {
+            category: 'category',
+            matchedString: 'domain',
+            type: 0,
+            word: 'domain',
+            bitindex: 32,
+            bitSentenceAnd: 32,
+            exactOnly: false,
+            wordType: 'F',
+            _ranking: 0.95,
+            lowercaseword: 'domain'
+          },
+          {
+            category: 'meta',
+            matchedString: 'domain',
+            type: 0,
+            word: 'domain',
+            bitindex: 512,
+            wordType: 'M',
+            bitSentenceAnd: 511,
+            _ranking: 0.95,
+            lowercaseword: 'domain'
+          }]
       }
     );
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -1358,19 +1361,18 @@ exports.testWordCategorizationMetaword_Domain = function (test) {
 
 exports.testWordCategorizationDomainSynonyms = function (test) {
   getModel().then(theModel => {
-    var earth = theModel.rules.wordMap['fiori bom'];
+    var fbom = theModel.rules.wordMap['fiori bom'];
     //console.log(earth);
-    test.deepEqual(earth, {
-      bitindex: 18,
+    test.deepEqual(fbom, {
+      bitindex: 36,
       rules:
-      [
-        {
+        [{
           category: 'domain',
           matchedString: 'FioriBOM',
           type: 0,
           word: 'fiori bom',
-          bitindex: 2,
-          bitSentenceAnd: 2,
+          bitindex: 4,
+          bitSentenceAnd: 4,
           wordType: 'D',
           _ranking: 0.95,
           lowercaseword: 'fiori bom'
@@ -1380,8 +1382,8 @@ exports.testWordCategorizationDomainSynonyms = function (test) {
           matchedString: 'FioriBOM',
           type: 0,
           word: 'fiori bom',
-          bitindex: 16,
-          bitSentenceAnd: 16,
+          bitindex: 32,
+          bitSentenceAnd: 32,
           wordType: 'F',
           _ranking: 0.95,
           lowercaseword: 'fiori bom'
@@ -1389,7 +1391,7 @@ exports.testWordCategorizationDomainSynonyms = function (test) {
     }
     );
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -1399,35 +1401,35 @@ exports.testWordCategorizationCategorySynonyms = function (test) {
     var fbom = theModel.rules.wordMap['primary odata service'];
     //console.log(earth);
     test.deepEqual(fbom, {
-      bitindex: 18,
+      bitindex: 36,
       rules:
-      [{
-        category: 'category',
-        matchedString: 'PrimaryODataServiceName',
-        type: 0,
-        word: 'Primary OData Service',
-        bitindex: 2,
-        bitSentenceAnd: 2,
-        wordType: 'C',
-        _ranking: 0.95,
-        lowercaseword: 'primary odata service'
-      },
-      {
-        category: 'category',
-        matchedString: 'PrimaryODataServiceName',
-        type: 0,
-        word: 'Primary OData Service',
-        bitindex: 16,
-        bitSentenceAnd: 16,
-        wordType: 'F',
-        _ranking: 0.95,
-        lowercaseword: 'primary odata service'
-      }
-      ]
+        [{
+          category: 'category',
+          matchedString: 'PrimaryODataServiceName',
+          type: 0,
+          word: 'Primary OData Service',
+          bitindex: 4,
+          bitSentenceAnd: 4,
+          wordType: 'C',
+          _ranking: 0.95,
+          lowercaseword: 'primary odata service'
+        },
+        {
+          category: 'category',
+          matchedString: 'PrimaryODataServiceName',
+          type: 0,
+          word: 'Primary OData Service',
+          bitindex: 32,
+          bitSentenceAnd: 32,
+          wordType: 'F',
+          _ranking: 0.95,
+          lowercaseword: 'primary odata service'
+        }
+        ]
     }
     );
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 
 };
@@ -1440,26 +1442,129 @@ exports.testWordCategorizationOperator = function (test) {
     var op = theModel.rules.wordMap['starting with'];
     //console.log(earth);
     test.deepEqual(op, {
-      bitindex: 256,
+      bitindex: 512,
       rules:
-      [
-        {
-          category: 'operator',
-          word: 'starting with',
-          lowercaseword: 'starting with',
-          type: 0,
-          matchedString: 'starting with',
-          bitindex: 256,
-          bitSentenceAnd: 255,
-          wordType: 'O',
-          _ranking: 0.9
-        }
-      ]
+        [
+          {
+            category: 'operator',
+            word: 'starting with',
+            lowercaseword: 'starting with',
+            type: 0,
+            matchedString: 'starting with',
+            bitindex: 512,
+            bitSentenceAnd: 511,
+            wordType: 'O',
+            _ranking: 0.9
+          }
+        ]
     });
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
+
+exports.testWordCategorizationOperatorMoreThan = function (test) {
+  getModel().then(theModel => {
+    var op = theModel.rules.wordMap['more than'];
+    //console.log(earth);
+    test.deepEqual(op, {
+      bitindex: 512,
+      rules:
+        [{
+          category: 'operator',
+          word: 'more than',
+          lowercaseword: 'more than',
+          type: 0,
+          matchedString: 'more than',
+          bitindex: 512,
+          bitSentenceAnd: 511,
+          wordType: 'O',
+          _ranking: 0.9
+        }]
+    }
+    );
+    test.done();
+    Model.releaseModel(theModel);
+  });
+};
+
+
+exports.testWordCategorizationOperatorMoreThanOPAlias = function (test) {
+  getModel().then(theModel => {
+    var op = theModel.rules.wordMap['which has more than'];
+    //console.log(earth);
+    test.deepEqual(op, {
+      bitindex: 512,
+      rules:
+        [{
+          category: 'operator',
+          word: 'which has more than',
+          lowercaseword: 'which has more than',
+          type: 0,
+          matchedString: 'more than',
+          bitindex: 512,
+          bitSentenceAnd: 511,
+          wordType: 'O',
+          _ranking: 0.9
+        }]
+    }
+    );
+    test.done();
+    Model.releaseModel(theModel);
+  });
+};
+
+exports.testWordCategorizationOnlyMultiFactNonFirst = function (test) {
+  getModel().then(theModel => {
+    var op = theModel.rules.wordMap['bremen'];
+    //console.log(earth);
+    test.deepEqual(op,
+      {
+        bitindex: 2,
+        rules:
+          [{
+            category: 'standort',
+            matchedString: 'Bremen',
+            type: 0,
+            word: 'Bremen',
+            bitindex: 2,
+            bitSentenceAnd: 2,
+            exactOnly: false,
+            wordType: 'F',
+            _ranking: 0.95,
+            lowercaseword: 'bremen'
+          }]
+      });
+    test.done();
+    Model.releaseModel(theModel);
+  });
+};
+
+exports.testWordCategorizationOperatorMultiFact2 = function (test) {
+  getModel().then(theModel => {
+    var op = theModel.rules.wordMap['münchen'];
+    //console.log(earth);
+    test.deepEqual(op, {
+      bitindex: 2,
+      rules:
+        [{
+          category: 'standort',
+          matchedString: 'München',
+          type: 0,
+          word: 'München',
+          bitindex: 2,
+          bitSentenceAnd: 2,
+          exactOnly: false,
+          wordType: 'F',
+          _ranking: 0.95,
+          lowercaseword: 'münchen'
+        }]
+    });
+    test.done();
+    Model.releaseModel(theModel);
+  });
+};
+
 
 
 
@@ -1469,24 +1574,24 @@ exports.testWordCategorizationFactCat2 = function (test) {
     //console.log(earth);
     test.deepEqual(earth,
       {
-        bitindex: 2,
+        bitindex: 4,
         rules:
-        [{
-          category: 'ApplicationComponent',
-          matchedString: 'CO-FIO',
-          type: 0,
-          word: 'CO-FIO',
-          bitindex: 2,
-          bitSentenceAnd: 2,
-          wordType: 'F',
-          _ranking: 0.95,
-          exactOnly: true,
-          lowercaseword: 'co-fio'
-        }]
+          [{
+            category: 'ApplicationComponent',
+            matchedString: 'CO-FIO',
+            type: 0,
+            word: 'CO-FIO',
+            bitindex: 4,
+            bitSentenceAnd: 4,
+            wordType: 'F',
+            _ranking: 0.95,
+            exactOnly: true,
+            lowercaseword: 'co-fio'
+          }]
       }
     );
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -1502,7 +1607,7 @@ exports.testModelTest2 = function (test) {
     fs.writeFileSync('logs/model.mRules.json', JSON.stringify(u.mRules, undefined, 2));
     test.equal(true, true, 'ok');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -1546,7 +1651,7 @@ exports.testModelGetColumns = function (test) {
         'element name'
       ], 'correct data read');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -1580,9 +1685,10 @@ exports.testModelHasDomains = function (test) {
         'Philosophers elements',
         'SAP Transaction Codes',
         'SOBJ Tables',
+        'demomdls',
         'metamodel'], 'correct data read');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };
 
@@ -1599,6 +1705,6 @@ exports.testModelAppConfigForEveryDomain = function (test) {
     });
     test.equal(res.length, 3 /*431*/, 'correct number');
     test.done();
-    MongoUtils.disconnect(mongoose);
+    Model.releaseModel(theModel);
   });
 };

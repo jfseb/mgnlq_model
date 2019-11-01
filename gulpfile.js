@@ -15,8 +15,8 @@ var testDir = 'test';
 var sourcemaproot = '/projects/nodejs/botbuilder/mgnlq_model/';
 
 gulp.task('watch', function () {
-  gulp.watch([srcDir + '/**/*.js', testDir + '/**/*.js', srcDir + '/**/*.tsx', srcDir + '/**/*.ts', 'gulpfile.js'],
-    ['tsc', 'eslint']);
+  return gulp.watch([srcDir + '/**/*.js', testDir + '/**/*.js', srcDir + '/**/*.tsx', srcDir + '/**/*.ts', 'gulpfile.js'],
+    gulp.series(['tsc', 'eslint']));
 });
 
 /**

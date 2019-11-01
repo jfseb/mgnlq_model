@@ -1,0 +1,10 @@
+[
+  "assignToGroupingWBSElementCollectively",
+  "createBalanceConfirmationForEmpties",
+  "evaluateEmptiesStock",
+  "maintain",
+  "maintainAuditArea",
+  "maintainRules",
+  "prepareSalesUseTaxesReportCA",
+  "prepareSalesUseTaxesReportUSA"
+]

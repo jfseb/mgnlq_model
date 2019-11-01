@@ -1,0 +1,108 @@
+[
+  {
+    "_id": "5db885970f684a20a047b5ab",
+    "modelname": "demomdls",
+    "__v": 0,
+    "columns": [
+      "sender",
+      "standort",
+      "sendertyp",
+      "gründungsjahr",
+      "betriebsende",
+      "nachfolger"
+    ],
+    "_categories": [
+      {
+        "category_synonyms": [
+          "name"
+        ],
+        "_id": "5dbc49e604edbc147889aab2",
+        "category": "sender",
+        "category_description": "sender",
+        "QBEColumnProps": {
+          "defaultWidth": 120,
+          "QBE": true,
+          "LUNRIndex": true
+        },
+        "wordindex": true
+      },
+      {
+        "category_synonyms": [
+          "senderstandort",
+          "produktionsort",
+          "betriebsstätte"
+        ],
+        "_id": "5dbc49e604edbc147889aab1",
+        "category": "standort",
+        "category_description": "standort",
+        "QBEColumnProps": {
+          "defaultWidth": 80,
+          "QBE": true,
+          "LUNRIndex": true
+        },
+        "wordindex": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aab0",
+        "category": "sendertyp",
+        "category_description": "sendertyp",
+        "QBEColumnProps": {
+          "defaultWidth": 60,
+          "QBE": true,
+          "LUNRIndex": true
+        },
+        "wordindex": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aaaf",
+        "category": "besitzer",
+        "category_description": "besitzer",
+        "QBEColumnProps": {
+          "defaultWidth": 60,
+          "QBE": true,
+          "LUNRIndex": true
+        },
+        "wordindex": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aaae",
+        "category": "gründungsjahr",
+        "category_description": "gründungsjahr",
+        "QBEColumnProps": {
+          "defaultWidth": 60,
+          "QBE": true,
+          "LUNRIndex": true
+        },
+        "wordindex": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aaad",
+        "category": "betriebsende",
+        "category_description": "betriebsende",
+        "QBEColumnProps": {
+          "defaultWidth": 60,
+          "QBE": true,
+          "LUNRIndex": true
+        },
+        "wordindex": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aaac",
+        "category": "nachfolger",
+        "category_description": "nachfolger",
+        "QBEColumnProps": {
+          "defaultWidth": 60,
+          "QBE": true,
+          "LUNRIndex": true
+        },
+        "wordindex": true
+      }
+    ],
+    "domain": "demomdls"
+  }
+]

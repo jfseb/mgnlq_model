@@ -64,6 +64,14 @@
           "type": "Boolean",
           "_m_category": "exactmatch"
         },
+        "showURI": {
+          "type": "Boolean",
+          "_m_category": "showURI"
+        },
+        "showURIRank": {
+          "type": "Boolean",
+          "_m_category": "showURIRank"
+        },
         "hidden": {
           "type": "Boolean",
           "_m_category": "hidden"

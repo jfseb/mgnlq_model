@@ -1,0 +1,121 @@
+[
+  {
+    "_id": "5925e323d3f66454a8cb6e00",
+    "modelname": "metamodels",
+    "__v": 0,
+    "collectionname": "metamodels",
+    "mongoosemodelname": "metamodels",
+    "domain": "metamodel",
+    "domain_description": "metamodel",
+    "_categories": [
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa5d",
+        "category": "uri",
+        "category_description": "link to domain description",
+        "QBEColumnProps": {
+          "QBE": true
+        },
+        "wordindex": false,
+        "exactmatch": false
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa5c",
+        "category": "domain",
+        "category_description": "a technical key, combination of appId and releaseId",
+        "QBEColumnProps": {
+          "QBE": true,
+          "LUNRIndex": true
+        },
+        "wordindex": true,
+        "exactmatch": false
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa5b",
+        "category": "domain description",
+        "category_description": "a technical key, combination of appId and releaseId",
+        "QBEColumnProps": {
+          "QBE": true
+        },
+        "exactmatch": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa5a",
+        "category": "category",
+        "category_description": "Object property",
+        "QBEColumnProps": {
+          "QBE": true,
+          "LUNRIndex": true
+        },
+        "wordindex": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa59",
+        "category": "category description",
+        "category_description": "Description of the category"
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa58",
+        "category": "QBE",
+        "category_description": "whether to include the category in QBE tables"
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa57",
+        "category": "LUNRIndex",
+        "category_description": "whether to include the category in a LUNR Index"
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa56",
+        "category": "wordindex",
+        "category_description": "whether to include the category in a LUNR Index"
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa55",
+        "category": "exactmatch",
+        "category_description": "whether a match on a given value has to be precise"
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa54",
+        "category": "showURI",
+        "category_description": "display uri"
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa53",
+        "category": "showURIRank",
+        "category_description": "display uri rank"
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa52",
+        "category": "category synonyms",
+        "category_description": "synonyms for the category"
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49dd04edbc147889aa51",
+        "category": "columns",
+        "category_description": "the columns in order which are shon in a table"
+      }
+    ],
+    "columns": [
+      "domain",
+      "category",
+      "exactmatch",
+      "domain description",
+      "category description"
+    ],
+    "domain_synonyms": [
+      "meta model"
+    ]
+  }
+]

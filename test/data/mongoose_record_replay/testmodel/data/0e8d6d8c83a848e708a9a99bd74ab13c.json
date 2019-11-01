@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "5dbc49e6a32e0923f23840ca",
+    "modelname": "philoelements",
+    "__v": 0,
+    "index": {
+      "element_name": "text"
+    },
+    "props": {
+      "element_name": {
+        "type": "String",
+        "trim": true,
+        "_m_category": "element name",
+        "index": true
+      },
+      "element_properties": {
+        "type": "String",
+        "trim": true,
+        "_m_category": "element properties"
+      }
+    },
+    "collectionname": "philoelements",
+    "mongoosemodelname": "philoelements",
+    "domain": "Philosophers elements"
+  }
+]

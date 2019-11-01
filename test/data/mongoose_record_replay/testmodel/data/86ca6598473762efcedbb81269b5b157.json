@@ -1,0 +1,10 @@
+[
+  "#Customer-createBalanceConfirmationForEmpties",
+  "#Customer-evaluateEmptiesStock",
+  "#Document-maintainAuditArea",
+  "#Document-maintainRules",
+  "#TaxReport-prepareSalesUseTaxesReportCA",
+  "#TaxReport-prepareSalesUseTaxesReportUSA",
+  "#VisitList-maintain",
+  "#WBSElement-assignToGroupingWBSElementCollectively"
+]

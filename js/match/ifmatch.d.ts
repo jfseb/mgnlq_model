@@ -30,13 +30,22 @@ export interface IPromptDescription {
     required: boolean;
 }
 export declare const aOperatorNames: string[];
-export declare type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having" | "with more than" | "with less than" | "with exactly";
+export declare type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having" | "more than" | "less than" | "exactly";
+export declare const aAnySuccessorOperatorNames: string[];
 export interface IOperator {
     operator: OperatorName;
     code: string;
     arity: number;
+    operatorpos?: number;
     argcategory: [string[]];
 }
+
+export declare type IOperators = {
+    [key: string]: IOperator;
+};
+
+
+
 export declare type IRecord = {
     [key: string]: string;
 };
@@ -81,6 +90,7 @@ export declare const WORDTYPE: {
     CATEGORY: string;
     DOMAIN: string;
     OPERATOR: string;
+    NUMERICARG: string;
     ANY: string;
 };
 export declare enum EnumRuleType {

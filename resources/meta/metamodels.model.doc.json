@@ -64,6 +64,14 @@
       "category_description": "whether a match on a given value has to be precise"
     },
     {
+      "category": "showURI",
+      "category_description": "display uri"
+    },
+    {
+      "category": "showURIRank",
+      "category_description": "display uri rank"
+    },
+    {
       "category": "category synonyms",
       "category_description": "synonyms for the category"
     },

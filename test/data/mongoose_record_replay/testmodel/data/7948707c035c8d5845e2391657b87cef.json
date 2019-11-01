@@ -1,0 +1,97 @@
+[
+  {
+    "_id": "5925e323d3f66454a8cb6e0c",
+    "modelname": "sobj_tables",
+    "__v": 0,
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
+    "_categories": [
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aaa0",
+        "category": "recordKey"
+      },
+      {
+        "category_synonyms": [
+          "SOBJ",
+          "Transport Key"
+        ],
+        "_id": "5dbc49e604edbc147889aa9f",
+        "category": "TransportObject",
+        "category_description": "The transport object key (SOBJ)"
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aa9e",
+        "category": "Shorttext",
+        "category_description": "Short text of transport object"
+      },
+      {
+        "category_synonyms": [
+          "Tables",
+          "Database Table",
+          "Transport Table"
+        ],
+        "_id": "5dbc49e604edbc147889aa9d",
+        "category": "Table",
+        "category_description": "The DDIC Table",
+        "wordindex": true,
+        "exactmatch": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aa9c",
+        "category": "TableTransportKeySpec",
+        "category_description": "Key specification for the table",
+        "exactmatch": true
+      },
+      {
+        "category_synonyms": [
+          "Primary Table"
+        ],
+        "_id": "5dbc49e604edbc147889aa9b",
+        "category": "PrimaryTable",
+        "category_description": "Primary table of transport object, if existing",
+        "wordindex": true,
+        "exactmatch": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aa9a",
+        "category": "clientSpecific",
+        "category_description": "Whether the object is client specific",
+        "wordindex": true,
+        "exactmatch": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aa99",
+        "category": "Object name length",
+        "category_description": "Length of transport key",
+        "exactmatch": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aa98",
+        "category": "category",
+        "category_description": "Category of the transport",
+        "exactmatch": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aa97",
+        "category": "TranslationRelevant",
+        "category_description": "Boolean (\"true\",\"false\") whether object is translation relevant",
+        "wordindex": true,
+        "exactmatch": true
+      },
+      {
+        "category_synonyms": [],
+        "_id": "5dbc49e604edbc147889aa96",
+        "category": "Type",
+        "exactmatch": true
+      }
+    ],
+    "columns": []
+  }
+]
