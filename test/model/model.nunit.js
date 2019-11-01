@@ -3,8 +3,8 @@
 var process = require('process');
 var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../js';
 
-const mongoosex = require("mongoose");
-mongoosex.Promise = global.Promise;
+//const mongoosex = require("mongoose");
+//mongoosex.Promise = global.Promise;
 
 var fs = require('fs');
 
@@ -18,13 +18,13 @@ var Model = require(root + '/model/model.js');
 var IfMatch = require(root + '/match/ifmatch.js');
 var EnumRuleType = IfMatch.EnumRuleType;
 
-var testmodel_replay = require('mgnlq_testmodel_replay')
+//var testmodel_replay = require('mgnlq_testmodel_replay')
 
 //var modelPath = 'node_modules/testmodel/';
 //var testmodelPath = 'node_modules/mgnlq_testmodel/testmodel/';
 
 //var Schemaload = require(root + '/modelload/schemaload.js');
-var MongoUtils = require(root + '/utils/mongo.js');
+//var MongoUtils = require(root + '/utils/mongo.js');
 
 
 // load distinct values from model
