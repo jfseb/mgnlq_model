@@ -3,6 +3,8 @@ docs
 info.lcov
 logs
 *.tgz
+*.md.bak
+*.d.ts.map
 *.bak
 gen/**
 gen/*

@@ -4,9 +4,9 @@
  * @module jfseb.mgnlq_model.breakdown
  * @copyright (c) 2016 Gerd Forstmann
  */
-exports.__esModule = true;
-var debug = require("debug");
-var debuglog = debug('breakdown');
+Object.defineProperty(exports, "__esModule", { value: true });
+const debug = require("debug");
+const debuglog = debug('breakdown');
 function cleanseString(sString) {
     var len = 0;
     while (len !== sString.length) {
@@ -47,8 +47,8 @@ function cleanseQuotedString(sString) {
     return sString;
 }
 exports.cleanseQuotedString = cleanseQuotedString;
-var regexpRemoveDouble = new RegExp(/^\"(\".*\")\"$/);
-var striptail = new RegExp(/^\"([^\"]+)"$/);
+const regexpRemoveDouble = new RegExp(/^\"(\".*\")\"$/);
+const striptail = new RegExp(/^\"([^\"]+)"$/);
 function trimQuoted(sString) {
     var skipUntil = 0;
     var stripped = sString;
@@ -212,7 +212,7 @@ function tokenizeString(sString, spacesLimit) {
     while (i < sString.length) {
         switch (sString.charAt(i)) {
             case '"':
-                var _a = swallowQuote(sString, i), token = _a.token, nextpos = _a.nextpos;
+                var { token, nextpos } = swallowQuote(sString, i);
                 if (nextpos === i) {
                     // unterminated quote, treat like separator
                     res.fusable[res.tokens.length] = false;
@@ -248,7 +248,7 @@ function tokenizeString(sString, spacesLimit) {
                 break;
             case '.':
             default:
-                var _b = swallowWord(sString, i), token = _b.token, nextpos = _b.nextpos;
+                var { token, nextpos } = swallowWord(sString, i);
                 if (token) {
                     pushToken(res, token);
                     i = nextpos;

@@ -4,35 +4,34 @@
  *
  * @file
  */
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 //import * as intf from 'constants';
-var debug = require("debug");
+const debug = require("debug");
 var debuglog = debug('meta');
 /**
  * the model path, may be controlled via environment variable
  */
 var modelPath = process.env["ABOT_MODELPATH"] || "testmodel";
-var separator = " -:- ";
-var validTypes = ["relation", "category", "domain"];
-var AMeta = /** @class */ (function () {
-    function AMeta(type, name) {
+const separator = " -:- ";
+const validTypes = ["relation", "category", "domain"];
+class AMeta {
+    constructor(type, name) {
         if (validTypes.indexOf(type) < 0) {
             throw new Error("Illegal Type " + type);
         }
         this.name = name;
         this.type = type;
     }
-    AMeta.prototype.toName = function () {
+    toName() {
         return this.name;
-    };
-    AMeta.prototype.toFullString = function () {
+    }
+    toFullString() {
         return this.type + separator + this.name;
-    };
-    AMeta.prototype.toType = function () {
+    }
+    toType() {
         return this.type;
-    };
-    return AMeta;
-}());
+    }
+}
 exports.AMeta = AMeta;
 function getStringArray(arr) {
     return arr.map(function (oMeta) {

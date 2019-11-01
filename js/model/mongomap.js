@@ -4,12 +4,12 @@
  *
  * @file
  */
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 //import * as intf from 'constants';
-var debug = require("debugf");
+const debug = require("debugf");
 var debuglog = debug('mongomap');
-var process = require("process");
-var _ = require("lodash");
+const process = require("process");
+const _ = require("lodash");
 /**
  * the model path, may be controlled via environment variable
  */
@@ -82,8 +82,8 @@ exports.collectCategories = collectCategories;
  */
 function getMemberByPath(rec, paths) {
     var root = rec;
-    var res = paths.reduce(function (prev, segment, index) {
-        debuglog(function () { return "at index " + index + " segment " + segment + " on " + JSON.stringify(prev); });
+    var res = paths.reduce((prev, segment, index) => {
+        debuglog(() => `at index ${index} segment ${segment} on ${JSON.stringify(prev)}`);
         if (prev === undefined || prev === null) {
             return undefined;
         }
@@ -105,12 +105,12 @@ function getMemberByPath(rec, paths) {
             }
         }
     }, rec);
-    debuglog(function () { return " herer result " + res; });
+    debuglog(() => ` herer result ` + res);
     return res;
 }
 exports.getMemberByPath = getMemberByPath;
 function constructPath(paths, len) {
-    return paths.slice(0, len).filter(function (seg) { return seg !== '[]'; }).join('.');
+    return paths.slice(0, len).filter(seg => seg !== '[]').join('.');
 }
 /**
  * return a category
@@ -150,12 +150,12 @@ function getShortProjectedName(mongoMap, category) {
 exports.getShortProjectedName = getShortProjectedName;
 getShortProjectedName;
 function unwindsForNonterminalArrays(mongoMap) {
-    var paths = Object.keys(mongoMap).map(function (key) { return mongoMap[key].paths; });
+    var paths = Object.keys(mongoMap).map(key => mongoMap[key].paths);
     var res = [];
     var seenAccess = {};
-    return paths.reduce(function (prev, path) {
+    return paths.reduce((prev, path) => {
         var prefix = '';
-        return path.reduce(function (prev, segment, index) {
+        return path.reduce((prev, segment, index) => {
             if (path.length - 1 !== index) {
                 // last segment never of interest, even if []
                 if (segment === '[]') {
@@ -179,22 +179,22 @@ function unwindsForNonterminalArrays(mongoMap) {
 exports.unwindsForNonterminalArrays = unwindsForNonterminalArrays;
 function makeMongoMap(oDoc, eSchema) {
     var oMongoMap = {};
-    debuglog(function () { return 'creating mongomap for ' + JSON.stringify(eSchema.modelname, undefined, 2) + ' and ' + oDoc.modelname; });
-    debuglog(function () { return 'creating mongomap for doc ' + JSON.stringify(oDoc, undefined, 2); });
-    debuglog(function () { return 'colleting from eSchema.props' + JSON.stringify(eSchema.props, undefined, 2); });
+    debuglog(() => 'creating mongomap for ' + JSON.stringify(eSchema.modelname, undefined, 2) + ' and ' + oDoc.modelname);
+    debuglog(() => 'creating mongomap for doc ' + JSON.stringify(oDoc, undefined, 2));
+    debuglog(() => 'colleting from eSchema.props' + JSON.stringify(eSchema.props, undefined, 2));
     var res = collectCategories(eSchema.props);
-    oDoc._categories.forEach(function (cat) {
+    oDoc._categories.forEach(cat => {
         // cross check
         if (!res[cat.category]) {
             console.log('here present keys' + Object.keys(res).sort().join("; "));
-            console.log("category " + cat.category + " is not in eSchema"); // + JSON.stringify(eSchema,undefined,2)
-            console.log("document has " + oDoc._categories.map(function (cat) { return cat.category; }).join('; '));
+            console.log(`category ${cat.category} is not in eSchema`); // + JSON.stringify(eSchema,undefined,2)
+            console.log(`document has ` + oDoc._categories.map(cat => cat.category).join('; '));
             //process.exit(-1);
-            console.log("category \"" + cat.category + "\" is not in eSchema for " + oDoc.modelname + " + " + eSchema.modelname + " : "
+            console.log(`category "${cat.category}" is not in eSchema for ${oDoc.modelname} + ${eSchema.modelname} : `
                 + "=====Schema:\n" + JSON.stringify(eSchema, undefined, 2).substring(0, 400)
                 + "\n========oDoc: \n" + JSON.stringify(oDoc, undefined, 2).substring(0, 400));
             process.exit(-1);
-            throw new Error("category " + cat.category + " is not in eSchema for " + oDoc.modelname + " + " + eSchema.modelname + " : "
+            throw new Error(`category ${cat.category} is not in eSchema for ${oDoc.modelname} + ${eSchema.modelname} : `
                 + JSON.stringify(eSchema, undefined, 2).substring(0, 200)
                 + "\n=========== " + JSON.stringify(oDoc, undefined, 2).substring(0, 400));
         }

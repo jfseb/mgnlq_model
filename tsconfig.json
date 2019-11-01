@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-       "target": "es6",
+       "target": "es2017",
        "skipLibCheck": true, // avoid lodash WeakMap mismatch
         // "target": "es6",
         // "module" : "es6", //'es2015
