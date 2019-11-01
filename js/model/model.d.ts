@@ -1,4 +1,8 @@
-/// <reference types="mongoose" />
+/**
+ * Functionality managing the match models
+ *
+ * @file
+ */
 import * as IMatch from '../match/ifmatch';
 import * as Meta from './meta';
 import * as mongoose from 'mongoose';
@@ -58,14 +62,14 @@ export declare function addCloseExactRangeRules(rules: IMatch.mRule[], seenRules
 export declare function readFillers(mongoose: mongoose.Mongoose, oModel: IMatch.IModels): Promise<any>;
 export declare function readOperators(mongoose: mongoose.Mongoose, oModel: IMatch.IModels): Promise<any>;
 export declare function releaseModel(model: IMatch.IModels): void;
-export declare function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString?: string, modelPath?: string): Promise<IMatch.IModels>;
+export declare function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString?: string, modelPath?: string): Promise<void | IMatch.IModels>;
 /**
  * expects an open connection!
  * @param mongoose
  * @param modelPath
  */
-export declare function loadModels(mongoose: mongoose.Mongoose, modelPath: string): Promise<IMatch.IModels>;
-export declare function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<IMatch.IModels>;
+export declare function loadModels(mongoose: mongoose.Mongoose, modelPath: string): Promise<void | IMatch.IModels>;
+export declare function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<void | IMatch.IModels>;
 export declare function sortCategoriesByImportance(map: {
     [key: string]: IMatch.ICategoryDesc;
 }, cats: string[]): string[];

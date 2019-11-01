@@ -1,9 +1,8 @@
-/// <reference types="mongoose" />
 import * as mongoose from 'mongoose';
 export declare const enum EnumResponseCode {
     NOMATCH = 0,
     EXEC = 1,
-    QUERY = 2,
+    QUERY = 2
 }
 export declare const CAT_CATEGORY = "category";
 export declare const CAT_FILLER = "filler";
@@ -36,16 +35,12 @@ export interface IOperator {
     operator: OperatorName;
     code: string;
     arity: number;
-    operatorpos?: number;
     argcategory: [string[]];
+    operatorpos?: number;
 }
-
 export declare type IOperators = {
     [key: string]: IOperator;
 };
-
-
-
 export declare type IRecord = {
     [key: string]: string;
 };
@@ -95,7 +90,7 @@ export declare const WORDTYPE: {
 };
 export declare enum EnumRuleType {
     WORD = 0,
-    REGEXP = 1,
+    REGEXP = 1
 }
 export interface IToolSet {
     set: string[];
@@ -290,7 +285,7 @@ export interface IResponse {
 }
 export declare const enum EnumActionType {
     STARTURL = 0,
-    STARTCMDLINE = 1,
+    STARTCMDLINE = 1
 }
 export interface IAction {
     data: any;

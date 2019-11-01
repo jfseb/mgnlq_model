@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @module jfseb.mgnlq_model.breakdown
+ * @copyright (c) 2016 Gerd Forstmann
+ */
 import * as IMatch from './ifmatch';
 export declare function cleanseString(sString: string): string;
 export declare function cleanseStringLeaveDots(sString: string): string;

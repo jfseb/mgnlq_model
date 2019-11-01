@@ -4,16 +4,16 @@
  *
  * @file
  */
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 //import * as intf from 'constants';
-const debug = require("debugf");
+var debug = require("debugf");
 var debuglog = debug('schemaload');
-const FUtils = require("../model/model");
+var FUtils = require("../model/model");
 //import * as CircularSer from 'abot_utils';
 //import * as Distance from 'abot_stringdist';
-const process = require("process");
-const _ = require("lodash");
-const mongoose = require("mongoose");
+var process = require("process");
+var _ = require("lodash");
+var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 /**
  * WATCH out, this instruments mongoose!
@@ -27,7 +27,7 @@ function cmpTools(a, b) {
     return a.name.localeCompare(b.name);
 }
 exports.cmpTools = cmpTools;
-const ExtendedSchema_props = {
+var ExtendedSchema_props = {
     "modelname": {
         "type": String,
         "trim": true,
@@ -51,15 +51,15 @@ const ExtendedSchema_props = {
     "props": {},
     "index": {}
 };
-const ExtendedSchema_index = {
+var ExtendedSchema_index = {
     "modelname": "text"
 };
 // load the models
 function loadModelNames(modelPath) {
     modelPath = modelPath || envModelPath;
-    debuglog(() => `modelpath is ${modelPath} `);
+    debuglog(function () { return "modelpath is " + modelPath + " "; });
     var mdls = FUtils.readFileAsJSON(modelPath + '/models.json');
-    mdls.forEach(name => {
+    mdls.forEach(function (name) {
         if (name !== makeMongoCollectionName(name)) {
             throw new Error('bad modelname, must terminate with s and be lowercase');
         }
@@ -145,7 +145,7 @@ function makeMongooseSchema(extSchema, mongo) {
 exports.makeMongooseSchema = makeMongooseSchema;
 function loadExtendedMongooseSchema(modelPath, modelName) {
     var filename = modelPath + '/' + modelName + '.model.mongooseschema.json';
-    debuglog(() => `attempting to read ${filename}`);
+    debuglog(function () { return "attempting to read " + filename; });
     var schemaSer = FUtils.readFileAsJSON(filename);
     schemaSer.modelName = modelName;
     return schemaSer;
@@ -160,7 +160,7 @@ exports.loadModelDoc = loadModelDoc;
 var aPromise = global.Promise;
 ;
 function augmentMongooseSchema(modelDoc, schemaRaw) {
-    debuglog(() => 'augmenting for ' + modelDoc.modelname);
+    debuglog(function () { return 'augmenting for ' + modelDoc.modelname; });
     var res = { domain: modelDoc.domain,
         modelname: modelDoc.modelname,
         mongoosemodelname: makeMongooseModelName(modelDoc.modelname),
@@ -235,13 +235,13 @@ function getModelDocModel(mongoose) {
 }
 exports.getModelDocModel = getModelDocModel;
 function upsertMetaModel(mongoose) {
-    debuglog(() => 'here dirname + ' + __dirname);
+    debuglog(function () { return 'here dirname + ' + __dirname; });
     var metaDoc = FUtils.readFileAsJSON(__dirname + '/../../resources/meta/metamodels.model.doc.json');
-    debuglog(() => "here metaDoc to insert as loaded" + JSON.stringify(metaDoc));
+    debuglog(function () { return "here metaDoc to insert as loaded" + JSON.stringify(metaDoc); });
     metaDoc.modelname = exports.MongoNLQ.MODELNAME_METAMODELS;
     var schemaSer2 = loadExtendedMongooseSchema(__dirname + '/../../resources/meta', exports.MongoNLQ.MODELNAME_METAMODELS);
     var schemaSer = augmentMongooseSchema(metaDoc, schemaSer2);
-    debuglog(() => 'here schemaser' + JSON.stringify(schemaSer, undefined, 2));
+    debuglog(function () { return 'here schemaser' + JSON.stringify(schemaSer, undefined, 2); });
     mongoose.Promise = global.Promise;
     var schema = makeMongooseSchema(schemaSer, mongoose);
     //console.log("make schema 1");
@@ -252,15 +252,19 @@ function upsertMetaModel(mongoose) {
     var modelDoc = mongoose.model(makeMongooseModelName(exports.MongoNLQ.COLL_METAMODELS), schema);
     //console.log('creating model 2');
     var modelES = getExtendedSchemaModel(mongoose); //mongoose.model(makeMongooseModelName(MongoNLQ.COLL_EXTENDEDSCHEMAS), extendSchema);
-    debuglog(() => "here metaDoc to insert" + JSON.stringify(metaDoc));
-    debuglog(() => "here schemaser to insert" + JSON.stringify(schemaSer));
+    debuglog(function () { return "here metaDoc to insert" + JSON.stringify(metaDoc); });
+    debuglog(function () { return "here schemaser to insert" + JSON.stringify(schemaSer); });
     return Promise.all([
-        validateDocVsMongooseModel(modelDoc, metaDoc).then(() => modelDoc.findOneAndUpdate({ modelname: exports.MongoNLQ.MODELNAME_METAMODELS }, metaDoc, {
-            upsert: true
-        })),
-        validateDocVsMongooseModel(modelES, schemaSer).then(() => modelES.findOneAndUpdate({ modelname: exports.MongoNLQ.MODELNAME_METAMODELS }, schemaSer, {
-            upsert: true
-        }))
+        validateDocVsMongooseModel(modelDoc, metaDoc).then(function () {
+            return modelDoc.findOneAndUpdate({ modelname: exports.MongoNLQ.MODELNAME_METAMODELS }, metaDoc, {
+                upsert: true
+            });
+        }),
+        validateDocVsMongooseModel(modelES, schemaSer).then(function () {
+            return modelES.findOneAndUpdate({ modelname: exports.MongoNLQ.MODELNAME_METAMODELS }, schemaSer, {
+                upsert: true
+            });
+        })
     ]); //.then( () => process.exit(-1));
 }
 exports.upsertMetaModel = upsertMetaModel;
@@ -272,14 +276,16 @@ exports.createDBWithModels = createDBWithModels;
 function removeOthers(mongoose, model, retainedNames) {
     //console.log('here collectionname' + Object.keys(model));
     //console.log('here collectionname' + model.collectionname);
-    return model.aggregate([{ $project: { modelname: 1 } }]).then((r) => r.map(o => o.modelname)).then((modelnames) => {
+    return model.aggregate([{ $project: { modelname: 1 } }]).then(function (r) {
+        return r.map(function (o) { return o.modelname; });
+    }).then(function (modelnames) {
         debuglog(" present models " + modelnames.length + ' ' + modelnames);
         var delta = _.difference(modelnames, retainedNames);
         debuglog(' spurious models: ' + delta.length + ' ' + delta);
         if (delta.length === 0) {
             return Promise.resolve(true);
         }
-        return Promise.all(delta.map(modelname => model.remove({ modelname: modelname })));
+        return Promise.all(delta.map(function (modelname) { return model.remove({ modelname: modelname }); }));
     });
 }
 exports.removeOthers = removeOthers;
@@ -308,7 +314,7 @@ function getOrCreateModelOperators(mongoose) {
 exports.getOrCreateModelOperators = getOrCreateModelOperators;
 function getFillersFromDB(mongoose) {
     var fillerModel = getOrCreateModelFillers(mongoose);
-    return fillerModel.find({}).lean().exec().then((vals) => {
+    return fillerModel.find({}).lean().exec().then(function (vals) {
         if (vals.length !== 1) {
             throw new Error('expected exactly one operators entry ');
         }
@@ -319,7 +325,7 @@ function getFillersFromDB(mongoose) {
 exports.getFillersFromDB = getFillersFromDB;
 function getOperatorsFromDB(mongoose) {
     var operatorModel = getOrCreateModelOperators(mongoose);
-    return operatorModel.find({}).lean().exec().then((vals) => {
+    return operatorModel.find({}).lean().exec().then(function (vals) {
         if (vals.length !== 1) {
             throw new Error('expected exactly one operators entry ');
         }
@@ -331,10 +337,10 @@ exports.getOperatorsFromDB = getOperatorsFromDB;
 function getExtendSchemaDocFromDB(mongoose, modelName) {
     var mongooseModelName = makeMongooseModelName(modelName);
     var model_ES = mongoose.model(exports.MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
-    var res = model_ES.find({ modelname: modelName }).lean().exec().then((doc) => {
-        debuglog(() => ` loaded Es doc ${modelName} returned ${doc.length} docus from db : `
-            + doc[0].modelname + `` + doc[0].collectionname);
-        debuglog(() => 'here the result' + JSON.stringify(doc));
+    var res = model_ES.find({ modelname: modelName }).lean().exec().then(function (doc) {
+        debuglog(function () { return " loaded Es doc " + modelName + " returned " + doc.length + " docus from db : "
+            + doc[0].modelname + "" + doc[0].collectionname; });
+        debuglog(function () { return 'here the result' + JSON.stringify(doc); });
         if (doc.length === 0) {
             throw Error('Model ' + modelName + ' is not present in ' + exports.MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
         }
@@ -348,9 +354,9 @@ exports.getExtendSchemaDocFromDB = getExtendSchemaDocFromDB;
 function getModelDocFromDB(mongoose, modelName) {
     var mongooseModelName = makeMongooseModelName(modelName);
     var model_ES = mongoose.model(exports.MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
-    return makeModelFromDB(mongoose, exports.MongoNLQ.MODELNAME_METAMODELS).then((model) => model.find({ modelname: modelName }).lean().exec()).then((doc) => {
-        debuglog(() => ' loaded Model doc ${modelName} returned ${(doc as any).length} docus from db : '
-            + doc[0].modelname + ` ` + doc[0].collectionname);
+    return makeModelFromDB(mongoose, exports.MongoNLQ.MODELNAME_METAMODELS).then(function (model) { return model.find({ modelname: modelName }).lean().exec(); }).then(function (doc) {
+        debuglog(function () { return ' loaded Model doc ${modelName} returned ${(doc as any).length} docus from db : '
+            + doc[0].modelname + " " + doc[0].collectionname; });
         debuglog('here the result' + JSON.stringify(doc));
         if (doc.length === 0) {
             throw Error('Model ' + modelName + ' is not present in ' + exports.MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
@@ -365,17 +371,17 @@ function makeModelFromDB(mongoose, modelName) {
     if (mongoose.modelNames().indexOf(mongooseModelName) >= 0) {
         return Promise.resolve(mongoose.model(mongooseModelName));
     }
-    debuglog(() => 'here present modelnames: ' + mongoose.modelNames().join('\n'));
+    debuglog(function () { return 'here present modelnames: ' + mongoose.modelNames().join('\n'); });
     var model_ES = mongoose.model(exports.MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
-    debuglog(() => 'here modelname:' + modelName);
-    var res = model_ES.find({ modelname: modelName }).lean().exec().then((doc) => {
-        debuglog(() => ` loaded Model doc ${modelName} returned ${doc.length} docus from db : `
-            + doc[0].modelname + ` ` + doc[0].collectionname);
-        debuglog(() => 'here the result' + JSON.stringify(doc));
+    debuglog(function () { return 'here modelname:' + modelName; });
+    var res = model_ES.find({ modelname: modelName }).lean().exec().then(function (doc) {
+        debuglog(function () { return " loaded Model doc " + modelName + " returned " + doc.length + " docus from db : "
+            + doc[0].modelname + " " + doc[0].collectionname; });
+        debuglog(function () { return 'here the result' + JSON.stringify(doc); });
         if (doc.length === 0) {
             throw Error('Model ' + modelName + ' is not present in ' + exports.MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
         }
-        debuglog(() => 'creating schema for ' + modelName + ' from ');
+        debuglog(function () { return 'creating schema for ' + modelName + ' from '; });
         //  + JSON.stringify(doc[0]));
         var schema = makeMongooseSchema(doc[0], mongoose);
         if (mongoose.modelNames().indexOf(mongooseModelName) >= 0) {
@@ -383,7 +389,7 @@ function makeModelFromDB(mongoose, modelName) {
         }
         console.log(' moongooseModelName : ' + mongooseModelName + ' ' + modelName);
         var model = mongoose.model(mongooseModelName, schema);
-        debuglog(() => 'returning model: ' + modelName + ` ` + typeof model);
+        debuglog(function () { return 'returning model: ' + modelName + " " + typeof model; });
         return Promise.resolve(model);
     });
     //console.log('res' + typeof res);
@@ -393,7 +399,7 @@ function makeModelFromDB(mongoose, modelName) {
 exports.makeModelFromDB = makeModelFromDB;
 function uploadFillers(mongoose, modelPath) {
     var modelFiller = getOrCreateModelFillers(mongoose);
-    return modelFiller.remove({}).then(() => {
+    return modelFiller.remove({}).then(function () {
         var fillers = FUtils.readFileAsJSON(modelPath + '/filler.json');
         return new modelFiller({ fillers: fillers }).save();
     });
@@ -401,7 +407,7 @@ function uploadFillers(mongoose, modelPath) {
 exports.uploadFillers = uploadFillers;
 function uploadOperators(mongoose, modelPath) {
     var modelFiller = getOrCreateModelOperators(mongoose);
-    return modelFiller.remove({}).then(() => {
+    return modelFiller.remove({}).then(function () {
         var operators = FUtils.readFileAsJSON(modelPath + '/operators.json');
         return new modelFiller(operators).save();
     });
@@ -415,26 +421,28 @@ exports.uploadOperators = uploadOperators;
  * @return Promise<any> the  promise
  */
 function upsertModels(mongoose, modelpath) {
-    debuglog(() => `modelpath ${modelpath} `);
+    debuglog(function () { return "modelpath " + modelpath + " "; });
     var modelNames = loadModelNames(modelpath);
     var model_ES = mongoose.model(exports.MongooseNLQ.MONGOOSE_MODELNAME_EXTENDEDSCHEMAS);
     var model_Doc = mongoose.model(exports.MongooseNLQ.MONGOOSE_MODELNAME_METAMODELS);
     debuglog('here modelnames ' + modelNames);
-    return removeOthers(mongoose, model_ES, [exports.MongoNLQ.MODELNAME_METAMODELS]).then(() => Promise.all(modelNames.map((modelName) => {
-        debuglog('upserting  ' + modelName);
-        var modelDoc = loadModelDoc(modelpath, modelName);
-        var schemaSer = loadExtendedMongooseSchema(modelpath, modelName);
-        var schemaFull = augmentMongooseSchema(modelDoc, schemaSer);
-        debuglog(`upserting eschema ${modelName}  with modelDoc` + JSON.stringify(schemaFull));
-        var p1 = model_ES.findOneAndUpdate({ modelname: modelName }, schemaFull, {
-            upsert: true
-        });
-        debuglog(`upserting model ${modelName}  with modelDoc` + JSON.stringify(modelDoc));
-        var p2 = model_Doc.findOneAndUpdate({ modelname: modelName }, modelDoc, {
-            upsert: true
-        });
-        return Promise.all([p1, p2]);
-    }))).then(() => {
+    return removeOthers(mongoose, model_ES, [exports.MongoNLQ.MODELNAME_METAMODELS]).then(function () {
+        return Promise.all(modelNames.map(function (modelName) {
+            debuglog('upserting  ' + modelName);
+            var modelDoc = loadModelDoc(modelpath, modelName);
+            var schemaSer = loadExtendedMongooseSchema(modelpath, modelName);
+            var schemaFull = augmentMongooseSchema(modelDoc, schemaSer);
+            debuglog("upserting eschema " + modelName + "  with modelDoc" + JSON.stringify(schemaFull));
+            var p1 = model_ES.findOneAndUpdate({ modelname: modelName }, schemaFull, {
+                upsert: true
+            });
+            debuglog("upserting model " + modelName + "  with modelDoc" + JSON.stringify(modelDoc));
+            var p2 = model_Doc.findOneAndUpdate({ modelname: modelName }, modelDoc, {
+                upsert: true
+            });
+            return Promise.all([p1, p2]);
+        }));
+    }).then(function () {
         var modelNamesExtended = modelNames.slice();
         modelNamesExtended.push(exports.MongoNLQ.MODELNAME_METAMODELS);
         debuglog('removing spurious models');
@@ -442,7 +450,7 @@ function upsertModels(mongoose, modelpath) {
             removeOthers(mongoose, model_ES, modelNamesExtended),
             removeOthers(mongoose, model_Doc, modelNamesExtended)
         ]);
-    }).then(() => {
+    }).then(function () {
         return Promise.all([
             uploadFillers(mongoose, modelpath),
             uploadOperators(mongoose, modelpath)
@@ -452,7 +460,7 @@ function upsertModels(mongoose, modelpath) {
 exports.upsertModels = upsertModels;
 function hasMetaCollection(mongoose) {
     return new Promise(function (resolve, reject) {
-        mongoose.connection.db.listCollections().toArray((err, names) => {
+        mongoose.connection.db.listCollections().toArray(function (err, names) {
             if (err) {
                 reject(err);
                 return;
@@ -523,9 +531,9 @@ function validateDocMongoose(mongoose, collectionname, schema, doc) {
 }
 exports.validateDocMongoose = validateDocMongoose;
 function validateDocVsMongooseModel(model, doc) {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         var theDoc = new model(doc);
-        theDoc.validate((err) => {
+        theDoc.validate(function (err) {
             if (err) {
                 //console.log(err);
                 reject(err);
@@ -546,7 +554,7 @@ function validateDoc(collectionname, schema, doc) {
             obj.additionalProperties = false;
         }
     });
-    debuglog(() => ` here json schema ` + (JSON.stringify(jsonSchema, undefined, 2)));
+    debuglog(function () { return " here json schema " + (JSON.stringify(jsonSchema, undefined, 2)); });
     var Validator = require('jsonschema').Validator;
     var v = new Validator();
     //console.log(JSON.stringify(jsonSchema,undefined,2));
@@ -557,5 +565,7 @@ function validateDoc(collectionname, schema, doc) {
     return true;
 }
 exports.validateDoc = validateDoc;
+
+//# sourceMappingURL=schemaload.js.map
 
 //# sourceMappingURL=schemaload.js.map

@@ -60,11 +60,14 @@ export interface IOperator {
   operator : OperatorName,
   code : string,
   arity : number,
-  argcategory : [ string[] ]
+  argcategory : [ string[] ],
+  operatorpos? : number
 }
 
-export type IRecord = { [key : string] : string
-};
+export type IOperators = { [key:string] : IOperator };
+
+
+export type IRecord = { [key : string] : string };
 
 
 export interface IWhatIsAnswer {

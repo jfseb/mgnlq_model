@@ -1,4 +1,9 @@
-/// <reference types="mongoose" />
+/**
+ * Functionality to load data into a mongoose model
+ * (c) gerd forstmann 2017
+ *
+ * @file
+ */
 import * as IMatch from '../match/ifmatch';
 import * as mongoose from 'mongoose';
 /**

@@ -1,3 +1,8 @@
+/**
+ * Functionality to map the "flat" categories model to a nested document
+ *
+ * @file
+ */
 import * as ISchema from '../modelload/schemaload';
 import * as IMatch from '../match/ifmatch';
 export declare function collectCategories(eSchemaProps: any): IMatch.CatMongoMap;

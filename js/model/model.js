@@ -4,27 +4,27 @@
  *
  * @file
  */
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 //import * as intf from 'constants';
-const debugf = require("debugf");
+var debugf = require("debugf");
 var debuglog = debugf('model');
 // the hardcoded domain metamodel!
-const DOMAIN_METAMODEL = 'metamodel';
+var DOMAIN_METAMODEL = 'metamodel';
 //const loadlog = logger.logger('modelload', '');
-const IMatch = require("../match/ifmatch");
-const InputFilterRules = require("../match/rule");
+var IMatch = require("../match/ifmatch");
+var InputFilterRules = require("../match/rule");
 //import * as Tools from '../match/tools';
-const fs = require("fs");
-const Meta = require("./meta");
-const Utils = require("abot_utils");
-const CircularSer = require("abot_utils");
-const Distance = require("abot_stringdist");
-const process = require("process");
-const _ = require("lodash");
-const MongoUtils = require("../utils/mongo");
-const mongoose = require("mongoose");
-const Schemaload = require("../modelload/schemaload");
-const MongoMap = require("./mongomap");
+var fs = require("fs");
+var Meta = require("./meta");
+var Utils = require("abot_utils");
+var CircularSer = require("abot_utils");
+var Distance = require("abot_stringdist");
+var process = require("process");
+var _ = require("lodash");
+var MongoUtils = require("../utils/mongo");
+var mongoose = require("mongoose");
+var Schemaload = require("../modelload/schemaload");
+var MongoMap = require("./mongomap");
 /**
  * the model path, may be controlled via environment variable
  */
@@ -45,22 +45,22 @@ function getMongoHandle(mongoose) {
         mongoMaps: {}
     };
     var modelES = Schemaload.getExtendedSchemaModel(mongoose);
-    return modelES.distinct('modelname').then((modelnames) => {
-        debuglog(() => 'here distinct modelnames ' + JSON.stringify(modelnames));
+    return modelES.distinct('modelname').then(function (modelnames) {
+        debuglog(function () { return 'here distinct modelnames ' + JSON.stringify(modelnames); });
         return Promise.all(modelnames.map(function (modelname) {
-            debuglog(() => 'creating tripel for ' + modelname);
+            debuglog(function () { return 'creating tripel for ' + modelname; });
             return Promise.all([Schemaload.getExtendSchemaDocFromDB(mongoose, modelname),
                 Schemaload.makeModelFromDB(mongoose, modelname),
-                Schemaload.getModelDocFromDB(mongoose, modelname)]).then((value) => {
-                debuglog(() => 'attempting to load ' + modelname + ' to create mongomap');
-                var [extendedSchema, model, modelDoc] = value;
+                Schemaload.getModelDocFromDB(mongoose, modelname)]).then(function (value) {
+                debuglog(function () { return 'attempting to load ' + modelname + ' to create mongomap'; });
+                var extendedSchema = value[0], model = value[1], modelDoc = value[2];
                 res.modelESchemas[modelname] = extendedSchema;
                 res.modelDocs[modelname] = modelDoc;
                 res.mongoMaps[modelname] = MongoMap.makeMongoMap(modelDoc, extendedSchema);
-                debuglog(() => 'created mongomap for ' + modelname);
+                debuglog(function () { return 'created mongomap for ' + modelname; });
             });
         }));
-    }).then(() => {
+    }).then(function () {
         return res;
     });
     //var modelDoc = Schemaload.getExtendedDocModel(mongoose);
@@ -107,7 +107,7 @@ function getModelForDomain(theModel, domain) {
 exports.getModelForDomain = getModelForDomain;
 function getModelNameForDomain(handle, domain) {
     var res = undefined;
-    Object.keys(handle.modelDocs).every(key => {
+    Object.keys(handle.modelDocs).every(function (key) {
         var doc = handle.modelDocs[key];
         if (domain === doc.domain) {
             res = doc.modelname;
@@ -123,17 +123,17 @@ exports.getModelNameForDomain = getModelNameForDomain;
 function filterRemapCategories(mongoMap, categories, records) {
     //
     //console.log('here map' + JSON.stringify(mongoMap,undefined,2));
-    return records.map((rec, index) => {
+    return records.map(function (rec, index) {
         var res = {};
-        categories.forEach(category => {
+        categories.forEach(function (category) {
             var categoryPath = mongoMap[category].paths;
             if (!categoryPath) {
-                throw new Error(`unknown category ${category} not present in ${JSON.stringify(mongoMap, undefined, 2)}`);
+                throw new Error("unknown category " + category + " not present in " + JSON.stringify(mongoMap, undefined, 2));
             }
             res[category] = MongoMap.getMemberByPath(rec, categoryPath);
-            debuglog(() => 'got member for ' + category + ' from rec no ' + index + ' ' + JSON.stringify(rec, undefined, 2));
-            debuglog(() => JSON.stringify(categoryPath));
-            debuglog(() => 'res : ' + res[category]);
+            debuglog(function () { return 'got member for ' + category + ' from rec no ' + index + ' ' + JSON.stringify(rec, undefined, 2); });
+            debuglog(function () { return JSON.stringify(categoryPath); });
+            debuglog(function () { return 'res : ' + res[category]; });
         });
         return res;
     });
@@ -143,17 +143,17 @@ function checkModelMongoMap(model, modelname, mongoMap, category) {
     if (!model) {
         debuglog(' no model for ' + modelname);
         //       return Promise.reject(`model ${modelname} not found in db`);
-        throw Error(`model ${modelname} not found in db`);
+        throw Error("model " + modelname + " not found in db");
     }
     if (!mongoMap) {
         debuglog(' no mongoMap for ' + modelname);
-        throw new Error(`model ${modelname} has no modelmap`);
+        throw new Error("model " + modelname + " has no modelmap");
         //        return Promise.reject(`model ${modelname} has no modelmap`);
     }
     if (category && !mongoMap[category]) {
         debuglog(' no mongoMap category for ' + modelname);
         //      return Promise.reject(`model ${modelname} has no category ${category}`);
-        throw new Error(`model ${modelname} has no category ${category}`);
+        throw new Error("model " + modelname + " has no category " + category);
     }
     return undefined;
 }
@@ -161,28 +161,28 @@ exports.checkModelMongoMap = checkModelMongoMap;
 function getExpandedRecordsFull(theModel, domain) {
     var mongoHandle = theModel.mongoHandle;
     var modelname = getModelNameForDomain(theModel.mongoHandle, domain);
-    debuglog(() => ` modelname for ${domain} is ${modelname}`);
+    debuglog(function () { return " modelname for " + domain + " is " + modelname; });
     var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
     var mongoMap = mongoHandle.mongoMaps[modelname];
-    debuglog(() => 'here the mongomap' + JSON.stringify(mongoMap, undefined, 2));
+    debuglog(function () { return 'here the mongomap' + JSON.stringify(mongoMap, undefined, 2); });
     var p = checkModelMongoMap(model, modelname, mongoMap);
-    debuglog(() => ` here the modelmap for ${domain} is ${JSON.stringify(mongoMap, undefined, 2)}`);
+    debuglog(function () { return " here the modelmap for " + domain + " is " + JSON.stringify(mongoMap, undefined, 2); });
     // 1) produce the flattened records
     var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
-    debuglog(() => 'here the unwind statement ' + JSON.stringify(res, undefined, 2));
+    debuglog(function () { return 'here the unwind statement ' + JSON.stringify(res, undefined, 2); });
     // we have to unwind all common non-terminal collections.
-    debuglog(() => 'here the model ' + model.modelName);
+    debuglog(function () { return 'here the model ' + model.modelName; });
     var categories = getCategoriesForDomain(theModel, domain);
-    debuglog(() => `here categories for ${domain} ${categories.join(';')}`);
+    debuglog(function () { return "here categories for " + domain + " " + categories.join(';'); });
     if (res.length === 0) {
-        return model.find({}).lean().exec().then((unwound) => {
-            debuglog(() => 'here res' + JSON.stringify(unwound));
+        return model.find({}).lean().exec().then(function (unwound) {
+            debuglog(function () { return 'here res' + JSON.stringify(unwound); });
             return filterRemapCategories(mongoMap, categories, unwound);
         });
     }
-    return model.aggregate(res).then(unwound => {
+    return model.aggregate(res).then(function (unwound) {
         // filter for aggregate
-        debuglog(() => 'here res' + JSON.stringify(unwound));
+        debuglog(function () { return 'here res' + JSON.stringify(unwound); });
         return filterRemapCategories(mongoMap, categories, unwound);
     });
 }
@@ -190,27 +190,27 @@ exports.getExpandedRecordsFull = getExpandedRecordsFull;
 function getExpandedRecordsForCategory(theModel, domain, category) {
     var mongoHandle = theModel.mongoHandle;
     var modelname = getModelNameForDomain(theModel.mongoHandle, domain);
-    debuglog(() => ` modelname for ${domain} is ${modelname}`);
+    debuglog(function () { return " modelname for " + domain + " is " + modelname; });
     //debuglog(() => `here models ${modelname} ` + mongoHandle.mongoose.modelNames().join(';'));
     var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
     var mongoMap = mongoHandle.mongoMaps[modelname];
-    debuglog(() => 'here the mongomap' + JSON.stringify(mongoMap, undefined, 2));
+    debuglog(function () { return 'here the mongomap' + JSON.stringify(mongoMap, undefined, 2); });
     checkModelMongoMap(model, modelname, mongoMap, category);
-    debuglog(() => ` here the modelmap for ${domain} is ${JSON.stringify(mongoMap, undefined, 2)}`);
+    debuglog(function () { return " here the modelmap for " + domain + " is " + JSON.stringify(mongoMap, undefined, 2); });
     // 1) produce the flattened records
     var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
-    debuglog(() => 'here the unwind statement ' + JSON.stringify(res, undefined, 2));
+    debuglog(function () { return 'here the unwind statement ' + JSON.stringify(res, undefined, 2); });
     // we have to unwind all common non-terminal collections.
-    debuglog(() => 'here the model ' + model.modelName);
+    debuglog(function () { return 'here the model ' + model.modelName; });
     if (res.length === 0) {
-        return model.find({}).lean().exec().then((unwound) => {
-            debuglog(() => 'here res' + JSON.stringify(unwound));
+        return model.find({}).lean().exec().then(function (unwound) {
+            debuglog(function () { return 'here res' + JSON.stringify(unwound); });
             return filterRemapCategories(mongoMap, [category], unwound);
         });
     }
-    return model.aggregate(res).then(unwound => {
+    return model.aggregate(res).then(function (unwound) {
         // filter for aggregate
-        debuglog(() => 'here res' + JSON.stringify(unwound));
+        debuglog(function () { return 'here res' + JSON.stringify(unwound); });
         return filterRemapCategories(mongoMap, [category], unwound);
     });
 }
@@ -218,18 +218,18 @@ exports.getExpandedRecordsForCategory = getExpandedRecordsForCategory;
 // get synonyms
 // db.cosmos.find( { "_synonyms.0": { $exists: true }}).length()
 function getDistinctValues(mongoHandle, modelname, category) {
-    debuglog(() => `here models ${modelname} ` + mongoHandle.mongoose.modelNames().join(';'));
+    debuglog(function () { return "here models " + modelname + " " + mongoHandle.mongoose.modelNames().join(';'); });
     var model = mongoHandle.mongoose.model(Schemaload.makeMongooseModelName(modelname));
     var mongoMap = mongoHandle.mongoMaps[modelname];
     checkModelMongoMap(model, modelname, mongoMap, category);
     debuglog(' here path for distinct value ' + mongoMap[category].fullpath);
-    return model.distinct(mongoMap[category].fullpath).then(res => {
-        debuglog(() => ` here res for ${modelname}  ${category} values ` + JSON.stringify(res, undefined, 2));
+    return model.distinct(mongoMap[category].fullpath).then(function (res) {
+        debuglog(function () { return " here res for " + modelname + "  " + category + " values " + JSON.stringify(res, undefined, 2); });
         return res;
     });
 }
 exports.getDistinctValues = getDistinctValues;
-const ARR_MODEL_PROPERTIES = ["domain", "bitindex", "defaultkeycolumn", "defaulturi", "categoryDescribed", "columns", "description", "tool", "toolhidden", "synonyms", "category", "wordindex", "exactmatch", "hidden"];
+var ARR_MODEL_PROPERTIES = ["domain", "bitindex", "defaultkeycolumn", "defaulturi", "categoryDescribed", "columns", "description", "tool", "toolhidden", "synonyms", "category", "wordindex", "exactmatch", "hidden"];
 function addSynonyms(synonyms, category, synonymFor, bitindex, bitSentenceAnd, wordType, mRules, seen) {
     synonyms.forEach(function (syn) {
         var oRule = {
@@ -254,7 +254,7 @@ function getRuleKey(rule) {
     }
     return r1;
 }
-const Breakdown = require("../match/breakdown");
+var Breakdown = require("../match/breakdown");
 /* given a rule which represents a word sequence which is split during tokenization */
 function addBestSplit(mRules, rule, seenRules) {
     //if(!global_AddSplits) {
@@ -304,7 +304,7 @@ function insertRuleIfNotPresent(mRules, rule, seenRules) {
      }*/
     rule.lowercaseword = rule.word.toLowerCase();
     if (seenRules[r]) {
-        debuglog(() => ("Attempting to insert duplicate" + JSON.stringify(rule, undefined, 2) + " : " + r));
+        debuglog(function () { return ("Attempting to insert duplicate" + JSON.stringify(rule, undefined, 2) + " : " + r); });
         var duplicates = seenRules[r].filter(function (oEntry) {
             return 0 === InputFilterRules.compareMRuleFull(oEntry, rule);
         });
@@ -400,7 +400,7 @@ function loadModelData1(modelPath: string, oMdl: IModel, sModelName: string, oMo
 */
 function hasRuleWithFact(mRules, fact, category, bitindex) {
     // TODO BAD QUADRATIC
-    return mRules.find(rule => {
+    return mRules.find(function (rule) {
         return rule.word === fact && rule.category === category && rule.bitindex === bitindex;
     }) !== undefined;
 }
@@ -410,20 +410,20 @@ function loadModelDataMongo(modelHandle, oMdl, sModelName, oModel) {
     // data is processed into mRules directly
     var bitindex = oMdl.bitindex;
     //const sFileName = ('./' + modelPath + '/' + sModelName + ".data.json");
-    return Promise.all(modelHandle.modelDocs[sModelName]._categories.map(categoryRec => {
+    return Promise.all(modelHandle.modelDocs[sModelName]._categories.map(function (categoryRec) {
         var category = categoryRec.category;
         var wordindex = categoryRec.wordindex;
         if (!wordindex) {
-            debuglog(() => '  ' + sModelName + ' ' + category + ' is not word indexed!');
+            debuglog(function () { return '  ' + sModelName + ' ' + category + ' is not word indexed!'; });
             return Promise.resolve(true);
         }
         else {
-            debuglog(() => 'adding values for ' + sModelName + ' ' + category);
-            return getDistinctValues(modelHandle, sModelName, category).then((values) => {
-                debuglog(`found ${values.length} values for ${sModelName} ${category} `);
-                values.map(value => {
+            debuglog(function () { return 'adding values for ' + sModelName + ' ' + category; });
+            return getDistinctValues(modelHandle, sModelName, category).then(function (values) {
+                debuglog("found " + values.length + " values for " + sModelName + " " + category + " ");
+                values.map(function (value) {
                     var sString = "" + value;
-                    debuglog(() => "pushing rule with " + category + " -> " + sString + ' ');
+                    debuglog(function () { return "pushing rule with " + category + " -> " + sString + ' '; });
                     var oRule = {
                         category: category,
                         matchedString: sString,
@@ -448,13 +448,13 @@ function loadModelDataMongo(modelHandle, oMdl, sModelName, oModel) {
                 return true;
             });
         }
-    })).then(() => getFactSynonyms(modelHandle, sModelName)).then((synonymValues) => {
-        synonymValues.forEach((synonymRec) => {
+    })).then(function () { return getFactSynonyms(modelHandle, sModelName); }).then(function (synonymValues) {
+        synonymValues.forEach(function (synonymRec) {
             if (!hasRuleWithFact(oModel.mRules, synonymRec.fact, synonymRec.category, bitindex)) {
-                debuglog(() => JSON.stringify(oModel.mRules, undefined, 2));
-                throw Error(`Orphaned synonym without base in data?\n`
+                debuglog(function () { return JSON.stringify(oModel.mRules, undefined, 2); });
+                throw Error("Orphaned synonym without base in data?\n"
                     +
-                        `(check typos and that category is wordindexed!) fact: '${synonymRec.fact}';  category: "${synonymRec.category}"   ` + JSON.stringify(synonymRec));
+                        ("(check typos and that category is wordindexed!) fact: '" + synonymRec.fact + "';  category: \"" + synonymRec.category + "\"   ") + JSON.stringify(synonymRec));
             }
             addSynonyms(synonymRec.synonyms, synonymRec.category, synonymRec.fact, bitindex, bitindex, IMatch.WORDTYPE.FACT, oModel.mRules, oModel.seenRules);
             return true;
@@ -518,7 +518,9 @@ exports.getDomainBitIndexSafe = getDomainBitIndexSafe;
  * @param bitfield
  */
 function getDomainsForBitField(oModel, bitfield) {
-    return oModel.domains.filter(domain => (getDomainBitIndex(domain, oModel) & bitfield));
+    return oModel.domains.filter(function (domain) {
+        return (getDomainBitIndex(domain, oModel) & bitfield);
+    });
 }
 exports.getDomainsForBitField = getDomainsForBitField;
 /*
@@ -712,16 +714,16 @@ function makeMdlMongo(modelHandle, sModelName, oModel) {
     };
     var categoryDescribedMap = {};
     oMdl.bitindex = getDomainBitIndexSafe(modelDoc.domain, oModel);
-    oMdl.category = modelDoc._categories.map(cat => cat.category);
+    oMdl.category = modelDoc._categories.map(function (cat) { return cat.category; });
     oMdl.categoryDescribed = [];
-    modelDoc._categories.forEach(cat => {
+    modelDoc._categories.forEach(function (cat) {
         oMdl.categoryDescribed.push({
             name: cat.category,
             description: cat.category_description
         });
         categoryDescribedMap[cat.category] = cat;
     });
-    oMdl.category = modelDoc._categories.map(cat => cat.category);
+    oMdl.category = modelDoc._categories.map(function (cat) { return cat.category; });
     /* // rectify category
      oMdl.category = oMdl.category.map(function (cat: any) {
          if (typeof cat === "string") {
@@ -752,7 +754,7 @@ function makeMdlMongo(modelHandle, sModelName, oModel) {
         }, oModel.seenRules);
     });
     // add synonanym for the categories to the
-    modelDoc._categories.forEach(cat => {
+    modelDoc._categories.forEach(function (cat) {
         addSynonyms;
     });
     if (oModel.domains.indexOf(oMdl.domain) < 0) {
@@ -883,7 +885,7 @@ function makeMdlMongo(modelHandle, sModelName, oModel) {
         */
     // add synsonym for the domains
     // add synonyms for the categories
-    modelDoc._categories.forEach(cat => {
+    modelDoc._categories.forEach(function (cat) {
         if (cat.category_synonyms && cat.category_synonyms.length > 0) {
             if (oModel.full.domain[oMdl.domain].categories[cat.category]) {
                 oModel.full.domain[oMdl.domain].categories[cat.category].category_synonyms = cat.category_synonyms;
@@ -933,7 +935,7 @@ exports.splitRules = splitRules;
 function sortFlatRecords(a, b) {
     var keys = _.union(Object.keys(a), Object.keys(b)).sort();
     var r = 0;
-    keys.every((key) => {
+    keys.every(function (key) {
         if (typeof a[key] === "string" && typeof b[key] !== "string") {
             r = -1;
             return false;
@@ -960,7 +962,7 @@ function cmpLengthSort(a, b) {
     }
     return a.localeCompare(b);
 }
-const Algol = require("../match/algol");
+var Algol = require("../match/algol");
 // offset[0] : len-2
 //             len -1
 //             len
@@ -977,7 +979,7 @@ function findNextLen(targetLen, arr, offsets) {
 }
 exports.findNextLen = findNextLen;
 function addRangeRulesUnlessPresent(rules, lcword, rangeRules, presentRulesForKey, seenRules) {
-    rangeRules.forEach(rangeRule => {
+    rangeRules.forEach(function (rangeRule) {
         var newRule = Object.assign({}, rangeRule);
         newRule.lowercaseword = lcword;
         newRule.word = lcword;
@@ -993,7 +995,7 @@ exports.addRangeRulesUnlessPresent = addRangeRulesUnlessPresent;
 function addCloseExactRangeRules(rules, seenRules) {
     var keysMap = {};
     var rangeKeysMap = {};
-    rules.forEach(rule => {
+    rules.forEach(function (rule) {
         if (rule.type === IMatch.EnumRuleType.WORD) {
             //keysMap[rule.lowercaseword] = 1;
             keysMap[rule.lowercaseword] = keysMap[rule.lowercaseword] || [];
@@ -1007,7 +1009,7 @@ function addCloseExactRangeRules(rules, seenRules) {
     var keys = Object.keys(keysMap);
     keys.sort(cmpLengthSort);
     var len = 0;
-    keys.forEach((key, index) => {
+    keys.forEach(function (key, index) {
         if (key.length != len) {
             //console.log("shift to len" + key.length + ' at ' + index + ' ' + key );
         }
@@ -1076,7 +1078,7 @@ var n = 0;
 function readFillers(mongoose, oModel) {
     var fillerBitIndex = getDomainBitIndex('meta', oModel);
     var bitIndexAllDomains = getAllDomainsBitIndex(oModel);
-    return Schemaload.getFillersFromDB(mongoose).then((fillersObj) => fillersObj.fillers).then((fillers) => {
+    return Schemaload.getFillersFromDB(mongoose).then(function (fillersObj) { return fillersObj.fillers; }).then(function (fillers) {
         //  fillersreadFileAsJSON('./' + modelPath + '/filler.json');
         /*
         var re = "^((" + fillers.join(")|(") + "))$";
@@ -1092,7 +1094,7 @@ function readFillers(mongoose, oModel) {
         if (!_.isArray(fillers)) {
             throw new Error('expect fillers to be an array of strings');
         }
-        fillers.forEach(filler => {
+        fillers.forEach(function (filler) {
             insertRuleIfNotPresent(oModel.mRules, {
                 category: "filler",
                 type: IMatch.EnumRuleType.WORD,
@@ -1114,7 +1116,7 @@ exports.readFillers = readFillers;
 function readOperators(mongoose, oModel) {
     debuglog('reading operators');
     //add operators
-    return Schemaload.getOperatorsFromDB(mongoose).then((operators) => {
+    return Schemaload.getOperatorsFromDB(mongoose).then(function (operators) {
         var operatorBitIndex = getDomainBitIndex('operators', oModel);
         var bitIndexAllDomains = getAllDomainsBitIndex(oModel);
         Object.keys(operators.operators).forEach(function (operator) {
@@ -1193,7 +1195,7 @@ function loadModelsOpeningConnection(mongooseHndl, connectionString, modelPath) 
     //    }
     console.log(" explicit connection string " + connectionString);
     var connStr = connectionString || 'mongodb://localhost/testdb';
-    return MongoUtils.openMongoose(mongooseX, connStr).then(() => {
+    return MongoUtils.openMongoose(mongooseX, connStr).then(function () {
         return loadModels(mongooseX, modelPath);
     });
 }
@@ -1207,8 +1209,8 @@ function loadModels(mongoose, modelPath) {
     if (mongoose === undefined) {
         throw new Error('expect a mongoose handle to be passed');
     }
-    return getMongoHandle(mongoose).then((modelHandle) => {
-        debuglog(`got a mongo handle for ${modelPath}`);
+    return getMongoHandle(mongoose).then(function (modelHandle) {
+        debuglog("got a mongo handle for " + modelPath);
         return _loadModelsFull(modelHandle, modelPath);
     });
 }
@@ -1236,7 +1238,7 @@ function _loadModelsFull(modelHandle, modelPath) {
     };
     var t = Date.now();
     try {
-        debuglog(() => 'here model path' + modelPath);
+        debuglog(function () { return 'here model path' + modelPath; });
         var a = CircularSer.load(modelPath + '/_cache.js');
         // TODO
         //console.log("found a cache ?  " + !!a);
@@ -1259,18 +1261,20 @@ function _loadModelsFull(modelHandle, modelPath) {
     //var mdls = readFileAsJSON('./' + modelPath + '/models.json');
     var mdls = Object.keys(modelHandle.modelDocs).sort();
     var seenDomains = {};
-    mdls.forEach((modelName, index) => {
+    mdls.forEach(function (modelName, index) {
         var domain = modelHandle.modelDocs[modelName].domain;
         if (seenDomains[domain]) {
             throw new Error('Domain ' + domain + ' already loaded while loading ' + modelName + '?');
         }
         seenDomains[domain] = index;
     });
-    oModel.domains = mdls.map(modelName => modelHandle.modelDocs[modelName].domain);
+    oModel.domains = mdls.map(function (modelName) { return modelHandle.modelDocs[modelName].domain; });
     // create bitindex in order !
     debuglog('got domains ' + mdls.join("\n"));
     debuglog('loading models ' + mdls.join("\n"));
-    return Promise.all(mdls.map((sModelName) => loadModel(modelHandle, sModelName, oModel))).then(() => {
+    return Promise.all(mdls.map(function (sModelName) {
+        return loadModel(modelHandle, sModelName, oModel);
+    })).then(function () {
         var metaBitIndex = getDomainBitIndex('meta', oModel);
         var bitIndexAllDomains = getAllDomainsBitIndex(oModel);
         // add the domain meta rule
@@ -1299,7 +1303,11 @@ function _loadModelsFull(modelHandle, modelPath) {
             _ranking: 0.95
         }, oModel.seenRules);
         return true;
-    }).then(() => readFillers(modelHandle.mongoose, oModel)).then(() => readOperators(modelHandle.mongoose, oModel)).then(() => {
+    }).then(function () {
+        return readFillers(modelHandle.mongoose, oModel);
+    }).then(function () {
+        return readOperators(modelHandle.mongoose, oModel);
+    }).then(function () {
         /*
             })
                 {
@@ -1334,7 +1342,7 @@ function _loadModelsFull(modelHandle, modelPath) {
         var res = oModel;
         // (Object as any).assign(modelHandle, { model: oModel }) as IMatch.IModelHandle;
         return res;
-    }).catch((err) => {
+    })["catch"](function (err) {
         console.log(err + ' ' + err.stack);
         process.exit(-1);
     });
@@ -1369,7 +1377,7 @@ function rankCategoryByImportance(map, cata, catb) {
     return cata.localeCompare(catb);
 }
 exports.rankCategoryByImportance = rankCategoryByImportance;
-const MetaF = Meta.getMetaFactory();
+var MetaF = Meta.getMetaFactory();
 function getOperator(mdl, operator) {
     return mdl.operators[operator];
 }
@@ -1397,8 +1405,7 @@ function getShowURICategoriesForDomain(theModel, domain) {
     var modelName = getModelNameForDomain(theModel.mongoHandle, domain);
     var allcats = getResultAsArray(theModel, MetaF.Domain(domain), MetaF.Relation(Meta.RELATION_hasCategory));
     var doc = theModel.mongoHandle.modelDocs[modelName];
-    console.log(' document morel ' + JSON.stringify(doc._categories));
-    var res = doc._categories.filter(cat => cat.showURI).map(cat => cat.category);
+    var res = doc._categories.filter(function (cat) { return cat.showURI; }).map(function (cat) { return cat.category; });
     return res;
 }
 exports.getShowURICategoriesForDomain = getShowURICategoriesForDomain;
@@ -1407,7 +1414,7 @@ function getShowURIRankCategoriesForDomain(theModel, domain) {
     var modelName = getModelNameForDomain(theModel.mongoHandle, domain);
     var allcats = getResultAsArray(theModel, MetaF.Domain(domain), MetaF.Relation(Meta.RELATION_hasCategory));
     var doc = theModel.mongoHandle.modelDocs[modelName];
-    var res = doc._categories.filter(cat => cat.showURIRank).map(cat => cat.category);
+    var res = doc._categories.filter(function (cat) { return cat.showURIRank; }).map(function (cat) { return cat.category; });
     return res;
 }
 exports.getShowURIRankCategoriesForDomain = getShowURIRankCategoriesForDomain;
@@ -1527,5 +1534,7 @@ function getDomainCategoryFilterForTargetCategory(model, category, wordsonly) {
     return getDomainCategoryFilterForTargetCategories(model, [category], wordsonly);
 }
 exports.getDomainCategoryFilterForTargetCategory = getDomainCategoryFilterForTargetCategory;
+
+//# sourceMappingURL=model.js.map
 
 //# sourceMappingURL=model.js.map

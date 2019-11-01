@@ -2,8 +2,8 @@
 /**
  * Utiltities for mongo
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-const debugf = require("debugf");
+exports.__esModule = true;
+var debugf = require("debugf");
 var debuglog = debugf('model');
 function openMongoose(mongoose, mongoConnectionString) {
     console.log(' mongoose.connect ' + mongoConnectionString);
@@ -21,7 +21,7 @@ function openMongoose(mongoose, mongoConnectionString) {
         if ((typeof db.on.setMaxListeners) === "function") {
             db.on.setMaxListeners(0);
         }
-        db.on('error', (err) => {
+        db.on('error', function (err) {
             console.error(err);
             reject(err);
         });
@@ -38,7 +38,9 @@ function openMongoose(mongoose, mongoConnectionString) {
 exports.openMongoose = openMongoose;
 function clearModels(mongoose) {
     debuglog(' clear Models ');
-    mongoose.connection.modelNames().forEach(modelName => delete mongoose.connection.models[modelName]);
+    mongoose.connection.modelNames().forEach(function (modelName) {
+        return delete mongoose.connection.models[modelName];
+    });
 }
 exports.clearModels = clearModels;
 function disconnect(mongoose) {
@@ -53,8 +55,10 @@ function disconnectReset(mongoose) {
 }
 exports.disconnectReset = disconnectReset;
 function getCollectionNames(mongoose) {
-    return mongoose.connection.db.collections().then((cols) => cols.map(col => col.collectionName));
+    return mongoose.connection.db.collections().then(function (cols) { return cols.map(function (col) { return col.collectionName; }); });
 }
 exports.getCollectionNames = getCollectionNames;
+
+//# sourceMappingURL=mongo.js.map
 
 //# sourceMappingURL=mongo.js.map

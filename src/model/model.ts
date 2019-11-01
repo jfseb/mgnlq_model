@@ -1532,7 +1532,6 @@ export function getShowURICategoriesForDomain(theModel : IMatch.IModels, domain 
     var modelName = getModelNameForDomain(theModel.mongoHandle,domain);
     var allcats = getResultAsArray(theModel, MetaF.Domain(domain), MetaF.Relation(Meta.RELATION_hasCategory));
     var doc = theModel.mongoHandle.modelDocs[modelName];
-    console.log( ' document morel ' + JSON.stringify( doc._categories));
     var res = doc._categories.filter( cat => cat.showURI ).map(cat => cat.category);
     return res;
 }

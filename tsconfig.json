@@ -1,14 +1,14 @@
 {
     "compilerOptions": {
-       // "target": "es6",
-       "skipLibCheck": true, // avoid lodash WeakMap mismatch
        "target": "es6",
-       // "module" : "es6", //'es2015
+       "skipLibCheck": true, // avoid lodash WeakMap mismatch
+        // "target": "es6",
+        // "module" : "es6", //'es2015
         "module": "commonjs",
         "moduleResolution": "node",
         "isolatedModules": false,
-      //  "jsx": "react",
-       // "watch" : true,
+        //  "jsx": "react",
+        // "watch" : true,
         // new ^^
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
@@ -17,8 +17,9 @@
         "removeComments": false,
         "noLib": false,
         "outDir" : "js",
-       // "sourceMap" : true,
+        "declarationDir": "js",
         "inlineSourceMap": true,
+        "sourceMap": false,
         "preserveConstEnums": true,
          //"jsx": "react",
         "suppressImplicitAnyIndexErrors": true

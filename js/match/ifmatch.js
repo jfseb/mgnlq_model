@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var EnumResponseCode;
 (function (EnumResponseCode) {
     EnumResponseCode[EnumResponseCode["NOMATCH"] = 0] = "NOMATCH";
@@ -52,5 +52,7 @@ var EnumActionType;
 ;
 ;
 ;
+
+//# sourceMappingURL=ifmatch.js.map
 
 //# sourceMappingURL=ifmatch.js.map

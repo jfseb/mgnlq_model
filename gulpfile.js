@@ -19,18 +19,19 @@ gulp.task('watch', function () {
     gulp.series(['tsc', 'eslint']));
 });
 
+
+var merge = require('merge-stream');
 /**
  * compile tsc (including srcmaps)
  * @input srcDir
  * @output js
  */
 gulp.task('tsc', function () {
-  var tsProject = ts.createProject('tsconfig.json', { inlineSourceMap: true });
+  var tsProject = ts.createProject('tsconfig.json', { declaration: true, sourceMap : false, inlineSourceMap: true });
   var tsResult = tsProject.src() // gulp.src('lib/*.ts')
     .pipe(sourcemaps.init()) // This means sourcemaps will be generated
     .pipe(tsProject());
-
-  return tsResult.js
+  return merge(tsResult, tsResult.js)
     .pipe(sourcemaps.write('.', {
       sourceRoot: function (file) {
         file.sourceMap.sources[0] = sourcemaproot + 'src/' + file.sourceMap.sources[0];
@@ -39,7 +40,7 @@ gulp.task('tsc', function () {
       },
       mapSources: function (src) {
         //console.log('here we remap' + src);
-        return /* sourcemaproot +*/ src;
+        return  src;
       }}
     )) // ,  { sourceRoot: './' } ))
     // Now the sourcemaps are added to the .js file

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.oKeyOrder = ["systemObjectCategory", "systemId", "systemObjectId"];
 function compareMRuleFull(a, b) {
     var r = a.category.localeCompare(b.category);
@@ -89,5 +89,7 @@ function cmpMRule(a, b) {
     return 0;
 }
 exports.cmpMRule = cmpMRule;
+
+//# sourceMappingURL=rule.js.map
 
 //# sourceMappingURL=rule.js.map

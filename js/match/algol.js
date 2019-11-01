@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 /**
  * @file algol.ts
  *
@@ -13,5 +13,7 @@ exports.RANKING_EPSILON = 0.000000001;
 */
 //export const Cutoff_WordMatch = 0.935;// 0.85  // 0.98
 exports.Cutoff_rangeCloseMatch = 0.98;
+
+//# sourceMappingURL=algol.js.map
 
 //# sourceMappingURL=algol.js.map

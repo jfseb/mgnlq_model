@@ -1,4 +1,8 @@
-/// <reference types="mongoose" />
+/**
+ * Functionality managing the match models
+ *
+ * @file
+ */
 import * as IMatch from '../match/ifmatch';
 import * as mongoose from 'mongoose';
 export declare function cmpTools(a: IMatch.ITool, b: IMatch.ITool): number;
@@ -35,7 +39,7 @@ export interface IModelRec {
 }
 export declare function augmentMongooseSchema(modelDoc: IModelDoc, schemaRaw: IRawSchema): IExtendedSchema;
 /**
- * return a modelname without a traling s
+ * return a modelname
  * @param collectionName
  */
 export declare function makeMongooseModelName(collectionName: string): string;
