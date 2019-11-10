@@ -1,6 +1,6 @@
 {
   "name": "mgnlq_model",
-  "version": "0.0.17",
+  "version": "0.0.21",
   "description": "model access from mongoose",
   "main": "js/index.js",
   "typings": "js/index",
@@ -41,8 +41,8 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-typescript": "^5.0.1",
     "merge-stream": "^2.0.0",
-    "mgnlq_testmodel": "0.0.7",
-    "mgnlq_testmodel_replay": "^0.1.2",
+    "mgnlq_testmodel": "^0.0.8",
+    "mgnlq_testmodel_replay": "^0.1.5",
     "mongoose_record_replay": "0.0.9",
     "nyc": "^14.1.1",
     "typescript": "^3.6.4"

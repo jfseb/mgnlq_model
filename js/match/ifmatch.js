@@ -15,10 +15,14 @@ exports.ERR_EMPTY_INPUT = "EMPTY_INPUT";
 ;
 exports.aOperatorNames = ["starting with", "ending with",
     "containing", "excluding", "having", "being",
-    "more than", "less than", "exactly"
+    "more than", "less than", "exactly",
+    "<", "<=", "!=", "=", ">", ">=",
+    "order by", "order descending by",
+    "existing", "not existing"
 ];
 exports.aAnySuccessorOperatorNames = ["starting with", "ending with",
-    "containing", "excluding", "having", "being"
+    "containing", "excluding", "having", "being",
+    "<", "<=", "!=", "=", ">", ">="
 ];
 ;
 exports.WORDTYPE = {

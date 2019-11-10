@@ -40,7 +40,7 @@ gulp.task('tsc', function () {
       },
       mapSources: function (src) {
         //console.log('here we remap' + src);
-        return  src;
+        return src;
       }}
     )) // ,  { sourceRoot: './' } ))
     // Now the sourcemaps are added to the .js file
@@ -51,6 +51,8 @@ var del = require('del');
 
 gulp.task('clean:models', function () {
   return del([
+    'test/data/mongoose_record_replay/testmodel/data/*',
+    'test/data/mongoose_record_replay/testmodel/queries.json',
     'sensitive/_cachefalse.js.zip',
     'testmodel2/_cachefalse.js.zip',
     'testmodel/_cachefalse.js.zip',
@@ -117,7 +119,7 @@ const eslint = require('gulp-eslint');
 gulp.task('eslint', () => {
   // ESLint ignores files with "node_modules" paths.
   // So, it's best to have gulp ignore the directory as well.
-  // Also, Be sure to return the stream from the task;
+  // Also, Be sure to return the stream from the task
   // Otherwise, the task may end before the stream has finished.
   return gulp.src(['src/**/*.js', 'test/**/*.js', 'gulpfile.js'])
     // eslint() attaches the lint output to the "eslint" property

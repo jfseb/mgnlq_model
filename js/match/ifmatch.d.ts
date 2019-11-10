@@ -29,7 +29,7 @@ export interface IPromptDescription {
     required: boolean;
 }
 export declare const aOperatorNames: string[];
-export declare type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having" | "more than" | "less than" | "exactly";
+export declare type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having" | "more than" | "less than" | "exactly" | "<" | "<=" | "!=" | "=" | ">" | ">=" | "order by" | "order descending by" | "existing" | "not existing";
 export declare const aAnySuccessorOperatorNames: string[];
 export interface IOperator {
     operator: OperatorName;

@@ -1300,7 +1300,7 @@ export function loadModelHandleP(mongooseHndl : mongoose.Mongoose, modelPath: st
 };
 */
 
-export function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString? : string,  modelPath? : string) : Promise<void | IMatch.IModels> {
+export function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, connectionString? : string,  modelPath? : string) : Promise<IMatch.IModels> {
   var mongooseX = mongooseHndl || mongoose;
  //   if(process.env.MONGO_REPLAY) {
  //        mongooseX = mongooseMock.mongooseMock as any;
@@ -1320,7 +1320,7 @@ export function loadModelsOpeningConnection(mongooseHndl: mongoose.Mongoose, con
  * @param mongoose
  * @param modelPath
  */
-export function loadModels(mongoose: mongoose.Mongoose, modelPath : string) : Promise<void | IMatch.IModels> {
+export function loadModels(mongoose: mongoose.Mongoose, modelPath : string) : Promise<IMatch.IModels> {
     if(mongoose === undefined) {
         throw new Error('expect a mongoose handle to be passed');
     }
@@ -1330,7 +1330,7 @@ export function loadModels(mongoose: mongoose.Mongoose, modelPath : string) : Pr
     });
 }
 
-export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<void | IMatch.IModels> {
+export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?: string): Promise<IMatch.IModels> {
     var oModel: IMatch.IModels;
     modelPath = modelPath || envModelPath;
     modelHandle = modelHandle || {
@@ -1365,7 +1365,7 @@ export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?:
             if (process.env.ABOT_EMAIL_USER) {
                 console.log("loaded models from cache in " + (Date.now() - t) + " ");
             }
-            var res = a;
+            var res = a as IMatch.IModels;
             res.mongoHandle.mongoose  = modelHandle.mongoose;
             return Promise.resolve(res);
         }
@@ -1460,16 +1460,14 @@ export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?:
         if (process.env.ABOT_EMAIL_USER) {
             console.log("loaded models by calculation in " + (Date.now() - t) + " ");
         }
-
         var res = oModel;
         // (Object as any).assign(modelHandle, { model: oModel }) as IMatch.IModelHandle;
-
         return res;
     }
     ).catch( (err) => {
         console.log(err + ' ' + err.stack);
         process.exit(-1);
-    })
+    }) as Promise<IMatch.IModels>;
 }
 
 export function sortCategoriesByImportance(map: { [key: string]: IMatch.ICategoryDesc }, cats: string[]): string[] {

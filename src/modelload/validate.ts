@@ -683,6 +683,7 @@ export function loadModels(modelPath?: string): IMatch.IModels {
     var operators = readFileAsJSON('./' + modelPath + '/operators.json');
     var operatorBitIndex = getDomainBitIndex('operators', oModel);
     Object.keys(operators.operators).forEach(function (operator) {
+        console.log( "knownops " + IMatch.aOperatorNames.join(","));
         if (IMatch.aOperatorNames.indexOf(operator) < 0) {
             debuglog("unknown operator " + operator);
             throw new Error("unknown operator " + operator);
