@@ -1,13 +1,16 @@
 [
   {
-    "_id": "5dc84b5da32e0923f23e1146",
+    "_id": "5f7f4ed1fbf0a2ab5532be88",
     "modelname": "r3trans",
     "__v": 0,
+    "collectionname": "r3trans",
+    "domain": "SAP Transaction Codes",
     "index": {
       "transaction_description": "text",
       "tcode": "text",
       "devclass": "text"
     },
+    "mongoosemodelname": "r3trans",
     "props": {
       "tcode": {
         "type": "String",
@@ -37,9 +40,6 @@
         "_m_category": "transaction description",
         "index": true
       }
-    },
-    "collectionname": "r3trans",
-    "mongoosemodelname": "r3trans",
-    "domain": "SAP Transaction Codes"
+    }
   }
 ]

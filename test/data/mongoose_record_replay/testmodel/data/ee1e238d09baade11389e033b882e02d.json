@@ -1,11 +1,11 @@
 [
-  "metamodel",
+  "Cosmos",
+  "Fiori Backend Catalogs",
+  "FioriBOM",
   "IUPAC",
   "Philosophers elements",
-  "Cosmos",
   "SAP Transaction Codes",
-  "FioriBOM",
   "SOBJ Tables",
-  "Fiori Backend Catalogs",
-  "demomdls"
+  "demomdls",
+  "metamodel"
 ]

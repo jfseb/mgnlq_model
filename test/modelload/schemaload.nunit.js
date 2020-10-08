@@ -141,9 +141,9 @@ exports.testSchemaValidateOwnDocVsSchemaOk = function (test) {
       test.equal(1, 1);
       test.done();
     }).catch(err => {
-      test.equal(1, 0);
-      test.done();
-    });
+    test.equal(1, 0);
+    test.done();
+  });
 };
 
 exports.testSchemaLoadOwn = function (test) {
@@ -167,10 +167,10 @@ exports.testSchemaValidateMongooseOk = function (test) {
       test.equal(1, 1);
       test.done();
     }).catch(err => {
-      console.log(err);
-      test.equal(1, 0);
-      test.done();
-    });
+    console.log(err);
+    test.equal(1, 0);
+    test.done();
+  });
 };
 
 exports.testSchemaValidateMongooseBad = function (test) {
@@ -182,10 +182,10 @@ exports.testSchemaValidateMongooseBad = function (test) {
       test.equal(1, 0);
       test.done();
     }).catch(err => {
-      test.equal( (err + ' ').indexOf('Cast to Boolean failed for value "abc" at path "TranslationRelevant"') , 38 );
-      test.equal(1, 1);
-      test.done();
-    });
+    test.equal( (err + ' ').indexOf('Cast to Boolean failed for value "abc" at path "TranslationRelevant"') , 38 );
+    test.equal(1, 1);
+    test.done();
+  });
 };
 
 exports.testmakeMongooseCollName = function (test) {
@@ -418,12 +418,12 @@ exports.testUpsertModel = function (test) {
     res.remove = function () {
       return Promise.resolve(true);
     },
-      res.aggregate = function () {
-        return Promise.resolve([]);
-      },
-      res.findOneAndUpdate = function (arg) {
-        return Promise.resolve();
-      };
+    res.aggregate = function () {
+      return Promise.resolve([]);
+    },
+    res.findOneAndUpdate = function (arg) {
+      return Promise.resolve();
+    };
     return res;
   }
 

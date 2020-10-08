@@ -36,7 +36,7 @@ process.on('unhandledRejection', function onError(err) {
 });
 
 var connectionStringTestDB = 'mongodb://localhost/testdb';
-  //  mongoose.connect('mongodb://localhost/nodeunit');
+//  mongoose.connect('mongodb://localhost/nodeunit');
 
 
 exports.testCollectCats = function(test) {
@@ -345,11 +345,11 @@ exports.testGetDistintMultivalues = function(test) {
   }).then( (modelHandle) =>
     Model.getDistinctValues(modelHandle, 'metamodels' , 'domain synonyms')
   )
-  .then( (values) => {
-    test.deepEqual(values, [ 'meta model', 'fiori bom' ]);
-    MongoUtils.disconnect(mongoose);
-    test.done();
-  }
+    .then( (values) => {
+      test.deepEqual(values, [  'fiori bom' ,'meta model']);
+      MongoUtils.disconnect(mongoose);
+      test.done();
+    }
     ).catch((err) => {
       console.log('test failed ' + err + '\n' + err.stack);
       test.equal(0, 1);
@@ -368,11 +368,11 @@ exports.testGetDistintCosmos = function(test) {
   }).then( (modelHandle) =>
     Model.getDistinctValues(modelHandle, 'cosmos' , 'orbits')
   )
-  .then( (values) => {
-    test.deepEqual(values, [null, 'Alpha Centauri C', 'Sun', 'n/a']);
-    MongoUtils.disconnect(mongoose);
-    test.done();
-  }
+    .then( (values) => {
+      test.deepEqual(values, [null, 'Alpha Centauri C', 'Sun', 'n/a']);
+      MongoUtils.disconnect(mongoose);
+      test.done();
+    }
     ).catch((err) => {
       console.log('test failed ' + err + '\n' + err.stack);
       test.equal(0, 1);
@@ -392,17 +392,17 @@ exports.testGetDistintObjectName = function(test) {
   }).then( (modelHandle) =>
     Model.getDistinctValues(modelHandle, 'cosmos' , 'object name')
   )
-  .then( (values) => {
-    test.deepEqual(values, [ 'Alpha Centauri A',
-      'Alpha Centauri B',
-      'Alpha Centauri C',
-      'Mars',
-      'Proxima Centauri b',
-      'Sun',
-      'earth' ]);
-    MongoUtils.disconnect(mongoose);
-    test.done();
-  }
+    .then( (values) => {
+      test.deepEqual(values, [ 'Alpha Centauri A',
+        'Alpha Centauri B',
+        'Alpha Centauri C',
+        'Mars',
+        'Proxima Centauri b',
+        'Sun',
+        'earth' ]);
+      MongoUtils.disconnect(mongoose);
+      test.done();
+    }
     ).catch((err) => {
       console.log('test failed ' + err + '\n' + err.stack);
       test.equal(0, 1);
@@ -433,7 +433,7 @@ exports.testCollectCatsArrayOfPLain = function(test) {
 exports.testMakeIfMap = function(test) {
   var res = MongoMap.makeMongoMap(eDocSOBJ, eSchemaSOBJ_Tables);
   test.deepEqual(res['TransportObject'],
-   { paths: ['TransportObject'], fullpath : 'TransportObject'});
+    { paths: ['TransportObject'], fullpath : 'TransportObject'});
   test.deepEqual(res['Object name length'], { paths: ['Object_name_length'], fullpath : 'Object_name_length'});
   test.deepEqual(res['Table'], { paths: ['_tables', '[]', 'Table'], fullpath : '_tables.Table'});
   test.deepEqual(1,1);

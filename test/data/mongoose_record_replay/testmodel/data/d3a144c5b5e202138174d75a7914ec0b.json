@@ -1,12 +1,15 @@
 [
   {
-    "_id": "5dc84b5da32e0923f23e1138",
+    "_id": "5f7f4ed1fbf0a2ab5532be76",
     "modelname": "iupacs",
     "__v": 0,
+    "collectionname": "iupacs",
+    "domain": "IUPAC",
     "index": {
       "element_name": "text",
       "element_number": "text"
     },
+    "mongoosemodelname": "iupacs",
     "props": {
       "element_name": {
         "type": "String",
@@ -52,9 +55,6 @@
           ]
         }
       ]
-    },
-    "collectionname": "iupacs",
-    "mongoosemodelname": "iupacs",
-    "domain": "IUPAC"
+    }
   }
 ]

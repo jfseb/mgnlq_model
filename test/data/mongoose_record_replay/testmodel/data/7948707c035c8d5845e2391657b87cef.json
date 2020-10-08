@@ -1,14 +1,12 @@
 [
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": [
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee8c",
+        "_id": "5f7f4ed1dfac165358a69657",
         "category": "recordKey"
       },
       {
@@ -16,13 +14,13 @@
           "SOBJ",
           "Transport Key"
         ],
-        "_id": "5dc84b5dc31bee1eb45dee8b",
+        "_id": "5f7f4ed1dfac165358a69658",
         "category": "TransportObject",
         "category_description": "The transport object key (SOBJ)"
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee8a",
+        "_id": "5f7f4ed1dfac165358a69659",
         "category": "Shorttext",
         "category_description": "Short text of transport object"
       },
@@ -32,7 +30,7 @@
           "Database Table",
           "Transport Table"
         ],
-        "_id": "5dc84b5dc31bee1eb45dee89",
+        "_id": "5f7f4ed1dfac165358a6965a",
         "category": "Table",
         "category_description": "The DDIC Table",
         "wordindex": true,
@@ -40,7 +38,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee88",
+        "_id": "5f7f4ed1dfac165358a6965b",
         "category": "TableTransportKeySpec",
         "category_description": "Key specification for the table",
         "exactmatch": true
@@ -49,7 +47,7 @@
         "category_synonyms": [
           "Primary Table"
         ],
-        "_id": "5dc84b5dc31bee1eb45dee87",
+        "_id": "5f7f4ed1dfac165358a6965c",
         "category": "PrimaryTable",
         "category_description": "Primary table of transport object, if existing",
         "wordindex": true,
@@ -57,7 +55,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee86",
+        "_id": "5f7f4ed1dfac165358a6965d",
         "category": "clientSpecific",
         "category_description": "Whether the object is client specific",
         "wordindex": true,
@@ -65,21 +63,21 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee85",
+        "_id": "5f7f4ed1dfac165358a6965e",
         "category": "Object name length",
         "category_description": "Length of transport key",
         "exactmatch": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee84",
+        "_id": "5f7f4ed1dfac165358a6965f",
         "category": "category",
         "category_description": "Category of the transport",
         "exactmatch": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee83",
+        "_id": "5f7f4ed1dfac165358a69660",
         "category": "TranslationRelevant",
         "category_description": "Boolean (\"true\",\"false\") whether object is translation relevant",
         "wordindex": true,
@@ -87,11 +85,13 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee82",
+        "_id": "5f7f4ed1dfac165358a69661",
         "category": "Type",
         "exactmatch": true
       }
     ],
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   }
 ]

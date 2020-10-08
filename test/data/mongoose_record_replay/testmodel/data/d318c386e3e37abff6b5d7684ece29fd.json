@@ -1,15 +1,11 @@
 [
   {
-    "_id": "5925e323d3f66454a8cb6e00",
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
     "modelname": "metamodels",
     "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
-    "domain": "metamodel",
-    "domain_description": "metamodel",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee49",
+      "_id": "5f7f4ed0dfac165358a69612",
       "category": "uri",
       "category_description": "link to domain description",
       "QBEColumnProps": {
@@ -18,6 +14,7 @@
       "wordindex": false,
       "exactmatch": false
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -25,21 +22,20 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee48",
+      "_id": "5f7f4ed0dfac165358a69613",
       "category": "domain",
       "category_description": "a technical key, combination of appId and releaseId",
       "QBEColumnProps": {
@@ -49,6 +45,7 @@
       "wordindex": true,
       "exactmatch": false
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -56,21 +53,20 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee47",
+      "_id": "5f7f4ed0dfac165358a69614",
       "category": "domain description",
       "category_description": "a technical key, combination of appId and releaseId",
       "QBEColumnProps": {
@@ -78,6 +74,7 @@
       },
       "exactmatch": true
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -85,21 +82,20 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee46",
+      "_id": "5f7f4ed0dfac165358a69615",
       "category": "category",
       "category_description": "Object property",
       "QBEColumnProps": {
@@ -108,6 +104,7 @@
       },
       "wordindex": true
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -115,24 +112,24 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee45",
+      "_id": "5f7f4ed0dfac165358a69616",
       "category": "category description",
       "category_description": "Description of the category"
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -140,24 +137,24 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee44",
+      "_id": "5f7f4ed0dfac165358a69617",
       "category": "QBE",
       "category_description": "whether to include the category in QBE tables"
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -165,24 +162,24 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee43",
+      "_id": "5f7f4ed0dfac165358a69618",
       "category": "LUNRIndex",
       "category_description": "whether to include the category in a LUNR Index"
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -190,24 +187,24 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee42",
+      "_id": "5f7f4ed0dfac165358a69619",
       "category": "wordindex",
       "category_description": "whether to include the category in a LUNR Index"
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -215,24 +212,24 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee41",
+      "_id": "5f7f4ed0dfac165358a6961a",
       "category": "exactmatch",
       "category_description": "whether a match on a given value has to be precise"
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -240,24 +237,24 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee40",
+      "_id": "5f7f4ed0dfac165358a6961b",
       "category": "showURI",
       "category_description": "display uri"
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -265,24 +262,24 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee3f",
+      "_id": "5f7f4ed0dfac165358a6961c",
       "category": "showURIRank",
       "category_description": "display uri rank"
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -290,24 +287,24 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee3e",
+      "_id": "5f7f4ed0dfac165358a6961d",
       "category": "category synonyms",
       "category_description": "synonyms for the category"
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -315,24 +312,24 @@
       "domain description",
       "category description"
     ],
-    "domain_synonyms": [
-      "meta model"
-    ]
-  },
-  {
-    "_id": "5925e323d3f66454a8cb6e00",
-    "modelname": "metamodels",
-    "__v": 0,
-    "collectionname": "metamodels",
-    "mongoosemodelname": "metamodels",
     "domain": "metamodel",
     "domain_description": "metamodel",
+    "domain_synonyms": [
+      "meta model"
+    ],
+    "mongoosemodelname": "metamodels"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be71",
+    "modelname": "metamodels",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b54c31bee1eb45dee3d",
+      "_id": "5f7f4ed0dfac165358a6961e",
       "category": "columns",
       "category_description": "the columns in order which are shon in a table"
     },
+    "collectionname": "metamodels",
     "columns": [
       "domain",
       "category",
@@ -340,20 +337,22 @@
       "domain description",
       "category description"
     ],
+    "domain": "metamodel",
+    "domain_description": "metamodel",
     "domain_synonyms": [
       "meta model"
-    ]
+    ],
+    "mongoosemodelname": "metamodels"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e01",
+    "_id": "5f7f4ed1fbf0a2ab5532be78",
     "modelname": "iupacs",
     "__v": 0,
-    "domain": "IUPAC",
     "_categories": {
       "category_synonyms": [
         "name"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee4d",
+      "_id": "5f7f4ed1dfac165358a6961f",
       "category": "element name",
       "category_description": "element name",
       "QBEColumnProps": {
@@ -367,18 +366,18 @@
       "element symbol",
       "element number",
       "element name"
-    ]
+    ],
+    "domain": "IUPAC"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e01",
+    "_id": "5f7f4ed1fbf0a2ab5532be78",
     "modelname": "iupacs",
     "__v": 0,
-    "domain": "IUPAC",
     "_categories": {
       "category_synonyms": [
         "symbol"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee4c",
+      "_id": "5f7f4ed1dfac165358a69620",
       "category": "element symbol",
       "category_description": "element symbol",
       "QBEColumnProps": {
@@ -392,18 +391,18 @@
       "element symbol",
       "element number",
       "element name"
-    ]
+    ],
+    "domain": "IUPAC"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e01",
+    "_id": "5f7f4ed1fbf0a2ab5532be78",
     "modelname": "iupacs",
     "__v": 0,
-    "domain": "IUPAC",
     "_categories": {
       "category_synonyms": [
         "element weight"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee4b",
+      "_id": "5f7f4ed1dfac165358a69621",
       "category": "atomic weight",
       "category_description": "weigth of the element",
       "QBEColumnProps": {
@@ -415,16 +414,16 @@
       "element symbol",
       "element number",
       "element name"
-    ]
+    ],
+    "domain": "IUPAC"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e01",
+    "_id": "5f7f4ed1fbf0a2ab5532be78",
     "modelname": "iupacs",
     "__v": 0,
-    "domain": "IUPAC",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee4a",
+      "_id": "5f7f4ed1dfac165358a69622",
       "category": "element number",
       "category_description": "weigth of the element",
       "QBEColumnProps": {
@@ -438,296 +437,295 @@
       "element symbol",
       "element number",
       "element name"
-    ]
+    ],
+    "domain": "IUPAC"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e03",
+    "_id": "5f7f4ed1fbf0a2ab5532be7c",
     "modelname": "philoelements",
     "__v": 0,
-    "domain": "Philosophers elements",
-    "domain_description": "Philosophical elements, a trivial model to create some ambiguities, notably \"earth\", which is also a key of the domain cosmos",
     "_categories": {
       "category_synonyms": [
         "name"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee4f",
+      "_id": "5f7f4ed1dfac165358a69623",
       "category": "element name",
       "category_description": "name of the philosophical element",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Philosophers elements",
+    "domain_description": "Philosophical elements, a trivial model to create some ambiguities, notably \"earth\", which is also a key of the domain cosmos"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e03",
+    "_id": "5f7f4ed1fbf0a2ab5532be7c",
     "modelname": "philoelements",
     "__v": 0,
-    "domain": "Philosophers elements",
-    "domain_description": "Philosophical elements, a trivial model to create some ambiguities, notably \"earth\", which is also a key of the domain cosmos",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee4e",
+      "_id": "5f7f4ed1dfac165358a69624",
       "category": "element properties"
     },
-    "columns": []
+    "columns": [],
+    "domain": "Philosophers elements",
+    "domain_description": "Philosophical elements, a trivial model to create some ambiguities, notably \"earth\", which is also a key of the domain cosmos"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee5c",
+      "_id": "5f7f4ed1dfac165358a69625",
       "category": "object name",
       "category_description": "name of the comsmological object, e.g. star, start system, galaxy or planet",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee5b",
+      "_id": "5f7f4ed1dfac165358a69626",
       "category": "visual magnitude",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee5a",
+      "_id": "5f7f4ed1dfac165358a69627",
       "category": "visual luminosity"
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee59",
+      "_id": "5f7f4ed1dfac165358a69628",
       "category": "mass",
       "category_description": "mass of an object"
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee58",
+      "_id": "5f7f4ed1dfac165358a69629",
       "category": "radius"
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee57",
+      "_id": "5f7f4ed1dfac165358a6962a",
       "category": "object type",
       "category_description": "type of object, e.g. \"star\", \"planet\".",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee56",
+      "_id": "5f7f4ed1dfac165358a6962b",
       "category": "orbits",
       "category_description": "for planets, name of the central entity",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee55",
+      "_id": "5f7f4ed1dfac165358a6962c",
       "category": "distance",
       "category_description": "distance from earth"
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee54",
+      "_id": "5f7f4ed1dfac165358a6962d",
       "category": "_url",
       "showURI": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee53",
+      "_id": "5f7f4ed1dfac165358a6962e",
       "category": "orbit radius"
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee52",
+      "_id": "5f7f4ed1dfac165358a6962f",
       "category": "eccentricity"
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee51",
+      "_id": "5f7f4ed1dfac165358a69630",
       "category": "orbital period"
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee50",
+      "_id": "5f7f4ed1dfac165358a69631",
       "category": "albedo"
     },
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e08",
+    "_id": "5f7f4ed1fbf0a2ab5532be8a",
     "modelname": "r3trans",
     "__v": 0,
-    "domain": "SAP Transaction Codes",
-    "domain_description": "An extract of SAP Basis transactions",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee61",
+      "_id": "5f7f4ed1dfac165358a69632",
       "category": "tcode",
       "category_description": "SAP Transaction code",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "SAP Transaction Codes",
+    "domain_description": "An extract of SAP Basis transactions"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e08",
+    "_id": "5f7f4ed1fbf0a2ab5532be8a",
     "modelname": "r3trans",
     "__v": 0,
-    "domain": "SAP Transaction Codes",
-    "domain_description": "An extract of SAP Basis transactions",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee60",
+      "_id": "5f7f4ed1dfac165358a69633",
       "category": "devclass",
       "category_description": "Development class (Package) in system",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "SAP Transaction Codes",
+    "domain_description": "An extract of SAP Basis transactions"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e08",
+    "_id": "5f7f4ed1fbf0a2ab5532be8a",
     "modelname": "r3trans",
     "__v": 0,
-    "domain": "SAP Transaction Codes",
-    "domain_description": "An extract of SAP Basis transactions",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee5f",
+      "_id": "5f7f4ed1dfac165358a69634",
       "category": "systemId"
     },
-    "columns": []
+    "columns": [],
+    "domain": "SAP Transaction Codes",
+    "domain_description": "An extract of SAP Basis transactions"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e08",
+    "_id": "5f7f4ed1fbf0a2ab5532be8a",
     "modelname": "r3trans",
     "__v": 0,
-    "domain": "SAP Transaction Codes",
-    "domain_description": "An extract of SAP Basis transactions",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee5e",
+      "_id": "5f7f4ed1dfac165358a69635",
       "category": "client"
     },
-    "columns": []
+    "columns": [],
+    "domain": "SAP Transaction Codes",
+    "domain_description": "An extract of SAP Basis transactions"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e08",
+    "_id": "5f7f4ed1fbf0a2ab5532be8a",
     "modelname": "r3trans",
     "__v": 0,
-    "domain": "SAP Transaction Codes",
-    "domain_description": "An extract of SAP Basis transactions",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee5d",
+      "_id": "5f7f4ed1dfac165358a69636",
       "category": "transaction description",
       "category_description": "English text of the transaction"
     },
-    "columns": []
+    "columns": [],
+    "domain": "SAP Transaction Codes",
+    "domain_description": "An extract of SAP Basis transactions"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee81",
+      "_id": "5f7f4ed1dfac165358a69637",
       "category": "uri",
       "category_description": "link to fiori app reference library",
       "QBEColumnProps": {
@@ -759,19 +757,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee80",
+      "_id": "5f7f4ed1dfac165358a69638",
       "category": "uri_rank",
       "category_description": "Sort criteria for URI",
       "QBEColumnProps": {
@@ -803,19 +801,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee7f",
+      "_id": "5f7f4ed1dfac165358a69639",
       "category": "AppKey",
       "category_description": "a technical key, combination of appId and releaseId",
       "QBEColumnProps": {
@@ -847,16 +845,16 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "component name",
@@ -867,7 +865,7 @@
         "manifest id",
         "appdescriptor id"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee7e",
+      "_id": "5f7f4ed1dfac165358a6963a",
       "category": "ArtifactId",
       "category_description": "for UI5 based applications, name of the UI5 Component, e.g. \"ui.s2p.mm.supconf.monitors1\".",
       "QBEColumnProps": {
@@ -900,19 +898,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee7d",
+      "_id": "5f7f4ed1dfac165358a6963b",
       "category": "appId",
       "category_description": "the Fiori appId, note that multiple records exists, as the same ID may change over time with verions",
       "QBEColumnProps": {
@@ -946,23 +944,23 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "fiori intents",
         "intents",
         "intent"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee7c",
+      "_id": "5f7f4ed1dfac165358a6963c",
       "category": "fiori intent",
       "category_description": "A combination of \"#\" <SemanticObject> - <Semanticaction> which appears in the URL of the Fiori Launchpad when addressing the application",
       "QBEColumnProps": {
@@ -996,21 +994,21 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "Fiori App"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee7b",
+      "_id": "5f7f4ed1dfac165358a6963d",
       "category": "AppName",
       "category_description": "Human legible Application name",
       "QBEColumnProps": {
@@ -1044,16 +1042,16 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "Application Component",
@@ -1062,7 +1060,7 @@
         "Support Component",
         "Component"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee7a",
+      "_id": "5f7f4ed1dfac165358a6963e",
       "category": "ApplicationComponent",
       "category_description": "Support component for the Frontend application, typically",
       "QBEColumnProps": {
@@ -1097,22 +1095,22 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "Role Name",
         "PFCG Role"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee79",
+      "_id": "5f7f4ed1dfac165358a6963f",
       "category": "RoleName",
       "category_description": "A business role name, e.g. \"Purchaser\", for a technical role (PFCG), try BusinessRoleName",
       "QBEColumnProps": {
@@ -1146,19 +1144,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee78",
+      "_id": "5f7f4ed1dfac165358a69640",
       "category": "ApplicationType",
       "category_description": "Whether the application is classical or not",
       "QBEColumnProps": {
@@ -1193,23 +1191,23 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "BSP",
         "BSP Name",
         "BSP repository"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee77",
+      "_id": "5f7f4ed1dfac165358a69641",
       "category": "BSPName",
       "category_description": "Name of the Business Server Page",
       "QBEColumnProps": {
@@ -1243,16 +1241,16 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "BSP Path",
@@ -1260,7 +1258,7 @@
         "BSP Urls",
         "Resource Path"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee76",
+      "_id": "5f7f4ed1dfac165358a69642",
       "category": "BSPApplicationURL",
       "category_description": "url of the BSP application in an ABAP system, see BSP name for the technical storage  /sab/bc/ui5_ui5/..",
       "QBEColumnProps": {
@@ -1293,19 +1291,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee75",
+      "_id": "5f7f4ed1dfac165358a69643",
       "category": "releaseName",
       "category_description": "release name",
       "QBEColumnProps": {
@@ -1339,19 +1337,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee74",
+      "_id": "5f7f4ed1dfac165358a69644",
       "category": "releaseId",
       "wordindex": true,
       "exactmatch": true
@@ -1380,19 +1378,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee73",
+      "_id": "5f7f4ed1dfac165358a69645",
       "category": "BusinessCatalog",
       "category_description": "The SAP Business catalog which references the application in a \"TechnicalCatalog\" or \"BackendCatalog\" (for GUI/WDA transactions",
       "QBEColumnProps": {
@@ -1425,19 +1423,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee72",
+      "_id": "5f7f4ed1dfac165358a69646",
       "category": "TechnicalCatalog",
       "category_description": "Technical catalog, basic definition of \"TargetMapping\" and \"Tile\" for fiori (UI5) Applications",
       "QBEColumnProps": {
@@ -1470,19 +1468,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee71",
+      "_id": "5f7f4ed1dfac165358a69647",
       "category": "detailsurl",
       "hidden": true
     },
@@ -1510,19 +1508,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee70",
+      "_id": "5f7f4ed1dfac165358a69648",
       "category": "isPublished"
     },
     "columns": [
@@ -1549,19 +1547,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee6f",
+      "_id": "5f7f4ed1dfac165358a69649",
       "category": "BSPPackage",
       "category_description": "Package (DevClass) of the BSP Application",
       "QBEColumnProps": {
@@ -1595,19 +1593,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee6e",
+      "_id": "5f7f4ed1dfac165358a6964a",
       "category": "AppDocumentationLinkKW"
     },
     "columns": [
@@ -1634,22 +1632,22 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "Business Role Name",
         "Backend PFCG Role"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee6d",
+      "_id": "5f7f4ed1dfac165358a6964b",
       "category": "BusinessRoleName",
       "category_description": "Package (DevClass) of the BSP Application",
       "QBEColumnProps": {
@@ -1683,19 +1681,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee6c",
+      "_id": "5f7f4ed1dfac165358a6964c",
       "category": "BusinessGroupName",
       "category_description": "Package (DevClass) of the BSP Application",
       "QBEColumnProps": {
@@ -1729,19 +1727,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee6b",
+      "_id": "5f7f4ed1dfac165358a6964d",
       "category": "BusinessGroupDescription",
       "wordindex": true
     },
@@ -1769,16 +1767,16 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "ODataService",
@@ -1786,7 +1784,7 @@
         "OData Service Name",
         "OData Service"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee6a",
+      "_id": "5f7f4ed1dfac165358a6964e",
       "category": "PrimaryODataServiceName",
       "category_description": "OData service : Technical name of the OData Service operating on a Gateway server (and implemented in the R/3 Backend) serving data for UI5 based Fiori Apps",
       "QBEColumnProps": {
@@ -1820,21 +1818,21 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "Semantic Object"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee69",
+      "_id": "5f7f4ed1dfac165358a6964f",
       "category": "SemanticObject",
       "category_description": "The first part of the \"fiori intent\", identifying the Business entity, e.g. \"SalesOrder\",\"GLAcount\" used for generic navigation",
       "QBEColumnProps": {
@@ -1868,21 +1866,21 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "Semantic Action"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee68",
+      "_id": "5f7f4ed1dfac165358a69650",
       "category": "SemanticAction",
       "category_description": "The second part of the \"fiori intent\", identifying the action, e.g. \"maintain\", \"create\"",
       "QBEColumnProps": {
@@ -1915,19 +1913,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee67",
+      "_id": "5f7f4ed1dfac165358a69651",
       "category": "FrontendSoftwareComponent",
       "category_description": "Frontend Software Component",
       "QBEColumnProps": {
@@ -1961,23 +1959,23 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [
         "Transactions",
         "TransactionCode",
         "TransactionCodes"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee66",
+      "_id": "5f7f4ed1dfac165358a69652",
       "category": "TransactionCode",
       "category_description": "For GUI based transaction, the transaciton code behind intent, a classical R/3 SAPGUi transaction",
       "QBEColumnProps": {
@@ -2012,19 +2010,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee65",
+      "_id": "5f7f4ed1dfac165358a69653",
       "category": "URLParameters"
     },
     "columns": [
@@ -2051,19 +2049,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee64",
+      "_id": "5f7f4ed1dfac165358a69654",
       "category": "LPDCustInstance",
       "wordindex": true,
       "exactmatch": true
@@ -2092,19 +2090,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee63",
+      "_id": "5f7f4ed1dfac165358a69655",
       "category": "PrimaryODataPFCGRole",
       "wordindex": true,
       "exactmatch": true
@@ -2133,19 +2131,19 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0a",
+    "_id": "5f7f4ed1fbf0a2ab5532be8e",
     "modelname": "fioriapps",
     "__v": 0,
-    "domain": "FioriBOM",
-    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee62",
+      "_id": "5f7f4ed1dfac165358a69656",
       "category": "ExternalReleaseName",
       "category_description": "External Release name",
       "QBEColumnProps": {
@@ -2179,208 +2177,208 @@
       "BusinessCatalog",
       "TechnicalCatalog"
     ],
+    "domain": "FioriBOM",
+    "domain_description": "Information about Fiori apps with links to the Fiori Reference apps library",
     "domain_synonyms": [
       "fiori bom"
     ]
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee8c",
+      "_id": "5f7f4ed1dfac165358a69657",
       "category": "recordKey"
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [
         "SOBJ",
         "Transport Key"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee8b",
+      "_id": "5f7f4ed1dfac165358a69658",
       "category": "TransportObject",
       "category_description": "The transport object key (SOBJ)"
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee8a",
+      "_id": "5f7f4ed1dfac165358a69659",
       "category": "Shorttext",
       "category_description": "Short text of transport object"
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [
         "Tables",
         "Database Table",
         "Transport Table"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee89",
+      "_id": "5f7f4ed1dfac165358a6965a",
       "category": "Table",
       "category_description": "The DDIC Table",
       "wordindex": true,
       "exactmatch": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee88",
+      "_id": "5f7f4ed1dfac165358a6965b",
       "category": "TableTransportKeySpec",
       "category_description": "Key specification for the table",
       "exactmatch": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [
         "Primary Table"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee87",
+      "_id": "5f7f4ed1dfac165358a6965c",
       "category": "PrimaryTable",
       "category_description": "Primary table of transport object, if existing",
       "wordindex": true,
       "exactmatch": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee86",
+      "_id": "5f7f4ed1dfac165358a6965d",
       "category": "clientSpecific",
       "category_description": "Whether the object is client specific",
       "wordindex": true,
       "exactmatch": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee85",
+      "_id": "5f7f4ed1dfac165358a6965e",
       "category": "Object name length",
       "category_description": "Length of transport key",
       "exactmatch": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee84",
+      "_id": "5f7f4ed1dfac165358a6965f",
       "category": "category",
       "category_description": "Category of the transport",
       "exactmatch": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee83",
+      "_id": "5f7f4ed1dfac165358a69660",
       "category": "TranslationRelevant",
       "category_description": "Boolean (\"true\",\"false\") whether object is translation relevant",
       "wordindex": true,
       "exactmatch": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0c",
+    "_id": "5f7f4ed1fbf0a2ab5532be92",
     "modelname": "sobj_tables",
     "__v": 0,
-    "domain": "SOBJ Tables",
-    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\"",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee82",
+      "_id": "5f7f4ed1dfac165358a69661",
       "category": "Type",
       "exactmatch": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "SOBJ Tables",
+    "domain_description": "R/3 Transport objects and associated tables. This domains allows to quickly lookup up if and in what transport object a given table content is transported, e.g. \"What is the Transport Object, Primary Table for /UIF/LREPDCONT\""
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [
         "fiori intents",
         "intents",
         "intent"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee97",
+      "_id": "5f7f4ed1dfac165358a69662",
       "category": "fiori intent",
       "category_description": "A combination of \"#\" <SemanticObject> - <Semanticaction> which appears in the URL of the Fiori Launchpad when addressing the application",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [
         "Application Component",
@@ -2389,172 +2387,166 @@
         "Support Component",
         "Component"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee96",
+      "_id": "5f7f4ed1dfac165358a69663",
       "category": "ApplicationComponent",
       "category_description": "Support component for the Backend catalog entry, (the Package associated with the UIAD Transport record containing the Catalog Definition (SUI_TM_MM_APPS table). This is the component repsonsible for the Catalog, (not necessarily for the legacy application!)",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee95",
+      "_id": "5f7f4ed1dfac165358a69664",
       "category": "WebDynproApplication",
       "category_description": "Name of the web dynpro application",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee94",
+      "_id": "5f7f4ed1dfac165358a69665",
       "category": "devclass",
       "category_description": "devclass ( Package) of the backend catalog record (not necessarily the transaction",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [
         "Fiori Backend Catalog",
         "Fiori Backend Catalogs",
         "Backend Catalog"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee93",
+      "_id": "5f7f4ed1dfac165358a69666",
       "category": "BackendCatalogId",
       "category_description": "Name of the technical catalog (_TC_..._BE_), (same as FioriBOM Technical Catalog) (identical to entry in /UI2/SYSALIASCAT), \n(in /UI2/PB_C_CHIP.REFERENCEID  *ADCAT*...)",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee92",
+      "_id": "5f7f4ed1dfac165358a69667",
       "category": "TechnicalCatalogSystemAlias",
       "category_description": "Name of the System alias associated with this Technical catalog (entry delivered in /UI2/SYSALIASCAT)"
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee91",
+      "_id": "5f7f4ed1dfac165358a69668",
       "category": "BusinessCatalog",
       "category_description": "Name of the Business Catalog referencing this catalog (in /UI2/PB_C_CACHE.ID *CATALOGPAGE:*  _BC_ .."
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee90",
+      "_id": "5f7f4ed1dfac165358a69669",
       "category": "SemanticObject",
       "category_description": "The first part of the \"fiori intent\", identifying the Business entity, e.g. \"SalesOrder\",\"GLAcount\" used for generic navigation",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee8f",
+      "_id": "5f7f4ed1dfac165358a6966a",
       "category": "SemanticAction",
       "category_description": "The second part of the \"fiori intent\", identifying the action, e.g. \"maintain\", \"create\"",
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee8e",
+      "_id": "5f7f4ed1dfac165358a6966b",
       "category": "SoftwareComponent",
       "category_description": "Software component containing the Backend catalog",
       "exactmatch": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5925e323d3f66454a8cb6e0e",
+    "_id": "5f7f4ed1fbf0a2ab5532be96",
     "modelname": "fioribecatalogs",
     "__v": 0,
-    "domain": "Fiori Backend Catalogs",
-    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)",
     "_categories": {
       "category_synonyms": [
         "Transactions",
         "TransactionCode",
         "TransactionCodes"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee8d",
+      "_id": "5f7f4ed1dfac165358a6966c",
       "category": "TransactionCode",
       "category_description": "For GUI based transaction, the transaction code behind intent, a classical R/3 SAPGUi transaction",
       "exactmatch": true,
       "wordindex": true
     },
-    "columns": []
+    "columns": [],
+    "domain": "Fiori Backend Catalogs",
+    "domain_description": "R/3 Backend catalogs as modelled in table SUI_TM_MM_APPS. \nThis delivery is used to model technical catalogs which are imported (replicated) into the ABAP Frontend Server.\n It maps existing GUI and WebDynpro Transactions into the Fiori World by specifying Intent and potentially tile information for them. Note that there is an overlap with the FioriBOM domain. Note also, that the ApplicationComponetn here is the Application Component of the Backend Catalog Definition in SUI_TM_MM_APPS (the UIAD transport object)"
   },
   {
-    "_id": "5db885970f684a20a047b5ab",
+    "_id": "5f7f4ed1fbf0a2ab5532be9a",
     "modelname": "demomdls",
     "__v": 0,
-    "columns": [
-      "sender",
-      "standort",
-      "sendertyp",
-      "gründungsjahr",
-      "betriebsende",
-      "nachfolger"
-    ],
     "_categories": {
       "category_synonyms": [
         "name"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee9e",
+      "_id": "5f7f4ed1dfac165358a6966d",
       "category": "sender",
       "category_description": "sender",
       "QBEColumnProps": {
@@ -2564,12 +2556,6 @@
       },
       "wordindex": true
     },
-    "domain": "demomdls"
-  },
-  {
-    "_id": "5db885970f684a20a047b5ab",
-    "modelname": "demomdls",
-    "__v": 0,
     "columns": [
       "sender",
       "standort",
@@ -2578,13 +2564,19 @@
       "betriebsende",
       "nachfolger"
     ],
+    "domain": "demomdls"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be9a",
+    "modelname": "demomdls",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [
         "senderstandort",
         "produktionsort",
         "betriebsstätte"
       ],
-      "_id": "5dc84b5dc31bee1eb45dee9d",
+      "_id": "5f7f4ed1dfac165358a6966e",
       "category": "standort",
       "category_description": "standort",
       "QBEColumnProps": {
@@ -2594,12 +2586,6 @@
       },
       "wordindex": true
     },
-    "domain": "demomdls"
-  },
-  {
-    "_id": "5db885970f684a20a047b5ab",
-    "modelname": "demomdls",
-    "__v": 0,
     "columns": [
       "sender",
       "standort",
@@ -2608,9 +2594,15 @@
       "betriebsende",
       "nachfolger"
     ],
+    "domain": "demomdls"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be9a",
+    "modelname": "demomdls",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee9c",
+      "_id": "5f7f4ed1dfac165358a6966f",
       "category": "sendertyp",
       "category_description": "sendertyp",
       "QBEColumnProps": {
@@ -2620,12 +2612,6 @@
       },
       "wordindex": true
     },
-    "domain": "demomdls"
-  },
-  {
-    "_id": "5db885970f684a20a047b5ab",
-    "modelname": "demomdls",
-    "__v": 0,
     "columns": [
       "sender",
       "standort",
@@ -2634,9 +2620,15 @@
       "betriebsende",
       "nachfolger"
     ],
+    "domain": "demomdls"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be9a",
+    "modelname": "demomdls",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee9b",
+      "_id": "5f7f4ed1dfac165358a69670",
       "category": "besitzer",
       "category_description": "besitzer",
       "QBEColumnProps": {
@@ -2646,12 +2638,6 @@
       },
       "wordindex": true
     },
-    "domain": "demomdls"
-  },
-  {
-    "_id": "5db885970f684a20a047b5ab",
-    "modelname": "demomdls",
-    "__v": 0,
     "columns": [
       "sender",
       "standort",
@@ -2660,9 +2646,15 @@
       "betriebsende",
       "nachfolger"
     ],
+    "domain": "demomdls"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be9a",
+    "modelname": "demomdls",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee9a",
+      "_id": "5f7f4ed1dfac165358a69671",
       "category": "gründungsjahr",
       "category_description": "gründungsjahr",
       "QBEColumnProps": {
@@ -2672,12 +2664,6 @@
       },
       "wordindex": true
     },
-    "domain": "demomdls"
-  },
-  {
-    "_id": "5db885970f684a20a047b5ab",
-    "modelname": "demomdls",
-    "__v": 0,
     "columns": [
       "sender",
       "standort",
@@ -2686,9 +2672,15 @@
       "betriebsende",
       "nachfolger"
     ],
+    "domain": "demomdls"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be9a",
+    "modelname": "demomdls",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee99",
+      "_id": "5f7f4ed1dfac165358a69672",
       "category": "betriebsende",
       "category_description": "betriebsende",
       "QBEColumnProps": {
@@ -2698,12 +2690,6 @@
       },
       "wordindex": true
     },
-    "domain": "demomdls"
-  },
-  {
-    "_id": "5db885970f684a20a047b5ab",
-    "modelname": "demomdls",
-    "__v": 0,
     "columns": [
       "sender",
       "standort",
@@ -2712,9 +2698,15 @@
       "betriebsende",
       "nachfolger"
     ],
+    "domain": "demomdls"
+  },
+  {
+    "_id": "5f7f4ed1fbf0a2ab5532be9a",
+    "modelname": "demomdls",
+    "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5dc84b5dc31bee1eb45dee98",
+      "_id": "5f7f4ed1dfac165358a69673",
       "category": "nachfolger",
       "category_description": "nachfolger",
       "QBEColumnProps": {
@@ -2724,6 +2716,14 @@
       },
       "wordindex": true
     },
+    "columns": [
+      "sender",
+      "standort",
+      "sendertyp",
+      "gründungsjahr",
+      "betriebsende",
+      "nachfolger"
+    ],
     "domain": "demomdls"
   }
 ]

@@ -1037,7 +1037,7 @@ exports.testgetDomainsForCategory = function (test) {
 
 
 /**
- * Unit test for sth
+ * rules with exact Only 
  */
 exports.testModelCheckExactOnly = function (test) {
   test.expect(1);
@@ -1046,7 +1046,7 @@ exports.testModelCheckExactOnly = function (test) {
     var res = u.mRules.filter(function (oRule) {
       return oRule.exactOnly === true;
     });
-    test.equal(res.length, 186 /*431*/, 'correct flag applied');
+    test.equal(res.length, 176 /*186*/ /*431*/, 'correct flag applied');
     test.done();
     Model.releaseModel(theModel);
   });

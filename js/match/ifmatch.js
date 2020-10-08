@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.IMongooseBaseType = exports.EnumActionType = exports.EnumRuleType = exports.WORDTYPE = exports.aAnySuccessorOperatorNames = exports.aOperatorNames = exports.ERR_EMPTY_INPUT = exports.ERR_NO_KNOWN_WORD = exports.CAT_TOOL = exports.CAT_FILLER = exports.CAT_CATEGORY = exports.EnumResponseCode = void 0;
 var EnumResponseCode;
 (function (EnumResponseCode) {
     EnumResponseCode[EnumResponseCode["NOMATCH"] = 0] = "NOMATCH";

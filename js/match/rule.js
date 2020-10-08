@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.cmpMRule = exports.compareMRuleFull = exports.oKeyOrder = void 0;
 exports.oKeyOrder = ["systemObjectCategory", "systemId", "systemObjectId"];
 function compareMRuleFull(a, b) {
     var r = a.category.localeCompare(b.category);

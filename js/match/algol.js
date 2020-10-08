@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Cutoff_rangeCloseMatch = exports.RANKING_EPSILON = void 0;
 /**
  * @file algol.ts
  *

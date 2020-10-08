@@ -6,6 +6,7 @@
  * @file
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.loadModelData = exports.getModel = exports.createDB = exports.cmpTools = void 0;
 //import * as intf from 'constants';
 const debug = require("debugf");
 var debuglog = debug('model');

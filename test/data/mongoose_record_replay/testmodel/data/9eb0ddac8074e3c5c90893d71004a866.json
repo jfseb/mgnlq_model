@@ -1,9 +1,12 @@
 [
   {
-    "_id": "5dc84b5da32e0923f23e1149",
+    "_id": "5f7f4ed1fbf0a2ab5532be90",
     "modelname": "sobj_tables",
     "__v": 0,
+    "collectionname": "sobj_tables",
+    "domain": "SOBJ Tables",
     "index": {},
+    "mongoosemodelname": "sobj_tables",
     "props": {
       "recordKey": {
         "type": "String",
@@ -71,9 +74,6 @@
           }
         }
       ]
-    },
-    "collectionname": "sobj_tables",
-    "mongoosemodelname": "sobj_tables",
-    "domain": "SOBJ Tables"
+    }
   }
 ]

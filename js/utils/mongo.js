@@ -3,6 +3,7 @@
  * Utiltities for mongo
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getCollectionNames = exports.disconnectReset = exports.disconnect = exports.clearModels = exports.openMongoose = void 0;
 const debugf = require("debugf");
 var debuglog = debugf('model');
 function openMongoose(mongoose, mongoConnectionString) {

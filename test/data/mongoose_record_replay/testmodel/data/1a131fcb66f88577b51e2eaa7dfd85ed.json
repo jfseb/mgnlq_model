@@ -1,15 +1,14 @@
 [
   {
-    "_id": "5925e323d3f66454a8cb6e01",
+    "_id": "5f7f4ed1fbf0a2ab5532be78",
     "modelname": "iupacs",
     "__v": 0,
-    "domain": "IUPAC",
     "_categories": [
       {
         "category_synonyms": [
           "name"
         ],
-        "_id": "5dc84b5dc31bee1eb45dee4d",
+        "_id": "5f7f4ed1dfac165358a6961f",
         "category": "element name",
         "category_description": "element name",
         "QBEColumnProps": {
@@ -23,7 +22,7 @@
         "category_synonyms": [
           "symbol"
         ],
-        "_id": "5dc84b5dc31bee1eb45dee4c",
+        "_id": "5f7f4ed1dfac165358a69620",
         "category": "element symbol",
         "category_description": "element symbol",
         "QBEColumnProps": {
@@ -37,7 +36,7 @@
         "category_synonyms": [
           "element weight"
         ],
-        "_id": "5dc84b5dc31bee1eb45dee4b",
+        "_id": "5f7f4ed1dfac165358a69621",
         "category": "atomic weight",
         "category_description": "weigth of the element",
         "QBEColumnProps": {
@@ -47,7 +46,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee4a",
+        "_id": "5f7f4ed1dfac165358a69622",
         "category": "element number",
         "category_description": "weigth of the element",
         "QBEColumnProps": {
@@ -62,6 +61,7 @@
       "element symbol",
       "element number",
       "element name"
-    ]
+    ],
+    "domain": "IUPAC"
   }
 ]

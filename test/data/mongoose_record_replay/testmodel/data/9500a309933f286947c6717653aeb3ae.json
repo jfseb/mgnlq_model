@@ -1,11 +1,18 @@
 [
   {
-    "_id": "5925e323d3f66454a8cb6dff",
+    "_id": "5f7f4ed1fbf0a2ab5532be70",
     "modelname": "metamodels",
     "__v": 0,
-    "domain": "metamodel",
-    "mongoosemodelname": "metamodels",
     "collectionname": "metamodels",
+    "domain": "metamodel",
+    "index": {
+      "category_synonym": "text",
+      "domain_synonyms": "text",
+      "domain_description": "text",
+      "domain": "text",
+      "category": "text"
+    },
+    "mongoosemodelname": "metamodels",
     "props": {
       "modelname": {
         "type": "String",
@@ -113,13 +120,6 @@
           }
         }
       ]
-    },
-    "index": {
-      "category_synonym": "text",
-      "domain_synonyms": "text",
-      "domain_description": "text",
-      "domain": "text",
-      "category": "text"
     }
   }
 ]

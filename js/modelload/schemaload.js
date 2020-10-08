@@ -5,6 +5,7 @@
  * @file
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.validateDoc = exports.validateDocVsMongooseModel = exports.validateDocMongoose = exports.MongooseNLQ = exports.MongoNLQ = exports.hasMetaCollection = exports.upsertModels = exports.uploadOperators = exports.uploadFillers = exports.makeModelFromDB = exports.getModelDocFromDB = exports.getExtendSchemaDocFromDB = exports.getOperatorsFromDB = exports.getFillersFromDB = exports.getOrCreateModelOperators = exports.getOrCreateModelFillers = exports.removeOthers = exports.createDBWithModels = exports.upsertMetaModel = exports.getModelDocModel = exports.getExtendedSchemaModel = exports.getExtendedSchema = exports.makeMongoCollectionName = exports.makeMongooseModelName = exports.augmentMongooseSchema = exports.loadModelDoc = exports.loadExtendedMongooseSchema = exports.makeMongooseSchema = exports.typeProps = exports.replaceIfTypeDeleteM = exports.mapType = exports.loadModelNames = exports.cmpTools = void 0;
 //import * as intf from 'constants';
 const debug = require("debugf");
 var debuglog = debug('schemaload');

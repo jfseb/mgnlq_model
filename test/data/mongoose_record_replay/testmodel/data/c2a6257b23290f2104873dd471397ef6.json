@@ -1,6 +1,16 @@
 [
   {
-    "_id": "5dc84b5fc31bee1eb45def76",
+    "_id": "5f7f4ed1dfac165358a697ba",
+    "object_name": "Alpha Centauri B",
+    "visual_luminosity": "0.445*sun",
+    "mass": ".907*sun",
+    "visual_magnitude": "n/a",
+    "distance": "4.37 lightyears, 1.34pc",
+    "_synonyms": [],
+    "__v": 0
+  },
+  {
+    "_id": "5f7f4ed1dfac165358a697bf",
     "object_name": "Mars",
     "visual_luminosity": "n/a",
     "orbit_radius": "1.66AU-1.523679AU",
@@ -17,7 +27,7 @@
     "__v": 0
   },
   {
-    "_id": "5dc84b5fc31bee1eb45def7a",
+    "_id": "5f7f4ed1dfac165358a697c3",
     "object_name": "Sun",
     "visual_luminosity": "n/a",
     "orbit_radius": "1.016 - 0.983 AU, 152,100,000km - 14,.095,000km",
@@ -31,7 +41,48 @@
     "__v": 0
   },
   {
-    "_id": "5dc84b5fc31bee1eb45def74",
+    "_id": "5f7f4ed1dfac165358a697b8",
+    "object_name": "Alpha Centauri A",
+    "visual_magnitude": "-0.27",
+    "visual_luminosity": "1.519*sun",
+    "object_type": "star",
+    "mass": "1.1*sun",
+    "distance": "4.37 lightyears, 1.34pc",
+    "_synonyms": [
+      {
+        "synonyms": [
+          "Rigil Kentaurus"
+        ],
+        "_id": "5f7f4ed1dfac165358a697b9",
+        "category": "object name",
+        "fact": "Alpha Centauri A"
+      }
+    ],
+    "__v": 0
+  },
+  {
+    "_id": "5f7f4ed1dfac165358a697bb",
+    "object_name": "Alpha Centauri C",
+    "visual_luminosity": "-0.27",
+    "mass": "n/a",
+    "visual_magnitude": "n/a",
+    "orbits": "n/a",
+    "object_type": "star, red dwarf",
+    "distance": "4.24 lightyears, 1.30pc",
+    "_synonyms": [
+      {
+        "synonyms": [
+          "Proxima Centauri"
+        ],
+        "_id": "5f7f4ed1dfac165358a697bc",
+        "category": "object name",
+        "fact": "Alpha Centauri B"
+      }
+    ],
+    "__v": 0
+  },
+  {
+    "_id": "5f7f4ed1dfac165358a697bd",
     "object_name": "Proxima Centauri b",
     "visual_luminosity": "n/a",
     "mass": "0.134*sun, 1.27*earth",
@@ -46,7 +97,7 @@
         "synonyms": [
           "Proxima b"
         ],
-        "_id": "5dc84b5fc31bee1eb45def75",
+        "_id": "5f7f4ed1dfac165358a697be",
         "category": "object name",
         "fact": "Proxima Centauri b"
       }
@@ -54,38 +105,7 @@
     "__v": 0
   },
   {
-    "_id": "5dc84b5fc31bee1eb45def72",
-    "object_name": "Alpha Centauri C",
-    "visual_luminosity": "-0.27",
-    "mass": "n/a",
-    "visual_magnitude": "n/a",
-    "orbits": "n/a",
-    "object_type": "star, red dwarf",
-    "distance": "4.24 lightyears, 1.30pc",
-    "_synonyms": [
-      {
-        "synonyms": [
-          "Proxima Centauri"
-        ],
-        "_id": "5dc84b5fc31bee1eb45def73",
-        "category": "object name",
-        "fact": "Alpha Centauri B"
-      }
-    ],
-    "__v": 0
-  },
-  {
-    "_id": "5dc84b5fc31bee1eb45def71",
-    "object_name": "Alpha Centauri B",
-    "visual_luminosity": "0.445*sun",
-    "mass": ".907*sun",
-    "visual_magnitude": "n/a",
-    "distance": "4.37 lightyears, 1.34pc",
-    "_synonyms": [],
-    "__v": 0
-  },
-  {
-    "_id": "5dc84b5fc31bee1eb45def77",
+    "_id": "5f7f4ed1dfac165358a697c0",
     "object_name": "earth",
     "visual_luminosity": "n/a",
     "orbit_radius": "1.016 - 0.983 AU, 152,100,000km - 14,.095,000km",
@@ -105,7 +125,7 @@
           "blue planet",
           "gaia"
         ],
-        "_id": "5dc84b5fc31bee1eb45def79",
+        "_id": "5f7f4ed1dfac165358a697c1",
         "category": "object name",
         "fact": "earth"
       },
@@ -113,29 +133,9 @@
         "synonyms": [
           "Sol"
         ],
-        "_id": "5dc84b5fc31bee1eb45def78",
+        "_id": "5f7f4ed1dfac165358a697c2",
         "category": "orbits",
         "fact": "Sun"
-      }
-    ],
-    "__v": 0
-  },
-  {
-    "_id": "5dc84b5fc31bee1eb45def6f",
-    "object_name": "Alpha Centauri A",
-    "visual_magnitude": "-0.27",
-    "visual_luminosity": "1.519*sun",
-    "object_type": "star",
-    "mass": "1.1*sun",
-    "distance": "4.37 lightyears, 1.34pc",
-    "_synonyms": [
-      {
-        "synonyms": [
-          "Rigil Kentaurus"
-        ],
-        "_id": "5dc84b5fc31bee1eb45def70",
-        "category": "object name",
-        "fact": "Alpha Centauri A"
       }
     ],
     "__v": 0

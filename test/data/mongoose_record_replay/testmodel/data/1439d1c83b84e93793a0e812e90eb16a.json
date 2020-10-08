@@ -1,22 +1,14 @@
 [
   {
-    "_id": "5db885970f684a20a047b5ab",
+    "_id": "5f7f4ed1fbf0a2ab5532be9a",
     "modelname": "demomdls",
     "__v": 0,
-    "columns": [
-      "sender",
-      "standort",
-      "sendertyp",
-      "gründungsjahr",
-      "betriebsende",
-      "nachfolger"
-    ],
     "_categories": [
       {
         "category_synonyms": [
           "name"
         ],
-        "_id": "5dc84b5dc31bee1eb45dee9e",
+        "_id": "5f7f4ed1dfac165358a6966d",
         "category": "sender",
         "category_description": "sender",
         "QBEColumnProps": {
@@ -32,7 +24,7 @@
           "produktionsort",
           "betriebsstätte"
         ],
-        "_id": "5dc84b5dc31bee1eb45dee9d",
+        "_id": "5f7f4ed1dfac165358a6966e",
         "category": "standort",
         "category_description": "standort",
         "QBEColumnProps": {
@@ -44,7 +36,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee9c",
+        "_id": "5f7f4ed1dfac165358a6966f",
         "category": "sendertyp",
         "category_description": "sendertyp",
         "QBEColumnProps": {
@@ -56,7 +48,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee9b",
+        "_id": "5f7f4ed1dfac165358a69670",
         "category": "besitzer",
         "category_description": "besitzer",
         "QBEColumnProps": {
@@ -68,7 +60,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee9a",
+        "_id": "5f7f4ed1dfac165358a69671",
         "category": "gründungsjahr",
         "category_description": "gründungsjahr",
         "QBEColumnProps": {
@@ -80,7 +72,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee99",
+        "_id": "5f7f4ed1dfac165358a69672",
         "category": "betriebsende",
         "category_description": "betriebsende",
         "QBEColumnProps": {
@@ -92,7 +84,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee98",
+        "_id": "5f7f4ed1dfac165358a69673",
         "category": "nachfolger",
         "category_description": "nachfolger",
         "QBEColumnProps": {
@@ -102,6 +94,14 @@
         },
         "wordindex": true
       }
+    ],
+    "columns": [
+      "sender",
+      "standort",
+      "sendertyp",
+      "gründungsjahr",
+      "betriebsende",
+      "nachfolger"
     ],
     "domain": "demomdls"
   }

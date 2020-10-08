@@ -1,87 +1,87 @@
 [
   {
-    "_id": "5925e323d3f66454a8cb6e06",
+    "_id": "5f7f4ed1fbf0a2ab5532be86",
     "modelname": "cosmos",
     "__v": 0,
-    "domain": "Cosmos",
-    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model",
     "_categories": [
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee5c",
+        "_id": "5f7f4ed1dfac165358a69625",
         "category": "object name",
         "category_description": "name of the comsmological object, e.g. star, start system, galaxy or planet",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee5b",
+        "_id": "5f7f4ed1dfac165358a69626",
         "category": "visual magnitude",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee5a",
+        "_id": "5f7f4ed1dfac165358a69627",
         "category": "visual luminosity"
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee59",
+        "_id": "5f7f4ed1dfac165358a69628",
         "category": "mass",
         "category_description": "mass of an object"
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee58",
+        "_id": "5f7f4ed1dfac165358a69629",
         "category": "radius"
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee57",
+        "_id": "5f7f4ed1dfac165358a6962a",
         "category": "object type",
         "category_description": "type of object, e.g. \"star\", \"planet\".",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee56",
+        "_id": "5f7f4ed1dfac165358a6962b",
         "category": "orbits",
         "category_description": "for planets, name of the central entity",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee55",
+        "_id": "5f7f4ed1dfac165358a6962c",
         "category": "distance",
         "category_description": "distance from earth"
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee54",
+        "_id": "5f7f4ed1dfac165358a6962d",
         "category": "_url",
         "showURI": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee53",
+        "_id": "5f7f4ed1dfac165358a6962e",
         "category": "orbit radius"
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee52",
+        "_id": "5f7f4ed1dfac165358a6962f",
         "category": "eccentricity"
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee51",
+        "_id": "5f7f4ed1dfac165358a69630",
         "category": "orbital period"
       },
       {
         "category_synonyms": [],
-        "_id": "5dc84b5dc31bee1eb45dee50",
+        "_id": "5f7f4ed1dfac165358a69631",
         "category": "albedo"
       }
     ],
-    "columns": []
+    "columns": [],
+    "domain": "Cosmos",
+    "domain_description": "a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. \"Sun\" in \"object name\" as key and in \"orbits\"; \nb) \"earth\" as a property which is also present in a different model"
   }
 ]

@@ -1,13 +1,16 @@
 [
   {
-    "_id": "5dc84b5da32e0923f23e1137",
+    "_id": "5f7f4ed1fbf0a2ab5532be7e",
     "modelname": "cosmos",
     "__v": 0,
+    "collectionname": "cosmos",
+    "domain": "Cosmos",
     "index": {
       "object_name": "text",
       "object_type": "text",
       "orbits": "text"
     },
+    "mongoosemodelname": "cosmos",
     "props": {
       "object_name": {
         "type": "String",
@@ -95,9 +98,6 @@
         "trim": true,
         "_m_category": "albedo"
       }
-    },
-    "collectionname": "cosmos",
-    "mongoosemodelname": "cosmos",
-    "domain": "Cosmos"
+    }
   }
 ]

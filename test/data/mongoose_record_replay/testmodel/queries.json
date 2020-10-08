@@ -199,14 +199,14 @@
     "name": "fioriapps",
     "digest": "fa26ade2aac2c4eeedb7737f9dac65c6",
     "query": "BusinessGroupDescription",
-    "res": 8
+    "res": 7
   },
   "c581cd82d6b18d4e26b1091c83b6b443": {
     "op": "distinct",
     "name": "fioriapps",
     "digest": "c581cd82d6b18d4e26b1091c83b6b443",
     "query": "TransactionCode",
-    "res": 8
+    "res": 7
   },
   "6c2040e76e106b5a8ea84ce5d6d3e9ee": {
     "op": "distinct",
@@ -243,7 +243,7 @@
     "name": "demomdls",
     "digest": "8d8e02fb04aa546533d4522a23e2cd77",
     "query": "nachfolger",
-    "res": 2
+    "res": 1
   },
   "d5b7806ac36b9c583fa13ef96cdd93dc": {
     "op": "distinct",
@@ -264,21 +264,21 @@
     "name": "fioriapps",
     "digest": "1d04b194145fd208616153822ac1f7f6",
     "query": "BusinessRoleName",
-    "res": 9
+    "res": 8
   },
   "231a900a49b7e32f7b7b798149eef6b5": {
     "op": "distinct",
     "name": "fioriapps",
     "digest": "231a900a49b7e32f7b7b798149eef6b5",
     "query": "SemanticAction",
-    "res": 10
+    "res": 9
   },
   "1a9ebdb47a00bec9d537d2f8124ac509": {
     "op": "distinct",
     "name": "fioriapps",
     "digest": "1a9ebdb47a00bec9d537d2f8124ac509",
     "query": "ExternalReleaseName",
-    "res": 5
+    "res": 4
   },
   "e4e407afd81939c8299b9b9b873aa67d": {
     "op": "distinct",
@@ -348,14 +348,14 @@
     "name": "fioriapps",
     "digest": "a02abe127ccaad11673103b53faeac5f",
     "query": "BusinessGroupName",
-    "res": 9
+    "res": 8
   },
   "51ca4d49364ae4e62962311f9ad76ffe": {
     "op": "distinct",
     "name": "fioriapps",
     "digest": "51ca4d49364ae4e62962311f9ad76ffe",
     "query": "FrontendSoftwareComponent",
-    "res": 5
+    "res": 4
   },
   "86ca6598473762efcedbb81269b5b157": {
     "op": "distinct",
@@ -411,7 +411,7 @@
     "name": "fioriapps",
     "digest": "7cdf4812f0e355fb813b57154d901881",
     "query": "BSPName",
-    "res": 6
+    "res": 5
   },
   "33fe0d425a9f572c6e2a3e2b43bb6705": {
     "op": "distinct",
@@ -425,14 +425,14 @@
     "name": "fioriapps",
     "digest": "c45ba3fd5de8f180969b02e600f9fe2f",
     "query": "PrimaryODataServiceName",
-    "res": 5
+    "res": 4
   },
   "9707a0c764233b35696d8309d060b047": {
     "op": "distinct",
     "name": "fioriapps",
     "digest": "9707a0c764233b35696d8309d060b047",
     "query": "LPDCustInstance",
-    "res": 3
+    "res": 2
   },
   "9af2a46521c29eae2288d95f388977e9": {
     "op": "distinct",
@@ -495,7 +495,7 @@
     "name": "demomdls",
     "digest": "7f2ba5eb8536e49c8386c09d16e13756",
     "query": "betriebsende",
-    "res": 2
+    "res": 1
   },
   "20f66b3aac497d232b0a688e8ac1c47a": {
     "op": "distinct",
@@ -509,28 +509,28 @@
     "name": "fioriapps",
     "digest": "9b659345391366ad75fdf021fddec1e1",
     "query": "BSPApplicationURL",
-    "res": 6
+    "res": 5
   },
   "afde5d3c465899f8ba6da496c1048ad2": {
     "op": "distinct",
     "name": "fioriapps",
     "digest": "afde5d3c465899f8ba6da496c1048ad2",
     "query": "BSPPackage",
-    "res": 6
+    "res": 5
   },
   "db09cf7af4e751fe6172eec98c2d8e47": {
     "op": "distinct",
     "name": "fioriapps",
     "digest": "db09cf7af4e751fe6172eec98c2d8e47",
     "query": "SemanticObject",
-    "res": 12
+    "res": 11
   },
   "832d062696cb866a45d8f88c609a4352": {
     "op": "distinct",
     "name": "fioriapps",
     "digest": "832d062696cb866a45d8f88c609a4352",
     "query": "PrimaryODataPFCGRole",
-    "res": 4
+    "res": 3
   },
   "29ae174a0fc74ed9376269a65a1a2a0c": {
     "op": "distinct",

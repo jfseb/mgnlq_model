@@ -1,8 +1,10 @@
 [
   {
-    "_id": "5dc84b5da32e0923f23e1145",
+    "_id": "5f7f4ed1fbf0a2ab5532be94",
     "modelname": "fioribecatalogs",
     "__v": 0,
+    "collectionname": "fioribecatalogs",
+    "domain": "Fiori Backend Catalogs",
     "index": {
       "WebDynproApplication": "text",
       "SemanticObject": "text",
@@ -11,6 +13,7 @@
       "ApplicationComponent": "text",
       "BackendCatalogId": "text"
     },
+    "mongoosemodelname": "fioribecatalogs",
     "props": {
       "fiori_intent": {
         "type": "String",
@@ -93,9 +96,6 @@
         "_m_category": "TransactionCode",
         "index": true
       }
-    },
-    "collectionname": "fioribecatalogs",
-    "mongoosemodelname": "fioribecatalogs",
-    "domain": "Fiori Backend Catalogs"
+    }
   }
 ]

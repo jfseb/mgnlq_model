@@ -5,6 +5,7 @@
  * @file
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.makeMongoMap = exports.unwindsForNonterminalArrays = exports.getShortProjectedName = exports.isNonObjectPath = exports.makeMongoNameLC = exports.getFirstSegment = exports.makeCategoryPath = exports.getMemberByPath = exports.collectCategories = void 0;
 //import * as intf from 'constants';
 const debug = require("debugf");
 var debuglog = debug('mongomap');

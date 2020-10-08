@@ -5,6 +5,7 @@
  * @copyright (c) 2016 Gerd Forstmann
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.breakdownString = exports.makeMatchPattern = exports.tokenizeString = exports.combineTokens = exports.isCombinableRangeReturnIndex = exports.isCombinableSplit = exports.swallowWord = exports.swallowQuote = exports.countSpaces = exports.isQuoted = exports.recombineQuoted = exports.trimQuotedSpaced = exports.trimQuoted = exports.cleanseQuotedString = exports.cleanseStringLeaveDots = exports.cleanseString = void 0;
 const debug = require("debug");
 const debuglog = debug('breakdown');
 function cleanseString(sString) {

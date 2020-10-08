@@ -5,6 +5,7 @@
  * @file
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getMetaFactory = exports.RELATION_isCategoryOf = exports.RELATION_hasCategory = exports.getStringArray = exports.AMeta = void 0;
 //import * as intf from 'constants';
 const debug = require("debug");
 var debuglog = debug('meta');
