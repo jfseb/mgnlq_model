@@ -1,22 +1,6 @@
 [
   {
-    "_id": "5dbc49ea04edbc147889ac2d",
-    "category": "object name",
-    "fact": "Alpha Centauri A",
-    "synonyms": [
-      "Rigil Kentaurus"
-    ]
-  },
-  {
-    "_id": "5dbc49ea04edbc147889ac30",
-    "category": "object name",
-    "fact": "Alpha Centauri B",
-    "synonyms": [
-      "Proxima Centauri"
-    ]
-  },
-  {
-    "_id": "5dbc49ea04edbc147889ac32",
+    "_id": "5dc84b5fc31bee1eb45def74",
     "category": "object name",
     "fact": "Proxima Centauri b",
     "synonyms": [
@@ -24,7 +8,15 @@
     ]
   },
   {
-    "_id": "5dbc49ea04edbc147889ac35",
+    "_id": "5dc84b5fc31bee1eb45def72",
+    "category": "object name",
+    "fact": "Alpha Centauri B",
+    "synonyms": [
+      "Proxima Centauri"
+    ]
+  },
+  {
+    "_id": "5dc84b5fc31bee1eb45def77",
     "category": "object name",
     "fact": "earth",
     "synonyms": [
@@ -33,11 +25,19 @@
     ]
   },
   {
-    "_id": "5dbc49ea04edbc147889ac35",
+    "_id": "5dc84b5fc31bee1eb45def77",
     "category": "orbits",
     "fact": "Sun",
     "synonyms": [
       "Sol"
+    ]
+  },
+  {
+    "_id": "5dc84b5fc31bee1eb45def6f",
+    "category": "object name",
+    "fact": "Alpha Centauri A",
+    "synonyms": [
+      "Rigil Kentaurus"
     ]
   }
 ]

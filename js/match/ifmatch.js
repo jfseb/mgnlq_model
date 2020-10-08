@@ -18,7 +18,9 @@ exports.aOperatorNames = ["starting with", "ending with",
     "more than", "less than", "exactly",
     "<", "<=", "!=", "=", ">", ">=",
     "order by", "order descending by",
-    "existing", "not existing"
+    "existing", "not existing",
+    "left_paren", "right_paren",
+    "logical_and", "logical_or"
 ];
 exports.aAnySuccessorOperatorNames = ["starting with", "ending with",
     "containing", "excluding", "having", "being",
@@ -52,6 +54,12 @@ var EnumActionType;
     EnumActionType[EnumActionType["STARTURL"] = 0] = "STARTURL";
     EnumActionType[EnumActionType["STARTCMDLINE"] = 1] = "STARTCMDLINE";
 })(EnumActionType = exports.EnumActionType || (exports.EnumActionType = {}));
+var IMongooseBaseType;
+(function (IMongooseBaseType) {
+    IMongooseBaseType["Number"] = "Number";
+    IMongooseBaseType["String"] = "String";
+})(IMongooseBaseType = exports.IMongooseBaseType || (exports.IMongooseBaseType = {}));
+;
 ;
 ;
 ;

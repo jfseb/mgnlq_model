@@ -16,7 +16,7 @@ export interface IModelDoc {
     modelname?: string;
     collectionname?: string;
     domain_description: string;
-    _categories: IMatch.IModelDocCategoryRec[];
+    _categories: IMatch.IModelCategoryRec[];
     columns: string[];
     domain_synonyms: string[];
 }

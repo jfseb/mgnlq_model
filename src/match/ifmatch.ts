@@ -45,14 +45,19 @@ export const aOperatorNames = ["starting with", "ending with",
                           ,"more than","less than" ,"exactly",
                           "<", "<=", "!=", "=", ">", ">=",
                           "order by", "order descending by",
-                          "existing", "not existing"
+                          "existing", "not existing",
+                          "left_paren", "right_paren",
+                          "logical_and", "logical_or"
                         ];
 export type OperatorName = "starting with" | "ending with"
                         | "containing" | "being" | "excluding" | "having"
                         | "more than" | "less than" | "exactly"
                         | "<" | "<="| "!="| "="| ">"| ">="
                         |"order by"| "order descending by"
-                        | "existing"| "not existing";
+                        | "existing"| "not existing"
+                        | "left_paren"| "right_paren"
+                        | "logical_and" | "logical_or"
+                        ;
 
 export const aAnySuccessorOperatorNames = ["starting with", "ending with",
                         "containing", "excluding", "having", "being",
@@ -353,7 +358,15 @@ export interface QBEColumnProp {
       QBEInclude? : boolean
 }
 
-export interface IModelDocCategoryRec {
+export const enum IMongooseBaseType {
+  Number = "Number",
+  String = "String"
+};
+
+export type IMongooseTypeDecl = IMongooseBaseType | IMongooseBaseType[];
+
+
+export interface IModelCategoryRec {
     category : string,
     category_description : string,
     QBEColumnProps : QBEColumnProp,
@@ -361,7 +374,8 @@ export interface IModelDocCategoryRec {
     wordindex : boolean,
     exactmatch: boolean,
     showURI : boolean,
-    showURIRank : boolean
+    showURIRank : boolean,
+    type : IMongooseTypeDecl
 }
 
 export interface IModelDoc {
@@ -369,7 +383,7 @@ export interface IModelDoc {
     modelname? : string,
     collectionname? : string,
     domain_description : string
-    _categories : IModelDocCategoryRec[],
+    _categories : IModelCategoryRec[],
     columns: string[],
     domain_synonyms : string[]
 

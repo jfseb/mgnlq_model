@@ -262,6 +262,22 @@ export function getDistinctValues(mongoHandle: IMatch.IModelHandleRaw, modelname
     });
 }
 
+export function getCategoryRec(mongoHandle: IMatch.IModelHandleRaw, modelname: string, category: string): IMatch.IModelCategoryRec
+{
+    var categories = mongoHandle.modelDocs[modelname]._categories;
+    var filtered = categories.filter( x => x.category == category );
+    if ( filtered.length != 1 )
+    {
+
+        debugf( ' did not find ' + modelname + '  category  ' + category + ' in  ' + JSON.stringify(categories) );
+
+        throw Error('category not found ' + category + " " + JSON.stringify(categories) );
+    }
+    return filtered[0];
+}
+
+
+
 const ARR_MODEL_PROPERTIES = ["domain", "bitindex", "defaultkeycolumn", "defaulturi", "categoryDescribed", "columns", "description", "tool", "toolhidden", "synonyms", "category", "wordindex", "exactmatch", "hidden"];
 
 function addSynonyms(synonyms: string[], category: string, synonymFor: string, bitindex: number, bitSentenceAnd,
@@ -1232,7 +1248,7 @@ export function readOperators(mongoose: mongoose.Mongoose, oModel: IMatch.IModel
         Object.keys(operators.operators).forEach(function (operator) {
             if (IMatch.aOperatorNames.indexOf(operator) < 0) {
                 debuglog("unknown operator " + operator);
-                throw new Error("unknown operator " + operator);
+                throw new Error("unknown operator " + operator + ' (add to ifmatch.ts  aOperatorNames)');
             }
             oModel.operators[operator] = operators.operators[operator];
             oModel.operators[operator].operator = <IMatch.OperatorName>operator;

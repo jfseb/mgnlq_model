@@ -61,8 +61,6 @@ gulp.task('clean:models', function () {
     'testmodel/_cachetrue.js.zip',
   // here we use a globbing pattern to match everything inside the `mobile` folder
   //  'dist/mobile/**/*',
-  // we don't want to clean this file though so we negate the pattern
-  //    '!dist/mobile/deploy.json'
   ],  { });
 });
 
@@ -119,7 +117,7 @@ const eslint = require('gulp-eslint');
 gulp.task('eslint', () => {
   // ESLint ignores files with "node_modules" paths.
   // So, it's best to have gulp ignore the directory as well.
-  // Also, Be sure to return the stream from the task
+  // Also, Be sure to return the stream from the task;
   // Otherwise, the task may end before the stream has finished.
   return gulp.src(['src/**/*.js', 'test/**/*.js', 'gulpfile.js'])
     // eslint() attaches the lint output to the "eslint" property

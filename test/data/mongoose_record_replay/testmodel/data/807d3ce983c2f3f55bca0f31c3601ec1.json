@@ -1,11 +1,11 @@
 [
   "metamodels",
+  "cosmos",
   "iupacs",
   "philoelements",
-  "cosmos",
-  "r3trans",
   "fioriapps",
-  "sobj_tables",
+  "demomdls",
   "fioribecatalogs",
-  "demomdls"
+  "r3trans",
+  "sobj_tables"
 ]

@@ -685,8 +685,8 @@ export function loadModels(modelPath?: string): IMatch.IModels {
     Object.keys(operators.operators).forEach(function (operator) {
         console.log( "knownops " + IMatch.aOperatorNames.join(","));
         if (IMatch.aOperatorNames.indexOf(operator) < 0) {
-            debuglog("unknown operator " + operator);
-            throw new Error("unknown operator " + operator);
+            debuglog("unknown operator  " + operator + ' (add to ifmatch.ts  aOperatorNames)');
+            throw new Error("unknown operator " + operator + ' (add to ifmatch.ts  aOperatorNames)');
         }
         oModel.operators[operator] = operators.operators[operator];
         oModel.operators[operator].operator = <IMatch.OperatorName>operator;

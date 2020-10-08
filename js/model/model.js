@@ -229,6 +229,16 @@ function getDistinctValues(mongoHandle, modelname, category) {
     });
 }
 exports.getDistinctValues = getDistinctValues;
+function getCategoryRec(mongoHandle, modelname, category) {
+    var categories = mongoHandle.modelDocs[modelname]._categories;
+    var filtered = categories.filter(x => x.category == category);
+    if (filtered.length != 1) {
+        debugf(' did not find ' + modelname + '  category  ' + category + ' in  ' + JSON.stringify(categories));
+        throw Error('category not found ' + category + " " + JSON.stringify(categories));
+    }
+    return filtered[0];
+}
+exports.getCategoryRec = getCategoryRec;
 const ARR_MODEL_PROPERTIES = ["domain", "bitindex", "defaultkeycolumn", "defaulturi", "categoryDescribed", "columns", "description", "tool", "toolhidden", "synonyms", "category", "wordindex", "exactmatch", "hidden"];
 function addSynonyms(synonyms, category, synonymFor, bitindex, bitSentenceAnd, wordType, mRules, seen) {
     synonyms.forEach(function (syn) {
@@ -1120,7 +1130,7 @@ function readOperators(mongoose, oModel) {
         Object.keys(operators.operators).forEach(function (operator) {
             if (IMatch.aOperatorNames.indexOf(operator) < 0) {
                 debuglog("unknown operator " + operator);
-                throw new Error("unknown operator " + operator);
+                throw new Error("unknown operator " + operator + ' (add to ifmatch.ts  aOperatorNames)');
             }
             oModel.operators[operator] = operators.operators[operator];
             oModel.operators[operator].operator = operator;

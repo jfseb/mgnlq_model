@@ -12,7 +12,7 @@
           "intents",
           "intent"
         ],
-        "_id": "5dbc49e604edbc147889aaab",
+        "_id": "5dc84b5dc31bee1eb45dee97",
         "category": "fiori intent",
         "category_description": "A combination of \"#\" <SemanticObject> - <Semanticaction> which appears in the URL of the Fiori Launchpad when addressing the application",
         "wordindex": true
@@ -25,21 +25,21 @@
           "Support Component",
           "Component"
         ],
-        "_id": "5dbc49e604edbc147889aaaa",
+        "_id": "5dc84b5dc31bee1eb45dee96",
         "category": "ApplicationComponent",
         "category_description": "Support component for the Backend catalog entry, (the Package associated with the UIAD Transport record containing the Catalog Definition (SUI_TM_MM_APPS table). This is the component repsonsible for the Catalog, (not necessarily for the legacy application!)",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aaa9",
+        "_id": "5dc84b5dc31bee1eb45dee95",
         "category": "WebDynproApplication",
         "category_description": "Name of the web dynpro application",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aaa8",
+        "_id": "5dc84b5dc31bee1eb45dee94",
         "category": "devclass",
         "category_description": "devclass ( Package) of the backend catalog record (not necessarily the transaction",
         "wordindex": true
@@ -50,40 +50,40 @@
           "Fiori Backend Catalogs",
           "Backend Catalog"
         ],
-        "_id": "5dbc49e604edbc147889aaa7",
+        "_id": "5dc84b5dc31bee1eb45dee93",
         "category": "BackendCatalogId",
         "category_description": "Name of the technical catalog (_TC_..._BE_), (same as FioriBOM Technical Catalog) (identical to entry in /UI2/SYSALIASCAT), \n(in /UI2/PB_C_CHIP.REFERENCEID  *ADCAT*...)",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aaa6",
+        "_id": "5dc84b5dc31bee1eb45dee92",
         "category": "TechnicalCatalogSystemAlias",
         "category_description": "Name of the System alias associated with this Technical catalog (entry delivered in /UI2/SYSALIASCAT)"
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aaa5",
+        "_id": "5dc84b5dc31bee1eb45dee91",
         "category": "BusinessCatalog",
         "category_description": "Name of the Business Catalog referencing this catalog (in /UI2/PB_C_CACHE.ID *CATALOGPAGE:*  _BC_ .."
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aaa4",
+        "_id": "5dc84b5dc31bee1eb45dee90",
         "category": "SemanticObject",
         "category_description": "The first part of the \"fiori intent\", identifying the Business entity, e.g. \"SalesOrder\",\"GLAcount\" used for generic navigation",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aaa3",
+        "_id": "5dc84b5dc31bee1eb45dee8f",
         "category": "SemanticAction",
         "category_description": "The second part of the \"fiori intent\", identifying the action, e.g. \"maintain\", \"create\"",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aaa2",
+        "_id": "5dc84b5dc31bee1eb45dee8e",
         "category": "SoftwareComponent",
         "category_description": "Software component containing the Backend catalog",
         "exactmatch": true
@@ -94,7 +94,7 @@
           "TransactionCode",
           "TransactionCodes"
         ],
-        "_id": "5dbc49e604edbc147889aaa1",
+        "_id": "5dc84b5dc31bee1eb45dee8d",
         "category": "TransactionCode",
         "category_description": "For GUI based transaction, the transaction code behind intent, a classical R/3 SAPGUi transaction",
         "exactmatch": true,

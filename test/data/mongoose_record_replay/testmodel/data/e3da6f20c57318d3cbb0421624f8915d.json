@@ -8,31 +8,31 @@
     "_categories": [
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aa75",
+        "_id": "5dc84b5dc31bee1eb45dee61",
         "category": "tcode",
         "category_description": "SAP Transaction code",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aa74",
+        "_id": "5dc84b5dc31bee1eb45dee60",
         "category": "devclass",
         "category_description": "Development class (Package) in system",
         "wordindex": true
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aa73",
+        "_id": "5dc84b5dc31bee1eb45dee5f",
         "category": "systemId"
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aa72",
+        "_id": "5dc84b5dc31bee1eb45dee5e",
         "category": "client"
       },
       {
         "category_synonyms": [],
-        "_id": "5dbc49e604edbc147889aa71",
+        "_id": "5dc84b5dc31bee1eb45dee5d",
         "category": "transaction description",
         "category_description": "English text of the transaction"
       }

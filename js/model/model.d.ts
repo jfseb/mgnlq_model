@@ -39,6 +39,7 @@ export declare function getExpandedRecordsForCategory(theModel: IMatch.IModels, 
     [key: string]: any;
 }>;
 export declare function getDistinctValues(mongoHandle: IMatch.IModelHandleRaw, modelname: string, category: string): Promise<string[]>;
+export declare function getCategoryRec(mongoHandle: IMatch.IModelHandleRaw, modelname: string, category: string): IMatch.IModelCategoryRec;
 export declare function addBestSplit(mRules: Array<IMatch.mRule>, rule: IMatch.mRule, seenRules: {
     [key: string]: IMatch.mRule[];
 }): void;

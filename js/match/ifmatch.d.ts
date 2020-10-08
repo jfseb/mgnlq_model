@@ -29,7 +29,7 @@ export interface IPromptDescription {
     required: boolean;
 }
 export declare const aOperatorNames: string[];
-export declare type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having" | "more than" | "less than" | "exactly" | "<" | "<=" | "!=" | "=" | ">" | ">=" | "order by" | "order descending by" | "existing" | "not existing";
+export declare type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having" | "more than" | "less than" | "exactly" | "<" | "<=" | "!=" | "=" | ">" | ">=" | "order by" | "order descending by" | "existing" | "not existing" | "left_paren" | "right_paren" | "logical_and" | "logical_or";
 export declare const aAnySuccessorOperatorNames: string[];
 export interface IOperator {
     operator: OperatorName;
@@ -303,7 +303,12 @@ export interface QBEColumnProp {
     LUNRIndex?: boolean;
     QBEInclude?: boolean;
 }
-export interface IModelDocCategoryRec {
+export declare const enum IMongooseBaseType {
+    Number = "Number",
+    String = "String"
+}
+export declare type IMongooseTypeDecl = IMongooseBaseType | IMongooseBaseType[];
+export interface IModelCategoryRec {
     category: string;
     category_description: string;
     QBEColumnProps: QBEColumnProp;
@@ -312,13 +317,14 @@ export interface IModelDocCategoryRec {
     exactmatch: boolean;
     showURI: boolean;
     showURIRank: boolean;
+    type: IMongooseTypeDecl;
 }
 export interface IModelDoc {
     domain: string;
     modelname?: string;
     collectionname?: string;
     domain_description: string;
-    _categories: IModelDocCategoryRec[];
+    _categories: IModelCategoryRec[];
     columns: string[];
     domain_synonyms: string[];
 }

@@ -1,6 +1,6 @@
 [
   {
-    "_id": "5dbc49e6a32e0923f23840c8",
+    "_id": "5dc84b5da32e0923f23e1138",
     "modelname": "iupacs",
     "__v": 0,
     "index": {
@@ -26,7 +26,7 @@
         "_m_category": "atomic weight"
       },
       "element_number": {
-        "type": "String",
+        "type": "Number",
         "trim": true,
         "_m_category": "element number",
         "index": true
