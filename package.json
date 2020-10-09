@@ -1,6 +1,6 @@
 {
   "name": "mgnlq_model",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "model access from mongoose",
   "main": "js/index.js",
   "typings": "js/index",
