@@ -62,7 +62,7 @@ try {
   // empty
 }
 
-it("testhasSeenRuleWithFact", async () => {
+it('testhasSeenRuleWithFact', async () => {
   var rules =
     [
       {
@@ -203,7 +203,7 @@ var cats = ['AppDocumentationLinkKW',
 /**
  * Unit test for sth
  */
-it("testModel", async () => {
+it('testModel', async () => {
   expect.assertions(3);
   return getModel().then(
     (amodel) => {
@@ -237,7 +237,7 @@ function teardown(test, err) {
 }
 
 
-it("testFilterRemapCategories", async () => {
+it('testFilterRemapCategories', async () => {
   var recs = [{
     a: [{ b: 1, d: 2 }],
     c: 'abc'
@@ -282,7 +282,7 @@ it("testFilterRemapCategories", async () => {
 
 
 
-it("testFilterRemapCategoriesBadCat", async () => {
+it('testFilterRemapCategoriesBadCat', async () => {
   var recs = [{
     a: [{ b: 1, d: 2 }],
     c: 'abc'
@@ -374,7 +374,7 @@ exports.testModelGetOperator = function (test) {
 };
 */
 
-it("testgetAllRecordCategoriesForTargetCategories1", async () => {
+it('testgetAllRecordCategoriesForTargetCategories1', async () => {
   getModel().then(theModel => {
     try {
 
@@ -394,7 +394,7 @@ it("testgetAllRecordCategoriesForTargetCategories1", async () => {
 });
 
 
-it("testgetAllRecordCategoriesForTargetCategories2", async () => {
+it('testgetAllRecordCategoriesForTargetCategories2', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategories(theModel, ['element name', 'element symbol']);
@@ -417,7 +417,7 @@ it("testgetAllRecordCategoriesForTargetCategories2", async () => {
 });
 
 
-it("testgetAllRecordCategoriesForTargetCategory", async () => {
+it('testgetAllRecordCategoriesForTargetCategory', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategory(theModel, 'element name');
@@ -439,7 +439,7 @@ it("testgetAllRecordCategoriesForTargetCategory", async () => {
   });
 });
 
-it("testLoadModelsNoMonbooseThrows", async () => {
+it('testLoadModelsNoMonbooseThrows', async () => {
   try {
     Model.loadModels();
     expect(0).toEqual(1);
@@ -450,7 +450,7 @@ it("testLoadModelsNoMonbooseThrows", async () => {
 });
 
 
-it("testgetExpandedRecordsForCategory", async () => {
+it('testgetExpandedRecordsForCategory', async () => {
   expect.assertions(2);
   return getModel().then(theModel => {
     return Model.getExpandedRecordsForCategory(theModel, 'Cosmos', 'orbits').then((res) => {
@@ -466,7 +466,7 @@ it("testgetExpandedRecordsForCategory", async () => {
   });
 });
 
-it("testgetExpandedRecordsForCategoryMetamodel", async () => {
+it('testgetExpandedRecordsForCategoryMetamodel', async () => {
   expect.assertions(3);
   return getModel().then(theModel => {
     return Model.getExpandedRecordsForCategory(theModel, 'metamodel', 'category').then((res) => {
@@ -484,7 +484,7 @@ it("testgetExpandedRecordsForCategoryMetamodel", async () => {
   });
 });
 
-it("testgetExpandedRecordsFull", async () => {
+it('testgetExpandedRecordsFull', async () => {
   expect.assertions(3);
   return getModel().then(theModel => {
     return Model.getExpandedRecordsFull(theModel, 'Cosmos').then((res) => {
@@ -502,7 +502,7 @@ it("testgetExpandedRecordsFull", async () => {
 });
 
 
-it("testgetExpandedRecordsFullArray", async () => {
+it('testgetExpandedRecordsFullArray', async () => {
   expect.assertions(6);
   return getModel().then(theModel => {
     var modelname = Model.getModelNameForDomain(theModel.mongoHandle, 'metamodel');
@@ -543,7 +543,7 @@ it("testgetExpandedRecordsFullArray", async () => {
   });
 });
 
-it("testgetExpandedRecordsFullArray2", async () => {
+it('testgetExpandedRecordsFullArray2', async () => {
   expect.assertions(3);
   return getModel().then(theModel => {
     return Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
@@ -560,7 +560,7 @@ it("testgetExpandedRecordsFullArray2", async () => {
   });
 });
 
-it("testgetCategoryFilterMultDomains", async () => {
+it('testgetCategoryFilterMultDomains', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategories(theModel, ['ApplicationComponent', 'TransactionCode'], true);
@@ -616,7 +616,7 @@ it("testgetCategoryFilterMultDomains", async () => {
 });
 
 
-it("testgetCAtegoryFilterOneDomain", async () => {
+it('testgetCAtegoryFilterOneDomain', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategories(theModel, ['ApplicationComponent', 'devclass', 'TransactionCode'], true);
@@ -647,7 +647,7 @@ it("testgetCAtegoryFilterOneDomain", async () => {
 
 
 
-it("testModelGetDomainIndex", async () => {
+it('testModelGetDomainIndex', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var res = Model.getDomainBitIndex('IUPAC', theModel);
@@ -659,7 +659,7 @@ it("testModelGetDomainIndex", async () => {
     Model.releaseModel(theModel);
   });
 });
-it("testModelGetDomainIndexNotPresent", async () => {
+it('testModelGetDomainIndexNotPresent', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var res = Model.getDomainBitIndex('NOTPRESENT', theModel);
@@ -673,7 +673,7 @@ it("testModelGetDomainIndexNotPresent", async () => {
 });
 
 
-it("testModelGetDomainIndexThrows", async () => {
+it('testModelGetDomainIndexThrows', async () => {
   var a = [];
   for (var i = 0; i < 32; ++i) {
     a.push('xx');
@@ -690,7 +690,7 @@ it("testModelGetDomainIndexThrows", async () => {
 });
 
 
-it("testModelGetDomainIndexSafe", async () => {
+it('testModelGetDomainIndexSafe', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var res = Model.getDomainBitIndexSafe('IUPAC', theModel);
@@ -703,7 +703,7 @@ it("testModelGetDomainIndexSafe", async () => {
   });
 });
 
-it("testModelGetDomainIndexSafeNotPresent", async () => {
+it('testModelGetDomainIndexSafeNotPresent', async () => {
   expect.assertions(2);
   return getModel().then(theModel => {
     try {
@@ -721,7 +721,7 @@ it("testModelGetDomainIndexSafeNotPresent", async () => {
   });
 });
 
-it("testModelGetDomainIndexSafeThrows2", async () => {
+it('testModelGetDomainIndexSafeThrows2', async () => {
   var a = [];
   for (var i = 0; i < 33; ++i) {
     a.push('xx');
@@ -738,7 +738,7 @@ it("testModelGetDomainIndexSafeThrows2", async () => {
 
 });
 
-it("testModelGetDomainIndexSafe2", async () => {
+it('testModelGetDomainIndexSafe2', async () => {
   getModel().then(theModel => {
     var res = Model.getDomainBitIndexSafe('IUPAC', theModel);
     expect(res).toEqual(0x0010);
@@ -752,7 +752,7 @@ it("testModelGetDomainIndexSafe2", async () => {
   });
 });
 
-it("testGetModelNameForDomain", async () => {
+it('testGetModelNameForDomain', async () => {
   getModel().then(theModel => {
     var u = Model.getModelNameForDomain(theModel.mongoHandle, 'FioriBOM');
     expect(u).toEqual('fioriapps');
@@ -769,7 +769,7 @@ it("testGetModelNameForDomain", async () => {
 });
 
 
-it("testGetModelNameForDomainNotPresent", async () => {
+it('testGetModelNameForDomainNotPresent', async () => {
   getModel().then(theModel => {
     try {
       Model.getModelNameForDomain(theModel, 'FioriNIXDA');
@@ -786,7 +786,7 @@ it("testGetModelNameForDomainNotPresent", async () => {
 });
 
 
-it("testAddSplitSingleWord", async () => {
+it('testAddSplitSingleWord', async () => {
   var seenIt = {};
   var rules = [];
 
@@ -806,7 +806,7 @@ it("testAddSplitSingleWord", async () => {
 
 });
 
-it("testAddSplitNotCombinable", async () => {
+it('testAddSplitNotCombinable', async () => {
   var seenIt = {};
   var rules = [];
   var newRule = {
@@ -826,7 +826,7 @@ it("testAddSplitNotCombinable", async () => {
 });
 
 
-it("testAddSplit", async () => {
+it('testAddSplit', async () => {
   var seenIt = {};
 
   var rules = [];
@@ -869,7 +869,7 @@ it("testAddSplit", async () => {
 
 });
 
-it("testModelHasDomainIndexinRules", async () => {
+it('testModelHasDomainIndexinRules', async () => {
   var a = [];
   for (var i = 0; i < 32; ++i) {
     a.push('xx');
@@ -886,7 +886,7 @@ it("testModelHasDomainIndexinRules", async () => {
 });
 
 
-it("testModelHasDomainIndexInDomains", async () => {
+it('testModelHasDomainIndexInDomains', async () => {
   expect.assertions(10);
   return getModel().then(theModel => {
     // check that every domain has an index which is distinct
@@ -906,7 +906,7 @@ it("testModelHasDomainIndexInDomains", async () => {
   });
 });
 
-it("testModelHasDomainIndexInAllRules", async () => {
+it('testModelHasDomainIndexInAllRules', async () => {
   expect.assertions(10);
   return getModel().then(theModel => {
     // check that every domain has an index which is distinct
@@ -926,7 +926,7 @@ it("testModelHasDomainIndexInAllRules", async () => {
   });
 });
 
-it("testModelHasNumberRules", async () => {
+it('testModelHasNumberRules', async () => {
   getModel().then(theModel => {
     // check that every domain has an index which is distinct
     var all = 0;
@@ -958,7 +958,7 @@ it("testModelHasNumberRules", async () => {
 const MetaF = Meta.getMetaFactory();
 
 
-it("testgetTableColumnsThrows", async () => {
+it('testgetTableColumnsThrows', async () => {
   try {
     Model.getTableColumns({ domains: [] }, 'adomain');
     expect(true).toEqual(false);
@@ -970,7 +970,7 @@ it("testgetTableColumnsThrows", async () => {
 
 });
 
-it("testgetResultAsArrayBad", async () => {
+it('testgetResultAsArrayBad', async () => {
   try {
     Model.getResultAsArray({}, MetaF.Domain('abc'), MetaF.Domain('def'));
     expect(true).toEqual(false);
@@ -982,7 +982,7 @@ it("testgetResultAsArrayBad", async () => {
 
 });
 
-it("testgetResultAsArrayNotThere", async () => {
+it('testgetResultAsArrayNotThere', async () => {
   var res = Model.getResultAsArray({
     meta: {
       t3: {
@@ -999,7 +999,7 @@ it("testgetResultAsArrayNotThere", async () => {
 });
 
 
-it("testgetResultAsArrayOk", async () => {
+it('testgetResultAsArrayOk', async () => {
   var res = Model.getResultAsArray({
     meta: {
       t3: {
@@ -1015,7 +1015,7 @@ it("testgetResultAsArrayOk", async () => {
 
 });
 
-it("testgetCategoriesForDomainBadDomain", async () => {
+it('testgetCategoriesForDomainBadDomain', async () => {
   expect.assertions(1);
   getModel().then(theModel => {
     var u = theModel;
@@ -1033,7 +1033,7 @@ it("testgetCategoriesForDomainBadDomain", async () => {
   });
 });
 
-it("testgetDomainsForCategoryBadCategory", async () => {
+it('testgetDomainsForCategoryBadCategory', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var u = theModel;
@@ -1052,7 +1052,7 @@ it("testgetDomainsForCategoryBadCategory", async () => {
 });
 
 
-it("testgetAllDomainsBintIndex", async () => {
+it('testgetAllDomainsBintIndex', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var u = theModel;
@@ -1067,7 +1067,7 @@ it("testgetAllDomainsBintIndex", async () => {
 });
 
 
-it("testgetCategoriesForDomain", async () => {
+it('testgetCategoriesForDomain', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var u = theModel;
@@ -1097,7 +1097,7 @@ it("testgetCategoriesForDomain", async () => {
 
 
 
-it("testgetshowURICategoriesForDomain", async () => {
+it('testgetshowURICategoriesForDomain', async () => {
   expect.assertions(1);
   getModel().then(theModel => {
     var u = theModel;
@@ -1112,7 +1112,7 @@ it("testgetshowURICategoriesForDomain", async () => {
   });
 });
 
-it("testgetshowURIRankCategoriesForDomain", async () => {
+it('testgetshowURIRankCategoriesForDomain', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var u = theModel;
@@ -1128,7 +1128,7 @@ it("testgetshowURIRankCategoriesForDomain", async () => {
 });
 
 
-it("testgetDomainsForCategory", async () => {
+it('testgetDomainsForCategory', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var u = theModel;
@@ -1149,7 +1149,7 @@ it("testgetDomainsForCategory", async () => {
 /**
  * rules with exact Only 
  */
-it("testModelCheckExactOnly", async () => {
+it('testModelCheckExactOnly', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var u = theModel;
@@ -1165,7 +1165,7 @@ it("testModelCheckExactOnly", async () => {
   });
 });
 
-it("testMakeWordMap", async () => {
+it('testMakeWordMap', async () => {
   var rules = [
     { type: 0, lowercaseword: 'abc', category: '1', bitindex: 0x1 },
     { type: 1, lowercaseword: 'def', category: '2', bitindex: 0x10 },
@@ -1208,7 +1208,7 @@ it("testMakeWordMap", async () => {
 /**
  * Unit test for sth
  */
-it("testCategorySorting", async () => {
+it('testCategorySorting', async () => {
   var map = {
     'a': { importance: 0.1 }, 'b': { importance: 0.2 },
     'd': { importance: 0.2 }, 'c': { importance: 0.2 }, 'f': {}
@@ -1232,7 +1232,7 @@ it("testCategorySorting", async () => {
 });
 
 
-it("testWordCategorizationFactCat", async () => {
+it('testWordCategorizationFactCat', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var earth = theModel.rules.wordMap['earth'];
@@ -1273,7 +1273,7 @@ it("testWordCategorizationFactCat", async () => {
 
 });
 
-it("testWordCategorizationCategory", async () => {
+it('testWordCategorizationCategory', async () => {
   expect.assertions(1);
   return  getModel().then(theModel => {
     var ename = theModel.rules.wordMap['element name'];
@@ -1323,7 +1323,7 @@ it("testWordCategorizationCategory", async () => {
   });
 });
 
-it("testWordCategorizationMetaword_category", async () => {
+it('testWordCategorizationMetaword_category', async () => {
   expect.assertions(1);
   return  getModel().then(theModel => {
     var earth = theModel.rules.wordMap['category'];
@@ -1432,7 +1432,7 @@ it("testWordCategorizationMetaword_category", async () => {
 
 
 
-it("testWordCategorizationMetaword_Domain", async () => {
+it('testWordCategorizationMetaword_Domain', async () => {
   expect.assertions(1);
   return  getModel().then(theModel => {
     var earth = theModel.rules.wordMap['domain'];
@@ -1484,7 +1484,7 @@ it("testWordCategorizationMetaword_Domain", async () => {
 
 
 
-it("testWordCategorizationDomainSynonyms", async () => {
+it('testWordCategorizationDomainSynonyms', async () => {
   expect.assertions(1);
   return  getModel().then(theModel => {
     var fbom = theModel.rules.wordMap['fiori bom'];
@@ -1523,7 +1523,7 @@ it("testWordCategorizationDomainSynonyms", async () => {
 });
 
 
-it("testWordCategorizationCategorySynonyms", async () => {
+it('testWordCategorizationCategorySynonyms', async () => {
   getModel().then(theModel => {
     var fbom = theModel.rules.wordMap['primary odata service'];
     expect(fbom).toEqual({
@@ -1565,7 +1565,7 @@ it("testWordCategorizationCategorySynonyms", async () => {
 
 
 
-it("testWordCategorizationOperator", async () => {
+it('testWordCategorizationOperator', async () => {
   expect.assertions(1);
   return  getModel().then(theModel => {
     var op = theModel.rules.wordMap['starting with'];
@@ -1594,7 +1594,7 @@ it("testWordCategorizationOperator", async () => {
   });
 });
 
-it("testWordCategorizationOperatorMoreThan", async () => {
+it('testWordCategorizationOperatorMoreThan', async () => {
   getModel().then(theModel => {
     var op = theModel.rules.wordMap['more than'];
     expect(op).toEqual({
@@ -1621,7 +1621,7 @@ it("testWordCategorizationOperatorMoreThan", async () => {
 });
 
 
-it("testWordCategorizationOperatorMoreThanOPAlias", async () => {
+it('testWordCategorizationOperatorMoreThanOPAlias', async () => {
   expect.assertions(1);
   return  getModel().then(theModel => {
     var op = theModel.rules.wordMap['which has more than'];
@@ -1648,7 +1648,7 @@ it("testWordCategorizationOperatorMoreThanOPAlias", async () => {
   });
 });
 
-it("testWordCategorizationOnlyMultiFactNonFirst", async () => {
+it('testWordCategorizationOnlyMultiFactNonFirst', async () => {
   expect.assertions(1);
   return  getModel().then(theModel => {
     var op = theModel.rules.wordMap['bremen'];
@@ -1676,7 +1676,7 @@ it("testWordCategorizationOnlyMultiFactNonFirst", async () => {
   });
 });
 
-it("testWordCategorizationOperatorMultiFact2", async () => {
+it('testWordCategorizationOperatorMultiFact2', async () => {
   expect.assertions(1);
   return  getModel().then(theModel => {
     var op = theModel.rules.wordMap['münchen'];
@@ -1707,7 +1707,7 @@ it("testWordCategorizationOperatorMultiFact2", async () => {
 
 
 
-it("testWordCategorizationFactCat2", async () => {
+it('testWordCategorizationFactCat2', async () => {
   expect.assertions(1);
   return  getModel().then(theModel => {
     var earth = theModel.rules.wordMap['co-fio'];
@@ -1735,7 +1735,7 @@ it("testWordCategorizationFactCat2", async () => {
   });
 });
 
-it("testModelTest2", async () => {
+it('testModelTest2', async () => {
   expect.assertions(1);
   return  getModel().then(theModel => {
     var u = theModel;
@@ -1755,7 +1755,7 @@ it("testModelTest2", async () => {
 });
 
 
-it("testFindNextLen", async () => {
+it('testFindNextLen', async () => {
   var offsets = [0, 0, 0, 0, 0, 0];
   Model.findNextLen(0, ['a', 'a', 'bb', 'bb', 'ccc', 'ccc', 'dddd', 'dddd', '123456', '123456'], offsets);
   expect(offsets).toEqual([0, 0, 0, 0, 0, 0]);
@@ -1780,7 +1780,7 @@ it("testFindNextLen", async () => {
 
 
 
-it("testModelGetColumns", async () => {
+it('testModelGetColumns', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var u = theModel;
@@ -1801,7 +1801,7 @@ it("testModelGetColumns", async () => {
   });
 });
 
-it("testModelHasDomains", async () => {
+it('testModelHasDomains', async () => {
 
   expect.assertions(2);
   return getModel().then(theModel => {
@@ -1844,7 +1844,7 @@ it("testModelHasDomains", async () => {
 /**
  * Unit test for sth
  */
-it("testModelAppConfigForEveryDomain", async () => {
+it('testModelAppConfigForEveryDomain', async () => {
   expect.assertions(1);
   return getModel().then(theModel => {
     var u = theModel;

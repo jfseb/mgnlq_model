@@ -36,7 +36,7 @@ var connectionStringTestDB = 'mongodb://localhost/testdb';
 //  mongoose.connect('mongodb://localhost/nodeunit');
 
 
-it("testCollectCats", async () => {
+it('testCollectCats', async () => {
   var props = {
     'Object_name_length': {
       'type': 'Number',
@@ -56,7 +56,7 @@ it("testCollectCats", async () => {
 
 
 
-it("testUnwindsForNonTerminalArrays", async () => {
+it('testUnwindsForNonTerminalArrays', async () => {
   var mongoMap = {
     'cat1' :{ paths:  ['cat1']},
     'cat2' : { paths:  ['_mem1', '[]', 'mem3'] }
@@ -70,7 +70,7 @@ it("testUnwindsForNonTerminalArrays", async () => {
   //test.done()
 });
 
-it("testUnwindsForNonTerminalArrays2equal", async () => {
+it('testUnwindsForNonTerminalArrays2equal', async () => {
   var mongoMap = {
     'cat1' :{ paths:  ['cat1']},
     'cat2' : { paths:  ['_mem1', '[]', 'mem3']},
@@ -85,7 +85,7 @@ it("testUnwindsForNonTerminalArrays2equal", async () => {
   //test.done()
 });
 
-it("testUnwindsForNonTerminalArrays2distinct", async () => {
+it('testUnwindsForNonTerminalArrays2distinct', async () => {
   var mongoMap = {
     'cat1' : { paths: ['cat1']},
     'cat2' : { paths:  ['_mem1', '[]', 'mem3']},
@@ -105,7 +105,7 @@ it("testUnwindsForNonTerminalArrays2distinct", async () => {
 });
 
 
-it("testUnwindsForNonTerminalArrays3Deep", async () => {
+it('testUnwindsForNonTerminalArrays3Deep', async () => {
   var mongoMap = {
     'cat1' :  { paths: ['cat1']},
     'cat2' :  { paths: ['_mem1', '[]', 'mem3', '[]', 'mem4']},
@@ -127,7 +127,7 @@ it("testUnwindsForNonTerminalArrays3Deep", async () => {
   //test.done()
 });
 
-it("testGetFirstSegmentThrows", async () => {
+it('testGetFirstSegmentThrows', async () => {
   expect.assertions(1);
   try {
     MongoMap.getFirstSegment(['[]','abc']);
@@ -138,7 +138,7 @@ it("testGetFirstSegmentThrows", async () => {
   //test.done()
 });
 
-it("testGetFirstSegmentThrowsEmpty", async () => {
+it('testGetFirstSegmentThrowsEmpty', async () => {
   expect.assertions(1);
   try {
     MongoMap.getFirstSegment([]);
@@ -152,13 +152,13 @@ it("testGetFirstSegmentThrowsEmpty", async () => {
 });
 
 
-it("testGetFirstSegmentOK", async () => {
+it('testGetFirstSegmentOK', async () => {
   expect.assertions(1);
   expect(MongoMap.getFirstSegment(['abc','def'])).toEqual('abc');
 
 });
 
-it("testUnwindsForNonTerminalArrays3bDeep", async () => {
+it('testUnwindsForNonTerminalArrays3bDeep', async () => {
   var mongoMap = {
     'cat1' : { paths: ['cat1']},
     'cat2' : { paths: ['_mem1', '[]', 'mem3', '[]', 'mem4']},
@@ -188,7 +188,7 @@ it("testUnwindsForNonTerminalArrays3bDeep", async () => {
 
 
 
-it("testGetShortProjectedName", async () => {
+it('testGetShortProjectedName', async () => {
   var mongoMap = {
     'cat1' : { paths: ['cat1'], fullpath : 'cat1'},
     'ca T2' : { paths: ['_mem1', '[]', 'mem3', '[]', 'mem4'], fullpath : '_mem1.mem3.mem4'},
@@ -205,7 +205,7 @@ it("testGetShortProjectedName", async () => {
 
 });
 
-it("testUnwindsForNonTerminalArraysEmtpy", async () => {
+it('testUnwindsForNonTerminalArraysEmtpy', async () => {
   var mongoMap = {
     'cat1' : { paths: ['cat1'] },
     'cat2' : { paths: ['_mem1', 'mem3', '[]']},
@@ -219,7 +219,7 @@ it("testUnwindsForNonTerminalArraysEmtpy", async () => {
 
 });
 
-it("testGetMemberByPath", async () => {
+it('testGetMemberByPath', async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 } ]
@@ -230,7 +230,7 @@ it("testGetMemberByPath", async () => {
 
 });
 
-it("testGetMemberByPathObject", async () => {
+it('testGetMemberByPathObject', async () => {
   var record = {
     abc : 1,
     def : { hij : 2 }
@@ -242,7 +242,7 @@ it("testGetMemberByPathObject", async () => {
 });
 
 
-it("testGetMemberByPathObjectNoArr", async () => {
+it('testGetMemberByPathObjectNoArr', async () => {
   var record = {
     abc : 1,
     def : { hij : 2 }
@@ -253,7 +253,7 @@ it("testGetMemberByPathObjectNoArr", async () => {
 
 });
 
-it("testGetMemberCategories", async () => {
+it('testGetMemberCategories', async () => {
   var record =  {
     '_categories': {
       'exactmatch': true,
@@ -272,7 +272,7 @@ it("testGetMemberCategories", async () => {
 
 });
 
-it("testGetMemberNotPresent", async () => {
+it('testGetMemberNotPresent', async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 }, {hij: 3} ]
@@ -284,7 +284,7 @@ it("testGetMemberNotPresent", async () => {
 });
 
 
-it("testGetMemberNotPresentDeep", async () => {
+it('testGetMemberNotPresentDeep', async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 } ]
@@ -296,7 +296,7 @@ it("testGetMemberNotPresentDeep", async () => {
 });
 
 
-it("testGetMemberByPathThrows", async () => {
+it('testGetMemberByPathThrows', async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 }, {hij: 3} ]
@@ -312,7 +312,7 @@ it("testGetMemberByPathThrows", async () => {
 
 });
 
-it("testGetMemberByPath2", async () => {
+it('testGetMemberByPath2', async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 } ]
@@ -323,7 +323,7 @@ it("testGetMemberByPath2", async () => {
 
 });
 
-it("testGetMemberByPathTerminalArr", async () => {
+it('testGetMemberByPathTerminalArr', async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 } ],
@@ -336,7 +336,7 @@ it("testGetMemberByPathTerminalArr", async () => {
 });
 
 
-it("testCollectCatsArrayOfObject", async () => {
+it('testCollectCatsArrayOfObject', async () => {
   var props = {
     '_something' : [ {
       'Object_name_length': {
@@ -359,7 +359,7 @@ it("testCollectCatsArrayOfObject", async () => {
 });
 
 
-it("testGetDistintMultivalues", async () => {
+it('testGetDistintMultivalues', async () => {
   expect.assertions(1);
   return MongoUtils.openMongoose(mongoose, connectionStringTestDB).then( () =>
   {
@@ -372,22 +372,22 @@ it("testGetDistintMultivalues", async () => {
     Model.getDistinctValues(modelHandle, 'metamodels' , 'domain synonyms')
   )
     .then( (values) => {
-    expect(values).toEqual([  'fiori bom' ,'meta model']);
-    MongoUtils.disconnect(mongoose);
+      expect(values).toEqual([  'fiori bom' ,'meta model']);
+      MongoUtils.disconnect(mongoose);
 
-    //test.done()
+      //test.done()
 
-  }
+    }
     ).catch((err) => {
-    console.log('test failed ' + err + '\n' + err.stack);
-    expect(0).toEqual(1);
+      console.log('test failed ' + err + '\n' + err.stack);
+      expect(0).toEqual(1);
 
-    //test.done()
+      //test.done()
 
-  });
+    });
 });
 
-it("testGetDistintCosmos", async () => {
+it('testGetDistintCosmos', async () => {
   expect.assertions(1);
   return MongoUtils.openMongoose(mongoose, connectionStringTestDB).then( () =>
   {
@@ -400,23 +400,23 @@ it("testGetDistintCosmos", async () => {
     Model.getDistinctValues(modelHandle, 'cosmos' , 'orbits')
   )
     .then( (values) => {
-    expect(values).toEqual([null, 'Alpha Centauri C', 'Sun', 'n/a']);
-    MongoUtils.disconnect(mongoose);
+      expect(values).toEqual([null, 'Alpha Centauri C', 'Sun', 'n/a']);
+      MongoUtils.disconnect(mongoose);
 
-    //test.done()
+      //test.done()
 
-  }
+    }
     ).catch((err) => {
-    console.log('test failed ' + err + '\n' + err.stack);
-    expect(0).toEqual(1);
+      console.log('test failed ' + err + '\n' + err.stack);
+      expect(0).toEqual(1);
 
-    //test.done()
+      //test.done()
 
-  });
+    });
 });
 
 
-it("testGetDistintObjectName", async () => {
+it('testGetDistintObjectName', async () => {
   expect.assertions(1);
   return MongoUtils.openMongoose(mongoose, connectionStringTestDB).then( () =>
   {
@@ -429,28 +429,28 @@ it("testGetDistintObjectName", async () => {
     Model.getDistinctValues(modelHandle, 'cosmos' , 'object name')
   )
     .then( (values) => {
-    expect(values).toEqual([ 'Alpha Centauri A',
-      'Alpha Centauri B',
-      'Alpha Centauri C',
-      'Mars',
-      'Proxima Centauri b',
-      'Sun',
-      'earth' ]);
-    MongoUtils.disconnect(mongoose);
+      expect(values).toEqual([ 'Alpha Centauri A',
+        'Alpha Centauri B',
+        'Alpha Centauri C',
+        'Mars',
+        'Proxima Centauri b',
+        'Sun',
+        'earth' ]);
+      MongoUtils.disconnect(mongoose);
 
-    //test.done()
+      //test.done()
 
-  }
+    }
     ).catch((err) => {
-    console.log('test failed ' + err + '\n' + err.stack);
-    expect(0).toEqual(1);
+      console.log('test failed ' + err + '\n' + err.stack);
+      expect(0).toEqual(1);
 
-    //test.done()
+      //test.done()
 
-  });
+    });
 });
 
-it("testCollectCatsArrayOfPLain", async () => {
+it('testCollectCatsArrayOfPLain', async () => {
   var props = {
     '_something' : [
       {
@@ -472,7 +472,7 @@ it("testCollectCatsArrayOfPLain", async () => {
 
 });
 
-it("testMakeIfMap", async () => {
+it('testMakeIfMap', async () => {
   var res = MongoMap.makeMongoMap(eDocSOBJ, eSchemaSOBJ_Tables);
   expect(res['TransportObject']).toEqual({ paths: ['TransportObject'], fullpath : 'TransportObject'});
   expect(res['Object name length']).toEqual({ paths: ['Object_name_length'], fullpath : 'Object_name_length'});

@@ -8,7 +8,7 @@ var Mongo = require('../../js/utils/mongo.js');
 //  mongoose.connect('mongodb://localhost/nodeunit');
 
 
-it("testOpen", async () => {
+it('testOpen', async () => {
   expect.assertions(7);
   var fakeMongoose = {
     connect: function (str) {
@@ -48,7 +48,7 @@ it("testOpen", async () => {
 });
 
 
-it("testDisconnectReset", async () => {
+it('testDisconnectReset', async () => {
   expect.assertions(2);
   var fakeMongoose = {
     connection: {
@@ -69,7 +69,7 @@ it("testDisconnectReset", async () => {
 
 
 
-it("testGetCollectionNames", async () => {
+it('testGetCollectionNames', async () => {
   expect.assertions(1);
   var fakeMongoose = {
     connection: {

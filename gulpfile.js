@@ -12,8 +12,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var srcDir = 'src';
 var testDir = 'test';
 
-var sourcemaproot = './';
-
 gulp.task('watch', function () {
   return gulp.watch([srcDir + '/**/*.js', testDir + '/**/*.js', srcDir + '/**/*.tsx', srcDir + '/**/*.ts', 'gulpfile.js'],
     gulp.series(['tsc', 'eslint']));

@@ -9,7 +9,7 @@ var Meta = require(root + '/model/meta.js');
 /**
  * Unit test for sth
  */
-it("testAMetaBad", async () => {
+it('testAMetaBad', async () => {
   try {
     new Meta.AMeta('junk','junk');
     expect(true).toEqual(false);
@@ -23,7 +23,7 @@ it("testAMetaBad", async () => {
 /**
  * Unit test for sth
  */
-it("testAMeta", async () => {
+it('testAMeta', async () => {
 
   expect(new Meta.AMeta('category', 'unit test').toFullString()).toEqual('category -:- unit test');
   expect(new Meta.AMeta('relation', 'abc').toName()).toEqual('abc');
@@ -33,7 +33,7 @@ it("testAMeta", async () => {
 /**
  * Unit test for sth
  */
-it("testMetaFactory", async () => {
+it('testMetaFactory', async () => {
   expect(Meta.getMetaFactory().Domain('abc').toFullString()).toEqual('domain -:- abc');
   expect(Meta.getMetaFactory().Category('abc').toFullString()).toEqual('category -:- abc');
   expect(Meta.getMetaFactory().Relation('abc').toFullString()).toEqual('relation -:- abc');
@@ -44,7 +44,7 @@ it("testMetaFactory", async () => {
 /**
  * Unit test for sth
  */
-it("testgetMetaFactory_parseIMeta", async () => {
+it('testgetMetaFactory_parseIMeta', async () => {
   expect(Meta.getMetaFactory().parseIMeta('category -:- def').toFullString()).toEqual('category -:- def');
   expect(Meta.getMetaFactory().parseIMeta('relation -:- def').toFullString()).toEqual('relation -:- def');
   expect(Meta.getMetaFactory().parseIMeta('domain -:- def').toFullString()).toEqual('domain -:- def');
@@ -65,7 +65,7 @@ it("testgetMetaFactory_parseIMeta", async () => {
 
 
 
-it("testGetStringArray", async () => {
+it('testGetStringArray', async () => {
   expect(Meta.getStringArray([
     Meta.getMetaFactory().Domain('abc'),
     Meta.getMetaFactory().Relation('def'),

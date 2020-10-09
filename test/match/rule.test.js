@@ -5,7 +5,7 @@ var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../js';
 const Rule = require(root + '/match/rule.js');
 
 
-it("testcompareMRuleFull1", async () => {
+it('testcompareMRuleFull1', async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
   },{category : 'BBB'});
@@ -18,7 +18,7 @@ it("testcompareMRuleFull1", async () => {
 
 
 
-it("testcompareMRuleFull2", async () => {
+it('testcompareMRuleFull2', async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     matchedString : 'AAA'
@@ -32,7 +32,7 @@ it("testcompareMRuleFull2", async () => {
 });
 
 
-it("testcompareMRuleFullType", async () => {
+it('testcompareMRuleFullType', async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     type : 1,
@@ -51,7 +51,7 @@ it("testcompareMRuleFullType", async () => {
 
 
 
-it("testcompareMRuleFullWordType", async () => {
+it('testcompareMRuleFullWordType', async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     type : 1,
@@ -70,7 +70,7 @@ it("testcompareMRuleFullWordType", async () => {
 
 
 
-it("testcompareMRuleFullRaking", async () => {
+it('testcompareMRuleFullRaking', async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     type : 1,
@@ -90,7 +90,7 @@ it("testcompareMRuleFullRaking", async () => {
 });
 
 
-it("testcompareMRuleFullExactOnly", async () => {
+it('testcompareMRuleFullExactOnly', async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     type : 1,
@@ -112,7 +112,7 @@ it("testcompareMRuleFullExactOnly", async () => {
 });
 
 
-it("testcompareMRuleFullExactOnlyOne", async () => {
+it('testcompareMRuleFullExactOnlyOne', async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     type : 1,
@@ -135,7 +135,7 @@ it("testcompareMRuleFullExactOnlyOne", async () => {
 
 
 
-it("testcmpMRule1", async () => {
+it('testcmpMRule1', async () => {
   const res = Rule.cmpMRule({
     category : 'AAA',
   },{category : 'BBB'});
@@ -148,7 +148,7 @@ it("testcmpMRule1", async () => {
 
 
 
-it("testcmpMRuleFull2", async () => {
+it('testcmpMRuleFull2', async () => {
   const res = Rule.cmpMRule({
     category : 'AAA',
     matchedString : 'AAA'
@@ -162,7 +162,7 @@ it("testcmpMRuleFull2", async () => {
 });
 
 
-it("testcmpMRuleType", async () => {
+it('testcmpMRuleType', async () => {
   const res = Rule.cmpMRule({
     category : 'AAA',
     type : 1,
@@ -179,7 +179,7 @@ it("testcmpMRuleType", async () => {
 
 
 
-it("testcmpMRuleWordType", async () => {
+it('testcmpMRuleWordType', async () => {
   const res = Rule.cmpMRule({
     category : 'AAA',
     type : 1,
