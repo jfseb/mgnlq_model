@@ -19,11 +19,13 @@ export interface ISynonym {
     synonyms: string[];
 }
 export interface ISynonymBearingDoc {
-    _synonyms: [{
-        category: string;
-        fact: string;
-        synonyms: string[];
-    }];
+    _synonyms: [
+        {
+            category: string;
+            fact: string;
+            synonyms: string[];
+        }
+    ];
 }
 export declare function getMongoCollectionNameForDomain(theModel: IMatch.IModels, domain: string): string;
 export declare function getMongooseModelNameForDomain(theModel: IMatch.IModels, domain: string): string;

@@ -5,30 +5,34 @@ var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../js';
 const Rule = require(root + '/match/rule.js');
 
 
-exports.testcompareMRuleFull1 = function (test) {
+it("testcompareMRuleFull1", async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
   },{category : 'BBB'});
-  test.deepEqual(res < 0, true, 'compare cat ok ');
-  test.done();
-};
+  expect(res < 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
 
 
-exports.testcompareMRuleFull2= function (test) {
+it("testcompareMRuleFull2", async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     matchedString : 'AAA'
   },{
     category : 'AAA',
     matchedString : 'BBB'});
-  test.deepEqual(res < 0, true, 'compare cat ok ');
-  test.done();
-};
+  expect(res < 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
-exports.testcompareMRuleFullType= function (test) {
+it("testcompareMRuleFullType", async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     type : 1,
@@ -37,15 +41,17 @@ exports.testcompareMRuleFullType= function (test) {
     category : 'AAA',
     type : 2,
     matchedString : 'BBB'});
-  test.deepEqual(res < 0, true, 'compare cat ok ');
-  test.done();
-};
+  expect(res < 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
 
 
 
-exports.testcompareMRuleFullWordType= function (test) {
+it("testcompareMRuleFullWordType", async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     type : 1,
@@ -56,13 +62,15 @@ exports.testcompareMRuleFullWordType= function (test) {
     type : 1,
     matchedString : 'AAA',
     word : 'BBB'});
-  test.deepEqual(res < 0, true, 'compare FullWordType ok ');
-  test.done();
-};
+  expect(res < 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
 
-exports.testcompareMRuleFullRaking = function (test) {
+it("testcompareMRuleFullRaking", async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     type : 1,
@@ -75,12 +83,14 @@ exports.testcompareMRuleFullRaking = function (test) {
     _ranking : 0.9,
     matchedString : 'AAA',
     word : 'AAA'});
-  test.deepEqual(res < 0, true, 'compare FullWordType ok ');
-  test.done();
-};
+  expect(res < 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
-exports.testcompareMRuleFullExactOnly = function (test) {
+it("testcompareMRuleFullExactOnly", async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     type : 1,
@@ -95,12 +105,14 @@ exports.testcompareMRuleFullExactOnly = function (test) {
     matchedString : 'AAA',
     exactOnly : true,
     word : 'AAA'});
-  test.deepEqual(res > 0, true, 'compare FullWordType ok ');
-  test.done();
-};
+  expect(res > 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
-exports.testcompareMRuleFullExactOnlyOne = function (test) {
+it("testcompareMRuleFullExactOnlyOne", async () => {
   const res = Rule.compareMRuleFull({
     category : 'AAA',
     type : 1,
@@ -115,36 +127,42 @@ exports.testcompareMRuleFullExactOnlyOne = function (test) {
     matchedString : 'AAA',
     exactOnly : false,
     word : 'AAA'});
-  test.deepEqual(res < 0, true, 'compare FullWordType ok ');
-  test.done();
-};
+  expect(res < 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
 
-exports.testcmpMRule1 = function (test) {
+it("testcmpMRule1", async () => {
   const res = Rule.cmpMRule({
     category : 'AAA',
   },{category : 'BBB'});
-  test.deepEqual(res < 0, true, 'compare cat ok ');
-  test.done();
-};
+  expect(res < 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
 
 
-exports.testcmpMRuleFull2= function (test) {
+it("testcmpMRuleFull2", async () => {
   const res = Rule.cmpMRule({
     category : 'AAA',
     matchedString : 'AAA'
   },{
     category : 'AAA',
     matchedString : 'BBB'});
-  test.deepEqual(res < 0, true, 'compare cat ok ');
-  test.done();
-};
+  expect(res < 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
-exports.testcmpMRuleType= function (test) {
+it("testcmpMRuleType", async () => {
   const res = Rule.cmpMRule({
     category : 'AAA',
     type : 1,
@@ -153,13 +171,15 @@ exports.testcmpMRuleType= function (test) {
     category : 'AAA',
     type : 2,
     matchedString : 'BBB'});
-  test.deepEqual(res < 0, true, 'compare cat ok ');
-  test.done();
-};
+  expect(res < 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
 
-exports.testcmpMRuleWordType= function (test) {
+it("testcmpMRuleWordType", async () => {
   const res = Rule.cmpMRule({
     category : 'AAA',
     type : 1,
@@ -170,9 +190,11 @@ exports.testcmpMRuleWordType= function (test) {
     type : 1,
     matchedString : 'AAA',
     word : 'BBB'});
-  test.deepEqual(res < 0, true, 'compare FullWordType ok ');
-  test.done();
-};
+  expect(res < 0).toEqual(true);
+
+  //test.done()
+
+});
 
 
 

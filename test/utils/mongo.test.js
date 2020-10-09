@@ -8,47 +8,48 @@ var Mongo = require('../../js/utils/mongo.js');
 //  mongoose.connect('mongodb://localhost/nodeunit');
 
 
-exports.testOpen = function (test) {
-  test.expect(7);
+it("testOpen", async () => {
+  expect.assertions(7);
   var fakeMongoose = {
     connect: function (str) {
-      test.equal(str, 'mongodb://localhost/nodeunit');
+      expect(str).toEqual('mongodb://localhost/nodeunit');
     },
     connection: {
       on: function (a, arg) {
-        test.equal(a, 'error');
+        expect(a).toEqual('error');
       },
       once: function (a, arg) {
         if (a === 'open') {
-          test.equal(typeof arg, 'function');
+          expect(typeof arg).toEqual('function');
           setTimeout(arg, 0);
         } else if (a === 'error') {
-          test.equal(typeof arg, 'function');
+          expect(typeof arg).toEqual('function');
         } else {
-          test.equal(1, 0, 'called with sth else');
+          expect(1).toEqual(0);
         }
       }
     }
   };
 
   fakeMongoose.connection.once.setMaxListeners = function () {
-    test.equal(arguments[0],0);
-    test.equal(arguments.length, 1, 'setMaxListeners called ' + JSON.stringify(arguments));
+    expect(arguments[0]).toEqual(0);
+    expect(arguments.length).toEqual(1);
   };
   fakeMongoose.connection.on.setMaxListeners = function () {
-    test.equal(arguments[0], 0);
-    test.equal(arguments.length, 1);
+    expect(arguments[0]).toEqual(0);
+    expect(arguments.length).toEqual(1);
   };
 
   Mongo.openMongoose(fakeMongoose, undefined).then(res => {
-    test.done();
+    //test.done()
+
   }
   );
-};
+});
 
 
-exports.testDisconnectReset = function (test) {
-  test.expect(2);
+it("testDisconnectReset", async () => {
+  expect.assertions(2);
   var fakeMongoose = {
     connection: {
       modelNames: function () {
@@ -58,18 +59,18 @@ exports.testDisconnectReset = function (test) {
       readyState: 1
     },
     disconnect: function () {
-      test.equal(arguments.length, 0);
+      expect(arguments.length).toEqual(0);
     }
   };
   Mongo.disconnectReset(fakeMongoose);
-  test.equal(Object.keys(fakeMongoose.connection.models).length, 0);
-  test.done();
-};
+  expect(Object.keys(fakeMongoose.connection.models).length).toEqual(0);
+
+});
 
 
 
-exports.testGetCollectionNames = function (test) {
-  test.expect(1);
+it("testGetCollectionNames", async () => {
+  expect.assertions(1);
   var fakeMongoose = {
     connection: {
       db: {
@@ -80,8 +81,10 @@ exports.testGetCollectionNames = function (test) {
     },
   };
   Mongo.getCollectionNames(fakeMongoose).then( cols => {
-    test.deepEqual(cols, ['abc', 'def']);
-    test.done();
+    expect(cols).toEqual(['abc', 'def']);
+
+    //test.done()
+
   });
-};
+});
 

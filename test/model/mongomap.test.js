@@ -1,14 +1,11 @@
 /*! copyright gerd forstmann, all rights reserved */
-//var debug = require('debug')('appdata.nunit');
+//var debug = require('debug')('mongomap.test');
 var process = require('process');
 var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../js';
 //var debuglog = require('debugf')('testdb.mongomap.nunit.js');
 
 var MongoMap = require(root + '/model/mongomap.js');
 var Model = require(root + '/model/model.js');
-
-//var modelPath = 'node_modules/testmodel/';
-
 var testmodelPath = 'node_modules/mgnlq_testmodel/testmodel/';
 
 var Schemaload = require(root + '/modelload/schemaload.js');
@@ -39,7 +36,7 @@ var connectionStringTestDB = 'mongodb://localhost/testdb';
 //  mongoose.connect('mongodb://localhost/nodeunit');
 
 
-exports.testCollectCats = function(test) {
+it("testCollectCats", async () => {
   var props = {
     'Object_name_length': {
       'type': 'Number',
@@ -48,18 +45,18 @@ exports.testCollectCats = function(test) {
     }
   };
   var res = MongoMap.collectCategories(props);
-  test.deepEqual(res, {
+  expect(res).toEqual({
     'Object name length' : {
       paths : ['Object_name_length'],
       fullpath : 'Object_name_length'
     }
   });
-  test.done();
-};
+  //test.done()
+});
 
 
 
-exports.testUnwindsForNonTerminalArrays = function(test) {
+it("testUnwindsForNonTerminalArrays", async () => {
   var mongoMap = {
     'cat1' :{ paths:  ['cat1']},
     'cat2' : { paths:  ['_mem1', '[]', 'mem3'] }
@@ -69,11 +66,11 @@ exports.testUnwindsForNonTerminalArrays = function(test) {
       'preserveNullAndEmptyArrays' : true }
     }];
   var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
-  test.deepEqual(res, resexpected, 'correct result');
-  test.done();
-};
+  expect(res).toEqual(resexpected);
+  //test.done()
+});
 
-exports.testUnwindsForNonTerminalArrays2equal = function(test) {
+it("testUnwindsForNonTerminalArrays2equal", async () => {
   var mongoMap = {
     'cat1' :{ paths:  ['cat1']},
     'cat2' : { paths:  ['_mem1', '[]', 'mem3']},
@@ -84,11 +81,11 @@ exports.testUnwindsForNonTerminalArrays2equal = function(test) {
       'preserveNullAndEmptyArrays' : true }
     }];
   var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
-  test.deepEqual(res, resexpeted, 'correct result');
-  test.done();
-};
+  expect(res).toEqual(resexpeted);
+  //test.done()
+});
 
-exports.testUnwindsForNonTerminalArrays2distinct = function(test) {
+it("testUnwindsForNonTerminalArrays2distinct", async () => {
   var mongoMap = {
     'cat1' : { paths: ['cat1']},
     'cat2' : { paths:  ['_mem1', '[]', 'mem3']},
@@ -103,12 +100,12 @@ exports.testUnwindsForNonTerminalArrays2distinct = function(test) {
     }
   ];
   var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
-  test.deepEqual(res, resexpeted, 'correct result');
-  test.done();
-};
+  expect(res).toEqual(resexpeted);
+  //test.done()
+});
 
 
-exports.testUnwindsForNonTerminalArrays3Deep = function(test) {
+it("testUnwindsForNonTerminalArrays3Deep", async () => {
   var mongoMap = {
     'cat1' :  { paths: ['cat1']},
     'cat2' :  { paths: ['_mem1', '[]', 'mem3', '[]', 'mem4']},
@@ -126,40 +123,42 @@ exports.testUnwindsForNonTerminalArrays3Deep = function(test) {
     }
   ];
   var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
-  test.deepEqual(res, resexpeted, 'correct result');
-  test.done();
-};
+  expect(res).toEqual(resexpeted);
+  //test.done()
+});
 
-exports.testGetFirstSegmentThrows = function(test) {
-  test.expect(1);
+it("testGetFirstSegmentThrows", async () => {
+  expect.assertions(1);
   try {
     MongoMap.getFirstSegment(['[]','abc']);
-    test.equals(1,0);
+    expect(1).toEqual(0);
   } catch(e) {
-    test.equals(1,1);
+    expect(1).toEqual(1);
   }
-  test.done();
-};
+  //test.done()
+});
 
-exports.testGetFirstSegmentThrowsEmpty = function(test) {
-  test.expect(1);
+it("testGetFirstSegmentThrowsEmpty", async () => {
+  expect.assertions(1);
   try {
     MongoMap.getFirstSegment([]);
-    test.equals(1,0);
+    expect(1).toEqual(0);
   } catch(e) {
-    test.equals(1,1);
+    expect(1).toEqual(1);
   }
-  test.done();
-};
+
+  //test.done()
+
+});
 
 
-exports.testGetFirstSegmentOK = function(test) {
-  test.expect(1);
-  test.equals(MongoMap.getFirstSegment(['abc','def']), 'abc');
-  test.done();
-};
+it("testGetFirstSegmentOK", async () => {
+  expect.assertions(1);
+  expect(MongoMap.getFirstSegment(['abc','def'])).toEqual('abc');
 
-exports.testUnwindsForNonTerminalArrays3bDeep = function(test) {
+});
+
+it("testUnwindsForNonTerminalArrays3bDeep", async () => {
   var mongoMap = {
     'cat1' : { paths: ['cat1']},
     'cat2' : { paths: ['_mem1', '[]', 'mem3', '[]', 'mem4']},
@@ -181,13 +180,15 @@ exports.testUnwindsForNonTerminalArrays3bDeep = function(test) {
     }
   ];
   var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
-  test.deepEqual(res, resexpeted, 'correct result');
-  test.done();
-};
+  expect(res).toEqual(resexpeted);
+
+  //test.done()
+
+});
 
 
 
-exports.testGetShortProjectedName = function(test) {
+it("testGetShortProjectedName", async () => {
   var mongoMap = {
     'cat1' : { paths: ['cat1'], fullpath : 'cat1'},
     'ca T2' : { paths: ['_mem1', '[]', 'mem3', '[]', 'mem4'], fullpath : '_mem1.mem3.mem4'},
@@ -195,14 +196,16 @@ exports.testGetShortProjectedName = function(test) {
     'cat3' : { paths: ['_mem2', '_mem3', '[]', 'mem3']}
   };
   var r = MongoMap.getShortProjectedName(mongoMap, 'cat1');
-  test.deepEqual(r,'cat1');
+  expect(r).toEqual('cat1');
 
   var r2 = MongoMap.getShortProjectedName(mongoMap, 'ca T2');
-  test.deepEqual(r2, 'ca_t2');
-  test.done();
-};
+  expect(r2).toEqual('ca_t2');
 
-exports.testUnwindsForNonTerminalArraysEmtpy= function(test) {
+  //test.done()
+
+});
+
+it("testUnwindsForNonTerminalArraysEmtpy", async () => {
   var mongoMap = {
     'cat1' : { paths: ['cat1'] },
     'cat2' : { paths: ['_mem1', 'mem3', '[]']},
@@ -210,39 +213,47 @@ exports.testUnwindsForNonTerminalArraysEmtpy= function(test) {
   };
   var resexpeted = [];
   var res = MongoMap.unwindsForNonterminalArrays(mongoMap);
-  test.deepEqual(res, resexpeted, 'correct result');
-  test.done();
-};
+  expect(res).toEqual(resexpeted);
 
-exports.testGetMemberByPath = function(test) {
+  //test.done()
+
+});
+
+it("testGetMemberByPath", async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 } ]
   };
-  test.equal(MongoMap.getMemberByPath(record, ['abc']) ,1,  'correct value');
-  test.done();
-};
+  expect(MongoMap.getMemberByPath(record, ['abc'])).toEqual(1);
 
-exports.testGetMemberByPathObject = function(test) {
+  //test.done()
+
+});
+
+it("testGetMemberByPathObject", async () => {
   var record = {
     abc : 1,
     def : { hij : 2 }
   };
-  test.equal(MongoMap.getMemberByPath(record, ['def','hij']) ,2,  'correct value');
-  test.done();
-};
+  expect(MongoMap.getMemberByPath(record, ['def','hij'])).toEqual(2);
+
+  //test.done()
+
+});
 
 
-exports.testGetMemberByPathObjectNoArr = function(test) {
+it("testGetMemberByPathObjectNoArr", async () => {
   var record = {
     abc : 1,
     def : { hij : 2 }
   };
-  test.equal(MongoMap.getMemberByPath(record, ['def', '[]', 'hij']) ,2,  'correct value');
-  test.done();
-};
+  expect(MongoMap.getMemberByPath(record, ['def', '[]', 'hij'])).toEqual(2);
 
-exports.testGetMemberCategories= function(test) {
+  //test.done()
+
+});
+
+it("testGetMemberCategories", async () => {
   var record =  {
     '_categories': {
       'exactmatch': true,
@@ -255,65 +266,77 @@ exports.testGetMemberCategories= function(test) {
         'TransactionCodes'
       ]
     }};
-  test.equal(MongoMap.getMemberByPath( record , ['_categories','[]','category']), 'TransactionCode', 'is proper');
-  test.done();
-};
+  expect(MongoMap.getMemberByPath( record , ['_categories','[]','category'])).toEqual('TransactionCode');
 
-exports.testGetMemberNotPresent= function(test) {
+  //test.done()
+
+});
+
+it("testGetMemberNotPresent", async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 }, {hij: 3} ]
   };
-  test.equal(MongoMap.getMemberByPath( record , ['nopath','[]','hixx']), undefined, 'is undefined');
-  test.done();
-};
+  expect(MongoMap.getMemberByPath( record , ['nopath','[]','hixx'])).toEqual(undefined);
+
+  //test.done()
+
+});
 
 
-exports.testGetMemberNotPresentDeep = function(test) {
+it("testGetMemberNotPresentDeep", async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 } ]
   };
-  test.equal(MongoMap.getMemberByPath( record , ['def','[]','hixx']), undefined, 'is undefined');
-  test.done();
-};
+  expect(MongoMap.getMemberByPath( record , ['def','[]','hixx'])).toEqual(undefined);
+
+  //test.done()
+
+});
 
 
-exports.testGetMemberByPathThrows = function(test) {
+it("testGetMemberByPathThrows", async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 }, {hij: 3} ]
   };
   try {
     MongoMap.getMemberByPath( record , ['def','[]','hij']);
-    test.equal(1,0);
+    expect(1).toEqual(0);
   } catch(e) {
-    test.equal(1,1);
+    expect(1).toEqual(1);
   }
-  test.done();
-};
 
-exports.testGetMemberByPath2 = function(test) {
+  //test.done()
+
+});
+
+it("testGetMemberByPath2", async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 } ]
   };
-  test.equal(MongoMap.getMemberByPath(record, ['def','[]','hij']) , 2,  'correct value');
-  test.done();
-};
+  expect(MongoMap.getMemberByPath(record, ['def','[]','hij'])).toEqual(2);
 
-exports.testGetMemberByPathTerminalArr = function(test) {
+  //test.done()
+
+});
+
+it("testGetMemberByPathTerminalArr", async () => {
   var record = {
     abc : 1,
     def : [ { hij : 2 } ],
     hij : [ 'aa', 'bb']
   };
-  test.deepEqual(MongoMap.getMemberByPath(record, ['hij','[]']) , ['aa', 'bb'],  'correct value');
-  test.done();
-};
+  expect(MongoMap.getMemberByPath(record, ['hij','[]'])).toEqual(['aa', 'bb']);
+
+  //test.done()
+
+});
 
 
-exports.testCollectCatsArrayOfObject = function(test) {
+it("testCollectCatsArrayOfObject", async () => {
   var props = {
     '_something' : [ {
       'Object_name_length': {
@@ -324,18 +347,21 @@ exports.testCollectCatsArrayOfObject = function(test) {
     ]
   };
   var res = MongoMap.collectCategories(props);
-  test.deepEqual(res, {
+  expect(res).toEqual({
     'Object name length' : {
       paths : ['_something', '[]', 'Object_name_length'],
       fullpath : '_something.Object_name_length'
     }
   });
-  test.done();
-};
+
+  //test.done()
+
+});
 
 
-exports.testGetDistintMultivalues = function(test) {
-  MongoUtils.openMongoose(mongoose, connectionStringTestDB).then( () =>
+it("testGetDistintMultivalues", async () => {
+  expect.assertions(1);
+  return MongoUtils.openMongoose(mongoose, connectionStringTestDB).then( () =>
   {
     return Model.getMongoHandle(mongoose);
   }
@@ -346,19 +372,24 @@ exports.testGetDistintMultivalues = function(test) {
     Model.getDistinctValues(modelHandle, 'metamodels' , 'domain synonyms')
   )
     .then( (values) => {
-      test.deepEqual(values, [  'fiori bom' ,'meta model']);
-      MongoUtils.disconnect(mongoose);
-      test.done();
-    }
-    ).catch((err) => {
-      console.log('test failed ' + err + '\n' + err.stack);
-      test.equal(0, 1);
-      test.done();
-    });
-};
+    expect(values).toEqual([  'fiori bom' ,'meta model']);
+    MongoUtils.disconnect(mongoose);
 
-exports.testGetDistintCosmos = function(test) {
-  MongoUtils.openMongoose(mongoose, connectionStringTestDB).then( () =>
+    //test.done()
+
+  }
+    ).catch((err) => {
+    console.log('test failed ' + err + '\n' + err.stack);
+    expect(0).toEqual(1);
+
+    //test.done()
+
+  });
+});
+
+it("testGetDistintCosmos", async () => {
+  expect.assertions(1);
+  return MongoUtils.openMongoose(mongoose, connectionStringTestDB).then( () =>
   {
     return Model.getMongoHandle(mongoose);
   }
@@ -369,20 +400,25 @@ exports.testGetDistintCosmos = function(test) {
     Model.getDistinctValues(modelHandle, 'cosmos' , 'orbits')
   )
     .then( (values) => {
-      test.deepEqual(values, [null, 'Alpha Centauri C', 'Sun', 'n/a']);
-      MongoUtils.disconnect(mongoose);
-      test.done();
-    }
+    expect(values).toEqual([null, 'Alpha Centauri C', 'Sun', 'n/a']);
+    MongoUtils.disconnect(mongoose);
+
+    //test.done()
+
+  }
     ).catch((err) => {
-      console.log('test failed ' + err + '\n' + err.stack);
-      test.equal(0, 1);
-      test.done();
-    });
-};
+    console.log('test failed ' + err + '\n' + err.stack);
+    expect(0).toEqual(1);
+
+    //test.done()
+
+  });
+});
 
 
-exports.testGetDistintObjectName = function(test) {
-  MongoUtils.openMongoose(mongoose, connectionStringTestDB).then( () =>
+it("testGetDistintObjectName", async () => {
+  expect.assertions(1);
+  return MongoUtils.openMongoose(mongoose, connectionStringTestDB).then( () =>
   {
     return Model.getMongoHandle(mongoose);
   }
@@ -393,24 +429,28 @@ exports.testGetDistintObjectName = function(test) {
     Model.getDistinctValues(modelHandle, 'cosmos' , 'object name')
   )
     .then( (values) => {
-      test.deepEqual(values, [ 'Alpha Centauri A',
-        'Alpha Centauri B',
-        'Alpha Centauri C',
-        'Mars',
-        'Proxima Centauri b',
-        'Sun',
-        'earth' ]);
-      MongoUtils.disconnect(mongoose);
-      test.done();
-    }
-    ).catch((err) => {
-      console.log('test failed ' + err + '\n' + err.stack);
-      test.equal(0, 1);
-      test.done();
-    });
-};
+    expect(values).toEqual([ 'Alpha Centauri A',
+      'Alpha Centauri B',
+      'Alpha Centauri C',
+      'Mars',
+      'Proxima Centauri b',
+      'Sun',
+      'earth' ]);
+    MongoUtils.disconnect(mongoose);
 
-exports.testCollectCatsArrayOfPLain = function(test) {
+    //test.done()
+
+  }
+    ).catch((err) => {
+    console.log('test failed ' + err + '\n' + err.stack);
+    expect(0).toEqual(1);
+
+    //test.done()
+
+  });
+});
+
+it("testCollectCatsArrayOfPLain", async () => {
   var props = {
     '_something' : [
       {
@@ -421,21 +461,24 @@ exports.testCollectCatsArrayOfPLain = function(test) {
     ]
   };
   var res = MongoMap.collectCategories(props);
-  test.deepEqual(res, {
+  expect(res).toEqual({
     'Object name length' : {
       paths : ['_something', '[]'],
       fullpath : '_something'
     }
   });
-  test.done();
-};
 
-exports.testMakeIfMap = function(test) {
+  //test.done()
+
+});
+
+it("testMakeIfMap", async () => {
   var res = MongoMap.makeMongoMap(eDocSOBJ, eSchemaSOBJ_Tables);
-  test.deepEqual(res['TransportObject'],
-    { paths: ['TransportObject'], fullpath : 'TransportObject'});
-  test.deepEqual(res['Object name length'], { paths: ['Object_name_length'], fullpath : 'Object_name_length'});
-  test.deepEqual(res['Table'], { paths: ['_tables', '[]', 'Table'], fullpath : '_tables.Table'});
-  test.deepEqual(1,1);
-  test.done();
-};
+  expect(res['TransportObject']).toEqual({ paths: ['TransportObject'], fullpath : 'TransportObject'});
+  expect(res['Object name length']).toEqual({ paths: ['Object_name_length'], fullpath : 'Object_name_length'});
+  expect(res['Table']).toEqual({ paths: ['_tables', '[]', 'Table'], fullpath : '_tables.Table'});
+  expect(1).toEqual(1);
+
+  //test.done()
+
+});

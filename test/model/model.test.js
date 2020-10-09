@@ -29,11 +29,13 @@ var EnumRuleType = IfMatch.EnumRuleType;
 
 // load distinct values from model
 
+/*
 process.on('unhandledRejection', function onError(err) {
   console.log(err);
   console.log(err.stack);
   throw err;
 });
+*/
 
 /**
  * clear a cache for the defaut mode for coverage
@@ -60,7 +62,7 @@ try {
   // empty
 }
 
-exports.testhasSeenRuleWithFact = function (test) {
+it("testhasSeenRuleWithFact", async () => {
   var rules =
     [
       {
@@ -72,11 +74,11 @@ exports.testhasSeenRuleWithFact = function (test) {
     ]
     ;
   var res = Model.hasRuleWithFact(rules, 'abc', 'cata', 1);
-  test.equal(res, true);
+  expect(res).toEqual(true);
   res = Model.hasRuleWithFact(rules, 'abc', 'catb', 1);
-  test.equal(res, false);
-  test.done();
-};
+  expect(res).toEqual(false);
+
+});
 
 var _ = require('lodash');
 
@@ -201,40 +203,41 @@ var cats = ['AppDocumentationLinkKW',
 /**
  * Unit test for sth
  */
-exports.testModel = function (test) {
-  test.expect(3);
-  getModel().then(
+it("testModel", async () => {
+  expect.assertions(3);
+  return getModel().then(
     (amodel) => {
       debuglog('got model');
       var fullModelHandle = amodel.mongoHandle;
       debuglog('here we are' + Object.keys(fullModelHandle));
       var res = amodel.category.sort();
       var delta1 = _.difference(res, cats);
-      test.deepEqual(delta1, []);
+      expect(delta1).toEqual([]);
       var delta2 = _.difference(cats, res);
-      test.deepEqual(delta2, [], 'spurious expected');
-      test.deepEqual(res, cats, 'correct full categories');
+      expect(delta2).toEqual([]);
+      expect(res).toEqual(cats);
       Model.releaseModel(amodel);
-      test.done();
+
+      //test.done()
+
     }
   ).catch((err) => {
     console.log('test failed' + err + '\n' + err.stack);
-    test.equal(1, 0);
-    test.done();
+    expect(1).toEqual(0);
+
   }
   );
-};
+});
 
 
 function teardown(test, err) {
   console.log('test failed' + err + '\n' + err.stack);
-  test.equal(1, 0);
-  test.done();
+  expect(1).toEqual(0);
+
 }
 
 
-exports.testFilterRemapCategories = function (test) {
-
+it("testFilterRemapCategories", async () => {
   var recs = [{
     a: [{ b: 1, d: 2 }],
     c: 'abc'
@@ -259,28 +262,27 @@ exports.testFilterRemapCategories = function (test) {
     'catc': { paths: ['c'] }
   };
   var res = Model.filterRemapCategories(mongomap, ['catb', 'catd', 'catc'], recs);
-  test.deepEqual(res,
-    [
-      { 'catb': 1, 'catd': 2, 'catc': 'abc' },
-      { 'catb': undefined, 'catd': undefined, 'catc': 'def' },
-      { 'catb': undefined, 'catd': undefined, 'catc': 'hjl' },
-      { 'catb': undefined, 'catd': undefined, 'catc': 'xyz' }
-    ]);
+  expect(res).toEqual([
+    { 'catb': 1, 'catd': 2, 'catc': 'abc' },
+    { 'catb': undefined, 'catd': undefined, 'catc': 'def' },
+    { 'catb': undefined, 'catd': undefined, 'catc': 'hjl' },
+    { 'catb': undefined, 'catd': undefined, 'catc': 'xyz' }
+  ]);
   var res2 = Model.filterRemapCategories(mongomap, ['catd'], recs);
-  test.deepEqual(res2,
-    [
-      { 'catd': 2 },
-      { 'catd': undefined },
-      { 'catd': undefined },
-      { 'catd': undefined }
-    ]);
-  test.done();
-};
+  expect(res2).toEqual([
+    { 'catd': 2 },
+    { 'catd': undefined },
+    { 'catd': undefined },
+    { 'catd': undefined }
+  ]);
+
+  //test.done()
+
+});
 
 
 
-exports.testFilterRemapCategoriesBadCat = function (test) {
-
+it("testFilterRemapCategoriesBadCat", async () => {
   var recs = [{
     a: [{ b: 1, d: 2 }],
     c: 'abc'
@@ -308,12 +310,14 @@ exports.testFilterRemapCategoriesBadCat = function (test) {
   };
   try {
     Model.filterRemapCategories(mongomap, ['NOTPRESENTCAT', 'catb'], recs);
-    test.deepEqual(1, 0);
+    expect(1).toEqual(0);
   } catch (e) {
-    test.deepEqual(1, 1);
+    expect(1).toEqual(1);
   }
-  test.done();
-};
+
+  //test.done()
+
+});
 
 
 /*
@@ -370,25 +374,31 @@ exports.testModelGetOperator = function (test) {
 };
 */
 
-exports.testgetAllRecordCategoriesForTargetCategories1 = function (test) {
+it("testgetAllRecordCategoriesForTargetCategories1", async () => {
   getModel().then(theModel => {
     try {
 
       Model.getDomainCategoryFilterForTargetCategories(theModel, ['element name', 'SemanticObject']);
-      test.equal(true, false);
+      expect(true).toEqual(false);
     } catch (e) {
-      test.equal(e.toString(), 'Error: categories "element name" and "SemanticObject" have no common domain.');
+      expect(e.toString()).toEqual(
+        'Error: categories "element name" and "SemanticObject" have no common domain.'
+      );
     }
-    test.done();
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   }).catch(teardown.bind(undefined, test));
-};
+});
 
 
-exports.testgetAllRecordCategoriesForTargetCategories2 = function (test) {
-  getModel().then(theModel => {
+it("testgetAllRecordCategoriesForTargetCategories2", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategories(theModel, ['element name', 'element symbol']);
-    test.deepEqual(res, {
+    expect(res).toEqual({
       domains: ['IUPAC'],
       categorySet:
       {
@@ -398,16 +408,20 @@ exports.testgetAllRecordCategoriesForTargetCategories2 = function (test) {
         'element symbol': true
       }
     });
-    test.done();
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testgetAllRecordCategoriesForTargetCategory = function (test) {
-  getModel().then(theModel => {
+it("testgetAllRecordCategoriesForTargetCategory", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategory(theModel, 'element name');
-    test.deepEqual(res, {
+    expect(res).toEqual({
       domains: ['IUPAC', 'Philosophers elements'],
       categorySet:
       {
@@ -419,64 +433,78 @@ exports.testgetAllRecordCategoriesForTargetCategory = function (test) {
       }
     });
     Model.releaseModel(theModel);
-    test.done();
-  });
-};
 
-exports.testLoadModelsNoMonbooseThrows = function (test) {
+    //test.done()
+
+  });
+});
+
+it("testLoadModelsNoMonbooseThrows", async () => {
   try {
     Model.loadModels();
-    test.equal(0, 1);
+    expect(0).toEqual(1);
   } catch (e) {
-    test.equal(1, 1);
-    test.done();
+    expect(1).toEqual(1);
+
   }
-};
+});
 
 
-exports.testgetExpandedRecordsForCategory = function (test) {
-  getModel().then(theModel => {
-    Model.getExpandedRecordsForCategory(theModel, 'Cosmos', 'orbits').then((res) => {
-      test.deepEqual(res.length, 7);
+it("testgetExpandedRecordsForCategory", async () => {
+  expect.assertions(2);
+  return getModel().then(theModel => {
+    return Model.getExpandedRecordsForCategory(theModel, 'Cosmos', 'orbits').then((res) => {
+      expect(res.length).toEqual(7);
       res.sort(Model.sortFlatRecords);
-      test.deepEqual(res[0].orbits, 'Alpha Centauri C');
-      test.done();
+      expect(res[0].orbits).toEqual('Alpha Centauri C');
+
+      //test.done()
+
+
       Model.releaseModel(theModel);
     });
   });
-};
+});
 
-exports.testgetExpandedRecordsForCategoryMetamodel = function (test) {
-  getModel().then(theModel => {
-    Model.getExpandedRecordsForCategory(theModel, 'metamodel', 'category').then((res) => {
-      test.deepEqual(res.length, 98);
+it("testgetExpandedRecordsForCategoryMetamodel", async () => {
+  expect.assertions(3);
+  return getModel().then(theModel => {
+    return Model.getExpandedRecordsForCategory(theModel, 'metamodel', 'category').then((res) => {
+      expect(res.length).toEqual(98);
       res.sort(Model.sortFlatRecords);
       debuglog(() => JSON.stringify(res));
-      test.deepEqual(res[0].category, '_url');
-      test.deepEqual(res[10].category, 'atomic weight');
-      test.done();
+      expect(res[0].category).toEqual('_url');
+      expect(res[10].category).toEqual('atomic weight');
+
+      //test.done()
+
+
       Model.releaseModel(theModel);
     });
   });
-};
+});
 
-exports.testgetExpandedRecordsFull = function (test) {
-  getModel().then(theModel => {
-    Model.getExpandedRecordsFull(theModel, 'Cosmos').then((res) => {
-      test.deepEqual(res.length, 7);
+it("testgetExpandedRecordsFull", async () => {
+  expect.assertions(3);
+  return getModel().then(theModel => {
+    return Model.getExpandedRecordsFull(theModel, 'Cosmos').then((res) => {
+      expect(res.length).toEqual(7);
       res.sort(Model.sortFlatRecords);
-      test.deepEqual(res[0].orbits, 'Sun');
-      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of categories');
-      test.done();
+      expect(res[0].orbits).toEqual('Sun');
+      expect(Object.keys(res[0]).length).toEqual(13);
+
+      //test.done()
+
+
       Model.releaseModel(theModel);
     });
   });
-};
+});
 
 
-exports.testgetExpandedRecordsFullArray = function (test) {
-  test.expect(6);
-  getModel().then(theModel => {
+it("testgetExpandedRecordsFullArray", async () => {
+  expect.assertions(6);
+  return getModel().then(theModel => {
     var modelname = Model.getModelNameForDomain(theModel.mongoHandle, 'metamodel');
     var model = Model.getModelForDomain(theModel, 'metamodel');
     var mongoMap = theModel.mongoHandle.mongoMaps[modelname];
@@ -484,104 +512,115 @@ exports.testgetExpandedRecordsFullArray = function (test) {
 
     try {
       Model.checkModelMongoMap(undefined, 'metamodel', mongoMap, 'domain');
-      test.equal(1, 0);
+      expect(1).toEqual(0);
     } catch (e) {
-      test.equal(1, 1);
+      expect(1).toEqual(1);
     }
     try {
       Model.checkModelMongoMap(model, 'metamodel', undefined, 'domain');
-      test.equal(1, 0);
+      expect(1).toEqual(0);
     } catch (e) {
-      test.equal(1, 1);
+      expect(1).toEqual(1);
     }
     try {
       Model.checkModelMongoMap(model, 'metamodel', mongoMap, 'domainGIBTSNICH');
-      test.equal(1, 0);
+      expect(1).toEqual(0);
     } catch (e) {
-      test.equal(1, 1);
+      expect(1).toEqual(1);
     }
 
-    Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
-      test.deepEqual(res.length, 98);
+    return Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
+      expect(res.length).toEqual(98);
       res.sort(Model.sortFlatRecords);
-      test.deepEqual(res[0].category, '_url');
-      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of models');
-      test.done();
+      expect(res[0].category).toEqual('_url');
+      expect(Object.keys(res[0]).length).toEqual(13);
+
+      //test.done()
+
+
       Model.releaseModel(theModel);
     });
   });
-};
+});
 
-exports.testgetExpandedRecordsFullArray2 = function (test) {
-  getModel().then(theModel => {
-    Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
-      test.deepEqual(res.length, 98);
+it("testgetExpandedRecordsFullArray2", async () => {
+  expect.assertions(3);
+  return getModel().then(theModel => {
+    return Model.getExpandedRecordsFull(theModel, 'metamodel').then((res) => {
+      expect(res.length).toEqual(98);
       res.sort(Model.sortFlatRecords);
-      test.deepEqual(res[0].category, '_url');
-      test.deepEqual(Object.keys(res[0]).length, 13, ' correct number of categories');
-      test.done();
+      expect(res[0].category).toEqual('_url');
+      expect(Object.keys(res[0]).length).toEqual(13);
+
+      //test.done()
+
+
       Model.releaseModel(theModel);
     });
   });
-};
+});
 
-exports.testgetCategoryFilterMultDomains = function (test) {
-  getModel().then(theModel => {
+it("testgetCategoryFilterMultDomains", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategories(theModel, ['ApplicationComponent', 'TransactionCode'], true);
-    test.deepEqual(res,
+    expect(res).toEqual({
+      domains: ['Fiori Backend Catalogs', 'FioriBOM'],
+      categorySet:
       {
-        domains: ['Fiori Backend Catalogs', 'FioriBOM'],
-        categorySet:
-        {
-          ApplicationComponent: true,
-          BackendCatalogId: true,
-          BusinessCatalog: true,
-          SemanticAction: true,
-          SemanticObject: true,
-          SoftwareComponent: true,
-          TechnicalCatalogSystemAlias: true,
-          TransactionCode: true,
-          WebDynproApplication: true,
-          devclass: true,
-          'fiori intent': true,
-          AppDocumentationLinkKW: true,
-          AppKey: true,
-          AppName: true,
-          ApplicationType: true,
-          ArtifactId: true,
-          BSPApplicationURL: true,
-          BSPName: true,
-          BSPPackage: true,
-          BusinessGroupDescription: true,
-          BusinessGroupName: true,
-          BusinessRoleName: true,
-          ExternalReleaseName: true,
-          FrontendSoftwareComponent: true,
-          LPDCustInstance: true,
-          PrimaryODataPFCGRole: true,
-          PrimaryODataServiceName: true,
-          RoleName: true,
-          TechnicalCatalog: true,
-          URLParameters: true,
-          appId: true,
-          detailsurl: true,
-          isPublished: true,
-          releaseId: true,
-          releaseName: true,
-          uri: true,
-          uri_rank: true
-        }
-      });
-    test.done();
+        ApplicationComponent: true,
+        BackendCatalogId: true,
+        BusinessCatalog: true,
+        SemanticAction: true,
+        SemanticObject: true,
+        SoftwareComponent: true,
+        TechnicalCatalogSystemAlias: true,
+        TransactionCode: true,
+        WebDynproApplication: true,
+        devclass: true,
+        'fiori intent': true,
+        AppDocumentationLinkKW: true,
+        AppKey: true,
+        AppName: true,
+        ApplicationType: true,
+        ArtifactId: true,
+        BSPApplicationURL: true,
+        BSPName: true,
+        BSPPackage: true,
+        BusinessGroupDescription: true,
+        BusinessGroupName: true,
+        BusinessRoleName: true,
+        ExternalReleaseName: true,
+        FrontendSoftwareComponent: true,
+        LPDCustInstance: true,
+        PrimaryODataPFCGRole: true,
+        PrimaryODataServiceName: true,
+        RoleName: true,
+        TechnicalCatalog: true,
+        URLParameters: true,
+        appId: true,
+        detailsurl: true,
+        isPublished: true,
+        releaseId: true,
+        releaseName: true,
+        uri: true,
+        uri_rank: true
+      }
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testgetCAtegoryFilterOneDomain = function (test) {
-  getModel().then(theModel => {
+it("testgetCAtegoryFilterOneDomain", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var res = Model.getDomainCategoryFilterForTargetCategories(theModel, ['ApplicationComponent', 'devclass', 'TransactionCode'], true);
-    test.deepEqual(res, {
+    expect(res).toEqual({
       domains: ['Fiori Backend Catalogs'],
       categorySet:
       {
@@ -598,70 +637,91 @@ exports.testgetCAtegoryFilterOneDomain = function (test) {
         'fiori intent': true
       }
     });
-    test.done();
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
 
-exports.testModelGetDomainIndex = function (test) {
-  getModel().then(theModel => {
+it("testModelGetDomainIndex", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var res = Model.getDomainBitIndex('IUPAC', theModel);
-    test.equal(res, 0x0010, 'IUPAC code ');
-    test.done();
+    expect(res).toEqual(0x0010);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
-exports.testModelGetDomainIndexNotPresent = function (test) {
-  getModel().then(theModel => {
+});
+it("testModelGetDomainIndexNotPresent", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var res = Model.getDomainBitIndex('NOTPRESENT', theModel);
-    test.equal(res, 0x200, 'abc NOTPRESENT 4096');
-    test.done();
+    expect(res).toEqual(0x200);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testModelGetDomainIndexThrows = function (test) {
+it("testModelGetDomainIndexThrows", async () => {
   var a = [];
   for (var i = 0; i < 32; ++i) {
     a.push('xx');
   }
   try {
     Model.getDomainBitIndex('IUPAC', { domains: a });
-    test.equal(1, 0);
+    expect(1).toEqual(0);
   } catch (e) {
-    test.equal(1, 1);
+    expect(1).toEqual(1);
   }
-  test.done();
-};
+
+  //test.done()
+
+});
 
 
-exports.testModelGetDomainIndexSafe = function (test) {
-  getModel().then(theModel => {
+it("testModelGetDomainIndexSafe", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var res = Model.getDomainBitIndexSafe('IUPAC', theModel);
-    test.equal(res, 0x0010, 'IUPAC code ');
-    test.done();
+    expect(res).toEqual(0x0010);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testModelGetDomainIndexSafeNotPresent = function (test) {
-  getModel().then(theModel => {
+it("testModelGetDomainIndexSafeNotPresent", async () => {
+  expect.assertions(2);
+  return getModel().then(theModel => {
     try {
       var res = Model.getDomainBitIndexSafe('NOTPRESENT', theModel);
-      test.equal(1, 0);
+      expect(1).toEqual(0);
     } catch (e) {
-      test.equal(1, 1);
+      expect(1).toEqual(1);
     }
-    test.equal(res, undefined, 'abc NOTPRESENT 4096');
-    test.done();
+    expect(res).toEqual(undefined);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testModelGetDomainIndexSafeThrows2 = function (test) {
+it("testModelGetDomainIndexSafeThrows2", async () => {
   var a = [];
   for (var i = 0; i < 33; ++i) {
     a.push('xx');
@@ -669,53 +729,64 @@ exports.testModelGetDomainIndexSafeThrows2 = function (test) {
   a.push('IUPAC');
   try {
     Model.getDomainBitIndexSafe('IUPAC', { domains: a });
-    test.equal(1, 0);
+    expect(1).toEqual(0);
   } catch (e) {
-    test.equal(1, 1);
+    expect(1).toEqual(1);
   }
-  test.done();
-};
 
-exports.testModelGetDomainIndexSafe2 = function (test) {
+  //test.done()
+
+});
+
+it("testModelGetDomainIndexSafe2", async () => {
   getModel().then(theModel => {
     var res = Model.getDomainBitIndexSafe('IUPAC', theModel);
-    test.equal(res, 0x0010, 'IUPAC code ');
+    expect(res).toEqual(0x0010);
     var res2 = Model.getDomainsForBitField(theModel, 0x0010);
-    test.equal(res2, 'IUPAC' );
-    test.done();
+    expect(res2).toEqual('IUPAC');
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testGetModelNameForDomain = function (test) {
+it("testGetModelNameForDomain", async () => {
   getModel().then(theModel => {
     var u = Model.getModelNameForDomain(theModel.mongoHandle, 'FioriBOM');
-    test.deepEqual(u, 'fioriapps');
+    expect(u).toEqual('fioriapps');
     var k = Model.getMongooseModelNameForDomain(theModel, 'FioriBOM');
-    test.deepEqual(k, 'fioriapps');
+    expect(k).toEqual('fioriapps');
     var coll = Model.getMongoCollectionNameForDomain(theModel, 'FioriBOM');
-    test.deepEqual(coll, 'fioriapps');
-    test.done();
+    expect(coll).toEqual('fioriapps');
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testGetModelNameForDomainNotPresent = function (test) {
+it("testGetModelNameForDomainNotPresent", async () => {
   getModel().then(theModel => {
     try {
       Model.getModelNameForDomain(theModel, 'FioriNIXDA');
-      test.equal(1, 0);
+      expect(1).toEqual(0);
     } catch (e) {
-      test.equal(1, 1);
+      expect(1).toEqual(1);
     }
-    test.done();
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testAddSplitSingleWord = function (test) {
+it("testAddSplitSingleWord", async () => {
   var seenIt = {};
   var rules = [];
 
@@ -729,11 +800,13 @@ exports.testAddSplitSingleWord = function (test) {
     _ranking: 0.95
   };
   Model.addBestSplit(rules, newRule, seenIt);
-  test.equals(rules.length, 0);
-  test.done();
-};
+  expect(rules.length).toEqual(0);
 
-exports.testAddSplitNotCombinable = function (test) {
+  //test.done()
+
+});
+
+it("testAddSplitNotCombinable", async () => {
   var seenIt = {};
   var rules = [];
   var newRule = {
@@ -746,13 +819,14 @@ exports.testAddSplitNotCombinable = function (test) {
     _ranking: 0.95
   };
   Model.addBestSplit(rules, newRule, seenIt);
-  test.equals(rules.length, 0);
-  test.done();
-};
+  expect(rules.length).toEqual(0);
+
+  //test.done()
+
+});
 
 
-exports.testAddSplit = function (test) {
-
+it("testAddSplit", async () => {
   var seenIt = {};
 
   var rules = [];
@@ -773,7 +847,7 @@ exports.testAddSplit = function (test) {
   Model.addBestSplit(rules, newRule, seenIt);
   Model.global_AddSplits = false;
 
-  test.deepEqual(rules[0], {
+  expect(rules[0]).toEqual({
     category: 'stars',
     matchedString: 'Alpha Centauri A',
     bitindex: 32,
@@ -789,66 +863,76 @@ exports.testAddSplit = function (test) {
       high: 1,
       rule: newRule
     }
-  }
-  );
-  test.done();
+  });
 
-};
+  //test.done()
 
-exports.testModelHasDomainIndexinRules = function (test) {
+});
+
+it("testModelHasDomainIndexinRules", async () => {
   var a = [];
   for (var i = 0; i < 32; ++i) {
     a.push('xx');
   }
   try {
     Model.getDomainBitIndex('IUPAC', { domains: a });
-    test.equal(1, 0);
+    expect(1).toEqual(0);
   } catch (e) {
-    test.equal(1, 1);
+    expect(1).toEqual(1);
   }
-  test.done();
-};
+
+  //test.done()
+
+});
 
 
-exports.testModelHasDomainIndexInDomains = function (test) {
-  getModel().then(theModel => {
+it("testModelHasDomainIndexInDomains", async () => {
+  expect.assertions(10);
+  return getModel().then(theModel => {
     // check that every domain has an index which is distinct
     var all = 0;
     theModel.domains.forEach(function (o) {
       var idx = theModel.full.domain[o].bitindex;
-      test.equal(idx !== 0, true);
+      expect(idx !== 0).toEqual(true);
       //console.log(all);
       all = all | idx;
     });
-    test.equal(all, 0x01FF, ' test Inddex in domains 4095');
-    test.done();
+    expect(all).toEqual(0x01FF);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testModelHasDomainIndexInAllRules = function (test) {
-  getModel().then(theModel => {
+it("testModelHasDomainIndexInAllRules", async () => {
+  expect.assertions(10);
+  return getModel().then(theModel => {
     // check that every domain has an index which is distinct
     var all = 0;
     theModel.domains.forEach(function (o) {
       var idx = theModel.full.domain[o].bitindex;
-      test.equal(idx !== 0, true);
+      expect(idx !== 0).toEqual(true);
       //console.log(all);
       all = all | idx;
     });
-    test.equal(all, 0x01FF, ' Flags Index In Rules 4095');
-    test.done();
+    expect(all).toEqual(0x01FF);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testModelHasNumberRules = function (test) {
+it("testModelHasNumberRules", async () => {
   getModel().then(theModel => {
     // check that every domain has an index which is distinct
     var all = 0;
     theModel.domains.forEach(function (o) {
       var idx = theModel.full.domain[o].bitindex;
-      test.equal(idx !== 0, true);
+      expect(idx !== 0).toEqual(true);
       //console.log(all);
       all = all | idx;
     });
@@ -856,43 +940,49 @@ exports.testModelHasNumberRules = function (test) {
     theModel.mRules.forEach((orule) => {
       if (orule.type === EnumRuleType.REGEXP) {
         var m = orule.regexp.exec('123');
-        test.equal(true, !!m);
-        test.equal(m[orule.matchIndex], '123');
+        expect(true).toEqual(!!m);
+        expect(m[orule.matchIndex]).toEqual('123');
         ++cnt;
       }
     });
-    test.equal(cnt, 1);
-    test.equal(all, 0x01FF, ' Flags Index In Rules 4095');
-    test.done();
+    expect(cnt).toEqual(1);
+    expect(all).toEqual(0x01FF);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 const MetaF = Meta.getMetaFactory();
 
 
-exports.testgetTableColumnsThrows = function (test) {
+it("testgetTableColumnsThrows", async () => {
   try {
     Model.getTableColumns({ domains: [] }, 'adomain');
-    test.equal(true, false, 'everything ok');
+    expect(true).toEqual(false);
   } catch (e) {
-    test.deepEqual(e.toString().indexOf('Domain "adomain') >= 0, true, ' execption text ');
+    expect(e.toString().indexOf('Domain "adomain') >= 0).toEqual(true);
   }
-  test.done();
-};
 
-exports.testgetResultAsArrayBad = function (test) {
+  //test.done()
+
+});
+
+it("testgetResultAsArrayBad", async () => {
   try {
     Model.getResultAsArray({}, MetaF.Domain('abc'), MetaF.Domain('def'));
-    test.equal(true, false, 'everything ok');
+    expect(true).toEqual(false);
   } catch (e) {
-    //console.log(e.toString());
-    test.deepEqual(e.toString().indexOf('relation') >= 0, true, '2nd arg not a relation');
+    expect(e.toString().indexOf('relation') >= 0).toEqual(true);
   }
-  test.done();
-};
 
-exports.testgetResultAsArrayNotThere = function (test) {
+  //test.done()
+
+});
+
+it("testgetResultAsArrayNotThere", async () => {
   var res = Model.getResultAsArray({
     meta: {
       t3: {
@@ -902,12 +992,14 @@ exports.testgetResultAsArrayNotThere = function (test) {
       }
     }
   }, MetaF.Domain('abcd'), MetaF.Relation('def'));
-  test.deepEqual(res, []);
-  test.done();
-};
+  expect(res).toEqual([]);
+
+  //test.done()
+
+});
 
 
-exports.testgetResultAsArrayOk = function (test) {
+it("testgetResultAsArrayOk", async () => {
   var res = Model.getResultAsArray({
     meta: {
       t3: {
@@ -917,142 +1009,163 @@ exports.testgetResultAsArrayOk = function (test) {
       }
     }
   }, MetaF.Domain('abc'), MetaF.Relation('def'));
-  test.deepEqual(res[0].toFullString(), 'category -:- kkk', ' correct relation');
-  test.done();
-};
+  expect(res[0].toFullString()).toEqual('category -:- kkk');
 
-exports.testgetCategoriesForDomainBadDomain = function (test) {
-  test.expect(1);
+  //test.done()
+
+});
+
+it("testgetCategoriesForDomainBadDomain", async () => {
+  expect.assertions(1);
   getModel().then(theModel => {
-
     var u = theModel;
     try {
       Model.getCategoriesForDomain(u, 'notpresent');
-      test.equal(true, false, 'everything ok');
+      expect(true).toEqual(false);
     } catch (e) {
-      test.deepEqual(e.toString().indexOf('notpresent') >= 0, true, 'flawed domain listed');
+      expect(e.toString().indexOf('notpresent') >= 0).toEqual(true);
     }
-    test.done();
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testgetDomainsForCategoryBadCategory = function (test) {
-  getModel().then(theModel => {
-
+it("testgetDomainsForCategoryBadCategory", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var u = theModel;
     try {
       Model.getDomainsForCategory(u, 'notpresent');
-      test.equal(true, false, 'everything ok');
+      expect(true).toEqual(false);
     } catch (e) {
-      test.deepEqual(e.toString().indexOf('notpresent') >= 0, true, 'flawed category listed');
+      expect(e.toString().indexOf('notpresent') >= 0).toEqual(true);
     }
-    test.done();
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testgetAllDomainsBintIndex = function (test) {
-  getModel().then(theModel => {
-
+it("testgetAllDomainsBintIndex", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var u = theModel;
     var res = Model.getAllDomainsBitIndex(u);
-    test.equal(res, 0x01FF);
-    test.done();
+    expect(res).toEqual(0x01FF);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testgetCategoriesForDomain = function (test) {
-  test.expect(1);
-  getModel().then(theModel => {
+it("testgetCategoriesForDomain", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var u = theModel;
     //console.log('here the model ************ ' + JSON.stringify(u.meta.t3,undefined,2));
     var res = Model.getCategoriesForDomain(u, 'Cosmos');
-    test.deepEqual(res,
-      ['_url',
-        'albedo',
-        'distance',
-        'eccentricity',
-        'mass',
-        'object name',
-        'object type',
-        'orbit radius',
-        'orbital period',
-        'orbits',
-        'radius',
-        'visual luminosity',
-        'visual magnitude'], 'correct categories returned');
-    test.done();
+    expect(res).toEqual(['_url',
+      'albedo',
+      'distance',
+      'eccentricity',
+      'mass',
+      'object name',
+      'object type',
+      'orbit radius',
+      'orbital period',
+      'orbits',
+      'radius',
+      'visual luminosity',
+      'visual magnitude']);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
 
-};
+});
 
 
 
-exports.testgetshowURICategoriesForDomain = function (test) {
-  test.expect(1);
+it("testgetshowURICategoriesForDomain", async () => {
+  expect.assertions(1);
   getModel().then(theModel => {
     var u = theModel;
     //console.log('here the model ************ ' + JSON.stringify(u.meta.t3,undefined,2));
     var res = Model.getShowURICategoriesForDomain(u, 'Cosmos');
-    test.deepEqual(res,
-      ['_url'], 'correct categories returned');
-    test.done();
+    expect(res).toEqual(['_url']);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testgetshowURIRankCategoriesForDomain = function (test) {
-  test.expect(1);
-  getModel().then(theModel => {
+it("testgetshowURIRankCategoriesForDomain", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var u = theModel;
     //console.log('here the model ************ ' + JSON.stringify(u.meta.t3,undefined,2));
     var res = Model.getShowURIRankCategoriesForDomain(u, 'FioriBOM');
-    test.deepEqual(res,
-      ['uri_rank'], 'correct categories returned');
-    test.done();
+    expect(res).toEqual(['uri_rank']);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testgetDomainsForCategory = function (test) {
-  test.expect(1);
-  getModel().then(theModel => {
+it("testgetDomainsForCategory", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var u = theModel;
     //console.log('here the model ************ ' + JSON.stringify(u.meta.t3,undefined,2));
     var res = Model.getDomainsForCategory(u, 'element name');
-    test.deepEqual(res,
-      ['IUPAC', 'Philosophers elements'], 'correct data read');
-    test.done();
+    expect(res).toEqual(['IUPAC', 'Philosophers elements']);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
 
-};
+});
 
 
 
 /**
  * rules with exact Only 
  */
-exports.testModelCheckExactOnly = function (test) {
-  test.expect(1);
-  getModel().then(theModel => {
+it("testModelCheckExactOnly", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var u = theModel;
     var res = u.mRules.filter(function (oRule) {
       return oRule.exactOnly === true;
     });
-    test.equal(res.length, 176 /*186*/ /*431*/, 'correct flag applied');
-    test.done();
+    expect(res.length).toEqual(176 /*186*/ /*431*/);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testMakeWordMap = function (test) {
+it("testMakeWordMap", async () => {
   var rules = [
     { type: 0, lowercaseword: 'abc', category: '1', bitindex: 0x1 },
     { type: 1, lowercaseword: 'def', category: '2', bitindex: 0x10 },
@@ -1061,63 +1174,69 @@ exports.testMakeWordMap = function (test) {
   ];
   var res = Model.splitRules(rules);
 
-  test.deepEqual(res,
-    {
-      allRules: [
-        { type: 0, lowercaseword: 'abc', category: '1', bitindex: 0x1 },
-        { type: 1, lowercaseword: 'def', category: '2', bitindex: 0x10 },
-        { type: 0, lowercaseword: 'klm', category: '4', bitindex: 0x100 },
-        { type: 0, lowercaseword: 'abc', category: '3', bitindex: 0x80 },
-      ],
-      wordMap: {
-        'abc': {
-          bitindex: 0x81,
-          rules: [
-            { type: 0, lowercaseword: 'abc', category: '1', bitindex: 0x1 },
-            { type: 0, lowercaseword: 'abc', category: '3', bitindex: 0x80 }
-          ]
-        },
-        'klm': {
-          bitindex: 0x100,
-          rules: [
-            { type: 0, lowercaseword: 'klm', category: '4', bitindex: 0x100 }
-          ]
-        }
+  expect(res).toEqual({
+    allRules: [
+      { type: 0, lowercaseword: 'abc', category: '1', bitindex: 0x1 },
+      { type: 1, lowercaseword: 'def', category: '2', bitindex: 0x10 },
+      { type: 0, lowercaseword: 'klm', category: '4', bitindex: 0x100 },
+      { type: 0, lowercaseword: 'abc', category: '3', bitindex: 0x80 },
+    ],
+    wordMap: {
+      'abc': {
+        bitindex: 0x81,
+        rules: [
+          { type: 0, lowercaseword: 'abc', category: '1', bitindex: 0x1 },
+          { type: 0, lowercaseword: 'abc', category: '3', bitindex: 0x80 }
+        ]
       },
-      nonWordRules: [{ type: 1, lowercaseword: 'def', category: '2', bitindex: 0x10 }],
-      wordCache: {}
-    }
-  );
-  test.done();
-};
+      'klm': {
+        bitindex: 0x100,
+        rules: [
+          { type: 0, lowercaseword: 'klm', category: '4', bitindex: 0x100 }
+        ]
+      }
+    },
+    nonWordRules: [{ type: 1, lowercaseword: 'def', category: '2', bitindex: 0x10 }],
+    wordCache: {}
+  });
+
+  //test.done()
+
+});
 
 
 /**
  * Unit test for sth
  */
-exports.testCategorySorting = function (test) {
+it("testCategorySorting", async () => {
   var map = {
     'a': { importance: 0.1 }, 'b': { importance: 0.2 },
     'd': { importance: 0.2 }, 'c': { importance: 0.2 }, 'f': {}
   };
 
-  test.equals(Model.rankCategoryByImportance({}, 'uu', 'ff'), 1, 'localcomp');
-  test.equals(Model.rankCategoryByImportance({ 'uu': {} }, 'uu', 'ff'), -1, 'onehas');
+  expect(Model.rankCategoryByImportance({}, 'uu', 'ff')).toEqual(1);
+  expect(Model.rankCategoryByImportance({ 'uu': {} }, 'uu', 'ff')).toEqual(-1);
 
-  test.equals(Model.rankCategoryByImportance({ 'uu': {}, 'ff': { importance: 1 } }, 'uu', 'ff'), 98, '2ndimp');
-  test.equals(Model.rankCategoryByImportance({ 'uu': { importance: 0.1 }, 'ff': { importance: 1 } }, 'uu', 'ff'), -0.9, 'firstmoreimp');
+  expect(
+    Model.rankCategoryByImportance({ 'uu': {}, 'ff': { importance: 1 } }, 'uu', 'ff')
+  ).toEqual(98);
+  expect(
+    Model.rankCategoryByImportance({ 'uu': { importance: 0.1 }, 'ff': { importance: 1 } }, 'uu', 'ff')
+  ).toEqual(-0.9);
 
   var res = Model.sortCategoriesByImportance(map, ['j', 'e', 'f', 'b', 'c', 'd', 'a', 'b', 'h']);
-  test.deepEqual(res, ['a', 'b', 'b', 'c', 'd', 'f', 'e', 'h', 'j']);
-  test.done();
-};
+  expect(res).toEqual(['a', 'b', 'b', 'c', 'd', 'f', 'e', 'h', 'j']);
+
+  //test.done()
+
+});
 
 
-exports.testWordCategorizationFactCat = function (test) {
-  getModel().then(theModel => {
+it("testWordCategorizationFactCat", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var earth = theModel.rules.wordMap['earth'];
-    //console.log(earth);
-    test.deepEqual(earth, {
+    expect(earth).toEqual({
       bitindex: 65,
       rules:
         [{
@@ -1144,68 +1263,71 @@ exports.testWordCategorizationFactCat = function (test) {
           _ranking: 0.95,
           lowercaseword: 'earth'
         }]
-    }
-    );
-    test.done();
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
 
-};
+});
 
-exports.testWordCategorizationCategory = function (test) {
-  getModel().then(theModel => {
+it("testWordCategorizationCategory", async () => {
+  expect.assertions(1);
+  return  getModel().then(theModel => {
     var ename = theModel.rules.wordMap['element name'];
-    //console.log(earth);
-    test.deepEqual(ename,
-      {
-        bitindex: 112,
-        rules:
-          [{
-            category: 'category',
-            matchedString: 'element name',
-            type: 0,
-            word: 'element name',
-            lowercaseword: 'element name',
-            bitindex: 16,
-            wordType: 'C',
-            bitSentenceAnd: 16,
-            _ranking: 0.95
-          },
-          {
-            category: 'category',
-            matchedString: 'element name',
-            type: 0,
-            word: 'element name',
-            lowercaseword: 'element name',
-            bitindex: 64,
-            wordType: 'C',
-            bitSentenceAnd: 64,
-            _ranking: 0.95
-          },
-          {
-            category: 'category',
-            matchedString: 'element name',
-            type: 0,
-            word: 'element name',
-            bitindex: 32,
-            bitSentenceAnd: 32,
-            exactOnly: false,
-            wordType: 'F',
-            _ranking: 0.95,
-            lowercaseword: 'element name'
-          }]
-      }
-    );
-    test.done();
+    expect(ename).toEqual({
+      bitindex: 112,
+      rules:
+        [{
+          category: 'category',
+          matchedString: 'element name',
+          type: 0,
+          word: 'element name',
+          lowercaseword: 'element name',
+          bitindex: 16,
+          wordType: 'C',
+          bitSentenceAnd: 16,
+          _ranking: 0.95
+        },
+        {
+          category: 'category',
+          matchedString: 'element name',
+          type: 0,
+          word: 'element name',
+          lowercaseword: 'element name',
+          bitindex: 64,
+          wordType: 'C',
+          bitSentenceAnd: 64,
+          _ranking: 0.95
+        },
+        {
+          category: 'category',
+          matchedString: 'element name',
+          type: 0,
+          word: 'element name',
+          bitindex: 32,
+          bitSentenceAnd: 32,
+          exactOnly: false,
+          wordType: 'F',
+          _ranking: 0.95,
+          lowercaseword: 'element name'
+        }]
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testWordCategorizationMetaword_category = function (test) {
-  getModel().then(theModel => {
+it("testWordCategorizationMetaword_category", async () => {
+  expect.assertions(1);
+  return  getModel().then(theModel => {
     var earth = theModel.rules.wordMap['category'];
-    //console.log(earth);
-    test.deepEqual(earth, {
+    expect(earth).toEqual({
       bitindex: 288,
       rules:
         [{
@@ -1299,71 +1421,74 @@ exports.testWordCategorizationMetaword_category = function (test) {
             }
           }
         }]
-    }
-    );
-    test.done();
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
 
-exports.testWordCategorizationMetaword_Domain = function (test) {
-  getModel().then(theModel => {
+it("testWordCategorizationMetaword_Domain", async () => {
+  expect.assertions(1);
+  return  getModel().then(theModel => {
     var earth = theModel.rules.wordMap['domain'];
-    //console.log(earth);
-    test.deepEqual(earth,
-      {
-        bitindex: 544,
-        rules:
-          [{
-            category: 'category',
-            matchedString: 'domain',
-            type: 0,
-            word: 'domain',
-            lowercaseword: 'domain',
-            bitindex: 32,
-            wordType: 'C',
-            bitSentenceAnd: 32,
-            _ranking: 0.95
-          },
-          {
-            category: 'category',
-            matchedString: 'domain',
-            type: 0,
-            word: 'domain',
-            bitindex: 32,
-            bitSentenceAnd: 32,
-            exactOnly: false,
-            wordType: 'F',
-            _ranking: 0.95,
-            lowercaseword: 'domain'
-          },
-          {
-            category: 'meta',
-            matchedString: 'domain',
-            type: 0,
-            word: 'domain',
-            bitindex: 512,
-            wordType: 'M',
-            bitSentenceAnd: 511,
-            _ranking: 0.95,
-            lowercaseword: 'domain'
-          }]
-      }
-    );
-    test.done();
+    expect(earth).toEqual({
+      bitindex: 544,
+      rules:
+        [{
+          category: 'category',
+          matchedString: 'domain',
+          type: 0,
+          word: 'domain',
+          lowercaseword: 'domain',
+          bitindex: 32,
+          wordType: 'C',
+          bitSentenceAnd: 32,
+          _ranking: 0.95
+        },
+        {
+          category: 'category',
+          matchedString: 'domain',
+          type: 0,
+          word: 'domain',
+          bitindex: 32,
+          bitSentenceAnd: 32,
+          exactOnly: false,
+          wordType: 'F',
+          _ranking: 0.95,
+          lowercaseword: 'domain'
+        },
+        {
+          category: 'meta',
+          matchedString: 'domain',
+          type: 0,
+          word: 'domain',
+          bitindex: 512,
+          wordType: 'M',
+          bitSentenceAnd: 511,
+          _ranking: 0.95,
+          lowercaseword: 'domain'
+        }]
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
 
-exports.testWordCategorizationDomainSynonyms = function (test) {
-  getModel().then(theModel => {
+it("testWordCategorizationDomainSynonyms", async () => {
+  expect.assertions(1);
+  return  getModel().then(theModel => {
     var fbom = theModel.rules.wordMap['fiori bom'];
-    //console.log(earth);
-    test.deepEqual(fbom, {
+    expect(fbom).toEqual({
       bitindex: 36,
       rules:
         [{
@@ -1388,19 +1513,20 @@ exports.testWordCategorizationDomainSynonyms = function (test) {
           _ranking: 0.95,
           lowercaseword: 'fiori bom'
         }]
-    }
-    );
-    test.done();
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testWordCategorizationCategorySynonyms = function (test) {
+it("testWordCategorizationCategorySynonyms", async () => {
   getModel().then(theModel => {
     var fbom = theModel.rules.wordMap['primary odata service'];
-    //console.log(earth);
-    test.deepEqual(fbom, {
+    expect(fbom).toEqual({
       bitindex: 36,
       rules:
         [{
@@ -1426,22 +1552,24 @@ exports.testWordCategorizationCategorySynonyms = function (test) {
           lowercaseword: 'primary odata service'
         }
         ]
-    }
-    );
-    test.done();
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
 
-};
+});
 
 
 
 
-exports.testWordCategorizationOperator = function (test) {
-  getModel().then(theModel => {
+it("testWordCategorizationOperator", async () => {
+  expect.assertions(1);
+  return  getModel().then(theModel => {
     var op = theModel.rules.wordMap['starting with'];
-    //console.log(earth);
-    test.deepEqual(op, {
+    expect(op).toEqual({
       bitindex: 512,
       rules:
         [
@@ -1458,16 +1586,18 @@ exports.testWordCategorizationOperator = function (test) {
           }
         ]
     });
-    test.done();
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testWordCategorizationOperatorMoreThan = function (test) {
+it("testWordCategorizationOperatorMoreThan", async () => {
   getModel().then(theModel => {
     var op = theModel.rules.wordMap['more than'];
-    //console.log(earth);
-    test.deepEqual(op, {
+    expect(op).toEqual({
       bitindex: 512,
       rules:
         [{
@@ -1481,19 +1611,21 @@ exports.testWordCategorizationOperatorMoreThan = function (test) {
           wordType: 'O',
           _ranking: 0.9
         }]
-    }
-    );
-    test.done();
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testWordCategorizationOperatorMoreThanOPAlias = function (test) {
-  getModel().then(theModel => {
+it("testWordCategorizationOperatorMoreThanOPAlias", async () => {
+  expect.assertions(1);
+  return  getModel().then(theModel => {
     var op = theModel.rules.wordMap['which has more than'];
-    //console.log(earth);
-    test.deepEqual(op, {
+    expect(op).toEqual({
       bitindex: 512,
       rules:
         [{
@@ -1507,44 +1639,48 @@ exports.testWordCategorizationOperatorMoreThanOPAlias = function (test) {
           wordType: 'O',
           _ranking: 0.9
         }]
-    }
-    );
-    test.done();
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testWordCategorizationOnlyMultiFactNonFirst = function (test) {
-  getModel().then(theModel => {
+it("testWordCategorizationOnlyMultiFactNonFirst", async () => {
+  expect.assertions(1);
+  return  getModel().then(theModel => {
     var op = theModel.rules.wordMap['bremen'];
-    //console.log(earth);
-    test.deepEqual(op,
-      {
-        bitindex: 2,
-        rules:
-          [{
-            category: 'standort',
-            matchedString: 'Bremen',
-            type: 0,
-            word: 'Bremen',
-            bitindex: 2,
-            bitSentenceAnd: 2,
-            exactOnly: false,
-            wordType: 'F',
-            _ranking: 0.95,
-            lowercaseword: 'bremen'
-          }]
-      });
-    test.done();
+    expect(op).toEqual({
+      bitindex: 2,
+      rules:
+        [{
+          category: 'standort',
+          matchedString: 'Bremen',
+          type: 0,
+          word: 'Bremen',
+          bitindex: 2,
+          bitSentenceAnd: 2,
+          exactOnly: false,
+          wordType: 'F',
+          _ranking: 0.95,
+          lowercaseword: 'bremen'
+        }]
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testWordCategorizationOperatorMultiFact2 = function (test) {
-  getModel().then(theModel => {
+it("testWordCategorizationOperatorMultiFact2", async () => {
+  expect.assertions(1);
+  return  getModel().then(theModel => {
     var op = theModel.rules.wordMap['münchen'];
-    //console.log(earth);
-    test.deepEqual(op, {
+    expect(op).toEqual({
       bitindex: 2,
       rules:
         [{
@@ -1560,44 +1696,48 @@ exports.testWordCategorizationOperatorMultiFact2 = function (test) {
           lowercaseword: 'münchen'
         }]
     });
-    test.done();
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
 
 
-exports.testWordCategorizationFactCat2 = function (test) {
-  getModel().then(theModel => {
+it("testWordCategorizationFactCat2", async () => {
+  expect.assertions(1);
+  return  getModel().then(theModel => {
     var earth = theModel.rules.wordMap['co-fio'];
-    //console.log(earth);
-    test.deepEqual(earth,
-      {
-        bitindex: 4,
-        rules:
-          [{
-            category: 'ApplicationComponent',
-            matchedString: 'CO-FIO',
-            type: 0,
-            word: 'CO-FIO',
-            bitindex: 4,
-            bitSentenceAnd: 4,
-            wordType: 'F',
-            _ranking: 0.95,
-            exactOnly: true,
-            lowercaseword: 'co-fio'
-          }]
-      }
-    );
-    test.done();
+    expect(earth).toEqual({
+      bitindex: 4,
+      rules:
+        [{
+          category: 'ApplicationComponent',
+          matchedString: 'CO-FIO',
+          type: 0,
+          word: 'CO-FIO',
+          bitindex: 4,
+          bitSentenceAnd: 4,
+          wordType: 'F',
+          _ranking: 0.95,
+          exactOnly: true,
+          lowercaseword: 'co-fio'
+        }]
+    });
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testModelTest2 = function (test) {
-  test.expect(1);
-  getModel().then(theModel => {
+it("testModelTest2", async () => {
+  expect.assertions(1);
+  return  getModel().then(theModel => {
     var u = theModel;
     try {
       fs.mkdirSync('logs');
@@ -1605,60 +1745,66 @@ exports.testModelTest2 = function (test) {
       /* empty */
     }
     fs.writeFileSync('logs/model.mRules.json', JSON.stringify(u.mRules, undefined, 2));
-    test.equal(true, true, 'ok');
-    test.done();
+    expect(true).toEqual(true);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
-exports.testFindNextLen = function (test) {
+it("testFindNextLen", async () => {
   var offsets = [0, 0, 0, 0, 0, 0];
   Model.findNextLen(0, ['a', 'a', 'bb', 'bb', 'ccc', 'ccc', 'dddd', 'dddd', '123456', '123456'], offsets);
-  test.deepEqual(offsets, [0, 0, 0, 0, 0, 0], ' target 0');
+  expect(offsets).toEqual([0, 0, 0, 0, 0, 0]);
   Model.findNextLen(1, ['a', 'a', 'bb', 'bb', 'ccc', 'ccc', 'dddd', 'dddd', '123456', '123456'], offsets);
-  test.deepEqual(offsets, [0, 0, 0, 0, 0, 2], ' target 1');
+  expect(offsets).toEqual([0, 0, 0, 0, 0, 2]);
 
   Model.findNextLen(2, ['a', 'a', 'bb', 'bb', 'ccc', 'ccc', 'dddd', 'dddd', '123456', '123456'], offsets);
-  test.deepEqual(offsets, [0, 0, 0, 0, 2, 4], ' target 2');
+  expect(offsets).toEqual([0, 0, 0, 0, 2, 4]);
   Model.findNextLen(3, ['a', 'a', 'bb', 'bb', 'ccc', 'ccc', 'dddd', 'dddd', '123456', '123456'], offsets);
-  test.deepEqual(offsets, [0, 0, 0, 2, 4, 6], ' target 3');
+  expect(offsets).toEqual([0, 0, 0, 2, 4, 6]);
   Model.findNextLen(4, ['a', 'a', 'bb', 'bb', 'ccc', 'ccc', 'dddd', 'dddd', '123456', '123456'], offsets);
-  test.deepEqual(offsets, [0, 0, 2, 4, 6, 8], ' target 4');
+  expect(offsets).toEqual([0, 0, 2, 4, 6, 8]);
   Model.findNextLen(5, ['a', 'a', 'bb', 'bb', 'ccc', 'ccc', 'dddd', 'dddd', '123456', '123456'], offsets);
-  test.deepEqual(offsets, [0, 2, 4, 6, 8, 8], ' target 5');
+  expect(offsets).toEqual([0, 2, 4, 6, 8, 8]);
   Model.findNextLen(6, ['a', 'a', 'bb', 'bb', 'ccc', 'ccc', 'dddd', 'dddd', '123456', '123456'], offsets);
-  test.deepEqual(offsets, [2, 4, 6, 8, 8, 10], ' target 6');
+  expect(offsets).toEqual([2, 4, 6, 8, 8, 10]);
 
-  test.done();
-};
+  //test.done()
+
+});
 
 
 
 
-exports.testModelGetColumns = function (test) {
-  test.expect(1);
-  getModel().then(theModel => {
+it("testModelGetColumns", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var u = theModel;
 
 
     // we expect a rule "domain" -> meta
     //console.log(JSON.stringify(u.rawModels));
     var res = Model.getTableColumns(u, 'IUPAC');
-    test.deepEqual(res,
-      ['element symbol',
-        'element number',
-        'element name'
-      ], 'correct data read');
-    test.done();
+    expect(res).toEqual(['element symbol',
+      'element number',
+      'element name'
+    ]);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
-exports.testModelHasDomains = function (test) {
+it("testModelHasDomains", async () => {
 
-  test.expect(2);
-  getModel().then(theModel => {
+  expect.assertions(2);
+  return getModel().then(theModel => {
     var u = theModel;
 
     // we expect a rule "domain" -> meta
@@ -1666,7 +1812,7 @@ exports.testModelHasDomains = function (test) {
     var r = u.mRules.filter(function (oRule) {
       return oRule.category === 'meta' && oRule.matchedString === 'domain';
     });
-    test.equals(r.length, 1, 'domain present');
+    expect(r.length).toEqual(1);
 
     var r2 = u.mRules.filter(function (oRule) {
       return oRule.category === 'domain';
@@ -1677,34 +1823,39 @@ exports.testModelHasDomains = function (test) {
     rx.sort();
     rx = rx.filter((u, index) => rx[index - 1] !== u);
 
-    test.deepEqual(rx.sort(),
-      ['Cosmos',
-        'Fiori Backend Catalogs',
-        'FioriBOM',
-        'IUPAC',
-        'Philosophers elements',
-        'SAP Transaction Codes',
-        'SOBJ Tables',
-        'demomdls',
-        'metamodel'], 'correct data read');
-    test.done();
+    expect(rx.sort()).toEqual(['Cosmos',
+      'Fiori Backend Catalogs',
+      'FioriBOM',
+      'IUPAC',
+      'Philosophers elements',
+      'SAP Transaction Codes',
+      'SOBJ Tables',
+      'demomdls',
+      'metamodel']);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});
 
 
 /**
  * Unit test for sth
  */
-exports.testModelAppConfigForEveryDomain = function (test) {
-  test.expect(1);
-  getModel().then(theModel => {
+it("testModelAppConfigForEveryDomain", async () => {
+  expect.assertions(1);
+  return getModel().then(theModel => {
     var u = theModel;
     var res = u.mRules.filter(function (oRule) {
       return oRule.lowercaseword === 'applicationcomponent' && oRule.matchedString === 'ApplicationComponent';
     });
-    test.equal(res.length, 3 /*431*/, 'correct number');
-    test.done();
+    expect(res.length).toEqual(3 /*431*/);
+
+    //test.done()
+
+
     Model.releaseModel(theModel);
   });
-};
+});

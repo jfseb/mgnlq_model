@@ -114,3 +114,10 @@ When this occurs a mismatch "elements" will match only DomainB,
 abc => Abc
 abc => abc
 
+
+# test migration from nodenunit to jest 
+
+```
+npm i -g jscodeshift
+jscodeshift   --print -d 
+```

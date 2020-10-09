@@ -12,15 +12,15 @@ var FUtils = require(root + '/model/model.js');
 var debuglog = require('debugf')('schemaload.nunit.js');
 //var sinon = require('sinon');
 // var fs = require('fs')
-
+ 
 var modelPath = 'node_modules/mgnlq_testmodel/testmodel/';
 /**
  * Unit test for sth
  */
-exports.testSchemaLoadNames = function (test) {
-  test.expect(1);
+it('testSchemaLoadNames', async () => {
+  expect.assertions(1);
   var res = Schemaload.loadModelNames(modelPath);
-  test.deepEqual(res, ['iupacs',
+  expect(res).toEqual(['iupacs',
     'philoelements',
     'cosmos',
     'r3trans',
@@ -28,8 +28,10 @@ exports.testSchemaLoadNames = function (test) {
     'sobj_tables',
     'fioribecatalogs',
     'demomdls']);
-  test.done();
-};
+
+  //test.done()
+
+});
 
 // load distinct values from model
 
@@ -40,42 +42,48 @@ process.on('unhandledRejection', function onError(err) {
 });
 
 
-exports.testmapType = function (test) {
-  test.expect(3);
+it('testmapType', async () => {
+  expect.assertions(3);
   [
     { input: 'String', expected: String },
     { input: 'Boolean', expected: Boolean },
     { input: 'Number', expected: Number }
   ].forEach(function (fixture) {
     var res = Schemaload.mapType(fixture.input);
-    test.equal(res, fixture.expected);
+    expect(res).toEqual(fixture.expected);
   });
-  test.done();
-};
 
-exports.testReplaceIfTypeRemoveM = function (test) {
+  //test.done()
+
+});
+
+it('testReplaceIfTypeRemoveM', async () => {
   var obj = { _m_abc: 1 };
   Schemaload.replaceIfTypeDeleteM(obj, 1, '_m_abc');
-  test.deepEqual(obj, {});
-  test.done();
-};
+  expect(obj).toEqual({});
 
-exports.testmapTypeThrows = function (test) {
-  test.expect(1);
+  //test.done()
+
+});
+
+it('testmapTypeThrows', async () => {
+  expect.assertions(1);
   try {
     Schemaload.mapType('notype');
-    test.equal(1, 0);
+    expect(1).toEqual(0);
   } catch (e) {
-    test.equal(1, 1);
+    expect(1).toEqual(1);
   }
-  test.done();
-};
+
+  //test.done()
+
+});
 
 /**
  * Unit test for sth
  */
-exports.testTypeProps = function (test) {
-  test.expect(1);
+it('testTypeProps', async () => {
+  expect.assertions(1);
   var res = Schemaload.typeProps({
     'object_name': {
       'type': 'String',
@@ -85,34 +93,36 @@ exports.testTypeProps = function (test) {
     }
   });
 
-  test.deepEqual(res, {
+  expect(res).toEqual({
     'object_name': {
       'type': String,
       'trim': true,
       'index': true
     }
   });
-  test.done();
-};
+
+  //test.done()
+
+});
 
 var mongoose = require('mongoose');
 //var mongoose = require('mongoose_record_replay').instrumentMongoose(require('mongoose'), 'node_modules/mgnql_testmodel_replay/mgrecrep/',"REPLAY");
 
 
-exports.testSchemaLoad = function (test) {
-  test.expect(2);
+it('testSchemaLoad', async () => {
+  expect.assertions(2);
   var extschema = Schemaload.loadExtendedMongooseSchema(modelPath, 'sobj_tables');
   var schema = Schemaload.makeMongooseSchema(extschema);
   try {
     Schemaload.validateDoc(mongoose, 'abcx', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: 40 });
-    test.equal(0, 1);
+    expect(0).toEqual(1);
   } catch (e) {
-    test.equal(1, 1);
+    expect(1).toEqual(1);
   }
   Schemaload.validateDoc('sobj_tables', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: true, _tables: [{ 'Table': 'ABC' }] });
-  test.equal(1, 1);
-  test.done();
-};
+  expect(1).toEqual(1);
+
+});
 /*
 exports.testSchemaValidateMongoose = function (test) {
   test.expect(1);
@@ -131,109 +141,118 @@ exports.testSchemaValidateMongoose = function (test) {
 };*/
 
 
-exports.testSchemaValidateOwnDocVsSchemaOk = function (test) {
-  test.expect(1);
+it('testSchemaValidateOwnDocVsSchemaOk', async () => {
+  expect.assertions(1);
   var extschema = Schemaload.loadExtendedMongooseSchema('resources/meta', 'metamodels');
   var doc = FUtils.readFileAsJSON('./resources/meta/metamodels.model.doc.json');
   var schema = Schemaload.makeMongooseSchema(extschema);
-  Schemaload.validateDocMongoose(mongoose, 'meta', schema, doc).then(
+  return Schemaload.validateDocMongoose(mongoose, 'meta', schema, doc).then(
     ok => {
-      test.equal(1, 1);
-      test.done();
-    }).catch(err => {
-    test.equal(1, 0);
-    test.done();
-  });
-};
+      expect(1).toEqual(1);
 
-exports.testSchemaLoadOwn = function (test) {
-  test.expect(1);
+    }).catch(err => {
+    expect(1).toEqual(0);
+
+  });
+});
+
+it('testSchemaLoadOwn', async () => {
+  expect.assertions(1);
   var extschema = Schemaload.loadExtendedMongooseSchema('resources/meta', 'metamodels');
   var doc = FUtils.readFileAsJSON('./resources/meta/metamodels.model.doc.json');
   var schema = Schemaload.makeMongooseSchema(extschema);
   Schemaload.validateDoc('metamodel', schema, doc);
-  test.equal(1, 1);
+  expect(1).toEqual(1);
 
-  test.done();
-};
+});
 
 
-exports.testSchemaValidateMongooseOk = function (test) {
-  test.expect(1);
+it('testSchemaValidateMongooseOk', async () => {
+  expect.assertions(1);
   var extschema = Schemaload.loadExtendedMongooseSchema(modelPath, 'sobj_tables');
   var schema = Schemaload.makeMongooseSchema(extschema);
-  Schemaload.validateDocMongoose(mongoose, 'sobj_tables', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: true, _tables: [{ 'Table': 'ABC' }] }).then(
+  return Schemaload.validateDocMongoose(mongoose, 'sobj_tables', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: true, _tables: [{ 'Table': 'ABC' }] }).then(
     ok => {
-      test.equal(1, 1);
-      test.done();
+      expect(1).toEqual(1);
+
     }).catch(err => {
     console.log(err);
-    test.equal(1, 0);
-    test.done();
-  });
-};
+    expect(1).toEqual(0);
 
-exports.testSchemaValidateMongooseBad = function (test) {
-  test.expect(2);
+  });
+});
+
+it('testSchemaValidateMongooseBad', async () => {
+  expect.assertions(2);
   var extschema = Schemaload.loadExtendedMongooseSchema(modelPath, 'sobj_tables');
   var schema = Schemaload.makeMongooseSchema(extschema);
-  Schemaload.validateDocMongoose(mongoose, 'sobj_tables', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: 'abc', _tables: [{ 'Table': 'ABC' }] }).then(
+  return Schemaload.validateDocMongoose(mongoose, 'sobj_tables', schema, { 'TransportObject': 'SOBJ', TranslationRelevant: 'abc', _tables: [{ 'Table': 'ABC' }] }).then(
     ok => {
-      test.equal(1, 0);
-      test.done();
+      expect(1).toEqual(0);
+
     }).catch(err => {
-    test.equal( (err + ' ').indexOf('Cast to Boolean failed for value "abc" at path "TranslationRelevant"') , 38 );
-    test.equal(1, 1);
-    test.done();
+    expect(
+      (err + ' ').indexOf('Cast to Boolean failed for value "abc" at path "TranslationRelevant"')
+    ).toEqual(38);
+    expect(1).toEqual(1);
+
   });
-};
+});
 
-exports.testmakeMongooseCollName = function (test) {
-  test.expect(1);
-  var res = Schemaload.makeMongoCollectionName('abc');
-  test.equal(res, 'abcs');
-  test.done();
-};
+it('testmakeMongooseCollName', async () => {
+  expect.assertions(1);
 
-exports.testmakeMongooseCollName2 = function (test) {
-  test.expect(1);
+  try { 
+    Schemaload.makeMongoCollectionName('abc');
+    expect(0).toEqual(1);
+  } catch(e) {
+    expect(1).toEqual(1);
+  }
+  //  expect(res).toEqual('abcs');
+
+});
+
+it('testmakeMongooseCollName2', async () => {
+  expect.assertions(1);
   var res = Schemaload.makeMongoCollectionName('abcs');
-  test.equal(res, 'abcs');
-  test.done();
-};
+  expect(res).toEqual('abcs');
 
-exports.testmakeMongooseCollName = function (test) {
-  test.expect(1);
+});
+
+it('testmakeMongooseCollName', async () => {
+  expect.assertions(1);
   var res = Schemaload.makeMongooseModelName('abcs');
-  test.equal(res, 'abcs');
-  test.done();
-};
+  expect(res).toEqual('abcs');
 
-exports.testmakeMongooseCollNameThrows = function (test) {
-  test.expect(1);
+});
+
+it('testmakeMongooseCollNameThrows', async () => {
+  expect.assertions(1);
   try {
     Schemaload.makeMongooseCollectionName('abc');
     test.equaL(1, 0);
   } catch (e) {
-    test.equal(1, 1);
+    expect(1).toEqual(1);
   }
-  test.done();
-};
+
+  //test.done()
+
+});
 
 
-exports.testCmpTools = function (test) {
-  test.expect(1);
+it('testCmpTools', async () => {
+  expect.assertions(1);
   var res =
     Schemaload.cmpTools({ name: 'bb' }, { name: 'aaa' });
-  test.equal(res > 0, true);
-  test.done();
-};
+  expect(res > 0).toEqual(true);
+
+});
 
 
 
 
-exports.testHasMetaCollectionOK2 = function (test) {
-  test.expect(1);
+it('testHasMetaCollectionOK2', async () => {
+  expect.assertions(1);
   var fakeMongoose = {
     connection: {
       db: {
@@ -247,21 +266,52 @@ exports.testHasMetaCollectionOK2 = function (test) {
       }
     }
   };
-  Schemaload.hasMetaCollection(fakeMongoose).then((res) => {
-    test.equal(1, 1);
-    test.done();
+  return Schemaload.hasMetaCollection(fakeMongoose).then((res) => {
+    expect(1).toEqual(1);
+
   }).catch(e => {
-    test.equal(0, 1);
-    test.done();
+    expect(0).toEqual(1);
+
   });
-};
+});
 
 
+it('testHasMetaCollectionOKBad', async () => {
+  expect.assertions(1);
+  var fakeMongoose = {
+    connection: {
+      db: {
+        listCollections: function () {
+          return {
+            toArray: function (fn) {
+              setTimeout(function() {
+                fn( undefined, (['abc', 'metamodels']));
+              }, 100);
+            }
+          };
+        }
+      }
+    }
+  };
+  var p = Schemaload.hasMetaCollection(fakeMongoose);
+  p.catch(e => {
+    expect(0).toEqual(1);
+    //console.log('saying done');
+    //test.done();
+    return true;
+  });
+  p.then((res) => {
+    expect(1).toEqual(1);
+  }, err => {
+    //test.done()
+
+  });
+  await p;
+});
 
 
-
-exports.testHasMetaCollectionBad = function (test) {
-  test.expect(1);
+it('testHasMetaCollectionBad',  (done) => {
+  expect.assertions(1);
   var fakeMongoose = {
     connection: {
       db: {
@@ -279,27 +329,21 @@ exports.testHasMetaCollectionBad = function (test) {
   };
   var p = Schemaload.hasMetaCollection(fakeMongoose);
   p.catch(e => {
-    //console.log('in catch');
-    test.equal(1, 1);
+    expect(1).toEqual(1);
     //console.log('saying done');
     //test.done();
-    return true;
+    done();
   });
-  p.then((res) => {
-    test.equal(0, 1);
-    test.done();
-  }, err => {
-    //console.log('got err');
-    test.done();
-  });
-};
+});
 
 
 
-exports.testLoadModelNames = function (test) {
-  test.expect(1);
+
+
+it('testLoadModelNames', async () => {
+  expect.assertions(1);
   var res = Schemaload.loadModelNames('node_modules/mgnlq_testmodel/testmodel/');
-  test.deepEqual(res, ['iupacs',
+  expect(res).toEqual(['iupacs',
     'philoelements',
     'cosmos',
     'r3trans',
@@ -307,12 +351,12 @@ exports.testLoadModelNames = function (test) {
     'sobj_tables',
     'fioribecatalogs',
     'demomdls']);
-  test.done();
-};
 
-exports.testGetModelDocModel = function (test) {
+  //test.done()
 
+});
 
+it('testGetModelDocModel', async () => {
   var mongooseMock = {
     models: {},
     model: function (a, b) {
@@ -332,19 +376,21 @@ exports.testGetModelDocModel = function (test) {
 
 
   var res = Schemaload.getModelDocModel(mongooseMock);
-  test.equal(typeof res, 'object');
-  test.deepEqual(mongooseMock.modelNames(), ['metamodels']);
-  test.done();
-};
+  expect(typeof res).toEqual('object');
+  expect(mongooseMock.modelNames()).toEqual(['metamodels']);
+
+  //test.done()
+
+});
 
 
-exports.testRemoveOthers = function (test) {
+it('testRemoveOthers', async () => {
+  //test.done()
 
-  test.done();
-};
+});
 
-exports.testUpsertMetaModel = function (test) {
-  test.expect(1);
+it('testUpsertMetaModel', async () => {
+  expect.assertions(1);
   function makeModel(name, schema) {
     var res = function (doc) {
       this.doc = doc;
@@ -379,26 +425,28 @@ exports.testUpsertMetaModel = function (test) {
       return Object.keys(this.models);
     }
   };
-  Schemaload.upsertMetaModel(mongooseMock).then(
+  return Schemaload.upsertMetaModel(mongooseMock).then(
     function () {
       var res = mongooseMock.modelNames();
-      test.deepEqual(res, ['metamodels', 'mongonlq_eschemas']);
-      test.done();
+      expect(res).toEqual(['metamodels', 'mongonlq_eschemas']);
+
+      //test.done()
+
     }
   ).catch((err) => {
     console.log('test failed ' + err + '\n' + err.stack);
-    test.equal(0, 1);
-    test.done();
+    expect(0).toEqual(1);
+
   });
-};
+});
 
 
 
 
 
 
-exports.testUpsertModel = function (test) {
-  test.expect(1);
+it('testUpsertModel', async () => {
+  expect.assertions(1);
   function makeModel(name, schema) {
     debuglog('creating model' + name);
     var res = function (doc) {
@@ -441,18 +489,20 @@ exports.testUpsertModel = function (test) {
     }
   };
 
-  Schemaload.upsertMetaModel(mongooseMock).then(() =>
+  return Schemaload.upsertMetaModel(mongooseMock).then(() =>
     Schemaload.upsertModels(mongooseMock, modelPath).then(
       function () {
         var res = mongooseMock.modelNames();
-        test.deepEqual(res, ['metamodels', 'mongonlq_eschemas', 'fillers', 'operators']);
-        test.done();
+        expect(res).toEqual(['metamodels', 'mongonlq_eschemas', 'fillers', 'operators']);
+
+        //test.done()
+
       }
     ).catch((err) => {
       console.log('test failed ' + err + '\n' + err.stack);
-      test.equal(0, 1);
-      test.done();
+      expect(0).toEqual(1);
+
     })
   );
-};
+});
 
