@@ -5,7 +5,7 @@
   "main": "js/index.js",
   "typings": "js/index.d.ts",
   "scripts": {
-    "build": "gulp",
+    "build": "gulp && tsc",
     "test": "gulp test",
     "version": "npm show mgnlq_model@* version",
     "load_data": "node js/makedb && gulp clean_testmodel_cache",

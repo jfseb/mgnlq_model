@@ -28,9 +28,7 @@ Database used for testing containing data
   mongodb://localhost/testdb'
 
 
-
-
-# Createing a database
+# Creating a database
 
 via
 ```
