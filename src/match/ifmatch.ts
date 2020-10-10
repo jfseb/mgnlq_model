@@ -75,7 +75,6 @@ export interface IOperator {
 
 export type IOperators = { [key:string] : IOperator };
 
-
 export type IRecord = { [key : string] : string };
 
 
@@ -108,7 +107,6 @@ export interface IWhatIsTupelAnswer {
   result: string[],
   _ranking : number
 }
-
 
 export interface IMatchedSetRecord {
   setId : string,
