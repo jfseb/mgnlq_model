@@ -18,24 +18,6 @@ var Model = require(root + '/model/model.js');
 var IfMatch = require(root + '/match/ifmatch.js');
 var EnumRuleType = IfMatch.EnumRuleType;
 
-//var testmodel_replay = require('mgnlq_testmodel_replay')
-
-//var modelPath = 'node_modules/testmodel/';
-//var testmodelPath = 'node_modules/mgnlq_testmodel/testmodel/';
-
-//var Schemaload = require(root + '/modelload/schemaload.js');
-//var MongoUtils = require(root + '/utils/mongo.js');
-
-
-// load distinct values from model
-
-/*
-process.on('unhandledRejection', function onError(err) {
-  console.log(err);
-  console.log(err.stack);
-  throw err;
-});
-*/
 
 /**
  * clear a cache for the defaut mode for coverage
@@ -49,7 +31,7 @@ try {
  * clear a cache for the defaut mode for coverage
  */
 try {
-  fs.unlinkSync('./node_modules/mgnlq_testmodel_replay/testmodel/_cache.js.zip');
+  fs.unlinkSync('./testmodel/_cache.js.zip');
 } catch (e) {
   // empty
 }
@@ -90,7 +72,7 @@ if (process.env.MGNLQ_TESTMODEL_REPLAY) {
 
 
 
-var getModel = require('mgnlq_testmodel_replay').getTestModel;
+var getModel = require('mgnlq_testmodel2').getTestModel1;
 
 /*
 

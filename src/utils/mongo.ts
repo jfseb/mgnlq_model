@@ -11,7 +11,11 @@ export function openMongoose(mongoose: any, mongoConnectionString : string) {
   {
       useFindAndModify : true,  //https://mongoosejs.com/docs/deprecations.html#-findandmodify-
       useUnifiedTopology: true,
-      useNewUrlParser: true/*useMongoClient : true*/ }); // .then( a => console.log('mongoose connect ok'))
+      useNewUrlParser: true/*useMongoClient : true*/ 
+      /*, useCreateIndex : true**/ }); // .then( a => console.log('mongoose connect ok'))
+
+  //TODO   
+ //  mongoose.set('useCreateIndex', true); // DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead. #6890
   var db = mongoose.connection;
   var mgopen = new Promise(function (resolve, reject) {
     //db.on.setMaxListeners(0);

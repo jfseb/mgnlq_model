@@ -60,20 +60,6 @@ gulp.task('clean_testmodel_cache', function () {
 
 gulp.task('clean', gulp.series('clean:models'));
 
-var nodeunit = require('gulp-nodeunit');
-
-gulp.task('testold', gulp.series('tsc', function () {
-  return gulp.src(['test/**/*.js'])
-    .pipe(nodeunit({
-      reporter: 'minimal'
-      // reporterOptions: {
-      //  output: 'testcov'
-      // }
-    })).on('error', function (err) { console.log('This is weird: ' + err.message); })
-    .pipe(gulp.dest('./out/lcov.info'));
-}));
-
-
 var jest = require('gulp-jest').default;
 
 gulp.task('jestonly', function () {
@@ -85,8 +71,6 @@ gulp.task('jestonly', function () {
     'automock': false
   }));
 });
-
-
 
 const eslint = require('gulp-eslint');
 

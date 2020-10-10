@@ -152,6 +152,12 @@ export function getModelNameForDomain(handle : IMatch.IModelHandleRaw, domain : 
 }
 
 
+function assureDirExists(dir : string) {
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
+}
+
 export function filterRemapCategories( mongoMap : IMatch.CatMongoMap, categories : string[], records : any[] ) : any[] {
     //
     //console.log('here map' + JSON.stringify(mongoMap,undefined,2));
@@ -389,7 +395,10 @@ export function readFileAsJSON(filename: string): any {
         return JSON.parse(data);
     } catch (e) {
         console.log("Content of file " + filename + " is no json" + e);
-        process.exit(-1);
+        process.stdout.on('drain', function() {
+            process.exit(-1);
+        });
+        //process.exit(-1);
     }
     return undefined;
 }
@@ -1470,19 +1479,41 @@ export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?:
         forceGC();
         var oModelSer = Object.assign({}, oModel);
         oModelSer.mongoHandle = Object.assign({}, oModel.mongoHandle);
+        console.log('created dir1 ' + modelPath); 
         delete oModelSer.mongoHandle.mongoose;
-        CircularSer.save(modelPath + '/_cache.js', oModelSer);
-        forceGC();
-        if (process.env.ABOT_EMAIL_USER) {
-            console.log("loaded models by calculation in " + (Date.now() - t) + " ");
+        try {
+
+            assureDirExists(modelPath);
+            console.log('created dir ' + modelPath);
+            CircularSer.save(modelPath + '/_cache.js', oModelSer);
+            forceGC();
+            if (process.env.ABOT_EMAIL_USER) {
+                console.log("loaded models by calculation in " + (Date.now() - t) + " ");
+            }
+            var res = oModel;
+            // (Object as any).assign(modelHandle, { model: oModel }) as IMatch.IModelHandle;
+            return res;
+        } catch( err) {
+            debuglog("" + err);
+            console.log('err ' + err);
+            console.log(err + ' ' + err.stack);
+            process.stdout.on('drain', function() {
+                process.exit(-1);
+            });
+            return null;
         }
-        var res = oModel;
-        // (Object as any).assign(modelHandle, { model: oModel }) as IMatch.IModelHandle;
-        return res;
+    
     }
     ).catch( (err) => {
+        debuglog("" + err);
+        console.log('err ' + err);
         console.log(err + ' ' + err.stack);
-        process.exit(-1);
+        process.stdout.on('drain', function() {
+            process.exit(-1);
+        });
+        return null;
+
+ //       process.exit(-1);
     }) as Promise<IMatch.IModels>;
 }
 
