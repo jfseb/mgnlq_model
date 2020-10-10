@@ -1500,7 +1500,7 @@ export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?:
             process.stdout.on('drain', function() {
                 process.exit(-1);
             });
-            return null;
+            throw new Error(' ' + err  + ' ' + err.stack);
         }
     
     }
@@ -1511,9 +1511,7 @@ export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?:
         process.stdout.on('drain', function() {
             process.exit(-1);
         });
-        return null;
-
- //       process.exit(-1);
+        throw new Error(' ' + err  + ' ' + err.stack);
     }) as Promise<IMatch.IModels>;
 }
 
