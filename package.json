@@ -1,6 +1,6 @@
 {
   "name": "mgnlq_model",
-  "version": "0.0.211",
+  "version": "0.0.212",
   "description": "model access via mongoose, model loading",
   "main": "js/index.js",
   "typings": "js/index.d.ts",
@@ -53,7 +53,7 @@
     "debugf": "^0.1.2",
     "jsonschema": "^1.1.1",
     "lodash": "^4.17.20",
-    "mongoose": "^5.7.7",
+    "mongoose": "^5.10.8",
     "mongoose-schema-jsonschema": "^1.1.13"
   }
 }
