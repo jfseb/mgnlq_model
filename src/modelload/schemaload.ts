@@ -357,7 +357,7 @@ export function removeOthers(mongoose : any, model: mongoose.Model<any>, retaine
         if(delta.length === 0) {
             return Promise.resolve(true);
         }
-        return Promise.all(delta.map( modelname => (model.remove as any)({ modelname : modelname})));
+        return Promise.all(delta.map( modelname => (model.deleteMany as any)({ modelname : modelname})));
     });
 }
 var SchemaOperators = { operators : {}, synonyms : {}};
@@ -475,14 +475,14 @@ export function makeModelFromDB(mongoose : mongoose.Mongoose, modelName : string
 
 export function uploadFillers(mongoose: mongoose.Mongoose, modelPath: string) : Promise<any> {
     var modelFiller = getOrCreateModelFillers(mongoose);
-    return modelFiller.remove({}).then(() => {
+    return modelFiller.deleteMany({}).then(() => {
     var fillers = FUtils.readFileAsJSON(modelPath + '/filler.json');
         return new modelFiller({ fillers: fillers}).save();
     });
 }
 export function uploadOperators(mongoose: mongoose.Mongoose, modelPath: string) : Promise<any> {
     var modelFiller = getOrCreateModelOperators(mongoose);
-    return modelFiller.remove({}).then(() => {
+    return modelFiller.deleteMany({}).then(() => {
     var operators = FUtils.readFileAsJSON(modelPath + '/operators.json');
     return new modelFiller(operators).save();
     });

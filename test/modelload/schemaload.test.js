@@ -466,6 +466,9 @@ it('testUpsertModel', async () => {
     res.remove = function () {
       return Promise.resolve(true);
     },
+    res.deleteMany = function () {
+      return Promise.resolve(true);
+    },
     res.aggregate = function () {
       return Promise.resolve([]);
     },

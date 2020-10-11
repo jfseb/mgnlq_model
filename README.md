@@ -36,8 +36,10 @@ node js/makedb.js
 ```
 or
 ```
-npm run load_data
+npm run load_testdb
 ```
+
+to load the testdb2, use project mgnql_testmodel2  and npm run load_testdb2 
 
 a mongo db instance is created,
 The name of the DB and the source data is controlled via the environment parameters:

@@ -9,10 +9,10 @@ export function openMongoose(mongoose: any, mongoConnectionString : string) {
   console.log(' mongoose.connect ' + mongoConnectionString );
   mongoose.connect(mongoConnectionString || 'mongodb://localhost/nodeunit',
   {
-      useFindAndModify : true,  //https://mongoosejs.com/docs/deprecations.html#-findandmodify-
+      useFindAndModify : false,  //https://mongoosejs.com/docs/deprecations.html#-findandmodify-
       useUnifiedTopology: true,
       useNewUrlParser: true/*useMongoClient : true*/ 
-      /*, useCreateIndex : true**/ }); // .then( a => console.log('mongoose connect ok'))
+      ,useCreateIndex : true }); // .then( a => console.log('mongoose connect ok'))
 
   //TODO   
  //  mongoose.set('useCreateIndex', true); // DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead. #6890

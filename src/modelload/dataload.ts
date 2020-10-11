@@ -109,7 +109,7 @@ export function loadModelData(mongoose : any,  modelPath: string, modelName : st
     }).then( oModel2 => {
         return Promise.all(data.map( (oRecord,index) => SchemaLoad.validateDocMongoose(mongoose, oModel2.modelName, oModel2.schema, oRecord))).then( () => { return oModel2;})
     }).then( (oModel) => {
-        return oModel.remove({}).then(() => oModel)
+        return oModel.deleteMany({}).then(() => oModel)
         .then( oModel => {
             return Promise.all(data.map(doc => {
               var oDoc = new oModel(doc);
