@@ -1,6 +1,6 @@
 [
   {
-    "_id": "5f7f4ed1fbf0a2ab5532be98",
+    "_id": "5f83a550c38196ff8bc23e0c",
     "modelname": "demomdls",
     "__v": 0,
     "collectionname": "demomdls",
@@ -44,7 +44,7 @@
         "_m_category": "besitzer",
         "index": true
       },
-      "gründungsjahr": {
+      "gr_ndungsjahr": {
         "type": "Number",
         "trim": true,
         "_m_category": "gründungsjahr"

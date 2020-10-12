@@ -4,6 +4,7 @@
  * @file
  */
 import * as IMatch from '../match/ifmatch';
+import { IFModel } from '..';
 import * as mongoose from 'mongoose';
 export declare function cmpTools(a: IMatch.ITool, b: IMatch.ITool): number;
 export declare function loadModelNames(modelPath: string): string[];
@@ -63,6 +64,7 @@ export declare function getModelDocFromDB(mongoose: mongoose.Mongoose, modelName
 export declare function makeModelFromDB(mongoose: mongoose.Mongoose, modelName: string): Promise<mongoose.Model<any>>;
 export declare function uploadFillers(mongoose: mongoose.Mongoose, modelPath: string): Promise<any>;
 export declare function uploadOperators(mongoose: mongoose.Mongoose, modelPath: string): Promise<any>;
+export declare function validatePropertyNames(modelDoc: IFModel.IModelDoc, eschema: IFModel.IExtendedSchema): void;
 /**
  * Uploads the complete model (metadata!) information
  * Assumes metamodel has been loaded (see #upsertMetaModels)

@@ -5,7 +5,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a69612",
+      "_id": "5f83a550d7bf3410040ac4da",
       "category": "uri",
       "category_description": "link to domain description",
       "QBEColumnProps": {
@@ -35,7 +35,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a69613",
+      "_id": "5f83a550d7bf3410040ac4db",
       "category": "domain",
       "category_description": "a technical key, combination of appId and releaseId",
       "QBEColumnProps": {
@@ -66,7 +66,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a69614",
+      "_id": "5f83a550d7bf3410040ac4dc",
       "category": "domain description",
       "category_description": "a technical key, combination of appId and releaseId",
       "QBEColumnProps": {
@@ -95,7 +95,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a69615",
+      "_id": "5f83a550d7bf3410040ac4dd",
       "category": "category",
       "category_description": "Object property",
       "QBEColumnProps": {
@@ -125,7 +125,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a69616",
+      "_id": "5f83a550d7bf3410040ac4de",
       "category": "category description",
       "category_description": "Description of the category"
     },
@@ -150,7 +150,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a69617",
+      "_id": "5f83a550d7bf3410040ac4df",
       "category": "QBE",
       "category_description": "whether to include the category in QBE tables"
     },
@@ -175,7 +175,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a69618",
+      "_id": "5f83a550d7bf3410040ac4e0",
       "category": "LUNRIndex",
       "category_description": "whether to include the category in a LUNR Index"
     },
@@ -200,7 +200,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a69619",
+      "_id": "5f83a550d7bf3410040ac4e1",
       "category": "wordindex",
       "category_description": "whether to include the category in a LUNR Index"
     },
@@ -225,7 +225,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a6961a",
+      "_id": "5f83a550d7bf3410040ac4e2",
       "category": "exactmatch",
       "category_description": "whether a match on a given value has to be precise"
     },
@@ -250,7 +250,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a6961b",
+      "_id": "5f83a550d7bf3410040ac4e3",
       "category": "showURI",
       "category_description": "display uri"
     },
@@ -275,7 +275,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a6961c",
+      "_id": "5f83a550d7bf3410040ac4e4",
       "category": "showURIRank",
       "category_description": "display uri rank"
     },
@@ -300,7 +300,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a6961d",
+      "_id": "5f83a550d7bf3410040ac4e5",
       "category": "category synonyms",
       "category_description": "synonyms for the category"
     },
@@ -325,7 +325,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed0dfac165358a6961e",
+      "_id": "5f83a550d7bf3410040ac4e6",
       "category": "columns",
       "category_description": "the columns in order which are shon in a table"
     },
@@ -352,7 +352,7 @@
       "category_synonyms": [
         "name"
       ],
-      "_id": "5f7f4ed1dfac165358a6961f",
+      "_id": "5f83a550d7bf3410040ac4e7",
       "category": "element name",
       "category_description": "element name",
       "QBEColumnProps": {
@@ -377,7 +377,7 @@
       "category_synonyms": [
         "symbol"
       ],
-      "_id": "5f7f4ed1dfac165358a69620",
+      "_id": "5f83a550d7bf3410040ac4e8",
       "category": "element symbol",
       "category_description": "element symbol",
       "QBEColumnProps": {
@@ -402,7 +402,7 @@
       "category_synonyms": [
         "element weight"
       ],
-      "_id": "5f7f4ed1dfac165358a69621",
+      "_id": "5f83a550d7bf3410040ac4e9",
       "category": "atomic weight",
       "category_description": "weigth of the element",
       "QBEColumnProps": {
@@ -423,7 +423,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69622",
+      "_id": "5f83a550d7bf3410040ac4ea",
       "category": "element number",
       "category_description": "weigth of the element",
       "QBEColumnProps": {
@@ -448,7 +448,7 @@
       "category_synonyms": [
         "name"
       ],
-      "_id": "5f7f4ed1dfac165358a69623",
+      "_id": "5f83a550d7bf3410040ac4eb",
       "category": "element name",
       "category_description": "name of the philosophical element",
       "wordindex": true
@@ -463,7 +463,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69624",
+      "_id": "5f83a550d7bf3410040ac4ec",
       "category": "element properties"
     },
     "columns": [],
@@ -476,7 +476,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69625",
+      "_id": "5f83a550d7bf3410040ac4ed",
       "category": "object name",
       "category_description": "name of the comsmological object, e.g. star, start system, galaxy or planet",
       "wordindex": true
@@ -491,7 +491,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69626",
+      "_id": "5f83a550d7bf3410040ac4ee",
       "category": "visual magnitude",
       "wordindex": true
     },
@@ -505,7 +505,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69627",
+      "_id": "5f83a550d7bf3410040ac4ef",
       "category": "visual luminosity"
     },
     "columns": [],
@@ -518,7 +518,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69628",
+      "_id": "5f83a550d7bf3410040ac4f0",
       "category": "mass",
       "category_description": "mass of an object"
     },
@@ -532,7 +532,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69629",
+      "_id": "5f83a550d7bf3410040ac4f1",
       "category": "radius"
     },
     "columns": [],
@@ -545,7 +545,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6962a",
+      "_id": "5f83a550d7bf3410040ac4f2",
       "category": "object type",
       "category_description": "type of object, e.g. \"star\", \"planet\".",
       "wordindex": true
@@ -560,7 +560,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6962b",
+      "_id": "5f83a550d7bf3410040ac4f3",
       "category": "orbits",
       "category_description": "for planets, name of the central entity",
       "wordindex": true
@@ -575,7 +575,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6962c",
+      "_id": "5f83a550d7bf3410040ac4f4",
       "category": "distance",
       "category_description": "distance from earth"
     },
@@ -589,7 +589,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6962d",
+      "_id": "5f83a550d7bf3410040ac4f5",
       "category": "_url",
       "showURI": true
     },
@@ -603,7 +603,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6962e",
+      "_id": "5f83a550d7bf3410040ac4f6",
       "category": "orbit radius"
     },
     "columns": [],
@@ -616,7 +616,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6962f",
+      "_id": "5f83a550d7bf3410040ac4f7",
       "category": "eccentricity"
     },
     "columns": [],
@@ -629,7 +629,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69630",
+      "_id": "5f83a550d7bf3410040ac4f8",
       "category": "orbital period"
     },
     "columns": [],
@@ -642,7 +642,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69631",
+      "_id": "5f83a550d7bf3410040ac4f9",
       "category": "albedo"
     },
     "columns": [],
@@ -655,7 +655,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69632",
+      "_id": "5f83a550d7bf3410040ac4fa",
       "category": "tcode",
       "category_description": "SAP Transaction code",
       "wordindex": true
@@ -670,7 +670,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69633",
+      "_id": "5f83a550d7bf3410040ac4fb",
       "category": "devclass",
       "category_description": "Development class (Package) in system",
       "wordindex": true
@@ -685,7 +685,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69634",
+      "_id": "5f83a550d7bf3410040ac4fc",
       "category": "systemId"
     },
     "columns": [],
@@ -698,7 +698,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69635",
+      "_id": "5f83a550d7bf3410040ac4fd",
       "category": "client"
     },
     "columns": [],
@@ -711,7 +711,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69636",
+      "_id": "5f83a550d7bf3410040ac4fe",
       "category": "transaction description",
       "category_description": "English text of the transaction"
     },
@@ -725,7 +725,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69637",
+      "_id": "5f83a550d7bf3410040ac4ff",
       "category": "uri",
       "category_description": "link to fiori app reference library",
       "QBEColumnProps": {
@@ -769,7 +769,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69638",
+      "_id": "5f83a550d7bf3410040ac500",
       "category": "uri_rank",
       "category_description": "Sort criteria for URI",
       "QBEColumnProps": {
@@ -813,7 +813,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69639",
+      "_id": "5f83a550d7bf3410040ac501",
       "category": "AppKey",
       "category_description": "a technical key, combination of appId and releaseId",
       "QBEColumnProps": {
@@ -865,7 +865,7 @@
         "manifest id",
         "appdescriptor id"
       ],
-      "_id": "5f7f4ed1dfac165358a6963a",
+      "_id": "5f83a550d7bf3410040ac502",
       "category": "ArtifactId",
       "category_description": "for UI5 based applications, name of the UI5 Component, e.g. \"ui.s2p.mm.supconf.monitors1\".",
       "QBEColumnProps": {
@@ -910,7 +910,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6963b",
+      "_id": "5f83a550d7bf3410040ac503",
       "category": "appId",
       "category_description": "the Fiori appId, note that multiple records exists, as the same ID may change over time with verions",
       "QBEColumnProps": {
@@ -960,7 +960,7 @@
         "intents",
         "intent"
       ],
-      "_id": "5f7f4ed1dfac165358a6963c",
+      "_id": "5f83a550d7bf3410040ac504",
       "category": "fiori intent",
       "category_description": "A combination of \"#\" <SemanticObject> - <Semanticaction> which appears in the URL of the Fiori Launchpad when addressing the application",
       "QBEColumnProps": {
@@ -1008,7 +1008,7 @@
       "category_synonyms": [
         "Fiori App"
       ],
-      "_id": "5f7f4ed1dfac165358a6963d",
+      "_id": "5f83a550d7bf3410040ac505",
       "category": "AppName",
       "category_description": "Human legible Application name",
       "QBEColumnProps": {
@@ -1060,7 +1060,7 @@
         "Support Component",
         "Component"
       ],
-      "_id": "5f7f4ed1dfac165358a6963e",
+      "_id": "5f83a550d7bf3410040ac506",
       "category": "ApplicationComponent",
       "category_description": "Support component for the Frontend application, typically",
       "QBEColumnProps": {
@@ -1110,7 +1110,7 @@
         "Role Name",
         "PFCG Role"
       ],
-      "_id": "5f7f4ed1dfac165358a6963f",
+      "_id": "5f83a550d7bf3410040ac507",
       "category": "RoleName",
       "category_description": "A business role name, e.g. \"Purchaser\", for a technical role (PFCG), try BusinessRoleName",
       "QBEColumnProps": {
@@ -1156,7 +1156,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69640",
+      "_id": "5f83a550d7bf3410040ac508",
       "category": "ApplicationType",
       "category_description": "Whether the application is classical or not",
       "QBEColumnProps": {
@@ -1207,7 +1207,7 @@
         "BSP Name",
         "BSP repository"
       ],
-      "_id": "5f7f4ed1dfac165358a69641",
+      "_id": "5f83a550d7bf3410040ac509",
       "category": "BSPName",
       "category_description": "Name of the Business Server Page",
       "QBEColumnProps": {
@@ -1258,7 +1258,7 @@
         "BSP Urls",
         "Resource Path"
       ],
-      "_id": "5f7f4ed1dfac165358a69642",
+      "_id": "5f83a550d7bf3410040ac50a",
       "category": "BSPApplicationURL",
       "category_description": "url of the BSP application in an ABAP system, see BSP name for the technical storage  /sab/bc/ui5_ui5/..",
       "QBEColumnProps": {
@@ -1303,7 +1303,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69643",
+      "_id": "5f83a550d7bf3410040ac50b",
       "category": "releaseName",
       "category_description": "release name",
       "QBEColumnProps": {
@@ -1349,7 +1349,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69644",
+      "_id": "5f83a550d7bf3410040ac50c",
       "category": "releaseId",
       "wordindex": true,
       "exactmatch": true
@@ -1390,7 +1390,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69645",
+      "_id": "5f83a550d7bf3410040ac50d",
       "category": "BusinessCatalog",
       "category_description": "The SAP Business catalog which references the application in a \"TechnicalCatalog\" or \"BackendCatalog\" (for GUI/WDA transactions",
       "QBEColumnProps": {
@@ -1435,7 +1435,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69646",
+      "_id": "5f83a550d7bf3410040ac50e",
       "category": "TechnicalCatalog",
       "category_description": "Technical catalog, basic definition of \"TargetMapping\" and \"Tile\" for fiori (UI5) Applications",
       "QBEColumnProps": {
@@ -1480,7 +1480,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69647",
+      "_id": "5f83a550d7bf3410040ac50f",
       "category": "detailsurl",
       "hidden": true
     },
@@ -1520,7 +1520,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69648",
+      "_id": "5f83a550d7bf3410040ac510",
       "category": "isPublished"
     },
     "columns": [
@@ -1559,7 +1559,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69649",
+      "_id": "5f83a550d7bf3410040ac511",
       "category": "BSPPackage",
       "category_description": "Package (DevClass) of the BSP Application",
       "QBEColumnProps": {
@@ -1605,7 +1605,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6964a",
+      "_id": "5f83a550d7bf3410040ac512",
       "category": "AppDocumentationLinkKW"
     },
     "columns": [
@@ -1647,7 +1647,7 @@
         "Business Role Name",
         "Backend PFCG Role"
       ],
-      "_id": "5f7f4ed1dfac165358a6964b",
+      "_id": "5f83a550d7bf3410040ac513",
       "category": "BusinessRoleName",
       "category_description": "Package (DevClass) of the BSP Application",
       "QBEColumnProps": {
@@ -1693,7 +1693,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6964c",
+      "_id": "5f83a550d7bf3410040ac514",
       "category": "BusinessGroupName",
       "category_description": "Package (DevClass) of the BSP Application",
       "QBEColumnProps": {
@@ -1739,7 +1739,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6964d",
+      "_id": "5f83a550d7bf3410040ac515",
       "category": "BusinessGroupDescription",
       "wordindex": true
     },
@@ -1784,7 +1784,7 @@
         "OData Service Name",
         "OData Service"
       ],
-      "_id": "5f7f4ed1dfac165358a6964e",
+      "_id": "5f83a550d7bf3410040ac516",
       "category": "PrimaryODataServiceName",
       "category_description": "OData service : Technical name of the OData Service operating on a Gateway server (and implemented in the R/3 Backend) serving data for UI5 based Fiori Apps",
       "QBEColumnProps": {
@@ -1832,7 +1832,7 @@
       "category_synonyms": [
         "Semantic Object"
       ],
-      "_id": "5f7f4ed1dfac165358a6964f",
+      "_id": "5f83a550d7bf3410040ac517",
       "category": "SemanticObject",
       "category_description": "The first part of the \"fiori intent\", identifying the Business entity, e.g. \"SalesOrder\",\"GLAcount\" used for generic navigation",
       "QBEColumnProps": {
@@ -1880,7 +1880,7 @@
       "category_synonyms": [
         "Semantic Action"
       ],
-      "_id": "5f7f4ed1dfac165358a69650",
+      "_id": "5f83a550d7bf3410040ac518",
       "category": "SemanticAction",
       "category_description": "The second part of the \"fiori intent\", identifying the action, e.g. \"maintain\", \"create\"",
       "QBEColumnProps": {
@@ -1925,7 +1925,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69651",
+      "_id": "5f83a550d7bf3410040ac519",
       "category": "FrontendSoftwareComponent",
       "category_description": "Frontend Software Component",
       "QBEColumnProps": {
@@ -1975,7 +1975,7 @@
         "TransactionCode",
         "TransactionCodes"
       ],
-      "_id": "5f7f4ed1dfac165358a69652",
+      "_id": "5f83a550d7bf3410040ac51a",
       "category": "TransactionCode",
       "category_description": "For GUI based transaction, the transaciton code behind intent, a classical R/3 SAPGUi transaction",
       "QBEColumnProps": {
@@ -2022,7 +2022,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69653",
+      "_id": "5f83a550d7bf3410040ac51b",
       "category": "URLParameters"
     },
     "columns": [
@@ -2061,7 +2061,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69654",
+      "_id": "5f83a550d7bf3410040ac51c",
       "category": "LPDCustInstance",
       "wordindex": true,
       "exactmatch": true
@@ -2102,7 +2102,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69655",
+      "_id": "5f83a550d7bf3410040ac51d",
       "category": "PrimaryODataPFCGRole",
       "wordindex": true,
       "exactmatch": true
@@ -2143,7 +2143,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69656",
+      "_id": "5f83a550d7bf3410040ac51e",
       "category": "ExternalReleaseName",
       "category_description": "External Release name",
       "QBEColumnProps": {
@@ -2189,7 +2189,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69657",
+      "_id": "5f83a550d7bf3410040ac51f",
       "category": "recordKey"
     },
     "columns": [],
@@ -2205,7 +2205,7 @@
         "SOBJ",
         "Transport Key"
       ],
-      "_id": "5f7f4ed1dfac165358a69658",
+      "_id": "5f83a550d7bf3410040ac520",
       "category": "TransportObject",
       "category_description": "The transport object key (SOBJ)"
     },
@@ -2219,7 +2219,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69659",
+      "_id": "5f83a550d7bf3410040ac521",
       "category": "Shorttext",
       "category_description": "Short text of transport object"
     },
@@ -2237,7 +2237,7 @@
         "Database Table",
         "Transport Table"
       ],
-      "_id": "5f7f4ed1dfac165358a6965a",
+      "_id": "5f83a550d7bf3410040ac522",
       "category": "Table",
       "category_description": "The DDIC Table",
       "wordindex": true,
@@ -2253,7 +2253,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6965b",
+      "_id": "5f83a550d7bf3410040ac523",
       "category": "TableTransportKeySpec",
       "category_description": "Key specification for the table",
       "exactmatch": true
@@ -2270,7 +2270,7 @@
       "category_synonyms": [
         "Primary Table"
       ],
-      "_id": "5f7f4ed1dfac165358a6965c",
+      "_id": "5f83a550d7bf3410040ac524",
       "category": "PrimaryTable",
       "category_description": "Primary table of transport object, if existing",
       "wordindex": true,
@@ -2286,7 +2286,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6965d",
+      "_id": "5f83a550d7bf3410040ac525",
       "category": "clientSpecific",
       "category_description": "Whether the object is client specific",
       "wordindex": true,
@@ -2302,7 +2302,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6965e",
+      "_id": "5f83a550d7bf3410040ac526",
       "category": "Object name length",
       "category_description": "Length of transport key",
       "exactmatch": true
@@ -2317,7 +2317,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6965f",
+      "_id": "5f83a550d7bf3410040ac527",
       "category": "category",
       "category_description": "Category of the transport",
       "exactmatch": true
@@ -2332,7 +2332,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69660",
+      "_id": "5f83a550d7bf3410040ac528",
       "category": "TranslationRelevant",
       "category_description": "Boolean (\"true\",\"false\") whether object is translation relevant",
       "wordindex": true,
@@ -2348,7 +2348,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69661",
+      "_id": "5f83a550d7bf3410040ac529",
       "category": "Type",
       "exactmatch": true
     },
@@ -2366,7 +2366,7 @@
         "intents",
         "intent"
       ],
-      "_id": "5f7f4ed1dfac165358a69662",
+      "_id": "5f83a550d7bf3410040ac52a",
       "category": "fiori intent",
       "category_description": "A combination of \"#\" <SemanticObject> - <Semanticaction> which appears in the URL of the Fiori Launchpad when addressing the application",
       "wordindex": true
@@ -2387,7 +2387,7 @@
         "Support Component",
         "Component"
       ],
-      "_id": "5f7f4ed1dfac165358a69663",
+      "_id": "5f83a550d7bf3410040ac52b",
       "category": "ApplicationComponent",
       "category_description": "Support component for the Backend catalog entry, (the Package associated with the UIAD Transport record containing the Catalog Definition (SUI_TM_MM_APPS table). This is the component repsonsible for the Catalog, (not necessarily for the legacy application!)",
       "wordindex": true
@@ -2402,7 +2402,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69664",
+      "_id": "5f83a550d7bf3410040ac52c",
       "category": "WebDynproApplication",
       "category_description": "Name of the web dynpro application",
       "wordindex": true
@@ -2417,7 +2417,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69665",
+      "_id": "5f83a550d7bf3410040ac52d",
       "category": "devclass",
       "category_description": "devclass ( Package) of the backend catalog record (not necessarily the transaction",
       "wordindex": true
@@ -2436,7 +2436,7 @@
         "Fiori Backend Catalogs",
         "Backend Catalog"
       ],
-      "_id": "5f7f4ed1dfac165358a69666",
+      "_id": "5f83a550d7bf3410040ac52e",
       "category": "BackendCatalogId",
       "category_description": "Name of the technical catalog (_TC_..._BE_), (same as FioriBOM Technical Catalog) (identical to entry in /UI2/SYSALIASCAT), \n(in /UI2/PB_C_CHIP.REFERENCEID  *ADCAT*...)",
       "wordindex": true
@@ -2451,7 +2451,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69667",
+      "_id": "5f83a550d7bf3410040ac52f",
       "category": "TechnicalCatalogSystemAlias",
       "category_description": "Name of the System alias associated with this Technical catalog (entry delivered in /UI2/SYSALIASCAT)"
     },
@@ -2465,7 +2465,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69668",
+      "_id": "5f83a550d7bf3410040ac530",
       "category": "BusinessCatalog",
       "category_description": "Name of the Business Catalog referencing this catalog (in /UI2/PB_C_CACHE.ID *CATALOGPAGE:*  _BC_ .."
     },
@@ -2479,7 +2479,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69669",
+      "_id": "5f83a550d7bf3410040ac531",
       "category": "SemanticObject",
       "category_description": "The first part of the \"fiori intent\", identifying the Business entity, e.g. \"SalesOrder\",\"GLAcount\" used for generic navigation",
       "wordindex": true
@@ -2494,7 +2494,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6966a",
+      "_id": "5f83a550d7bf3410040ac532",
       "category": "SemanticAction",
       "category_description": "The second part of the \"fiori intent\", identifying the action, e.g. \"maintain\", \"create\"",
       "wordindex": true
@@ -2509,7 +2509,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6966b",
+      "_id": "5f83a550d7bf3410040ac533",
       "category": "SoftwareComponent",
       "category_description": "Software component containing the Backend catalog",
       "exactmatch": true
@@ -2528,7 +2528,7 @@
         "TransactionCode",
         "TransactionCodes"
       ],
-      "_id": "5f7f4ed1dfac165358a6966c",
+      "_id": "5f83a550d7bf3410040ac534",
       "category": "TransactionCode",
       "category_description": "For GUI based transaction, the transaction code behind intent, a classical R/3 SAPGUi transaction",
       "exactmatch": true,
@@ -2546,7 +2546,7 @@
       "category_synonyms": [
         "name"
       ],
-      "_id": "5f7f4ed1dfac165358a6966d",
+      "_id": "5f83a550d7bf3410040ac535",
       "category": "sender",
       "category_description": "sender",
       "QBEColumnProps": {
@@ -2576,7 +2576,7 @@
         "produktionsort",
         "betriebsstätte"
       ],
-      "_id": "5f7f4ed1dfac165358a6966e",
+      "_id": "5f83a550d7bf3410040ac536",
       "category": "standort",
       "category_description": "standort",
       "QBEColumnProps": {
@@ -2602,7 +2602,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a6966f",
+      "_id": "5f83a550d7bf3410040ac537",
       "category": "sendertyp",
       "category_description": "sendertyp",
       "QBEColumnProps": {
@@ -2628,7 +2628,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69670",
+      "_id": "5f83a550d7bf3410040ac538",
       "category": "besitzer",
       "category_description": "besitzer",
       "QBEColumnProps": {
@@ -2654,7 +2654,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69671",
+      "_id": "5f83a550d7bf3410040ac539",
       "category": "gründungsjahr",
       "category_description": "gründungsjahr",
       "QBEColumnProps": {
@@ -2680,7 +2680,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69672",
+      "_id": "5f83a550d7bf3410040ac53a",
       "category": "betriebsende",
       "category_description": "betriebsende",
       "QBEColumnProps": {
@@ -2706,7 +2706,7 @@
     "__v": 0,
     "_categories": {
       "category_synonyms": [],
-      "_id": "5f7f4ed1dfac165358a69673",
+      "_id": "5f83a550d7bf3410040ac53b",
       "category": "nachfolger",
       "category_description": "nachfolger",
       "QBEColumnProps": {

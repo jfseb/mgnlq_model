@@ -6,7 +6,7 @@
     "_categories": [
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a69657",
+        "_id": "5f83a550d7bf3410040ac51f",
         "category": "recordKey"
       },
       {
@@ -14,13 +14,13 @@
           "SOBJ",
           "Transport Key"
         ],
-        "_id": "5f7f4ed1dfac165358a69658",
+        "_id": "5f83a550d7bf3410040ac520",
         "category": "TransportObject",
         "category_description": "The transport object key (SOBJ)"
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a69659",
+        "_id": "5f83a550d7bf3410040ac521",
         "category": "Shorttext",
         "category_description": "Short text of transport object"
       },
@@ -30,7 +30,7 @@
           "Database Table",
           "Transport Table"
         ],
-        "_id": "5f7f4ed1dfac165358a6965a",
+        "_id": "5f83a550d7bf3410040ac522",
         "category": "Table",
         "category_description": "The DDIC Table",
         "wordindex": true,
@@ -38,7 +38,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a6965b",
+        "_id": "5f83a550d7bf3410040ac523",
         "category": "TableTransportKeySpec",
         "category_description": "Key specification for the table",
         "exactmatch": true
@@ -47,7 +47,7 @@
         "category_synonyms": [
           "Primary Table"
         ],
-        "_id": "5f7f4ed1dfac165358a6965c",
+        "_id": "5f83a550d7bf3410040ac524",
         "category": "PrimaryTable",
         "category_description": "Primary table of transport object, if existing",
         "wordindex": true,
@@ -55,7 +55,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a6965d",
+        "_id": "5f83a550d7bf3410040ac525",
         "category": "clientSpecific",
         "category_description": "Whether the object is client specific",
         "wordindex": true,
@@ -63,21 +63,21 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a6965e",
+        "_id": "5f83a550d7bf3410040ac526",
         "category": "Object name length",
         "category_description": "Length of transport key",
         "exactmatch": true
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a6965f",
+        "_id": "5f83a550d7bf3410040ac527",
         "category": "category",
         "category_description": "Category of the transport",
         "exactmatch": true
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a69660",
+        "_id": "5f83a550d7bf3410040ac528",
         "category": "TranslationRelevant",
         "category_description": "Boolean (\"true\",\"false\") whether object is translation relevant",
         "wordindex": true,
@@ -85,7 +85,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a69661",
+        "_id": "5f83a550d7bf3410040ac529",
         "category": "Type",
         "exactmatch": true
       }

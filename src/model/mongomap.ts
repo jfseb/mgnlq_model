@@ -91,6 +91,59 @@ export function collectCategories(eSchemaProps : any) {
     return oContext.res;
 }
 
+
+export function findEschemaPropForCategory(eSchemaProps : any, category : string) : any {
+    var prop = findEschemaPropForCategoryInt(eSchemaProps,category);
+    if ( prop._m_category != category) {
+        throw new Error("Mismatch between category and prop " + category + " " + JSON.stringify(prop));
+    }
+    return prop;
+}
+
+function unwrapArrayOne(a: any) : any {
+    if ( _.isArray(a) && a.length == 1 ) {
+        return a[0];
+    }
+    return a;
+}
+
+function findEschemaPropForCategoryInt(eSchemaProps : any, category : string) : any {
+    var propName = makeCanonicPropertyName(category);
+    var direct = eSchemaProps[propName];
+    // todo: there is an ambiguity between 
+    //  "category_synonyms" : [{ "type" : "String" , "_m_category":"category_synonyms"}]
+    // and 
+    //  "category_synonyms" : { "type" : ["String"] , "_m_category":"category_synonyms"}
+    // see e.g. sendertyp , see also the spurious Items type for standorg 
+    if ( direct ) {
+       return unwrapArrayOne(direct);
+    }
+    var res = { r: undefined };
+    var oContext = {
+        enterObject : function(key: string, val: any) {
+        },
+        visit: function(obj : any, key: string, val: any) {
+            if ( (_.isObject(val) || _.isArray(val)) && propName == key) {
+                if (res.r )  {
+                    throw new Error("Duplicate property " + propName + " " + JSON.stringify(res.r) + " now " + JSON.stringify(val));
+                }
+                console.log('found prop ' + JSON.stringify(res.r));
+                res.r =  unwrapArrayOne(val);
+            }
+        },
+        leaveObject : function(key: string, val: any) {
+        },
+        enterArray : function(key : string, val: any) {
+        },
+        leaveArray : function(key : string, val: any) {
+        }
+    }
+    traverseExecutingContext(eSchemaProps, oContext );
+    return res.r;
+}
+
+
+
 /**
  * Given a record and a paths expression, return
  * the value (string or array) which represents this path
@@ -152,6 +205,10 @@ export function getFirstSegment(paths : string[] ) : string {
     return paths[0];
 }
 
+export function makeCanonicPropertyName(category : string ) : string {
+    // no lowercasing!
+    return category.replace(/[^a-zA-Z0-9]/g,'_');
+}
 
 export function makeMongoNameLC(s : string) : string {
   return s.replace(/[^a-zA-Z0-9]/g,'_').toLowerCase();

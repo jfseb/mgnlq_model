@@ -45,6 +45,29 @@ export function cmpTools(a: IMatch.ITool, b: IMatch.ITool) {
 
 type IModel = IMatch.IModel;
 
+export function propagateTypeToModelDoc( modelDoc : IFModel.IModelDoc, eschema : IFModel.IExtendedSchema ) {
+    // props { "element_symbol":{"type":"String","trim":true,"_m_category":"element symbol","{
+    modelDoc._categories.forEach( cat => {
+        var propertyName = MongoMap.makeCanonicPropertyName(cat.category); 
+        var prop = MongoMap.findEschemaPropForCategory(eschema.props, cat.category);
+        if ( !prop) {
+            if( modelDoc.modelname !== "metamXXXodels") {
+                var err = 
+               "Unable to find property " + propertyName + " for category " + cat.category + " in model " 
+                + modelDoc.modelname
+                + "; valid props are:\"" + Object.getOwnPropertyNames(eschema.props).join(",\n") + "\"" 
+                 + " " + JSON.stringify(eschema.props);
+                 console.log(err);
+                 debuglog(err);
+                 throw new Error(err);
+            }
+        } else {
+            debuglog(' augmenting type for \"' + cat.category + "(" + propertyName + ")\" with " + JSON.stringify(prop.type));
+            cat.type = prop.type; // this may be ["String"] for an array type!
+        }
+    });
+}
+
 /**
  * returns when all models are loaded and all modeldocs are made
  * @param mongoose
@@ -69,6 +92,14 @@ export function getMongoHandle(mongoose: mongoose.Mongoose): Promise<IMatch.IMod
                     var [extendedSchema, model, modelDoc] = value;
                     res.modelESchemas[modelname] = extendedSchema;
                     res.modelDocs[modelname] = modelDoc;
+                    propagateTypeToModelDoc(modelDoc,extendedSchema);
+                    /*  if ( modelname == "iupacs") {
+                       debuglog(' modeldocs is ');
+                       debuglog(' here ' + JSON.stringify(modelDoc));
+                       debuglog(' here ' + JSON.stringify(extendedSchema));
+                       console.log(' modelDocs is ' + JSON.stringify(modelDoc));
+                       console.log('*** esschema is ' + JSON.stringify(extendedSchema));
+                    }*/
                     res.mongoMaps[modelname] = MongoMap.makeMongoMap(modelDoc, extendedSchema)
                     debuglog(()=> 'created mongomap for ' + modelname);
                 }
@@ -272,11 +303,11 @@ export function getCategoryRec(mongoHandle: IMatch.IModelHandleRaw, modelname: s
 {
     var categories = mongoHandle.modelDocs[modelname]._categories;
     var filtered = categories.filter( x => x.category == category );
+    // we want to ament the type!
     if ( filtered.length != 1 )
     {
 
         debugf( ' did not find ' + modelname + '  category  ' + category + ' in  ' + JSON.stringify(categories) );
-
         throw Error('category not found ' + category + " " + JSON.stringify(categories) );
     }
     return filtered[0];
@@ -1090,6 +1121,7 @@ function cmpLengthSort(a: string, b: string) {
 
 
 import * as Algol from '../match/algol';
+import { IFModel } from '..';
 // offset[0] : len-2
 //             len -1
 //             len
@@ -1102,7 +1134,6 @@ export function findNextLen(targetLen: number, arr: string[], offsets: number[])
     for (var i = offsets[4]; (i < arr.length) && (arr[i].length <= targetLen); ++i) {
         /* empty*/
     }
-    //console.log("pushing " + i);
     offsets.push(i);
 }
 
@@ -1398,8 +1429,6 @@ export function _loadModelsFull(modelHandle: IMatch.IModelHandleRaw, modelPath?:
         //console.log('error' + e);
         // no cache file,
     }
-    //var mdls = readFileAsJSON('./' + modelPath + '/models.json');
-
     var mdls = Object.keys(modelHandle.modelDocs).sort();
     var seenDomains ={};
     mdls.forEach((modelName,index) => {

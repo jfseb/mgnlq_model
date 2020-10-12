@@ -6,6 +6,7 @@
 import * as ISchema from '../modelload/schemaload';
 import * as IMatch from '../match/ifmatch';
 export declare function collectCategories(eSchemaProps: any): IMatch.CatMongoMap;
+export declare function findEschemaPropForCategory(eSchemaProps: any, category: string): any;
 /**
  * Given a record and a paths expression, return
  * the value (string or array) which represents this path
@@ -26,6 +27,7 @@ export declare function makeCategoryPath(mongoMap: IMatch.CatMongoMap, category:
  * @param paths
  */
 export declare function getFirstSegment(paths: string[]): string;
+export declare function makeCanonicPropertyName(category: string): string;
 export declare function makeMongoNameLC(s: string): string;
 export declare function isNonObjectPath(mongoMap: IMatch.CatMongoMap, category: string): boolean;
 export declare function getShortProjectedName(mongoMap: IMatch.CatMongoMap, category: string): string;

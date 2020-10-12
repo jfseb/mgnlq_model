@@ -17,6 +17,8 @@ import *  as IMatch from '../match/ifmatch';
 import * as fs from 'fs';
 import * as Meta from '../model/meta';
 import * as FUtils from '../model/model';
+import { IFModel } from '..';
+import * as MongoMap from '../model/mongomap';
 import * as Utils from 'abot_utils';
 //import * as CircularSer from 'abot_utils';
 //import * as Distance from 'abot_stringdist';
@@ -488,6 +490,20 @@ export function uploadOperators(mongoose: mongoose.Mongoose, modelPath: string) 
     });
 }
 
+export function validatePropertyNames( modelDoc : IFModel.IModelDoc, eschema : IFModel.IExtendedSchema ) {
+    modelDoc._categories.forEach( cat => {
+        var propertyName = MongoMap.makeCanonicPropertyName(cat.category); 
+        var prop = MongoMap.findEschemaPropForCategory(eschema.props, cat.category);
+        if ( !prop) {
+            throw new Error("Unable to find property " + propertyName + " for category " + cat.category + " in model  "    
+            + modelDoc.modelname
+            + ">" + Object.getOwnPropertyNames(eschema.props).join(",\n")  + " " + JSON.stringify(eschema.props));
+        }
+    });
+}
+
+
+
 /**
  * Uploads the complete model (metadata!) information
  * Assumes metamodel has been loaded (see #upsertMetaModels)
@@ -506,6 +522,7 @@ export function upsertModels(mongoose : mongoose.Mongoose, modelpath: string)  :
             debuglog('upserting  ' + modelName);
             var modelDoc = loadModelDoc(modelpath, modelName);
             var schemaSer = loadExtendedMongooseSchema(modelpath, modelName);
+            validatePropertyNames(modelDoc, schemaSer);
             var schemaFull = augmentMongooseSchema(modelDoc, schemaSer);
             debuglog(`upserting eschema ${modelName}  with modelDoc` + JSON.stringify(schemaFull));
             var p1 = model_ES.findOneAndUpdate( { modelname : modelName }, schemaFull, {

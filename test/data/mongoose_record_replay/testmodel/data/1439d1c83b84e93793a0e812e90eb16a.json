@@ -8,7 +8,7 @@
         "category_synonyms": [
           "name"
         ],
-        "_id": "5f7f4ed1dfac165358a6966d",
+        "_id": "5f83a550d7bf3410040ac535",
         "category": "sender",
         "category_description": "sender",
         "QBEColumnProps": {
@@ -24,7 +24,7 @@
           "produktionsort",
           "betriebsstätte"
         ],
-        "_id": "5f7f4ed1dfac165358a6966e",
+        "_id": "5f83a550d7bf3410040ac536",
         "category": "standort",
         "category_description": "standort",
         "QBEColumnProps": {
@@ -36,7 +36,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a6966f",
+        "_id": "5f83a550d7bf3410040ac537",
         "category": "sendertyp",
         "category_description": "sendertyp",
         "QBEColumnProps": {
@@ -48,7 +48,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a69670",
+        "_id": "5f83a550d7bf3410040ac538",
         "category": "besitzer",
         "category_description": "besitzer",
         "QBEColumnProps": {
@@ -60,7 +60,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a69671",
+        "_id": "5f83a550d7bf3410040ac539",
         "category": "gründungsjahr",
         "category_description": "gründungsjahr",
         "QBEColumnProps": {
@@ -72,7 +72,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a69672",
+        "_id": "5f83a550d7bf3410040ac53a",
         "category": "betriebsende",
         "category_description": "betriebsende",
         "QBEColumnProps": {
@@ -84,7 +84,7 @@
       },
       {
         "category_synonyms": [],
-        "_id": "5f7f4ed1dfac165358a69673",
+        "_id": "5f83a550d7bf3410040ac53b",
         "category": "nachfolger",
         "category_description": "nachfolger",
         "QBEColumnProps": {

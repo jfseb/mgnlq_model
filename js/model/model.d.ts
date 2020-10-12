@@ -7,6 +7,7 @@ import * as IMatch from '../match/ifmatch';
 import * as Meta from './meta';
 import * as mongoose from 'mongoose';
 export declare function cmpTools(a: IMatch.ITool, b: IMatch.ITool): number;
+export declare function propagateTypeToModelDoc(modelDoc: IFModel.IModelDoc, eschema: IFModel.IExtendedSchema): void;
 /**
  * returns when all models are loaded and all modeldocs are made
  * @param mongoose
@@ -59,6 +60,7 @@ export declare function getDomainBitIndexSafe(domain: string, oModel: IMatch.IMo
 export declare function getDomainsForBitField(oModel: IMatch.IModels, bitfield: number): string[];
 export declare function splitRules(rules: IMatch.mRule[]): IMatch.SplitRules;
 export declare function sortFlatRecords(a: any, b: any): number;
+import { IFModel } from '..';
 export declare function findNextLen(targetLen: number, arr: string[], offsets: number[]): void;
 export declare function addRangeRulesUnlessPresent(rules: IMatch.mRule[], lcword: string, rangeRules: IMatch.mRule[], presentRulesForKey: IMatch.mRule[], seenRules: any): void;
 export declare function addCloseExactRangeRules(rules: IMatch.mRule[], seenRules: any): void;
