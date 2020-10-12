@@ -1,146 +1,4 @@
 {
-  "807d3ce983c2f3f55bca0f31c3601ec1": {
-    "op": "distinct",
-    "name": "mongonlq_eschemas",
-    "digest": "807d3ce983c2f3f55bca0f31c3601ec1",
-    "query": "modelname",
-    "res": 9
-  },
-  "9500a309933f286947c6717653aeb3ae": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "9500a309933f286947c6717653aeb3ae",
-    "query": {
-      "modelname": "metamodels"
-    },
-    "res": 1
-  },
-  "d3a144c5b5e202138174d75a7914ec0b": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "d3a144c5b5e202138174d75a7914ec0b",
-    "query": {
-      "modelname": "iupacs"
-    },
-    "res": 1
-  },
-  "0e8d6d8c83a848e708a9a99bd74ab13c": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "0e8d6d8c83a848e708a9a99bd74ab13c",
-    "query": {
-      "modelname": "philoelements"
-    },
-    "res": 1
-  },
-  "19a0adac1ebbf18797d1a4616aaa2125": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "19a0adac1ebbf18797d1a4616aaa2125",
-    "query": {
-      "modelname": "fioriapps"
-    },
-    "res": 1
-  },
-  "c9edf8664459a45b5f6ecdba4b7a125d": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "c9edf8664459a45b5f6ecdba4b7a125d",
-    "query": {
-      "modelname": "fioribecatalogs"
-    },
-    "res": 1
-  },
-  "a2bd657e268cdd68bc85def7f5430481": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "a2bd657e268cdd68bc85def7f5430481",
-    "query": {
-      "modelname": "r3trans"
-    },
-    "res": 1
-  },
-  "14b25941dee0e239c366de17213c8fc7": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "14b25941dee0e239c366de17213c8fc7",
-    "query": {
-      "modelname": "cosmos"
-    },
-    "res": 1
-  },
-  "ca7a00a452b18e002ca17d2bda43d5ca": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "ca7a00a452b18e002ca17d2bda43d5ca",
-    "query": {
-      "modelname": "demomdls"
-    },
-    "res": 1
-  },
-  "ba66a7b7674b09f1a9e902c87da1a42f": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "ba66a7b7674b09f1a9e902c87da1a42f",
-    "query": {
-      "modelname": "metamodels"
-    },
-    "res": 1
-  },
-  "8e1efa7e07e086e9d728f0c6b6751e1f": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "8e1efa7e07e086e9d728f0c6b6751e1f",
-    "query": {
-      "modelname": "fioribecatalogs"
-    },
-    "res": 1
-  },
-  "9eb0ddac8074e3c5c90893d71004a866": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "9eb0ddac8074e3c5c90893d71004a866",
-    "query": {
-      "modelname": "sobj_tables"
-    },
-    "res": 1
-  },
-  "14327e3f5160b87e40ff68bc52f49181": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "14327e3f5160b87e40ff68bc52f49181",
-    "query": {
-      "modelname": "philoelements"
-    },
-    "res": 1
-  },
-  "c96d331a48c5a08db227704be79f3b95": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "c96d331a48c5a08db227704be79f3b95",
-    "query": {
-      "modelname": "cosmos"
-    },
-    "res": 1
-  },
-  "3cf43beb3545d80003a0a9cfd88f2779": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "3cf43beb3545d80003a0a9cfd88f2779",
-    "query": {
-      "modelname": "fioriapps"
-    },
-    "res": 1
-  },
-  "1a131fcb66f88577b51e2eaa7dfd85ed": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "1a131fcb66f88577b51e2eaa7dfd85ed",
-    "query": {
-      "modelname": "iupacs"
-    },
-    "res": 1
-  },
   "e3da6f20c57318d3cbb0421624f8915d": {
     "op": "find",
     "name": "metamodels",
@@ -150,69 +8,11 @@
     },
     "res": 1
   },
-  "1439d1c83b84e93793a0e812e90eb16a": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "1439d1c83b84e93793a0e812e90eb16a",
-    "query": {
-      "modelname": "demomdls"
-    },
-    "res": 1
-  },
-  "02aa45e93a0a49ad749f12cea53d6e43": {
-    "op": "distinct",
-    "name": "cosmos",
-    "digest": "02aa45e93a0a49ad749f12cea53d6e43",
-    "query": "object_type",
-    "res": 4
-  },
-  "2301c28b178ccba7f2d588f8c5c20844": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "2301c28b178ccba7f2d588f8c5c20844",
-    "query": "besitzer",
-    "res": 2
-  },
-  "0d27f6f34dfe004c2804e2d035628422": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "0d27f6f34dfe004c2804e2d035628422",
-    "query": "appId",
-    "res": 13
-  },
-  "74e87949c0eee269265869b8b041ff8a": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "74e87949c0eee269265869b8b041ff8a",
-    "query": "ApplicationType",
-    "res": 6
-  },
-  "f8fc21cebd689685d0753b24de5b4edb": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "f8fc21cebd689685d0753b24de5b4edb",
-    "query": "BusinessCatalog",
-    "res": 10
-  },
-  "fa26ade2aac2c4eeedb7737f9dac65c6": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "fa26ade2aac2c4eeedb7737f9dac65c6",
-    "query": "BusinessGroupDescription",
-    "res": 8
-  },
-  "c581cd82d6b18d4e26b1091c83b6b443": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "c581cd82d6b18d4e26b1091c83b6b443",
-    "query": "TransactionCode",
-    "res": 8
-  },
-  "6c2040e76e106b5a8ea84ce5d6d3e9ee": {
+  "73b43838e1490db0e3aeaf44370cb052": {
     "op": "distinct",
     "name": "fioribecatalogs",
-    "digest": "6c2040e76e106b5a8ea84ce5d6d3e9ee",
-    "query": "ApplicationComponent",
+    "digest": "73b43838e1490db0e3aeaf44370cb052",
+    "query": "TransactionCode",
     "res": 6
   },
   "7948707c035c8d5845e2391657b87cef": {
@@ -224,67 +24,18 @@
     },
     "res": 1
   },
+  "1118ca273d16cb89886c1990e3fe4885": {
+    "op": "distinct",
+    "name": "iupacs",
+    "digest": "1118ca273d16cb89886c1990e3fe4885",
+    "query": "element_name",
+    "res": 118
+  },
   "04d3a59ecb343c77799f2020f93dd809": {
     "op": "distinct",
     "name": "cosmos",
     "digest": "04d3a59ecb343c77799f2020f93dd809",
     "query": "object_name",
-    "res": 7
-  },
-  "98251cf92d9996aa685329a09d545eec": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "98251cf92d9996aa685329a09d545eec",
-    "query": "standort",
-    "res": 7
-  },
-  "8d8e02fb04aa546533d4522a23e2cd77": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "8d8e02fb04aa546533d4522a23e2cd77",
-    "query": "nachfolger",
-    "res": 2
-  },
-  "d5b7806ac36b9c583fa13ef96cdd93dc": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "d5b7806ac36b9c583fa13ef96cdd93dc",
-    "query": "ApplicationComponent",
-    "res": 12
-  },
-  "3b52d41a77ef8b9ee561156e3a279e70": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "3b52d41a77ef8b9ee561156e3a279e70",
-    "query": "releaseName",
-    "res": 4
-  },
-  "1d04b194145fd208616153822ac1f7f6": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "1d04b194145fd208616153822ac1f7f6",
-    "query": "BusinessRoleName",
-    "res": 9
-  },
-  "231a900a49b7e32f7b7b798149eef6b5": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "231a900a49b7e32f7b7b798149eef6b5",
-    "query": "SemanticAction",
-    "res": 10
-  },
-  "1a9ebdb47a00bec9d537d2f8124ac509": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "1a9ebdb47a00bec9d537d2f8124ac509",
-    "query": "ExternalReleaseName",
-    "res": 5
-  },
-  "e4e407afd81939c8299b9b9b873aa67d": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "e4e407afd81939c8299b9b9b873aa67d",
-    "query": "BackendCatalogId",
     "res": 7
   },
   "f2c8b7829da0ea6e751544b636e5b8a5": {
@@ -294,180 +45,12 @@
     "query": "element_symbol",
     "res": 118
   },
-  "820acb4495e80b5a325b3972e4af787d": {
-    "op": "distinct",
-    "name": "r3trans",
-    "digest": "820acb4495e80b5a325b3972e4af787d",
-    "query": "tcode",
-    "res": 4
-  },
-  "9d58dcef4e28ea886de158d8f36e0341": {
-    "op": "distinct",
-    "name": "sobj_tables",
-    "digest": "9d58dcef4e28ea886de158d8f36e0341",
-    "query": "TranslationRelevant",
-    "res": 2
-  },
-  "342d1c1e129bd247aee792daffce1378": {
-    "op": "distinct",
-    "name": "cosmos",
-    "digest": "342d1c1e129bd247aee792daffce1378",
-    "query": "visual_magnitude",
-    "res": 4
-  },
-  "bf90b77e51104a68142ab67aeedc4da5": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "bf90b77e51104a68142ab67aeedc4da5",
-    "query": "sendertyp",
-    "res": 6
-  },
-  "4fd88335def99c99819400885f9b99e8": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "4fd88335def99c99819400885f9b99e8",
-    "query": "ArtifactId",
-    "res": 6
-  },
-  "d4f36066f1d2d1f26c28f531ffec3e04": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "d4f36066f1d2d1f26c28f531ffec3e04",
-    "query": "RoleName",
-    "res": 12
-  },
-  "b6f7ceccc02226c92ab3e65c3c59f144": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "b6f7ceccc02226c92ab3e65c3c59f144",
-    "query": "releaseId",
-    "res": 4
-  },
-  "a02abe127ccaad11673103b53faeac5f": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "a02abe127ccaad11673103b53faeac5f",
-    "query": "BusinessGroupName",
-    "res": 9
-  },
-  "51ca4d49364ae4e62962311f9ad76ffe": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "51ca4d49364ae4e62962311f9ad76ffe",
-    "query": "FrontendSoftwareComponent",
-    "res": 5
-  },
-  "86ca6598473762efcedbb81269b5b157": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "86ca6598473762efcedbb81269b5b157",
-    "query": "fiori_intent",
-    "res": 8
-  },
-  "73de0927343cb37507ee55826347dab0": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "73de0927343cb37507ee55826347dab0",
-    "query": "SemanticObject",
-    "res": 5
-  },
   "8f434c3fdb7291894b559500688f3371": {
     "op": "distinct",
     "name": "iupacs",
     "digest": "8f434c3fdb7291894b559500688f3371",
     "query": "element_number",
     "res": 118
-  },
-  "645fd0203f92a3c85a7b562a84392281": {
-    "op": "distinct",
-    "name": "r3trans",
-    "digest": "645fd0203f92a3c85a7b562a84392281",
-    "query": "devclass",
-    "res": 4
-  },
-  "3ef1a4b5874b8138c67d60973f7a19e9": {
-    "op": "distinct",
-    "name": "cosmos",
-    "digest": "3ef1a4b5874b8138c67d60973f7a19e9",
-    "query": "orbits",
-    "res": 4
-  },
-  "6b6e644ca4499b3561fc68980710d7f6": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "6b6e644ca4499b3561fc68980710d7f6",
-    "query": "gründungsjahr",
-    "res": 4
-  },
-  "e8c47f76a07725fe2fc026ea9912d999": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "e8c47f76a07725fe2fc026ea9912d999",
-    "query": "fiori_intent",
-    "res": 11
-  },
-  "7cdf4812f0e355fb813b57154d901881": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "7cdf4812f0e355fb813b57154d901881",
-    "query": "BSPName",
-    "res": 6
-  },
-  "33fe0d425a9f572c6e2a3e2b43bb6705": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "33fe0d425a9f572c6e2a3e2b43bb6705",
-    "query": "TechnicalCatalog",
-    "res": 12
-  },
-  "c45ba3fd5de8f180969b02e600f9fe2f": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "c45ba3fd5de8f180969b02e600f9fe2f",
-    "query": "PrimaryODataServiceName",
-    "res": 5
-  },
-  "9707a0c764233b35696d8309d060b047": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "9707a0c764233b35696d8309d060b047",
-    "query": "LPDCustInstance",
-    "res": 3
-  },
-  "9af2a46521c29eae2288d95f388977e9": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "9af2a46521c29eae2288d95f388977e9",
-    "query": "WebDynproApplication",
-    "res": 3
-  },
-  "73b43838e1490db0e3aeaf44370cb052": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "73b43838e1490db0e3aeaf44370cb052",
-    "query": "TransactionCode",
-    "res": 6
-  },
-  "d7f270ba3e08f3ad6be2bb468fe4de80": {
-    "op": "distinct",
-    "name": "metamodels",
-    "digest": "d7f270ba3e08f3ad6be2bb468fe4de80",
-    "query": "_categories.category",
-    "res": 88
-  },
-  "2fc9cefd1f2d711c440a4a5348413d94": {
-    "op": "distinct",
-    "name": "sobj_tables",
-    "digest": "2fc9cefd1f2d711c440a4a5348413d94",
-    "query": "_tables.PrimaryTable",
-    "res": 3
-  },
-  "28d687d7c0f06156d66c884f0c19f76e": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "28d687d7c0f06156d66c884f0c19f76e",
-    "query": "SemanticAction",
-    "res": 8
   },
   "ee1e238d09baade11389e033b882e02d": {
     "op": "distinct",
@@ -476,75 +59,12 @@
     "query": "domain",
     "res": 9
   },
-  "94333b5ee872827a8f1eefe8e2d64b61": {
+  "d7f270ba3e08f3ad6be2bb468fe4de80": {
     "op": "distinct",
-    "name": "sobj_tables",
-    "digest": "94333b5ee872827a8f1eefe8e2d64b61",
-    "query": "_tables.Table",
-    "res": 20
-  },
-  "415f07414c5de8a356be69c62f15a047": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "415f07414c5de8a356be69c62f15a047",
-    "query": "sender",
-    "res": 8
-  },
-  "7f2ba5eb8536e49c8386c09d16e13756": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "7f2ba5eb8536e49c8386c09d16e13756",
-    "query": "betriebsende",
-    "res": 2
-  },
-  "20f66b3aac497d232b0a688e8ac1c47a": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "20f66b3aac497d232b0a688e8ac1c47a",
-    "query": "AppName",
-    "res": 13
-  },
-  "9b659345391366ad75fdf021fddec1e1": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "9b659345391366ad75fdf021fddec1e1",
-    "query": "BSPApplicationURL",
-    "res": 6
-  },
-  "afde5d3c465899f8ba6da496c1048ad2": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "afde5d3c465899f8ba6da496c1048ad2",
-    "query": "BSPPackage",
-    "res": 6
-  },
-  "db09cf7af4e751fe6172eec98c2d8e47": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "db09cf7af4e751fe6172eec98c2d8e47",
-    "query": "SemanticObject",
-    "res": 12
-  },
-  "832d062696cb866a45d8f88c609a4352": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "832d062696cb866a45d8f88c609a4352",
-    "query": "PrimaryODataPFCGRole",
-    "res": 4
-  },
-  "29ae174a0fc74ed9376269a65a1a2a0c": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "29ae174a0fc74ed9376269a65a1a2a0c",
-    "query": "devclass",
-    "res": 6
-  },
-  "1118ca273d16cb89886c1990e3fe4885": {
-    "op": "distinct",
-    "name": "iupacs",
-    "digest": "1118ca273d16cb89886c1990e3fe4885",
-    "query": "element_name",
-    "res": 118
+    "name": "metamodels",
+    "digest": "d7f270ba3e08f3ad6be2bb468fe4de80",
+    "query": "_categories.category",
+    "res": 88
   },
   "92accef96c73d16b0d76316fa7012f24": {
     "op": "distinct",
@@ -553,11 +73,206 @@
     "query": "element_name",
     "res": 4
   },
+  "820acb4495e80b5a325b3972e4af787d": {
+    "op": "distinct",
+    "name": "r3trans",
+    "digest": "820acb4495e80b5a325b3972e4af787d",
+    "query": "tcode",
+    "res": 4
+  },
+  "645fd0203f92a3c85a7b562a84392281": {
+    "op": "distinct",
+    "name": "r3trans",
+    "digest": "645fd0203f92a3c85a7b562a84392281",
+    "query": "devclass",
+    "res": 4
+  },
+  "94333b5ee872827a8f1eefe8e2d64b61": {
+    "op": "distinct",
+    "name": "sobj_tables",
+    "digest": "94333b5ee872827a8f1eefe8e2d64b61",
+    "query": "_tables.Table",
+    "res": 20
+  },
+  "2fc9cefd1f2d711c440a4a5348413d94": {
+    "op": "distinct",
+    "name": "sobj_tables",
+    "digest": "2fc9cefd1f2d711c440a4a5348413d94",
+    "query": "_tables.PrimaryTable",
+    "res": 3
+  },
   "516222f42ce7b65c1d51958d06604c47": {
     "op": "distinct",
     "name": "sobj_tables",
     "digest": "516222f42ce7b65c1d51958d06604c47",
     "query": "clientSpecific",
+    "res": 2
+  },
+  "9d58dcef4e28ea886de158d8f36e0341": {
+    "op": "distinct",
+    "name": "sobj_tables",
+    "digest": "9d58dcef4e28ea886de158d8f36e0341",
+    "query": "TranslationRelevant",
+    "res": 2
+  },
+  "1b37f765bb305fe72fb085a2bd62d4a2": {
+    "op": "aggregate",
+    "name": "cosmos",
+    "digest": "1b37f765bb305fe72fb085a2bd62d4a2",
+    "query": [
+      [
+        {
+          "$match": {
+            "_synonyms.0": {
+              "$exists": true
+            }
+          }
+        },
+        {
+          "$project": {
+            "_synonyms": 1
+          }
+        },
+        {
+          "$unwind": "$_synonyms"
+        },
+        {
+          "$project": {
+            "category": "$_synonyms.category",
+            "fact": "$_synonyms.fact",
+            "synonyms": "$_synonyms.synonyms"
+          }
+        }
+      ]
+    ],
+    "res": 5
+  },
+  "20ac4fe8037163e82fb8d0dcfc8a6ee3": {
+    "op": "aggregate",
+    "name": "demomdls",
+    "digest": "20ac4fe8037163e82fb8d0dcfc8a6ee3",
+    "query": [
+      [
+        {
+          "$match": {
+            "_synonyms.0": {
+              "$exists": true
+            }
+          }
+        },
+        {
+          "$project": {
+            "_synonyms": 1
+          }
+        },
+        {
+          "$unwind": "$_synonyms"
+        },
+        {
+          "$project": {
+            "category": "$_synonyms.category",
+            "fact": "$_synonyms.fact",
+            "synonyms": "$_synonyms.synonyms"
+          }
+        }
+      ]
+    ],
+    "res": 0
+  },
+  "549c520503aa2d42569f12b8cd9feef4": {
+    "op": "aggregate",
+    "name": "fioriapps",
+    "digest": "549c520503aa2d42569f12b8cd9feef4",
+    "query": [
+      [
+        {
+          "$match": {
+            "_synonyms.0": {
+              "$exists": true
+            }
+          }
+        },
+        {
+          "$project": {
+            "_synonyms": 1
+          }
+        },
+        {
+          "$unwind": "$_synonyms"
+        },
+        {
+          "$project": {
+            "category": "$_synonyms.category",
+            "fact": "$_synonyms.fact",
+            "synonyms": "$_synonyms.synonyms"
+          }
+        }
+      ]
+    ],
+    "res": 0
+  },
+  "b28c3306dbf74ad2d904f89fe67c5ce8": {
+    "op": "aggregate",
+    "name": "fioribecatalogs",
+    "digest": "b28c3306dbf74ad2d904f89fe67c5ce8",
+    "query": [
+      [
+        {
+          "$match": {
+            "_synonyms.0": {
+              "$exists": true
+            }
+          }
+        },
+        {
+          "$project": {
+            "_synonyms": 1
+          }
+        },
+        {
+          "$unwind": "$_synonyms"
+        },
+        {
+          "$project": {
+            "category": "$_synonyms.category",
+            "fact": "$_synonyms.fact",
+            "synonyms": "$_synonyms.synonyms"
+          }
+        }
+      ]
+    ],
+    "res": 0
+  },
+  "26e5f3e977c1f707f509e1b7103e4d04": {
+    "op": "aggregate",
+    "name": "iupacs",
+    "digest": "26e5f3e977c1f707f509e1b7103e4d04",
+    "query": [
+      [
+        {
+          "$match": {
+            "_synonyms.0": {
+              "$exists": true
+            }
+          }
+        },
+        {
+          "$project": {
+            "_synonyms": 1
+          }
+        },
+        {
+          "$unwind": "$_synonyms"
+        },
+        {
+          "$project": {
+            "category": "$_synonyms.category",
+            "fact": "$_synonyms.fact",
+            "synonyms": "$_synonyms.synonyms"
+          }
+        }
+      ]
+    ],
     "res": 2
   },
   "638308122dadbf237e8d5c7d17a0a0e7": {
@@ -624,166 +339,6 @@
     ],
     "res": 0
   },
-  "549c520503aa2d42569f12b8cd9feef4": {
-    "op": "aggregate",
-    "name": "fioriapps",
-    "digest": "549c520503aa2d42569f12b8cd9feef4",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "26e5f3e977c1f707f509e1b7103e4d04": {
-    "op": "aggregate",
-    "name": "iupacs",
-    "digest": "26e5f3e977c1f707f509e1b7103e4d04",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 2
-  },
-  "b65a79682b47c66a79ee3f84749b5631": {
-    "op": "aggregate",
-    "name": "sobj_tables",
-    "digest": "b65a79682b47c66a79ee3f84749b5631",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "b28c3306dbf74ad2d904f89fe67c5ce8": {
-    "op": "aggregate",
-    "name": "fioribecatalogs",
-    "digest": "b28c3306dbf74ad2d904f89fe67c5ce8",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "1b37f765bb305fe72fb085a2bd62d4a2": {
-    "op": "aggregate",
-    "name": "cosmos",
-    "digest": "1b37f765bb305fe72fb085a2bd62d4a2",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 5
-  },
   "faf73080c5a6737ef15e4470437a8222": {
     "op": "aggregate",
     "name": "r3trans",
@@ -816,10 +371,10 @@
     ],
     "res": 0
   },
-  "20ac4fe8037163e82fb8d0dcfc8a6ee3": {
+  "b65a79682b47c66a79ee3f84749b5631": {
     "op": "aggregate",
-    "name": "demomdls",
-    "digest": "20ac4fe8037163e82fb8d0dcfc8a6ee3",
+    "name": "sobj_tables",
+    "digest": "b65a79682b47c66a79ee3f84749b5631",
     "query": [
       [
         {
@@ -885,11 +440,204 @@
     ],
     "res": 98
   },
-  "776121f1ef07b75161c6d2197408e46e": {
+  "807d3ce983c2f3f55bca0f31c3601ec1": {
     "op": "distinct",
+    "name": "mongonlq_eschemas",
+    "digest": "807d3ce983c2f3f55bca0f31c3601ec1",
+    "query": "modelname",
+    "res": 9
+  },
+  "14b25941dee0e239c366de17213c8fc7": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "14b25941dee0e239c366de17213c8fc7",
+    "query": {
+      "modelname": "cosmos"
+    },
+    "res": 1
+  },
+  "ca7a00a452b18e002ca17d2bda43d5ca": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "ca7a00a452b18e002ca17d2bda43d5ca",
+    "query": {
+      "modelname": "demomdls"
+    },
+    "res": 1
+  },
+  "19a0adac1ebbf18797d1a4616aaa2125": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "19a0adac1ebbf18797d1a4616aaa2125",
+    "query": {
+      "modelname": "fioriapps"
+    },
+    "res": 1
+  },
+  "c9edf8664459a45b5f6ecdba4b7a125d": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "c9edf8664459a45b5f6ecdba4b7a125d",
+    "query": {
+      "modelname": "fioribecatalogs"
+    },
+    "res": 1
+  },
+  "d3a144c5b5e202138174d75a7914ec0b": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "d3a144c5b5e202138174d75a7914ec0b",
+    "query": {
+      "modelname": "iupacs"
+    },
+    "res": 1
+  },
+  "9500a309933f286947c6717653aeb3ae": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "9500a309933f286947c6717653aeb3ae",
+    "query": {
+      "modelname": "metamodels"
+    },
+    "res": 1
+  },
+  "0e8d6d8c83a848e708a9a99bd74ab13c": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "0e8d6d8c83a848e708a9a99bd74ab13c",
+    "query": {
+      "modelname": "philoelements"
+    },
+    "res": 1
+  },
+  "a2bd657e268cdd68bc85def7f5430481": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "a2bd657e268cdd68bc85def7f5430481",
+    "query": {
+      "modelname": "r3trans"
+    },
+    "res": 1
+  },
+  "9eb0ddac8074e3c5c90893d71004a866": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "9eb0ddac8074e3c5c90893d71004a866",
+    "query": {
+      "modelname": "sobj_tables"
+    },
+    "res": 1
+  },
+  "c96d331a48c5a08db227704be79f3b95": {
+    "op": "find",
     "name": "metamodels",
-    "digest": "776121f1ef07b75161c6d2197408e46e",
-    "query": "domain_synonyms",
+    "digest": "c96d331a48c5a08db227704be79f3b95",
+    "query": {
+      "modelname": "cosmos"
+    },
+    "res": 1
+  },
+  "1439d1c83b84e93793a0e812e90eb16a": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "1439d1c83b84e93793a0e812e90eb16a",
+    "query": {
+      "modelname": "demomdls"
+    },
+    "res": 1
+  },
+  "3cf43beb3545d80003a0a9cfd88f2779": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "3cf43beb3545d80003a0a9cfd88f2779",
+    "query": {
+      "modelname": "fioriapps"
+    },
+    "res": 1
+  },
+  "8e1efa7e07e086e9d728f0c6b6751e1f": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "8e1efa7e07e086e9d728f0c6b6751e1f",
+    "query": {
+      "modelname": "fioribecatalogs"
+    },
+    "res": 1
+  },
+  "1a131fcb66f88577b51e2eaa7dfd85ed": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "1a131fcb66f88577b51e2eaa7dfd85ed",
+    "query": {
+      "modelname": "iupacs"
+    },
+    "res": 1
+  },
+  "ba66a7b7674b09f1a9e902c87da1a42f": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "ba66a7b7674b09f1a9e902c87da1a42f",
+    "query": {
+      "modelname": "metamodels"
+    },
+    "res": 1
+  },
+  "14327e3f5160b87e40ff68bc52f49181": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "14327e3f5160b87e40ff68bc52f49181",
+    "query": {
+      "modelname": "philoelements"
+    },
+    "res": 1
+  },
+  "342d1c1e129bd247aee792daffce1378": {
+    "op": "distinct",
+    "name": "cosmos",
+    "digest": "342d1c1e129bd247aee792daffce1378",
+    "query": "visual_magnitude",
+    "res": 4
+  },
+  "02aa45e93a0a49ad749f12cea53d6e43": {
+    "op": "distinct",
+    "name": "cosmos",
+    "digest": "02aa45e93a0a49ad749f12cea53d6e43",
+    "query": "object_type",
+    "res": 4
+  },
+  "3ef1a4b5874b8138c67d60973f7a19e9": {
+    "op": "distinct",
+    "name": "cosmos",
+    "digest": "3ef1a4b5874b8138c67d60973f7a19e9",
+    "query": "orbits",
+    "res": 4
+  },
+  "415f07414c5de8a356be69c62f15a047": {
+    "op": "distinct",
+    "name": "demomdls",
+    "digest": "415f07414c5de8a356be69c62f15a047",
+    "query": "sender",
+    "res": 8
+  },
+  "98251cf92d9996aa685329a09d545eec": {
+    "op": "distinct",
+    "name": "demomdls",
+    "digest": "98251cf92d9996aa685329a09d545eec",
+    "query": "standort",
+    "res": 7
+  },
+  "bf90b77e51104a68142ab67aeedc4da5": {
+    "op": "distinct",
+    "name": "demomdls",
+    "digest": "bf90b77e51104a68142ab67aeedc4da5",
+    "query": "sendertyp",
+    "res": 6
+  },
+  "2301c28b178ccba7f2d588f8c5c20844": {
+    "op": "distinct",
+    "name": "demomdls",
+    "digest": "2301c28b178ccba7f2d588f8c5c20844",
+    "query": "besitzer",
     "res": 2
   },
   "c55831d3d8f2b0100136677b64afa11e": {
@@ -898,5 +646,243 @@
     "digest": "c55831d3d8f2b0100136677b64afa11e",
     "query": "gr_ndungsjahr",
     "res": 4
+  },
+  "7f2ba5eb8536e49c8386c09d16e13756": {
+    "op": "distinct",
+    "name": "demomdls",
+    "digest": "7f2ba5eb8536e49c8386c09d16e13756",
+    "query": "betriebsende",
+    "res": 2
+  },
+  "8d8e02fb04aa546533d4522a23e2cd77": {
+    "op": "distinct",
+    "name": "demomdls",
+    "digest": "8d8e02fb04aa546533d4522a23e2cd77",
+    "query": "nachfolger",
+    "res": 2
+  },
+  "4fd88335def99c99819400885f9b99e8": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "4fd88335def99c99819400885f9b99e8",
+    "query": "ArtifactId",
+    "res": 6
+  },
+  "0d27f6f34dfe004c2804e2d035628422": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "0d27f6f34dfe004c2804e2d035628422",
+    "query": "appId",
+    "res": 13
+  },
+  "e8c47f76a07725fe2fc026ea9912d999": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "e8c47f76a07725fe2fc026ea9912d999",
+    "query": "fiori_intent",
+    "res": 11
+  },
+  "20f66b3aac497d232b0a688e8ac1c47a": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "20f66b3aac497d232b0a688e8ac1c47a",
+    "query": "AppName",
+    "res": 13
+  },
+  "d5b7806ac36b9c583fa13ef96cdd93dc": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "d5b7806ac36b9c583fa13ef96cdd93dc",
+    "query": "ApplicationComponent",
+    "res": 12
+  },
+  "d4f36066f1d2d1f26c28f531ffec3e04": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "d4f36066f1d2d1f26c28f531ffec3e04",
+    "query": "RoleName",
+    "res": 12
+  },
+  "74e87949c0eee269265869b8b041ff8a": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "74e87949c0eee269265869b8b041ff8a",
+    "query": "ApplicationType",
+    "res": 6
+  },
+  "7cdf4812f0e355fb813b57154d901881": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "7cdf4812f0e355fb813b57154d901881",
+    "query": "BSPName",
+    "res": 6
+  },
+  "9b659345391366ad75fdf021fddec1e1": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "9b659345391366ad75fdf021fddec1e1",
+    "query": "BSPApplicationURL",
+    "res": 6
+  },
+  "3b52d41a77ef8b9ee561156e3a279e70": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "3b52d41a77ef8b9ee561156e3a279e70",
+    "query": "releaseName",
+    "res": 4
+  },
+  "b6f7ceccc02226c92ab3e65c3c59f144": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "b6f7ceccc02226c92ab3e65c3c59f144",
+    "query": "releaseId",
+    "res": 4
+  },
+  "f8fc21cebd689685d0753b24de5b4edb": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "f8fc21cebd689685d0753b24de5b4edb",
+    "query": "BusinessCatalog",
+    "res": 10
+  },
+  "33fe0d425a9f572c6e2a3e2b43bb6705": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "33fe0d425a9f572c6e2a3e2b43bb6705",
+    "query": "TechnicalCatalog",
+    "res": 12
+  },
+  "afde5d3c465899f8ba6da496c1048ad2": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "afde5d3c465899f8ba6da496c1048ad2",
+    "query": "BSPPackage",
+    "res": 6
+  },
+  "1d04b194145fd208616153822ac1f7f6": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "1d04b194145fd208616153822ac1f7f6",
+    "query": "BusinessRoleName",
+    "res": 9
+  },
+  "a02abe127ccaad11673103b53faeac5f": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "a02abe127ccaad11673103b53faeac5f",
+    "query": "BusinessGroupName",
+    "res": 9
+  },
+  "fa26ade2aac2c4eeedb7737f9dac65c6": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "fa26ade2aac2c4eeedb7737f9dac65c6",
+    "query": "BusinessGroupDescription",
+    "res": 8
+  },
+  "c45ba3fd5de8f180969b02e600f9fe2f": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "c45ba3fd5de8f180969b02e600f9fe2f",
+    "query": "PrimaryODataServiceName",
+    "res": 5
+  },
+  "db09cf7af4e751fe6172eec98c2d8e47": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "db09cf7af4e751fe6172eec98c2d8e47",
+    "query": "SemanticObject",
+    "res": 12
+  },
+  "231a900a49b7e32f7b7b798149eef6b5": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "231a900a49b7e32f7b7b798149eef6b5",
+    "query": "SemanticAction",
+    "res": 10
+  },
+  "51ca4d49364ae4e62962311f9ad76ffe": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "51ca4d49364ae4e62962311f9ad76ffe",
+    "query": "FrontendSoftwareComponent",
+    "res": 5
+  },
+  "c581cd82d6b18d4e26b1091c83b6b443": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "c581cd82d6b18d4e26b1091c83b6b443",
+    "query": "TransactionCode",
+    "res": 8
+  },
+  "9707a0c764233b35696d8309d060b047": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "9707a0c764233b35696d8309d060b047",
+    "query": "LPDCustInstance",
+    "res": 3
+  },
+  "832d062696cb866a45d8f88c609a4352": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "832d062696cb866a45d8f88c609a4352",
+    "query": "PrimaryODataPFCGRole",
+    "res": 4
+  },
+  "1a9ebdb47a00bec9d537d2f8124ac509": {
+    "op": "distinct",
+    "name": "fioriapps",
+    "digest": "1a9ebdb47a00bec9d537d2f8124ac509",
+    "query": "ExternalReleaseName",
+    "res": 5
+  },
+  "86ca6598473762efcedbb81269b5b157": {
+    "op": "distinct",
+    "name": "fioribecatalogs",
+    "digest": "86ca6598473762efcedbb81269b5b157",
+    "query": "fiori_intent",
+    "res": 8
+  },
+  "6c2040e76e106b5a8ea84ce5d6d3e9ee": {
+    "op": "distinct",
+    "name": "fioribecatalogs",
+    "digest": "6c2040e76e106b5a8ea84ce5d6d3e9ee",
+    "query": "ApplicationComponent",
+    "res": 6
+  },
+  "9af2a46521c29eae2288d95f388977e9": {
+    "op": "distinct",
+    "name": "fioribecatalogs",
+    "digest": "9af2a46521c29eae2288d95f388977e9",
+    "query": "WebDynproApplication",
+    "res": 3
+  },
+  "29ae174a0fc74ed9376269a65a1a2a0c": {
+    "op": "distinct",
+    "name": "fioribecatalogs",
+    "digest": "29ae174a0fc74ed9376269a65a1a2a0c",
+    "query": "devclass",
+    "res": 6
+  },
+  "e4e407afd81939c8299b9b9b873aa67d": {
+    "op": "distinct",
+    "name": "fioribecatalogs",
+    "digest": "e4e407afd81939c8299b9b9b873aa67d",
+    "query": "BackendCatalogId",
+    "res": 7
+  },
+  "73de0927343cb37507ee55826347dab0": {
+    "op": "distinct",
+    "name": "fioribecatalogs",
+    "digest": "73de0927343cb37507ee55826347dab0",
+    "query": "SemanticObject",
+    "res": 5
+  },
+  "28d687d7c0f06156d66c884f0c19f76e": {
+    "op": "distinct",
+    "name": "fioribecatalogs",
+    "digest": "28d687d7c0f06156d66c884f0c19f76e",
+    "query": "SemanticAction",
+    "res": 8
   }
 }
